@@ -5,7 +5,7 @@ import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
 
 //静态函数
-UnityEngine.Debug.Log('hello world');
+UnityEngine.Debug.Log('hello worl22222d');
 
 //对象构造
 let obj = new PuertsTest.DerivedClass();
