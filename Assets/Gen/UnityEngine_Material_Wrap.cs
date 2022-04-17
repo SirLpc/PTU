@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -2452,6 +2454,154 @@ namespace PuertsStaticWrap
         }
         
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOGradientColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.Material;
+        
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.NativeObject, typeof(UnityEngine.Gradient), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Gradient>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOGradientColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.NativeObject, typeof(UnityEngine.Gradient), false, false) && argHelper1.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Gradient>(false);
+                    
+                        var Arg1 = argHelper1.GetString(false);
+                    
+                        var Arg2 = argHelper2.GetFloat(false);
+                    
+                        var result = obj.DOGradientColor(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOGradientColor");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOOffset(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.Material;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetInt32(false);
+                    
+                        var Arg2 = argHelper2.GetFloat(false);
+                    
+                        var result = obj.DOOffset(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOTiling(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.Material;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetInt32(false);
+                    
+                        var Arg2 = argHelper2.GetFloat(false);
+                    
+                        var result = obj.DOTiling(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_shader(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
@@ -2825,7 +2975,10 @@ namespace PuertsStaticWrap
                     { new Puerts.MethodKey { Name = "SetTextureOffset", IsStatic = false}, M_SetTextureOffset },
                     { new Puerts.MethodKey { Name = "SetTextureScale", IsStatic = false}, M_SetTextureScale },
                     { new Puerts.MethodKey { Name = "GetTextureOffset", IsStatic = false}, M_GetTextureOffset },
-                    { new Puerts.MethodKey { Name = "GetTextureScale", IsStatic = false}, M_GetTextureScale }
+                    { new Puerts.MethodKey { Name = "GetTextureScale", IsStatic = false}, M_GetTextureScale },
+                    { new Puerts.MethodKey { Name = "DOGradientColor", IsStatic = false}, M_DOGradientColor },
+                    { new Puerts.MethodKey { Name = "DOOffset", IsStatic = false}, M_DOOffset },
+                    { new Puerts.MethodKey { Name = "DOTiling", IsStatic = false}, M_DOTiling }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

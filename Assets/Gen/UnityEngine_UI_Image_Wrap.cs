@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -205,6 +207,181 @@ namespace PuertsStaticWrap
                         var result = obj.IsRaycastLocationValid(Arg0, Arg1);
                 
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Image;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFade(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Image;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFade(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFillAmount(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Image;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFillAmount(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOGradientColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Image;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Gradient>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOGradientColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOBlendableColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Image;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOBlendableColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
                     }
@@ -800,7 +977,12 @@ namespace PuertsStaticWrap
                     { new Puerts.MethodKey { Name = "SetNativeSize", IsStatic = false}, M_SetNativeSize },
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputHorizontal", IsStatic = false}, M_CalculateLayoutInputHorizontal },
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical },
-                    { new Puerts.MethodKey { Name = "IsRaycastLocationValid", IsStatic = false}, M_IsRaycastLocationValid }
+                    { new Puerts.MethodKey { Name = "IsRaycastLocationValid", IsStatic = false}, M_IsRaycastLocationValid },
+                    { new Puerts.MethodKey { Name = "DOColor", IsStatic = false}, M_DOColor },
+                    { new Puerts.MethodKey { Name = "DOFade", IsStatic = false}, M_DOFade },
+                    { new Puerts.MethodKey { Name = "DOFillAmount", IsStatic = false}, M_DOFillAmount },
+                    { new Puerts.MethodKey { Name = "DOGradientColor", IsStatic = false}, M_DOGradientColor },
+                    { new Puerts.MethodKey { Name = "DOBlendableColor", IsStatic = false}, M_DOBlendableColor }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

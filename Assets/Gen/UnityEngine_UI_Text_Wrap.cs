@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -151,6 +153,251 @@ namespace PuertsStaticWrap
                         obj.CalculateLayoutInputVertical();
                 
                         
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Text;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFade(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Text;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFade(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOText(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Text;
+        
+                if (paramLen == 5)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    var argHelper3 = new Puerts.ArgumentHelper((int)data, isolate, info, 3);
+                
+                    var argHelper4 = new Puerts.ArgumentHelper((int)data, isolate, info, 4);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false) && argHelper3.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper4.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetString(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var Arg3 = (DG.Tweening.ScrambleMode)argHelper3.GetInt32(false);
+                    
+                        var Arg4 = argHelper4.GetString(false);
+                    
+                        var result = obj.DOText(Arg0, Arg1, Arg2, Arg3, Arg4);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 4)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    var argHelper3 = new Puerts.ArgumentHelper((int)data, isolate, info, 3);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false) && argHelper3.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetString(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var Arg3 = (DG.Tweening.ScrambleMode)argHelper3.GetInt32(false);
+                    
+                        var result = obj.DOText(Arg0, Arg1, Arg2, Arg3);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetString(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOText(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NullOrUndefined | Puerts.JsValueType.String, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetString(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOText(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOText");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOBlendableColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Text;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOBlendableColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
                     }
@@ -744,7 +991,11 @@ namespace PuertsStaticWrap
                     { new Puerts.MethodKey { Name = "GetGenerationSettings", IsStatic = false}, M_GetGenerationSettings },
                     { new Puerts.MethodKey { Name = "GetTextAnchorPivot", IsStatic = true}, F_GetTextAnchorPivot },
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputHorizontal", IsStatic = false}, M_CalculateLayoutInputHorizontal },
-                    { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical }
+                    { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical },
+                    { new Puerts.MethodKey { Name = "DOColor", IsStatic = false}, M_DOColor },
+                    { new Puerts.MethodKey { Name = "DOFade", IsStatic = false}, M_DOFade },
+                    { new Puerts.MethodKey { Name = "DOText", IsStatic = false}, M_DOText },
+                    { new Puerts.MethodKey { Name = "DOBlendableColor", IsStatic = false}, M_DOBlendableColor }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

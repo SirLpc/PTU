@@ -2673,6 +2673,13 @@ declare module 'csharp' {
             public constructor ($source: UnityEngine.Material)
             public constructor ()
         }
+        /** The material class. */
+        interface Material {
+            DOGradientColor ($gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence;
+            DOGradientColor ($gradient: UnityEngine.Gradient, $property: string, $duration: number) : DG.Tweening.Sequence;
+            DOOffset ($endValue: UnityEngine.Vector2, $propertyID: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOTiling ($endValue: UnityEngine.Vector2, $propertyID: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+        }
         /** MonoBehaviour is the base class from which every Unity script derives. */
         class MonoBehaviour extends UnityEngine.Behaviour
         {
@@ -12931,6 +12938,26 @@ declare module 'csharp' {
             public SetSizeWithCurrentAnchors ($axis: UnityEngine.RectTransform.Axis, $size: number) : void
             public constructor ()
         }
+        /** Position, size, anchor and pivot information for a rectangle. */
+        interface RectTransform {
+            DOAnchorPos ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPosX ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPosY ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPos3D ($endValue: UnityEngine.Vector3, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPos3DX ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPos3DY ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorPos3DZ ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorMax ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOAnchorMin ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOPivot ($endValue: UnityEngine.Vector2, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOPivotX ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOPivotY ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOSizeDelta ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOPunchAnchorPos ($punch: UnityEngine.Vector2, $duration: number, $vibrato?: number, $elasticity?: number, $snapping?: boolean) : DG.Tweening.Tweener;
+            DOShakeAnchorPos ($duration: number, $strength?: number, $vibrato?: number, $randomness?: number, $snapping?: boolean, $fadeOut?: boolean) : DG.Tweening.Tweener;
+            DOShakeAnchorPos ($duration: number, $strength: UnityEngine.Vector2, $vibrato?: number, $randomness?: number, $snapping?: boolean, $fadeOut?: boolean) : DG.Tweening.Tweener;
+            DOJumpAnchorPos ($endValue: UnityEngine.Vector2, $jumpPower: number, $numJumps: number, $duration: number, $snapping?: boolean) : DG.Tweening.Sequence;
+        }
         /** SpriteRenderer draw mode. */
         enum SpriteDrawMode
         { Simple = 0, Sliced = 1, Tiled = 2 }
@@ -12974,6 +13001,13 @@ declare module 'csharp' {
             public get spriteSortPoint(): UnityEngine.SpriteSortPoint;
             public set spriteSortPoint(value: UnityEngine.SpriteSortPoint);
             public constructor ()
+        }
+        /** Renders a Sprite for 2D graphics. */
+        interface SpriteRenderer {
+            DOColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOGradientColor ($gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence;
+            DOBlendableColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener;
         }
         /** Represents a Sprite object for use in 2D gameplay. */
         class Sprite extends UnityEngine.Object
@@ -21211,6 +21245,10 @@ declare module 'csharp' {
             public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
             public constructor ()
         }
+        /** A Canvas placable element that can be used to modify children Alpha, Raycasting, Enabled state. */
+        interface CanvasGroup {
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>;
+        }
         /** A component that will render to the screen after all normal rendering has completed when attached to a Canvas. Designed for GUI application. */
         class CanvasRenderer extends UnityEngine.Component
         {
@@ -23565,6 +23603,11 @@ declare module 'csharp' {
             public UnregisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
             public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
         }
+        interface Graphic {
+            DOColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOBlendableColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener;
+        }
         interface ICanvasElement
         {
             transform : UnityEngine.Transform
@@ -23624,6 +23667,13 @@ declare module 'csharp' {
             * @returns Valid. 
             */
             public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+        }
+        interface Image {
+            DOColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFillAmount ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>;
+            DOGradientColor ($gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence;
+            DOBlendableColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener;
         }
         class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
         {
@@ -23802,6 +23852,12 @@ declare module 'csharp' {
             public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
             public CalculateLayoutInputHorizontal () : void
             public CalculateLayoutInputVertical () : void
+        }
+        interface Text {
+            DOColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOText ($endValue: string, $duration: number, $richTextEnabled?: boolean, $scrambleMode?: DG.Tweening.ScrambleMode, $scrambleChars?: string) : DG.Tweening.Core.TweenerCore$3<string, string, DG.Tweening.Plugins.Options.StringOptions>;
+            DOBlendableColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener;
         }
         enum CanvasUpdate
         { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
@@ -24102,6 +24158,11 @@ declare module 'csharp' {
             public CalculateLayoutInputHorizontal () : void
             public CalculateLayoutInputVertical () : void
         }
+        interface LayoutElement {
+            DOFlexibleSize ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOMinSize ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+            DOPreferredSize ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
+        }
         class LayoutRebuilder extends System.Object implements UnityEngine.UI.ICanvasElement
         {
             public get transform(): UnityEngine.Transform;
@@ -24222,6 +24283,11 @@ declare module 'csharp' {
             public SetLayoutHorizontal () : void
             public SetLayoutVertical () : void
         }
+        interface ScrollRect {
+            DONormalizedPos ($endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener;
+            DOHorizontalNormalizedPos ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener;
+            DOVerticalNormalizedPos ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener;
+        }
         class Scrollbar extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.IBeginDragHandler
         {
             public get handleRect(): UnityEngine.RectTransform;
@@ -24273,6 +24339,9 @@ declare module 'csharp' {
             public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
             public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
         }
+        interface Slider {
+            DOValue ($endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>;
+        }
         class StencilMaterial extends System.Object
         {
             public static Add ($baseMat: UnityEngine.Material, $stencilID: number, $operation: UnityEngine.Rendering.StencilOp, $compareFunction: UnityEngine.Rendering.CompareFunction, $colorWriteMask: UnityEngine.Rendering.ColorWriteMask) : UnityEngine.Material
@@ -24313,6 +24382,11 @@ declare module 'csharp' {
         }
         class Outline extends UnityEngine.UI.Shadow implements UnityEngine.UI.IMeshModifier
         {
+        }
+        interface Outline {
+            DOColor ($endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOFade ($endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>;
+            DOScale ($endValue: UnityEngine.Vector2, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>;
         }
         class Shadow extends UnityEngine.UI.BaseMeshEffect implements UnityEngine.UI.IMeshModifier
         {
@@ -24972,6 +25046,29 @@ declare module 'csharp' {
         {
         }
     }
+    namespace Puergp.Variables {
+        class FloatVariable extends Puergp.Variables.BaseVariable$1<number>
+        {
+            public get value(): number;
+            public set value(value: number);
+            public constructor ()
+        }
+        class BaseVariable$1<T> extends UnityEngine.ScriptableObject
+        {
+        }
+        class GameObjectVariable extends Puergp.Variables.BaseVariable$1<UnityEngine.GameObject>
+        {
+            public get value(): UnityEngine.GameObject;
+            public set value(value: UnityEngine.GameObject);
+            public constructor ()
+        }
+        class IntVariable extends Puergp.Variables.BaseVariable$1<number>
+        {
+            public get value(): number;
+            public set value(value: number);
+            public constructor ()
+        }
+    }
     namespace UnityEngine.UI.Dropdown {
         class OptionData extends System.Object
         {
@@ -25109,7 +25206,639 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        namespace Js {
+        class NavigationPanelEntry extends System.Object
+        {
+            public get Sprite(): UnityEngine.Sprite;
+            public get ButtonText(): string;
+            public get TargetScreen(): string;
+            public constructor ()
+        }
+        class NavigateToWindowSignal extends deVoid.Utils.ASignal$1<string> implements deVoid.Utils.ISignal
+        {
+            public get Hash(): string;
+            public constructor ()
+        }
+        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        {
+            public constructor ()
+        }
+        namespace deVoid.Utils {
+        class ASignal$1<T> extends deVoid.Utils.ABaseSignal implements deVoid.Utils.ISignal
+        {
+        }
+        class ABaseSignal extends System.Object implements deVoid.Utils.ISignal
+        {
+            public get Hash(): string;
+        }
+        interface ISignal
+        {
+            Hash : string
+        }
+        class ASignal extends deVoid.Utils.ABaseSignal implements deVoid.Utils.ISignal
+        {
+            public AddListener ($handler: System.Action) : void
+            public RemoveListener ($handler: System.Action) : void
+            public Dispatch () : void
+        }
+        class Signals extends System.Object
+        {
+            public static AddListenerToHash ($signalHash: string, $handler: System.Action) : void
+            public static RemoveListenerFromHash ($signalHash: string, $handler: System.Action) : void
+        }
+        class SignalHub extends System.Object
+        {
+            public AddListenerToHash ($signalHash: string, $handler: System.Action) : void
+            public RemoveListenerFromHash ($signalHash: string, $handler: System.Action) : void
+            public constructor ()
+        }
+    }
+    namespace deVoid.UIFramework {
+        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        {
+            public get Priority(): deVoid.UIFramework.PanelPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class PanelProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IPanelProperties
+        {
+            public get Priority(): deVoid.UIFramework.PanelPriority;
+            public set Priority(value: deVoid.UIFramework.PanelPriority);
+            public constructor ()
+        }
+        interface IScreenProperties
+        {
+        }
+        interface IPanelProperties extends deVoid.UIFramework.IScreenProperties
+        {
+            Priority : deVoid.UIFramework.PanelPriority
+        }
+        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        {
+            public get Priority(): deVoid.UIFramework.PanelPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class AUIScreenController$1<TProps> extends UnityEngine.MonoBehaviour implements deVoid.UIFramework.IUIScreenController
+        {
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        interface IUIScreenController
+        {
+            ScreenId : string
+            IsVisible : boolean
+            InTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            OutTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            CloseRequest : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            ScreenDestroyed : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            Hide ($animate?: boolean) : void
+        }
+        interface IPanelController extends deVoid.UIFramework.IUIScreenController
+        {
+            Priority : deVoid.UIFramework.PanelPriority
+            ScreenId : string
+            IsVisible : boolean
+            InTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            OutTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            CloseRequest : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            ScreenDestroyed : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            Hide ($animate?: boolean) : void
+        }
+        interface IWindowController extends deVoid.UIFramework.IUIScreenController
+        {
+            HideOnForegroundLost : boolean
+            IsPopup : boolean
+            WindowPriority : deVoid.UIFramework.WindowPriority
+            ScreenId : string
+            IsVisible : boolean
+            InTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            OutTransitionFinished : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            CloseRequest : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            ScreenDestroyed : System.Action$1<deVoid.UIFramework.IUIScreenController>
+            Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            Hide ($animate?: boolean) : void
+        }
+        enum WindowPriority
+        { ForceForeground = 0, Enqueue = 1 }
+        enum PanelPriority
+        { None = 0, Prioritary = 1, Tutorial = 2, Blocker = 3 }
+        interface IWindowProperties extends deVoid.UIFramework.IScreenProperties
+        {
+            WindowQueuePriority : deVoid.UIFramework.WindowPriority
+            HideOnForegroundLost : boolean
+            IsPopup : boolean
+            SuppressPrefabProperties : boolean
+        }
+        class PanelPriorityLayerListEntry extends System.Object
+        {
+            public get TargetParent(): UnityEngine.Transform;
+            public set TargetParent(value: UnityEngine.Transform);
+            public get Priority(): deVoid.UIFramework.PanelPriority;
+            public set Priority(value: deVoid.UIFramework.PanelPriority);
+            public constructor ($prio: deVoid.UIFramework.PanelPriority, $parent: UnityEngine.Transform)
+            public constructor ()
+        }
+        class PanelPriorityLayerList extends System.Object
+        {
+            public get ParaLayerLookup(): System.Collections.Generic.Dictionary$2<deVoid.UIFramework.PanelPriority, UnityEngine.Transform>;
+            public constructor ($entries: System.Collections.Generic.List$1<deVoid.UIFramework.PanelPriorityLayerListEntry>)
+            public constructor ()
+        }
+        class PanelUILayer extends deVoid.UIFramework.AUILayer$1<deVoid.UIFramework.IPanelController>
+        {
+            public IsPanelVisible ($panelId: string) : boolean
+            public constructor ()
+        }
+        class AUILayer$1<TScreen> extends UnityEngine.MonoBehaviour
+        {
+        }
+        class ATransitionComponent extends UnityEngine.MonoBehaviour
+        {
+            public Animate ($target: UnityEngine.Transform, $callWhenFinished: System.Action) : void
+        }
+        class SimpleFadeTransition extends deVoid.UIFramework.ATransitionComponent
+        {
+            public constructor ()
+        }
+        class UIFrame extends UnityEngine.MonoBehaviour
+        {
+            public get MainCanvas(): UnityEngine.Canvas;
+            public get UICamera(): UnityEngine.Camera;
+            public Initialize () : void
+            public ShowPanel ($screenId: string) : void
+            public HidePanel ($screenId: string) : void
+            public OpenWindow ($screenId: string) : void
+            public CloseWindow ($screenId: string) : void
+            public CloseCurrentWindow () : void
+            public ShowScreen ($screenId: string) : void
+            public RegisterScreen ($screenId: string, $controller: deVoid.UIFramework.IUIScreenController, $screenTransform: UnityEngine.Transform) : void
+            public IsPanelOpen ($panelId: string) : boolean
+            public HideAll ($animate?: boolean) : void
+            public HideAllPanels ($animate?: boolean) : void
+            public CloseAllWindows ($animate?: boolean) : void
+            public IsScreenRegistered ($screenId: string) : boolean
+            public IsScreenRegistered ($screenId: string, $type: $Ref<System.Type>) : boolean
+            public constructor ()
+        }
+        class UISettings extends UnityEngine.ScriptableObject
+        {
+            public CreateUIInstance ($instanceAndRegisterScreens?: boolean) : deVoid.UIFramework.UIFrame
+            public constructor ()
+        }
+        class AWindowController extends deVoid.UIFramework.AWindowController$1<deVoid.UIFramework.WindowProperties> implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public get HideOnForegroundLost(): boolean;
+            public get IsPopup(): boolean;
+            public get WindowPriority(): deVoid.UIFramework.WindowPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class WindowProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        {
+            public get WindowQueuePriority(): deVoid.UIFramework.WindowPriority;
+            public set WindowQueuePriority(value: deVoid.UIFramework.WindowPriority);
+            public get HideOnForegroundLost(): boolean;
+            public set HideOnForegroundLost(value: boolean);
+            public get SuppressPrefabProperties(): boolean;
+            public set SuppressPrefabProperties(value: boolean);
+            public get IsPopup(): boolean;
+            public set IsPopup(value: boolean);
+            public constructor ()
+            public constructor ($suppressPrefabProperties?: boolean)
+            public constructor ($priority: deVoid.UIFramework.WindowPriority, $hideOnForegroundLost?: boolean, $suppressPrefabProperties?: boolean)
+        }
+        class AWindowController$1<TProps> extends deVoid.UIFramework.AUIScreenController$1<TProps> implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public get HideOnForegroundLost(): boolean;
+            public get IsPopup(): boolean;
+            public get WindowPriority(): deVoid.UIFramework.WindowPriority;
+        }
+        class WindowHistoryEntry extends System.ValueType
+        {
+            public Screen : deVoid.UIFramework.IWindowController
+            public Properties : deVoid.UIFramework.IWindowProperties
+            public Show () : void
+            public constructor ($screen: deVoid.UIFramework.IWindowController, $properties: deVoid.UIFramework.IWindowProperties)
+            public constructor ()
+        }
+        class WindowParaLayer extends UnityEngine.MonoBehaviour
+        {
+            public AddScreen ($screenRectTransform: UnityEngine.Transform) : void
+            public RefreshDarken () : void
+            public DarkenBG () : void
+            public constructor ()
+        }
+        class WindowUILayer extends deVoid.UIFramework.AUILayer$1<deVoid.UIFramework.IWindowController>
+        {
+            public get CurrentWindow(): deVoid.UIFramework.IWindowController;
+            public add_RequestScreenBlock ($value: System.Action) : void
+            public remove_RequestScreenBlock ($value: System.Action) : void
+            public add_RequestScreenUnblock ($value: System.Action) : void
+            public remove_RequestScreenUnblock ($value: System.Action) : void
+            public constructor ()
+        }
+    }
+    namespace deVoid.UIFramework.Examples {
+        class LegacyAnimationScreenTransition extends deVoid.UIFramework.ATransitionComponent
+        {
+            public constructor ()
+        }
+        class PlayerDataUpdatedSignal extends deVoid.Utils.ASignal$1<System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>> implements deVoid.Utils.ISignal
+        {
+            public get Hash(): string;
+            public constructor ()
+        }
+        class PlayerDataEntry extends System.Object
+        {
+            public LevelName : string
+            public Stars : number
+            public constructor ()
+        }
+        class FakePlayerData extends UnityEngine.ScriptableObject
+        {
+            public get LevelProgress(): System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>;
+            public constructor ()
+        }
+        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        {
+            public WorldCamera : UnityEngine.Camera
+            public TransformToFollow : UnityEngine.Transform
+            public constructor ($worldCamera: UnityEngine.Camera, $toFollow: UnityEngine.Transform)
+            public constructor ()
+            public constructor ($suppressPrefabProperties?: boolean)
+            public constructor ($priority: deVoid.UIFramework.WindowPriority, $hideOnForegroundLost?: boolean, $suppressPrefabProperties?: boolean)
+        }
+        class CameraProjectionWindowController extends deVoid.UIFramework.AWindowController$1<deVoid.UIFramework.Examples.CameraProjectionWindowProperties> implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public get HideOnForegroundLost(): boolean;
+            public get IsPopup(): boolean;
+            public get WindowPriority(): deVoid.UIFramework.WindowPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public constructor ()
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class ShowConfirmationPopupSignal extends deVoid.Utils.ASignal$1<deVoid.UIFramework.Examples.ConfirmationPopupProperties> implements deVoid.Utils.ISignal
+        {
+            public get Hash(): string;
+            public constructor ()
+        }
+        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        {
+            public Title : string
+            public Message : string
+            public ConfirmButtonText : string
+            public CancelButtonText : string
+            public CancelAction : System.Action
+            public ConfirmAction : System.Action
+            public constructor ($title: string, $message: string, $confirmButtonText?: string, $confirmAction?: System.Action, $cancelButtonText?: string, $cancelAction?: System.Action)
+            public constructor ()
+            public constructor ($suppressPrefabProperties?: boolean)
+            public constructor ($priority: deVoid.UIFramework.WindowPriority, $hideOnForegroundLost?: boolean, $suppressPrefabProperties?: boolean)
+        }
+        class ConfirmationPopupController extends deVoid.UIFramework.AWindowController$1<deVoid.UIFramework.Examples.ConfirmationPopupProperties> implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public titleLabel : TMPro.TextMeshProUGUI
+            public messageLabel : TMPro.TextMeshProUGUI
+            public confirmButtonLabel : TMPro.TextMeshProUGUI
+            public cancelButtonLabel : TMPro.TextMeshProUGUI
+            public cancelButtonObject : UnityEngine.GameObject
+            public get HideOnForegroundLost(): boolean;
+            public get IsPopup(): boolean;
+            public get WindowPriority(): deVoid.UIFramework.WindowPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public UI_Confirm () : void
+            public UI_Cancel () : void
+            public constructor ()
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class EmptyWindowController extends deVoid.UIFramework.AWindowController implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public constructor ()
+        }
+        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        {
+            public PlayerData : System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>
+            public constructor ($data: System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>)
+            public constructor ()
+            public constructor ($suppressPrefabProperties?: boolean)
+            public constructor ($priority: deVoid.UIFramework.WindowPriority, $hideOnForegroundLost?: boolean, $suppressPrefabProperties?: boolean)
+        }
+        class PlayerWindowController extends deVoid.UIFramework.AWindowController$1<deVoid.UIFramework.Examples.PlayerWindowProperties> implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public get HideOnForegroundLost(): boolean;
+            public get IsPopup(): boolean;
+            public get WindowPriority(): deVoid.UIFramework.WindowPriority;
+            public get ScreenId(): string;
+            public set ScreenId(value: string);
+            public get IsVisible(): boolean;
+            public get InTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set InTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get OutTransitionFinished(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set OutTransitionFinished(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get CloseRequest(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
+            public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public constructor ()
+            public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
+            public Hide ($animate?: boolean) : void
+        }
+        class PopupExampleWindowController extends deVoid.UIFramework.AWindowController implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public UI_ShowPopup () : void
+            public constructor ()
+        }
+        class StartDemoSignal extends deVoid.Utils.ASignal implements deVoid.Utils.ISignal
+        {
+            public constructor ()
+        }
+        class StartWindowController extends deVoid.UIFramework.AWindowController implements deVoid.UIFramework.IWindowController, deVoid.UIFramework.IUIScreenController
+        {
+            public UI_Start () : void
+            public constructor ()
+        }
+        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        {
+            public constructor ()
+        }
+        class ScreenIds extends System.Object
+        {
+            public static CameraProjectionWindow : string
+            public static ConfirmationPopup : string
+            public static HomeWindow : string
+            public static NavigationPanel : string
+            public static PlayerWindow : string
+            public static PopupExampleWindow : string
+            public static StartGameWindow : string
+            public static ThreeDExample : string
+            public static ToastPanel : string
+            public constructor ()
+        }
+        class ScaleScreenTransition extends deVoid.UIFramework.ATransitionComponent
+        {
+            public constructor ()
+        }
+        class SlideScreenTransition extends deVoid.UIFramework.ATransitionComponent
+        {
+            public get Origin(): deVoid.UIFramework.Examples.SlideScreenTransition.Position;
+            public set Origin(value: deVoid.UIFramework.Examples.SlideScreenTransition.Position);
+            public constructor ()
+        }
+        class UIDemoController extends UnityEngine.MonoBehaviour
+        {
+            public constructor ()
+        }
+        class AutoMove extends UnityEngine.MonoBehaviour
+        {
+            public constructor ()
+        }
+        class LevelProgressComponent extends UnityEngine.MonoBehaviour
+        {
+            public SetData ($entry: deVoid.UIFramework.Examples.PlayerDataEntry, $levelNumber: number) : void
+            public constructor ()
+        }
+        class NavigationPanelButton extends UnityEngine.MonoBehaviour
+        {
+            public get Target(): string;
+            public add_ButtonClicked ($value: System.Action$1<deVoid.UIFramework.Examples.NavigationPanelButton>) : void
+            public remove_ButtonClicked ($value: System.Action$1<deVoid.UIFramework.Examples.NavigationPanelButton>) : void
+            public SetData ($target: NavigationPanelEntry) : void
+            public SetCurrentNavigationTarget ($selectedButton: deVoid.UIFramework.Examples.NavigationPanelButton) : void
+            public SetCurrentNavigationTarget ($screenId: string) : void
+            public UI_Click () : void
+            public constructor ()
+        }
+        class UIFollowComponent extends UnityEngine.MonoBehaviour
+        {
+            public add_LabelDestroyed ($value: System.Action$1<deVoid.UIFramework.Examples.UIFollowComponent>) : void
+            public remove_LabelDestroyed ($value: System.Action$1<deVoid.UIFramework.Examples.UIFollowComponent>) : void
+            public static GetAnchoredPosition ($viewingCamera: UnityEngine.Camera, $followTransform: UnityEngine.Transform, $canvasScaler: UnityEngine.UI.CanvasScaler, $followElementRect: UnityEngine.Rect) : UnityEngine.Vector2
+            public static GetClampedOnScreenPosition ($onScreenPosition: UnityEngine.Vector2, $followElementRect: UnityEngine.Rect, $mainCanvasRectTransform: UnityEngine.RectTransform) : UnityEngine.Vector2
+            public SetFollow ($toFollow: UnityEngine.Transform) : void
+            public SetText ($label: string) : void
+            public SetIcon ($icon: UnityEngine.Sprite) : void
+            public UpdatePosition ($cam: UnityEngine.Camera) : void
+            public constructor ()
+        }
+    }
+    namespace TMPro {
+        class TextMeshProUGUI extends TMPro.TMP_Text implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+        {
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+        }
+        class TMP_Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
+        {
+        }
+    }
+    namespace deVoid.UIFramework.Examples.SlideScreenTransition {
+        enum Position
+        { None = 0, Left = 1, Right = 2, Top = 3, Bottom = 4 }
+    }
+    namespace DG.Tweening {
+        class DOTweenModuleSprite extends System.Object
+        {
+            public static DOColor ($target: UnityEngine.SpriteRenderer, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFade ($target: UnityEngine.SpriteRenderer, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOGradientColor ($target: UnityEngine.SpriteRenderer, $gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence
+            public static DOBlendableColor ($target: UnityEngine.SpriteRenderer, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener
+        }
+        /** Animates a single value */
+        class Tweener extends DG.Tweening.Tween
+        {
+        }
+        /** Indicates either a Tweener or a Sequence */
+        class Tween extends DG.Tweening.Core.ABSSequentiable
+        {
+        }
+        /** Indicates either a Tweener or a Sequence */
+        interface Tween {
+            WaitForCompletion ($returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+            WaitForRewind ($returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+            WaitForKill ($returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+            WaitForElapsedLoops ($elapsedLoops: number, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+            WaitForPosition ($position: number, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+            WaitForStart ($returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction;
+        }
+        /** Controls other tweens as a group */
+        class Sequence extends DG.Tweening.Tween
+        {
+        }
+        class DOTweenModuleUI extends System.Object
+        {
+            public static DOFade ($target: UnityEngine.CanvasGroup, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>
+            public static DOColor ($target: UnityEngine.UI.Graphic, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFade ($target: UnityEngine.UI.Graphic, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOColor ($target: UnityEngine.UI.Image, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFade ($target: UnityEngine.UI.Image, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFillAmount ($target: UnityEngine.UI.Image, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>
+            public static DOGradientColor ($target: UnityEngine.UI.Image, $gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence
+            public static DOFlexibleSize ($target: UnityEngine.UI.LayoutElement, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOMinSize ($target: UnityEngine.UI.LayoutElement, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOPreferredSize ($target: UnityEngine.UI.LayoutElement, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOColor ($target: UnityEngine.UI.Outline, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFade ($target: UnityEngine.UI.Outline, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOScale ($target: UnityEngine.UI.Outline, $endValue: UnityEngine.Vector2, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPos ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPosX ($target: UnityEngine.RectTransform, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPosY ($target: UnityEngine.RectTransform, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPos3D ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector3, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPos3DX ($target: UnityEngine.RectTransform, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPos3DY ($target: UnityEngine.RectTransform, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorPos3DZ ($target: UnityEngine.RectTransform, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, UnityEngine.Vector3, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorMax ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOAnchorMin ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOPivot ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOPivotX ($target: UnityEngine.RectTransform, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOPivotY ($target: UnityEngine.RectTransform, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOSizeDelta ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOPunchAnchorPos ($target: UnityEngine.RectTransform, $punch: UnityEngine.Vector2, $duration: number, $vibrato?: number, $elasticity?: number, $snapping?: boolean) : DG.Tweening.Tweener
+            public static DOShakeAnchorPos ($target: UnityEngine.RectTransform, $duration: number, $strength?: number, $vibrato?: number, $randomness?: number, $snapping?: boolean, $fadeOut?: boolean) : DG.Tweening.Tweener
+            public static DOShakeAnchorPos ($target: UnityEngine.RectTransform, $duration: number, $strength: UnityEngine.Vector2, $vibrato?: number, $randomness?: number, $snapping?: boolean, $fadeOut?: boolean) : DG.Tweening.Tweener
+            public static DOJumpAnchorPos ($target: UnityEngine.RectTransform, $endValue: UnityEngine.Vector2, $jumpPower: number, $numJumps: number, $duration: number, $snapping?: boolean) : DG.Tweening.Sequence
+            public static DONormalizedPos ($target: UnityEngine.UI.ScrollRect, $endValue: UnityEngine.Vector2, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener
+            public static DOHorizontalNormalizedPos ($target: UnityEngine.UI.ScrollRect, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener
+            public static DOVerticalNormalizedPos ($target: UnityEngine.UI.ScrollRect, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Tweener
+            public static DOValue ($target: UnityEngine.UI.Slider, $endValue: number, $duration: number, $snapping?: boolean) : DG.Tweening.Core.TweenerCore$3<number, number, DG.Tweening.Plugins.Options.FloatOptions>
+            public static DOColor ($target: UnityEngine.UI.Text, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOFade ($target: UnityEngine.UI.Text, $endValue: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Color, UnityEngine.Color, DG.Tweening.Plugins.Options.ColorOptions>
+            public static DOText ($target: UnityEngine.UI.Text, $endValue: string, $duration: number, $richTextEnabled?: boolean, $scrambleMode?: DG.Tweening.ScrambleMode, $scrambleChars?: string) : DG.Tweening.Core.TweenerCore$3<string, string, DG.Tweening.Plugins.Options.StringOptions>
+            public static DOBlendableColor ($target: UnityEngine.UI.Graphic, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener
+            public static DOBlendableColor ($target: UnityEngine.UI.Image, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener
+            public static DOBlendableColor ($target: UnityEngine.UI.Text, $endValue: UnityEngine.Color, $duration: number) : DG.Tweening.Tweener
+        }
+        /** Type of scramble to apply to string tweens */
+        enum ScrambleMode
+        { None = 0, All = 1, Uppercase = 2, Lowercase = 3, Numerals = 4, Custom = 5 }
+        class DOTweenModuleUnityVersion extends System.Object
+        {
+            public static DOGradientColor ($target: UnityEngine.Material, $gradient: UnityEngine.Gradient, $duration: number) : DG.Tweening.Sequence
+            public static DOGradientColor ($target: UnityEngine.Material, $gradient: UnityEngine.Gradient, $property: string, $duration: number) : DG.Tweening.Sequence
+            public static WaitForCompletion ($t: DG.Tweening.Tween, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static WaitForRewind ($t: DG.Tweening.Tween, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static WaitForKill ($t: DG.Tweening.Tween, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static WaitForElapsedLoops ($t: DG.Tweening.Tween, $elapsedLoops: number, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static WaitForPosition ($t: DG.Tweening.Tween, $position: number, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static WaitForStart ($t: DG.Tweening.Tween, $returnCustomYieldInstruction: boolean) : UnityEngine.CustomYieldInstruction
+            public static DOOffset ($target: UnityEngine.Material, $endValue: UnityEngine.Vector2, $propertyID: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+            public static DOTiling ($target: UnityEngine.Material, $endValue: UnityEngine.Vector2, $propertyID: number, $duration: number) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector2, UnityEngine.Vector2, DG.Tweening.Plugins.Options.VectorOptions>
+        }
+        class DOTweenCYInstruction extends System.Object
+        {
+        }
+        class DOTweenModuleUtils extends System.Object
+        {
+            public static Init () : void
+        }
+        /** Path mode (used to determine correct LookAt orientation) */
+        enum PathMode
+        { Ignore = 0, Full3D = 1, TopDown2D = 2, Sidescroller2D = 3 }
+    }
+    namespace DG.Tweening.Plugins.Options {
+        class ColorOptions extends System.ValueType implements DG.Tweening.Plugins.Options.IPlugOptions
+        {
+        }
+        /** Base interface for all tween plugins options */
+        interface IPlugOptions
+        {
+        }
+        class FloatOptions extends System.ValueType implements DG.Tweening.Plugins.Options.IPlugOptions
+        {
+        }
+        class VectorOptions extends System.ValueType implements DG.Tweening.Plugins.Options.IPlugOptions
+        {
+        }
+        class StringOptions extends System.ValueType implements DG.Tweening.Plugins.Options.IPlugOptions
+        {
+        }
+        class PathOptions extends System.ValueType implements DG.Tweening.Plugins.Options.IPlugOptions
+        {
+        }
+    }
+    namespace DG.Tweening.Core {
+        class TweenerCore$3<T1, T2, TPlugOptions> extends DG.Tweening.Tweener
+        {
+        }
+        class ABSSequentiable extends System.Object
+        {
+        }
+    }
+    namespace Js {
         class JsBinding extends UnityEngine.MonoBehaviour
         {
             public args : System.Array$1<Js.JsArg>
@@ -25134,6 +25863,64 @@ declare module 'csharp' {
         {
         }
         interface IPreviewable
+        {
+        }
+    }
+    namespace DG.Tweening.DOTweenModuleUI {
+        class Utils extends System.Object
+        {
+            public static SwitchToRectTransform ($from: UnityEngine.RectTransform, $to: UnityEngine.RectTransform) : UnityEngine.Vector2
+        }
+    }
+    namespace DG.Tweening.DOTweenCYInstruction {
+        class WaitForCompletion extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween)
+            public constructor ()
+        }
+        class WaitForRewind extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween)
+            public constructor ()
+        }
+        class WaitForKill extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween)
+            public constructor ()
+        }
+        class WaitForElapsedLoops extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween, $elapsedLoops: number)
+            public constructor ()
+        }
+        class WaitForPosition extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween, $position: number)
+            public constructor ()
+        }
+        class WaitForStart extends UnityEngine.CustomYieldInstruction implements System.Collections.IEnumerator
+        {
+            public get keepWaiting(): boolean;
+            public constructor ($tween: DG.Tweening.Tween)
+            public constructor ()
+        }
+    }
+    namespace DG.Tweening.DOTweenModuleUtils {
+        class Physics extends System.Object
+        {
+            public static SetOrientationOnPath ($options: DG.Tweening.Plugins.Options.PathOptions, $t: DG.Tweening.Tween, $newRot: UnityEngine.Quaternion, $trans: UnityEngine.Transform) : void
+            public static HasRigidbody2D ($target: UnityEngine.Component) : boolean
+            public static HasRigidbody ($target: UnityEngine.Component) : boolean
+            public static CreateDOTweenPathTween ($target: UnityEngine.MonoBehaviour, $tweenRigidbody: boolean, $isLocal: boolean, $path: DG.Tweening.Plugins.Core.PathCore.Path, $duration: number, $pathMode: DG.Tweening.PathMode) : DG.Tweening.Core.TweenerCore$3<UnityEngine.Vector3, DG.Tweening.Plugins.Core.PathCore.Path, DG.Tweening.Plugins.Options.PathOptions>
+        }
+    }
+    namespace DG.Tweening.Plugins.Core.PathCore {
+        class Path extends System.Object
         {
         }
     }

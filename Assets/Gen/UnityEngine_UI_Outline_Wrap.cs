@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -57,6 +59,111 @@ namespace PuertsStaticWrap
                 Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
             }
         }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Outline;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFade(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Outline;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFade(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOScale(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.Outline;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOScale(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
             
         public static Puerts.TypeRegisterInfo GetRegisterInfo()
         {
@@ -66,7 +173,10 @@ namespace PuertsStaticWrap
                 Constructor = Constructor,
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {   
-                    { new Puerts.MethodKey { Name = "ModifyMesh", IsStatic = false}, M_ModifyMesh }
+                    { new Puerts.MethodKey { Name = "ModifyMesh", IsStatic = false}, M_ModifyMesh },
+                    { new Puerts.MethodKey { Name = "DOColor", IsStatic = false}, M_DOColor },
+                    { new Puerts.MethodKey { Name = "DOFade", IsStatic = false}, M_DOFade },
+                    { new Puerts.MethodKey { Name = "DOScale", IsStatic = false}, M_DOScale }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

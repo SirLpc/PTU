@@ -1,11 +1,26 @@
 //部署:npm run build
 
-import { UnityEngine, PuertsTest, System } from 'csharp'
+import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
 
+
+
+let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
+
+let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
+
+setInterval(()=>{
+    fv.value += UnityEngine.Time.deltaTime;
+        UnityEngine.Debug.Log("fv.value");
+        UnityEngine.Debug.Log(UnityEngine.Time.deltaTime);
+        UnityEngine.Debug.Log(fv.value);
+        UnityEngine.Debug.Log(iv.value);
+}, 1000);
+
+/*  
 //静态函数
-UnityEngine.Debug.Log('hello worl22222d');
+UnityEngine.Debug.Log('hello worl2223333322d');
 
 //对象构造
 let obj = new PuertsTest.DerivedClass();
@@ -87,6 +102,8 @@ obj.Extension1();
 obj.Extension2(go);
 let obj1 = new PuertsTest.BaseClass1();
 obj.Extension2(obj1);
+
+*/
 
 
 //typescript和c#的async，await联动，为了不在低版本的Unity下报错，先注释，c#7.3以上版本可以打开这些注释

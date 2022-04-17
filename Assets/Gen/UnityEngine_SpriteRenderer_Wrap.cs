@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -31,6 +33,146 @@ namespace PuertsStaticWrap
             return IntPtr.Zero;
         }
     
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.SpriteRenderer;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFade(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.SpriteRenderer;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFade(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOGradientColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.SpriteRenderer;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Gradient>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOGradientColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOBlendableColor(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.SpriteRenderer;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Color>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOBlendableColor(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_sprite(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
@@ -349,6 +491,10 @@ namespace PuertsStaticWrap
                 Constructor = Constructor,
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {   
+                    { new Puerts.MethodKey { Name = "DOColor", IsStatic = false}, M_DOColor },
+                    { new Puerts.MethodKey { Name = "DOFade", IsStatic = false}, M_DOFade },
+                    { new Puerts.MethodKey { Name = "DOGradientColor", IsStatic = false}, M_DOGradientColor },
+                    { new Puerts.MethodKey { Name = "DOBlendableColor", IsStatic = false}, M_DOBlendableColor }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

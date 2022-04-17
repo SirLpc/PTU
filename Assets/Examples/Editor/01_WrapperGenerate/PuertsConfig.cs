@@ -57,6 +57,7 @@ public class PuertsConfig
             {
                 "UnityEngine",
                 "UnityEngine.UI",
+                "Puergp.Variables",
             };
             var unityTypes = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
                               where !(assembly.ManifestModule is System.Reflection.Emit.ModuleBuilder)

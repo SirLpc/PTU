@@ -954,6 +954,12 @@
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.WindZone), UnityEngine_WindZone_Wrap.GetRegisterInfo);
                 
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.FloatVariable), Puergp_Variables_FloatVariable_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.GameObjectVariable), Puergp_Variables_GameObjectVariable_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.IntVariable), Puergp_Variables_IntVariable_Wrap.GetRegisterInfo);
+                
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.UI.AnimationTriggers), UnityEngine_UI_AnimationTriggers_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(UnityEngine.UI.ICanvasElement), UnityEngine_UI_ICanvasElement_Wrap.GetRegisterInfo);
@@ -1084,11 +1090,141 @@
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(Node), Node_Wrap.GetRegisterInfo);
                 
+            jsEnv.AddLazyStaticWrapLoader(typeof(NavigationPanelEntry), NavigationPanelEntry_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(NavigateToWindowSignal), NavigateToWindowSignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(NavigationPanelController), NavigationPanelController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IUIScreenController), deVoid_UIFramework_IUIScreenController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IWindowController), deVoid_UIFramework_IWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IPanelController), deVoid_UIFramework_IPanelController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IScreenProperties), deVoid_UIFramework_IScreenProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IPanelProperties), deVoid_UIFramework_IPanelProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IWindowProperties), deVoid_UIFramework_IWindowProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.APanelController), deVoid_UIFramework_APanelController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.PanelPriorityLayerListEntry), deVoid_UIFramework_PanelPriorityLayerListEntry_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.PanelPriorityLayerList), deVoid_UIFramework_PanelPriorityLayerList_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.PanelProperties), deVoid_UIFramework_PanelProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.PanelUILayer), deVoid_UIFramework_PanelUILayer_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.ATransitionComponent), deVoid_UIFramework_ATransitionComponent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.SimpleFadeTransition), deVoid_UIFramework_SimpleFadeTransition_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.UIFrame), deVoid_UIFramework_UIFrame_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.UISettings), deVoid_UIFramework_UISettings_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.AWindowController), deVoid_UIFramework_AWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.WindowHistoryEntry), deVoid_UIFramework_WindowHistoryEntry_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.WindowParaLayer), deVoid_UIFramework_WindowParaLayer_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.WindowProperties), deVoid_UIFramework_WindowProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.WindowUILayer), deVoid_UIFramework_WindowUILayer_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.LegacyAnimationScreenTransition), deVoid_UIFramework_Examples_LegacyAnimationScreenTransition_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.PlayerDataUpdatedSignal), deVoid_UIFramework_Examples_PlayerDataUpdatedSignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.PlayerDataEntry), deVoid_UIFramework_Examples_PlayerDataEntry_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.FakePlayerData), deVoid_UIFramework_Examples_FakePlayerData_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.CameraProjectionWindowProperties), deVoid_UIFramework_Examples_CameraProjectionWindowProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.CameraProjectionWindowController), deVoid_UIFramework_Examples_CameraProjectionWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ShowConfirmationPopupSignal), deVoid_UIFramework_Examples_ShowConfirmationPopupSignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ConfirmationPopupController), deVoid_UIFramework_Examples_ConfirmationPopupController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ConfirmationPopupProperties), deVoid_UIFramework_Examples_ConfirmationPopupProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.EmptyWindowController), deVoid_UIFramework_Examples_EmptyWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.PlayerWindowProperties), deVoid_UIFramework_Examples_PlayerWindowProperties_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.PlayerWindowController), deVoid_UIFramework_Examples_PlayerWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.PopupExampleWindowController), deVoid_UIFramework_Examples_PopupExampleWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.StartDemoSignal), deVoid_UIFramework_Examples_StartDemoSignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.StartWindowController), deVoid_UIFramework_Examples_StartWindowController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ToastPanelController), deVoid_UIFramework_Examples_ToastPanelController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ScreenIds), deVoid_UIFramework_Examples_ScreenIds_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.ScaleScreenTransition), deVoid_UIFramework_Examples_ScaleScreenTransition_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.SlideScreenTransition), deVoid_UIFramework_Examples_SlideScreenTransition_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.UIDemoController), deVoid_UIFramework_Examples_UIDemoController_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.AutoMove), deVoid_UIFramework_Examples_AutoMove_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.LevelProgressComponent), deVoid_UIFramework_Examples_LevelProgressComponent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.NavigationPanelButton), deVoid_UIFramework_Examples_NavigationPanelButton_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.Examples.UIFollowComponent), deVoid_UIFramework_Examples_UIFollowComponent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.Utils.ISignal), deVoid_Utils_ISignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.Utils.Signals), deVoid_Utils_Signals_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.Utils.SignalHub), deVoid_Utils_SignalHub_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.Utils.ABaseSignal), deVoid_Utils_ABaseSignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.Utils.ASignal), deVoid_Utils_ASignal_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleSprite), DG_Tweening_DOTweenModuleSprite_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleUI), DG_Tweening_DOTweenModuleUI_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleUnityVersion), DG_Tweening_DOTweenModuleUnityVersion_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction), DG_Tweening_DOTweenCYInstruction_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleUtils), DG_Tweening_DOTweenModuleUtils_Wrap.GetRegisterInfo);
+                
             jsEnv.AddLazyStaticWrapLoader(typeof(Js.JsBinding), Js_JsBinding_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(Js.JsArg), Js_JsArg_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(Js.JsBindingEditor), Js_JsBindingEditor_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleUI.Utils), DG_Tweening_DOTweenModuleUI_Utils_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForCompletion), DG_Tweening_DOTweenCYInstruction_WaitForCompletion_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForRewind), DG_Tweening_DOTweenCYInstruction_WaitForRewind_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForKill), DG_Tweening_DOTweenCYInstruction_WaitForKill_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForElapsedLoops), DG_Tweening_DOTweenCYInstruction_WaitForElapsedLoops_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForPosition), DG_Tweening_DOTweenCYInstruction_WaitForPosition_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenCYInstruction.WaitForStart), DG_Tweening_DOTweenCYInstruction_WaitForStart_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(DG.Tweening.DOTweenModuleUtils.Physics), DG_Tweening_DOTweenModuleUtils_Physics_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(Puerts.JsEnv), Puerts_JsEnv_Wrap.GetRegisterInfo);
                 

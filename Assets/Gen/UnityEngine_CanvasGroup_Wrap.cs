@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -53,6 +55,41 @@ namespace PuertsStaticWrap
                         var result = obj.IsRaycastLocationValid(Arg0, Arg1);
                 
                         Puerts.PuertsDLL.ReturnBoolean(isolate, info, result);
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFade(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.CanvasGroup;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFade(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
                         
                         
                     }
@@ -198,7 +235,8 @@ namespace PuertsStaticWrap
                 Constructor = Constructor,
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {   
-                    { new Puerts.MethodKey { Name = "IsRaycastLocationValid", IsStatic = false}, M_IsRaycastLocationValid }
+                    { new Puerts.MethodKey { Name = "IsRaycastLocationValid", IsStatic = false}, M_IsRaycastLocationValid },
+                    { new Puerts.MethodKey { Name = "DOFade", IsStatic = false}, M_DOFade }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

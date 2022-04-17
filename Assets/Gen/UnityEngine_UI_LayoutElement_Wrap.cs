@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -68,6 +70,216 @@ namespace PuertsStaticWrap
                 
                 }
             
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOFlexibleSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.LayoutElement;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOFlexibleSize(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOFlexibleSize(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOFlexibleSize");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOMinSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.LayoutElement;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOMinSize(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOMinSize(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOMinSize");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOPreferredSize(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.LayoutElement;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOPreferredSize(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOPreferredSize(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOPreferredSize");
+        
             }
             catch (Exception e)
             {
@@ -332,7 +544,10 @@ namespace PuertsStaticWrap
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {   
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputHorizontal", IsStatic = false}, M_CalculateLayoutInputHorizontal },
-                    { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical }
+                    { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical },
+                    { new Puerts.MethodKey { Name = "DOFlexibleSize", IsStatic = false}, M_DOFlexibleSize },
+                    { new Puerts.MethodKey { Name = "DOMinSize", IsStatic = false}, M_DOMinSize },
+                    { new Puerts.MethodKey { Name = "DOPreferredSize", IsStatic = false}, M_DOPreferredSize }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

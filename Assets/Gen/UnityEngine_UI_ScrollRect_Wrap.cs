@@ -1,4 +1,6 @@
 ﻿
+using DG.Tweening;
+
 using System;
 
 namespace PuertsStaticWrap
@@ -416,6 +418,216 @@ namespace PuertsStaticWrap
                 
                 }
             
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DONormalizedPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.ScrollRect;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DONormalizedPos(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.NativeObject, typeof(UnityEngine.Vector2), false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Vector2>(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DONormalizedPos(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DONormalizedPos");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOHorizontalNormalizedPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.ScrollRect;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOHorizontalNormalizedPos(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOHorizontalNormalizedPos(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOHorizontalNormalizedPos");
+        
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_DOVerticalNormalizedPos(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as UnityEngine.UI.ScrollRect;
+        
+                if (paramLen == 3)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    var argHelper2 = new Puerts.ArgumentHelper((int)data, isolate, info, 2);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper2.IsMatch(Puerts.JsValueType.Boolean, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var Arg2 = argHelper2.GetBoolean(false);
+                    
+                        var result = obj.DOVerticalNormalizedPos(Arg0, Arg1, Arg2);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                if (paramLen == 2)
+            
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    var argHelper1 = new Puerts.ArgumentHelper((int)data, isolate, info, 1);
+                
+                    if (argHelper0.IsMatch(Puerts.JsValueType.Number, null, false, false) && argHelper1.IsMatch(Puerts.JsValueType.Number, null, false, false))
+                
+                    {
+                
+                        var Arg0 = argHelper0.GetFloat(false);
+                    
+                        var Arg1 = argHelper1.GetFloat(false);
+                    
+                        var result = obj.DOVerticalNormalizedPos(Arg0, Arg1);
+                
+                        Puerts.ResultHelper.Set((int)data, isolate, info, result);
+                        
+                        return;
+                    }
+                
+                }
+            
+                Puerts.PuertsDLL.ThrowException(isolate, "invalid arguments to DOVerticalNormalizedPos");
+        
             }
             catch (Exception e)
             {
@@ -1169,7 +1381,10 @@ namespace PuertsStaticWrap
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputHorizontal", IsStatic = false}, M_CalculateLayoutInputHorizontal },
                     { new Puerts.MethodKey { Name = "CalculateLayoutInputVertical", IsStatic = false}, M_CalculateLayoutInputVertical },
                     { new Puerts.MethodKey { Name = "SetLayoutHorizontal", IsStatic = false}, M_SetLayoutHorizontal },
-                    { new Puerts.MethodKey { Name = "SetLayoutVertical", IsStatic = false}, M_SetLayoutVertical }
+                    { new Puerts.MethodKey { Name = "SetLayoutVertical", IsStatic = false}, M_SetLayoutVertical },
+                    { new Puerts.MethodKey { Name = "DONormalizedPos", IsStatic = false}, M_DONormalizedPos },
+                    { new Puerts.MethodKey { Name = "DOHorizontalNormalizedPos", IsStatic = false}, M_DOHorizontalNormalizedPos },
+                    { new Puerts.MethodKey { Name = "DOVerticalNormalizedPos", IsStatic = false}, M_DOVerticalNormalizedPos }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {
