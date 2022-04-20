@@ -13,7 +13,6 @@ let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVari
 setInterval(()=>{
     fv.value += UnityEngine.Time.deltaTime;
         UnityEngine.Debug.Log("fv.value");
-        UnityEngine.Debug.Log(UnityEngine.Time.deltaTime);
         UnityEngine.Debug.Log(fv.value);
         UnityEngine.Debug.Log(iv.value);
 }, 1000);

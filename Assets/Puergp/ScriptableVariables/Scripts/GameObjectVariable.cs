@@ -6,10 +6,10 @@ namespace Puergp.Variables
     public class GameObjectVariable : BaseVariable<GameObject>
     {
 
-        public GameObject value
+        public new GameObject value
         {
-            get => _value;
-            set => _value = value;
+            get => base.value;
+            set => base.value = value;
         }
 
     }

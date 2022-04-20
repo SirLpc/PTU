@@ -6,10 +6,10 @@ namespace Puergp.Variables
     public class FloatVariable : BaseVariable<float>
     {
         
-        public float value
+        public new float value
         {
-            get => _value;
-            set => _value = value;
+            get => base.value;
+            set => base.value = value;
         }
         
     }

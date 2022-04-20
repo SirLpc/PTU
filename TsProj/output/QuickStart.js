@@ -8,7 +8,6 @@ let fv = csharp_1.UnityEngine.Resources.Load("FloatVariable");
 setInterval(() => {
     fv.value += csharp_1.UnityEngine.Time.deltaTime;
     csharp_1.UnityEngine.Debug.Log("fv.value");
-    csharp_1.UnityEngine.Debug.Log(csharp_1.UnityEngine.Time.deltaTime);
     csharp_1.UnityEngine.Debug.Log(fv.value);
     csharp_1.UnityEngine.Debug.Log(iv.value);
 }, 1000);
