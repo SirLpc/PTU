@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Puergp.Variables
 {
@@ -11,7 +12,10 @@ namespace Puergp.Variables
         protected bool _readOnly;
 
         [SerializeField]
-        protected bool _logWaringIfSetOnReadOnly;
+        protected bool _logWaringWhenSetOnReadOnly;
+
+        [SerializeField]
+        protected UnityEvent<T> _event;
         
         protected T value
         {
@@ -25,7 +29,7 @@ namespace Puergp.Variables
                 {
                     _value = value;
                 }
-                else if (_logWaringIfSetOnReadOnly)
+                else if (_logWaringWhenSetOnReadOnly)
                 {
                     Debug.LogWarning("Tried to set read only variable on [" + name + "]!", this);
                 }
