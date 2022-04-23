@@ -59,7 +59,7 @@ public class ExamplesCfg
                 typeof(PuertsDeclareTest.Plants.Shootable),
                 typeof(PuertsDeclareTest.Zombies.Walkable),
                 typeof(PuertsDeclareTest.Zombies.Flyable),
-                typeof(PuertsDeclareTest.Zombies.BalloonZombie)
+                typeof(PuertsDeclareTest.Zombies.BalloonZombie),
             };
         }
     }

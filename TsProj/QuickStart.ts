@@ -10,22 +10,24 @@ let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable"
 
 let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 
-function onValueChanged(before:number, now:number):void
+let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
+
+function onValueChanged(now:number):void
 {
     UnityEngine.Debug.Log("changed " + now);
 }
-
-fv.AddListener((b) => {
-    UnityEngine.Debug.Log("toggle.value=" + b);
-});
+fv.AddListener(onValueChanged);
 
 
-setInterval(()=>{
-    fv.value += UnityEngine.Time.deltaTime;
-        UnityEngine.Debug.Log("fv.value");
-        // UnityEngine.Debug.Log(fv.value);
-        // UnityEngine.Debug.Log(iv.value);
-}, 1000);
+
+// fv.AddListener((b) => {
+//     UnityEngine.Debug.Log("toggle.value=" + b);
+// });
+
+
+// setInterval(()=>{
+//     fv.value += 1;
+// }, 1000);
 
 /*  
 //静态函数

@@ -1096,6 +1096,18 @@
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(NavigationPanelController), NavigationPanelController_Wrap.GetRegisterInfo);
                 
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.BaseGameEvent), Puergp_Events_BaseGameEvent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.FloatGameEvent), Puergp_Events_FloatGameEvent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.GameEvent), Puergp_Events_GameEvent_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.BaseGameEventListener), Puergp_Events_BaseGameEventListener_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.FloatGameEventListener), Puergp_Events_FloatGameEventListener_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.GameEventListener), Puergp_Events_GameEventListener_Wrap.GetRegisterInfo);
+                
             jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IUIScreenController), deVoid_UIFramework_IUIScreenController_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(deVoid.UIFramework.IWindowController), deVoid_UIFramework_IWindowController_Wrap.GetRegisterInfo);
@@ -1229,6 +1241,14 @@
             jsEnv.AddLazyStaticWrapLoader(typeof(Puerts.JsEnv), Puerts_JsEnv_Wrap.GetRegisterInfo);
                 
             jsEnv.AddLazyStaticWrapLoader(typeof(Puerts.ILoader), Puerts_ILoader_Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Events.GameEventListener<float>), Puergp_Events_GameEventListener_1_System_Single__Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.BaseVariable<int>), Puergp_Variables_BaseVariable_1_System_Int32__Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.BaseVariable<float>), Puergp_Variables_BaseVariable_1_System_Single__Wrap.GetRegisterInfo);
+                
+            jsEnv.AddLazyStaticWrapLoader(typeof(Puergp.Variables.BaseVariable<UnityEngine.GameObject>), Puergp_Variables_BaseVariable_1_UnityEngine_GameObject__Wrap.GetRegisterInfo);
                 
         }
     }

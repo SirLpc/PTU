@@ -5,17 +5,15 @@ const csharp_1 = require("csharp");
 require("./ExtensionDecl");
 let iv = csharp_1.UnityEngine.Resources.Load("IntVariable");
 let fv = csharp_1.UnityEngine.Resources.Load("FloatVariable");
-function onValueChanged(before, now) {
+function onValueChanged(now) {
     csharp_1.UnityEngine.Debug.Log("changed " + now);
 }
-fv.AddListener((b) => {
-    csharp_1.UnityEngine.Debug.Log("toggle.value=" + b);
-});
+fv.AddListener(onValueChanged);
+// fv.AddListener((b) => {
+//     UnityEngine.Debug.Log("toggle.value=" + b);
+// });
 setInterval(() => {
-    fv.value += csharp_1.UnityEngine.Time.deltaTime;
-    csharp_1.UnityEngine.Debug.Log("fv.value");
-    // UnityEngine.Debug.Log(fv.value);
-    // UnityEngine.Debug.Log(iv.value);
+    fv.value += 1;
 }, 1000);
 /*
 //静态函数

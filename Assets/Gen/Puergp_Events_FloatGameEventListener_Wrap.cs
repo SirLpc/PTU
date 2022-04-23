@@ -3,7 +3,7 @@ using System;
 
 namespace PuertsStaticWrap
 {
-    public static class Puergp_Variables_GameObjectVariable_Wrap
+    public static class Puergp_Events_FloatGameEventListener_Wrap
     {
 
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8ConstructorCallback))]
@@ -16,9 +16,9 @@ namespace PuertsStaticWrap
             
                     {
                 
-                        var result = new Puergp.Variables.GameObjectVariable();
+                        var result = new Puergp.Events.FloatGameEventListener();
                 
-                        return Puerts.Utils.GetObjectPtr((int)data, typeof(Puergp.Variables.GameObjectVariable), result);
+                        return Puerts.Utils.GetObjectPtr((int)data, typeof(Puergp.Events.FloatGameEventListener), result);
                     
                     }
                 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Puergp.Variables
@@ -17,6 +18,12 @@ namespace Puergp.Variables
 
         [SerializeField]
         protected UnityEvent<T> _onValueChanged;
+
+        public T value
+        {
+            get => GetValue();
+            set => SetValue(value);
+        }
 
         public virtual T GetValue()
         {
