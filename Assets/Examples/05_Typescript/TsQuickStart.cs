@@ -13,6 +13,12 @@ namespace PuertsTest
         void Start()
         {
             jsEnv = new JsEnv();
+            
+            jsEnv.UsingAction<int>();
+            jsEnv.UsingAction<float>();
+            jsEnv.UsingAction<GameObject>();
+            
+            
             //jsEnv = new JsEnv(new DefaultLoader(UnityEngine.Application.dataPath + "../TsProj/output/"), 8080);
             //jsEnv.WaitDebugger();
             jsEnv.Eval("require('QuickStart')");

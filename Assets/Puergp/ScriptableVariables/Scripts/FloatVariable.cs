@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Puergp.Variables
 {
@@ -6,11 +7,25 @@ namespace Puergp.Variables
     public class FloatVariable : BaseVariable<float>
     {
         
-        public new float value
+        public float value
         {
-            get => base.value;
-            set => base.value = value;
+            get => GetValue();
+            set => SetValue(value);
         }
         
+        public new void AddListener(UnityAction<float> action)
+        {
+            base.AddListener(action);
+        }
+
+        public new void RemoveListener(UnityAction<float> action)
+        {
+            base.RemoveListener(action);
+        }
+
+        public new void RemoveAllListeners()
+        {
+            base.RemoveAllListeners();
+        }
     }
 }

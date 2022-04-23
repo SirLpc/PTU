@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Puergp.Variables
 {
@@ -6,10 +7,25 @@ namespace Puergp.Variables
     public class GameObjectVariable : BaseVariable<GameObject>
     {
 
-        public new GameObject value
+        public GameObject value
         {
-            get => base.value;
-            set => base.value = value;
+            get => GetValue();
+            set => SetValue(value);
+        }
+        
+        public new void AddListener(UnityAction<GameObject> action)
+        {
+            base.AddListener(action);
+        }
+
+        public new void RemoveListener(UnityAction<GameObject> action)
+        {
+            base.RemoveListener(action);
+        }
+
+        public new void RemoveAllListeners()
+        {
+            base.RemoveAllListeners();
         }
 
     }

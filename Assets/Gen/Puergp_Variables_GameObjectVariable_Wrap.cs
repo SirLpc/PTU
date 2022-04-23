@@ -32,6 +32,95 @@ namespace PuertsStaticWrap
         }
     
         [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_AddListener(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as Puergp.Variables.GameObjectVariable;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Events.UnityAction<UnityEngine.GameObject>>(false);
+                    
+                        obj.AddListener(Arg0);
+                
+                        
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_RemoveListener(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as Puergp.Variables.GameObjectVariable;
+        
+                {
+            
+                    var argHelper0 = new Puerts.ArgumentHelper((int)data, isolate, info, 0);
+                
+                    {
+                
+                        var Arg0 = argHelper0.Get<UnityEngine.Events.UnityAction<UnityEngine.GameObject>>(false);
+                    
+                        obj.RemoveListener(Arg0);
+                
+                        
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
+        private static void M_RemoveAllListeners(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
+        {
+            try
+            {
+                var obj = Puerts.Utils.GetSelf((int)data, self) as Puergp.Variables.GameObjectVariable;
+        
+                {
+            
+                    {
+                
+                        obj.RemoveAllListeners();
+                
+                        
+                        
+                        
+                    }
+                
+                }
+            
+            }
+            catch (Exception e)
+            {
+                Puerts.PuertsDLL.ThrowException(isolate, "c# exception:" + e.Message + ",stack:" + e.StackTrace);
+            }
+        }
+        
+        [Puerts.MonoPInvokeCallback(typeof(Puerts.V8FunctionCallback))]
         private static void G_value(IntPtr isolate, IntPtr info, IntPtr self, int paramLen, long data)
         {
             try
@@ -70,6 +159,9 @@ namespace PuertsStaticWrap
                 Constructor = Constructor,
                 Methods = new System.Collections.Generic.Dictionary<Puerts.MethodKey, Puerts.V8FunctionCallback>()
                 {   
+                    { new Puerts.MethodKey { Name = "AddListener", IsStatic = false}, M_AddListener },
+                    { new Puerts.MethodKey { Name = "RemoveListener", IsStatic = false}, M_RemoveListener },
+                    { new Puerts.MethodKey { Name = "RemoveAllListeners", IsStatic = false}, M_RemoveAllListeners }
                 },
                 Properties = new System.Collections.Generic.Dictionary<string, Puerts.PropertyRegisterInfo>()
                 {

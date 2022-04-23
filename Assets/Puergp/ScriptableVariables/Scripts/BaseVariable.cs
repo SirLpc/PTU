@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 namespace Puergp.Variables
 {
+    
     public abstract class BaseVariable<T> : ScriptableObject
     {
         [SerializeField]
@@ -15,25 +16,41 @@ namespace Puergp.Variables
         protected bool _logWaringWhenSetOnReadOnly;
 
         [SerializeField]
-        protected UnityEvent<T> _event;
-        
-        protected T value
+        protected UnityEvent<T> _onValueChanged;
+
+        public virtual T GetValue()
         {
-            get
+            return _value;
+        }
+        
+        public virtual void SetValue(T　value)
+        {
+            if (_readOnly == false)
             {
-                return _value;
+                _value = value;
+                _onValueChanged?.Invoke(_value);
+                return;
             }
-            set
+            
+            if (_logWaringWhenSetOnReadOnly)
             {
-                if (_readOnly == false)
-                {
-                    _value = value;
-                }
-                else if (_logWaringWhenSetOnReadOnly)
-                {
-                    Debug.LogWarning("Tried to set read only variable on [" + name + "]!", this);
-                }
+                Debug.LogWarning("Tried to set read only variable on [" + name + "]!", this);
             }
+        }
+
+        public virtual void AddListener(UnityAction<T> action)
+        {
+            _onValueChanged.AddListener(action);
+        }
+
+        public virtual void RemoveListener(UnityAction<T> action)
+        {
+            _onValueChanged.RemoveListener(action);
+        }
+
+        public virtual void RemoveAllListeners()
+        {
+            _onValueChanged.RemoveAllListeners();
         }
         
     }
