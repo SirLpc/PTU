@@ -28,6 +28,9 @@ public class PuergpEventsCfg
                 typeof(Puergp.Events.GameEventListener),
                 typeof(Puergp.Events.GameEventListener<float>),
                 // typeof(Puergp.Variables.BaseVariable<GameObject>),
+                
+                typeof(Puergp.Events.GameEvent),
+                typeof(Puergp.Events.GameEvent<float>),
             };
         }
     }

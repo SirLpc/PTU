@@ -25219,7 +25219,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
             public constructor ()
         }
@@ -25254,9 +25254,8 @@ declare module 'csharp' {
         }
     }
     namespace deVoid.UIFramework {
-        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
-            public get Priority(): deVoid.UIFramework.PanelPriority;
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25268,25 +25267,25 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class PanelProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IPanelProperties
+        class PanelProperties extends System.Object implements deVoid.UIFramework.IPanelProperties, deVoid.UIFramework.IScreenProperties
         {
             public get Priority(): deVoid.UIFramework.PanelPriority;
             public set Priority(value: deVoid.UIFramework.PanelPriority);
             public constructor ()
         }
-        interface IScreenProperties
-        {
-        }
         interface IPanelProperties extends deVoid.UIFramework.IScreenProperties
         {
             Priority : deVoid.UIFramework.PanelPriority
         }
-        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        interface IScreenProperties
         {
-            public get Priority(): deVoid.UIFramework.PanelPriority;
+        }
+        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
+        {
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25298,6 +25297,7 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
@@ -25440,7 +25440,7 @@ declare module 'csharp' {
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class WindowProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class WindowProperties extends System.Object implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public get WindowQueuePriority(): deVoid.UIFramework.WindowPriority;
             public set WindowQueuePriority(value: deVoid.UIFramework.WindowPriority);
@@ -25496,6 +25496,11 @@ declare module 'csharp' {
         }
         class GameEvent$1<T> extends Puergp.Events.BaseGameEvent
         {
+            public Dispatch ($value: T) : void
+            public Register ($listener: Puergp.Events.GameEventListener$1<T>) : void
+            public Unregister ($listener: Puergp.Events.GameEventListener$1<T>) : void
+            public UnregisterAll () : void
+            public constructor ()
         }
         class GameEvent extends Puergp.Events.BaseGameEvent
         {
@@ -25549,7 +25554,7 @@ declare module 'csharp' {
             public get LevelProgress(): System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>;
             public constructor ()
         }
-        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public WorldCamera : UnityEngine.Camera
             public TransformToFollow : UnityEngine.Transform
@@ -25583,7 +25588,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public Title : string
             public Message : string
@@ -25627,7 +25632,7 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public PlayerData : System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>
             public constructor ($data: System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>)
@@ -25669,7 +25674,7 @@ declare module 'csharp' {
             public UI_Start () : void
             public constructor ()
         }
-        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
             public constructor ()
         }
