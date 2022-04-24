@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Puergp.Events
 {
     public class GameEvent<T> : BaseGameEvent
     {
+        [SerializeField]
         protected List<GameEventListener<T>> _listeners = new List<GameEventListener<T>>();
         protected readonly List<Action<T>> _actions = new List<Action<T>>();
 

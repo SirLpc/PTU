@@ -7,7 +7,8 @@ namespace Puergp.Events
     [CreateAssetMenu(fileName = "GameEvent.asset", menuName = "Puergp/GameEvents/GameEvent")]
     public class GameEvent : BaseGameEvent
     {
-        protected readonly List<GameEventListener> _listeners = new List<GameEventListener>();
+        [SerializeField]
+        protected List<GameEventListener> _listeners = new List<GameEventListener>();
         protected readonly List<Action> _actions = new List<Action>();
 
         public void Dispatch()
