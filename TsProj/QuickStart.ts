@@ -16,10 +16,10 @@ function onValueChanged(now:number):void
 {
     UnityEngine.Debug.Log("changed " + now);
 }
-fv.AddListener(onValueChanged);
+// fv.AddListener(onValueChanged);
 
 
-
+evt.Register(onValueChanged);
 
 // fv.AddListener((b) => {
 //     UnityEngine.Debug.Log("toggle.value=" + b);
