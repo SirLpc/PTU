@@ -24,8 +24,8 @@ public class PuergpCollectionsCfg
         {
             return new List<Type>()
             {
-                // typeof(Puergp.Events.GameEventListener<int>),
-                // typeof(Puergp.Variables.BaseVariable<GameObject>),
+                typeof(Puergp.Collections.BaseCollection<float>),
+                typeof(Puergp.Collections.BaseCollection<GameObject>),
             };
         }
     }

@@ -6,11 +6,17 @@ require("./ExtensionDecl");
 let iv = csharp_1.UnityEngine.Resources.Load("IntVariable");
 let fv = csharp_1.UnityEngine.Resources.Load("FloatVariable");
 let evt = csharp_1.UnityEngine.Resources.Load("FloatGameEvent");
+let goPref = csharp_1.UnityEngine.Resources.Load("GameObjectVariable");
+let col = csharp_1.UnityEngine.Resources.Load("GameObjectCollection");
 function onValueChanged(now) {
     csharp_1.UnityEngine.Debug.Log("changed " + now);
 }
 // fv.AddListener(onValueChanged);
 evt.Register(onValueChanged);
+for (let index = 0; index < 4; index++) {
+    const element = csharp_1.UnityEngine.GameObject.Instantiate(goPref.value);
+    col.Add(element);
+}
 // fv.AddListener((b) => {
 //     UnityEngine.Debug.Log("toggle.value=" + b);
 // });

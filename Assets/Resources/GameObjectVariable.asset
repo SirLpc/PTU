@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d07c277f0a4f72b75ebde679a39513, type: 3}
   m_Name: GameObjectVariable
   m_EditorClassIdentifier: 
-  _value: {fileID: 0}
+  _value: {fileID: 2737789566314768863, guid: 355ca54b70596ee488af87124655910c, type: 3}
   _readOnly: 0
   _logWaringWhenSetOnReadOnly: 0
-  _event:
+  _onValueChanged:
     m_PersistentCalls:
       m_Calls: []

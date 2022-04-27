@@ -24480,7 +24480,7 @@ declare module 'csharp' {
         }
     }
     namespace PuertsDeclareTest.Plants {
-        class pumkinPeaShooter extends System.Object implements PuertsDeclareTest.Plants.Pumpkin$1.Protectable<PuertsDeclareTest.Plants.pumkinPeaShooter>, PuertsDeclareTest.Plants.Shootable
+        class pumkinPeaShooter extends System.Object implements PuertsDeclareTest.Plants.Shootable, PuertsDeclareTest.Plants.Pumpkin$1.Protectable<PuertsDeclareTest.Plants.pumkinPeaShooter>
         {
             public shoot () : void
             public protect () : void
@@ -25219,7 +25219,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
             public constructor ()
         }
@@ -25254,9 +25254,8 @@ declare module 'csharp' {
         }
     }
     namespace deVoid.UIFramework {
-        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
-            public get Priority(): deVoid.UIFramework.PanelPriority;
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25268,6 +25267,7 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
@@ -25284,9 +25284,8 @@ declare module 'csharp' {
         {
             Priority : deVoid.UIFramework.PanelPriority
         }
-        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
-            public get Priority(): deVoid.UIFramework.PanelPriority;
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25298,6 +25297,7 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
@@ -25537,6 +25537,31 @@ declare module 'csharp' {
             public constructor ()
         }
     }
+    namespace Puergp.Collections {
+        class FloatCollection extends Puergp.Collections.BaseCollection$1<number> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<number>
+        {
+            public constructor ()
+        }
+        class BaseCollection$1<T> extends UnityEngine.ScriptableObject implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<T>
+        {
+            public get_Item ($index: number) : T
+            public set_Item ($index: number, $value: T) : void
+            public Add ($item: T) : void
+            public Remove ($item: T) : void
+            public Clear () : void
+            public Contains ($item: T) : boolean
+            public IndexOf ($item: T) : number
+            public RemoveAt ($index: number) : void
+            public Insert ($index: number, $item: T) : void
+            public GetEnumerator () : System.Collections.Generic.IEnumerator$1<T>
+            public ToArray () : System.Array$1<T>
+            public constructor ()
+        }
+        class GameObjectCollection extends Puergp.Collections.BaseCollection$1<UnityEngine.GameObject> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<UnityEngine.GameObject>
+        {
+            public constructor ()
+        }
+    }
     namespace deVoid.UIFramework.Examples {
         class LegacyAnimationScreenTransition extends deVoid.UIFramework.ATransitionComponent
         {
@@ -25678,7 +25703,7 @@ declare module 'csharp' {
             public UI_Start () : void
             public constructor ()
         }
-        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
+        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
             public constructor ()
         }

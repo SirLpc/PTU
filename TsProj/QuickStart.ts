@@ -12,6 +12,9 @@ let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVari
 
 let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
 
+let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
+let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
+
 function onValueChanged(now:number):void
 {
     UnityEngine.Debug.Log("changed " + now);
@@ -20,6 +23,13 @@ function onValueChanged(now:number):void
 
 
 evt.Register(onValueChanged);
+
+for (let index = 0; index < 4; index++) {
+    const element = UnityEngine.GameObject.Instantiate(goPref.value) as UnityEngine.GameObject;
+    col.Add(element);
+}
+
+
 
 // fv.AddListener((b) => {
 //     UnityEngine.Debug.Log("toggle.value=" + b);
