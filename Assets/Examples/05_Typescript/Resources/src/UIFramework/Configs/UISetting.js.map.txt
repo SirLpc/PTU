@@ -1,0 +1,1 @@
+{"version":3,"file":"UISetting.js","sourceRoot":"","sources":["../../../../src/UIFramework/Configs/UISetting.ts"],"names":[],"mappings":";;;AAKA,MAAa,SAAS;IAElB,QAAQ,CAAS;IAEjB,eAAe,CAAuC;CAEzD;AAND,8BAMC"}

@@ -1,0 +1,1 @@
+{"version":3,"file":"IAbstractFactory.js","sourceRoot":"","sources":["../../../src/CoreFramework/IAbstractFactory.ts"],"names":[],"mappings":""}

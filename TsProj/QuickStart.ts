@@ -3,31 +3,46 @@
 import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
+import { IApp } from './src/CoreFramework/IApp'
+import { GameApp } from './src/GameApp'
+import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
+import { ECS as ECS } from './src/ECS/ECS'
+import { UISystem } from './src/UIFramework/UISystem'
 
 
+let ecs : ECS = new ECS();
+ecs.addSystem(new UISystem())
 
-let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
-
-let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
-
-let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
-
-let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
-let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
-
-function onValueChanged(now:number):void
+setInterval(()=>
 {
-    UnityEngine.Debug.Log("changed " + now);
-}
-// fv.AddListener(onValueChanged);
+    ecs.update();
+}, 1000);
+
+// let gameApp : IApp = new GameApp();
 
 
-evt.Register(onValueChanged);
+// let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 
-for (let index = 0; index < 4; index++) {
-    const element = UnityEngine.GameObject.Instantiate(goPref.value) as UnityEngine.GameObject;
-    col.Add(element);
-}
+// let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
+
+// let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
+
+// let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
+// let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
+
+// function onValueChanged(now:number):void
+// {
+//     UnityEngine.Debug.Log("changed " + now);
+// }
+// // fv.AddListener(onValueChanged);
+
+
+// evt.Register(onValueChanged);
+
+// for (let index = 0; index < 4; index++) {
+//     const element = UnityEngine.GameObject.Instantiate(goPref.value) as UnityEngine.GameObject;
+//     col.Add(element);
+// }
 
 
 

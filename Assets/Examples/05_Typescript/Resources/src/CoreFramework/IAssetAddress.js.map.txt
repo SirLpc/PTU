@@ -1,0 +1,1 @@
+{"version":3,"file":"IAssetAddress.js","sourceRoot":"","sources":["../../../src/CoreFramework/IAssetAddress.ts"],"names":[],"mappings":""}

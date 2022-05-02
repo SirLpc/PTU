@@ -24480,7 +24480,7 @@ declare module 'csharp' {
         }
     }
     namespace PuertsDeclareTest.Plants {
-        class pumkinPeaShooter extends System.Object implements PuertsDeclareTest.Plants.Shootable, PuertsDeclareTest.Plants.Pumpkin$1.Protectable<PuertsDeclareTest.Plants.pumkinPeaShooter>
+        class pumkinPeaShooter extends System.Object implements PuertsDeclareTest.Plants.Pumpkin$1.Protectable<PuertsDeclareTest.Plants.pumkinPeaShooter>, PuertsDeclareTest.Plants.Shootable
         {
             public shoot () : void
             public protect () : void
@@ -25047,7 +25047,18 @@ declare module 'csharp' {
         }
     }
     namespace Puergp.Variables {
-        class FloatVariable extends Puergp.Variables.BaseVariable$1<number>
+        class EnumItem extends System.Object
+        {
+            public key : number
+            public name : string
+            public constructor ()
+        }
+        class EnumDefine extends System.Object
+        {
+            public items : System.Array$1<Puergp.Variables.EnumItem>
+            public constructor ()
+        }
+        class EnumVariable extends Puergp.Variables.BaseVariable$1<Puergp.Variables.EnumDefine>
         {
             public constructor ()
         }
@@ -25060,6 +25071,10 @@ declare module 'csharp' {
             public AddListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
             public RemoveListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
             public RemoveAllListeners () : void
+        }
+        class FloatVariable extends Puergp.Variables.BaseVariable$1<number>
+        {
+            public constructor ()
         }
         class GameObjectVariable extends Puergp.Variables.BaseVariable$1<UnityEngine.GameObject>
         {

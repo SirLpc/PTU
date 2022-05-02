@@ -1,0 +1,1 @@
+{"version":3,"file":"UISystem.js","sourceRoot":"","sources":["../../../src/UIFramework/UISystem.ts"],"names":[],"mappings":";;;AAAA,mCAAqC;AACrC,oCAA4C;AAE5C,MAAa,QAAS,SAAQ,YAAM;IAChC,kBAAkB,GAAG,IAAI,GAAG,CAAW,EAAE,CAAC,CAAC;IAC3C,MAAM,CAAC,QAAqB;QAExB,oBAAW,CAAC,KAAK,CAAC,GAAG,CAAC,IAAI,CAAC,CAAC;IAChC,CAAC;CACJ;AAND,4BAMC"}

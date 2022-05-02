@@ -1,22 +1,30 @@
 "use strict";
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
-const csharp_1 = require("csharp");
 require("./ExtensionDecl");
-let iv = csharp_1.UnityEngine.Resources.Load("IntVariable");
-let fv = csharp_1.UnityEngine.Resources.Load("FloatVariable");
-let evt = csharp_1.UnityEngine.Resources.Load("FloatGameEvent");
-let goPref = csharp_1.UnityEngine.Resources.Load("GameObjectVariable");
-let col = csharp_1.UnityEngine.Resources.Load("GameObjectCollection");
-function onValueChanged(now) {
-    csharp_1.UnityEngine.Debug.Log("changed " + now);
-}
-// fv.AddListener(onValueChanged);
-evt.Register(onValueChanged);
-for (let index = 0; index < 4; index++) {
-    const element = csharp_1.UnityEngine.GameObject.Instantiate(goPref.value);
-    col.Add(element);
-}
+const ECS_1 = require("./src/ECS/ECS");
+const UISystem_1 = require("./src/UIFramework/UISystem");
+let ecs = new ECS_1.ECS();
+ecs.addSystem(new UISystem_1.UISystem());
+setInterval(() => {
+    ecs.update();
+}, 1000);
+// let gameApp : IApp = new GameApp();
+// let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
+// let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
+// let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
+// let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
+// let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
+// function onValueChanged(now:number):void
+// {
+//     UnityEngine.Debug.Log("changed " + now);
+// }
+// // fv.AddListener(onValueChanged);
+// evt.Register(onValueChanged);
+// for (let index = 0; index < 4; index++) {
+//     const element = UnityEngine.GameObject.Instantiate(goPref.value) as UnityEngine.GameObject;
+//     col.Add(element);
+// }
 // fv.AddListener((b) => {
 //     UnityEngine.Debug.Log("toggle.value=" + b);
 // });
