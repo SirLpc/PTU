@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PuergpCs.Events
+namespace Puergp.Events
 {
     [CreateAssetMenu(fileName = "EnumEvent.asset", menuName = "Puergp/GameEvents/EnumEvent")]
     public class EnumEvent : GameEvent<Variables.EnumDefine>

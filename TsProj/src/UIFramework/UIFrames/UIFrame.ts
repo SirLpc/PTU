@@ -1,8 +1,8 @@
 
 
-import { PuergpCs, UnityEngine } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
-import { UISetting as UISetting } from "../Configs/UISetting";
+import { UISetting } from "../Configs/UISetting";
 
 export class UIFrame extends ATSComponent
 {
@@ -17,3 +17,4 @@ export class UIFrame extends ATSComponent
         return instance;
     }
 }
+

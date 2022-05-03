@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PuergpCs.Events
+namespace Puergp.Events
 {
     public class BaseGameEventListener : MonoBehaviour
     {

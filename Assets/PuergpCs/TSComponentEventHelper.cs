@@ -1,20 +1,20 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PuergpCs
+namespace Puergp
 {
     public class TSComponentEventHelper : MonoBehaviour
     {
 
-        private PuergpCs.Events.GameObjectEvent _onEnableEvent = null;
-        private PuergpCs.Events.GameObjectEvent _onDisableEvent = null;
-        private PuergpCs.Events.GameObjectEvent _onDestroyEvent = null;
+        private Puergp.Events.GameObjectEvent _onEnableEvent = null;
+        private Puergp.Events.GameObjectEvent _onDisableEvent = null;
+        private Puergp.Events.GameObjectEvent _onDestroyEvent = null;
         
         private void Awake()
         {
-            _onEnableEvent = Resources.Load<PuergpCs.Events.GameObjectEvent>("BuiltIn/GameObjectOnEnableEvent");
-            _onDisableEvent = Resources.Load<PuergpCs.Events.GameObjectEvent>("BuiltIn/GameObjectOnDisableEvent");
-            _onDestroyEvent = Resources.Load<PuergpCs.Events.GameObjectEvent>("BuiltIn/GameObjectOnDestroyEvent");
+            _onEnableEvent = Resources.Load<Puergp.Events.GameObjectEvent>("BuiltIn/GameObjectOnEnableEvent");
+            _onDisableEvent = Resources.Load<Puergp.Events.GameObjectEvent>("BuiltIn/GameObjectOnDisableEvent");
+            _onDestroyEvent = Resources.Load<Puergp.Events.GameObjectEvent>("BuiltIn/GameObjectOnDestroyEvent");
         }
 
         private void OnEnable()

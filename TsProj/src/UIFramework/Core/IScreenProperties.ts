@@ -1,14 +1,14 @@
-import { PuergpCs } from "csharp";
+import { Puergp } from "csharp";
 
 export interface IScreenProperties {}
 
 export interface IPanelProperties extends IScreenProperties {
-    priority: PuergpCs.Variables.IntVariable;
+    priority: Puergp.Variables.IntVariable;
 }
 
 export interface IWindowProperties extends IScreenProperties {
-    windowQueuePriority: PuergpCs.Variables.IntVariable;
-    hideOnForegroundLost: PuergpCs.Variables.BoolVariable;
-    isPopup: PuergpCs.Variables.BoolVariable;
-    suppressPrefabProperties: PuergpCs.Variables.BoolVariable;
+    windowQueuePriority: Puergp.Variables.IntVariable;
+    hideOnForegroundLost: Puergp.Variables.BoolVariable;
+    isPopup: Puergp.Variables.BoolVariable;
+    suppressPrefabProperties: Puergp.Variables.BoolVariable;
 }

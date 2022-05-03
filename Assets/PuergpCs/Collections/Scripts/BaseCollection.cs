@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PuergpCs.Collections
+namespace Puergp.Collections
 {
     public class BaseCollection<T> : ScriptableObject, IEnumerable<T>
     {

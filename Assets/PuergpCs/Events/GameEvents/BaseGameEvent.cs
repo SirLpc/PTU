@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace PuergpCs.Events
+namespace Puergp.Events
 {
     public class BaseGameEvent : ScriptableObject
     {

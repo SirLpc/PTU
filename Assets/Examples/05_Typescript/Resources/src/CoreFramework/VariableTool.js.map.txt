@@ -1,1 +1,1 @@
-{"version":3,"file":"VariableTool.js","sourceRoot":"","sources":["../../../src/CoreFramework/VariableTool.ts"],"names":[],"mappings":";;;AAAA,mCAA+C;AAE/C,MAAa,YAAY;IACd,MAAM,CAAC,GAAG,CAAoD,IAAY;QAC7E,OAAO,oBAAW,CAAC,SAAS,CAAC,IAAI,CAAC,IAAI,CAAM,CAAC;IACjD,CAAC;CACJ;AAJD,oCAIC"}
+{"version":3,"file":"VariableTool.js","sourceRoot":"","sources":["../../../src/CoreFramework/VariableTool.ts"],"names":[],"mappings":";;;AAAA,mCAA6C;AAE7C,MAAa,YAAY;IACd,MAAM,CAAC,GAAG,CAAkD,IAAY;QAC3E,OAAO,oBAAW,CAAC,SAAS,CAAC,IAAI,CAAC,IAAI,CAAM,CAAC;IACjD,CAAC;CACJ;AAJD,oCAIC"}

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PuergpCs
+namespace Puergp
 {
     public static class PuergpExtensions
     {

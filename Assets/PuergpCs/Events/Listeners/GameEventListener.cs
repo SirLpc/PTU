@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace PuergpCs.Events
+namespace Puergp.Events
 {
     public class GameEventListener : BaseGameEventListener
     {

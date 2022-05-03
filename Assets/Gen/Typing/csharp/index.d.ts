@@ -25054,6 +25054,49 @@ declare module 'csharp' {
         {
         }
     }
+    namespace Puergp.Variables {
+        class BoolVariable extends Puergp.Variables.BaseVariable$1<boolean>
+        {
+            public constructor ()
+        }
+        class BaseVariable$1<T> extends UnityEngine.ScriptableObject
+        {
+            public get value(): T;
+            public set value(value: T);
+            public GetValue () : T
+            public SetValue ($value: T) : void
+            public AddListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
+            public RemoveListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
+            public RemoveAllListeners () : void
+        }
+        class EnumItem extends System.Object
+        {
+            public key : number
+            public name : string
+            public constructor ()
+        }
+        class EnumDefine extends System.Object
+        {
+            public items : System.Array$1<Puergp.Variables.EnumItem>
+            public constructor ()
+        }
+        class EnumVariable extends Puergp.Variables.BaseVariable$1<Puergp.Variables.EnumDefine>
+        {
+            public constructor ()
+        }
+        class FloatVariable extends Puergp.Variables.BaseVariable$1<number>
+        {
+            public constructor ()
+        }
+        class GameObjectVariable extends Puergp.Variables.BaseVariable$1<UnityEngine.GameObject>
+        {
+            public constructor ()
+        }
+        class IntVariable extends Puergp.Variables.BaseVariable$1<number>
+        {
+            public constructor ()
+        }
+    }
     namespace UnityEngine.UI.Dropdown {
         class OptionData extends System.Object
         {
@@ -25469,7 +25512,7 @@ declare module 'csharp' {
             public constructor ()
         }
     }
-    namespace PuergpCs {
+    namespace Puergp {
         class PuergpExtensions extends System.Object
         {
             public static IsNull ($o: UnityEngine.Object) : boolean
@@ -25480,85 +25523,42 @@ declare module 'csharp' {
             public constructor ()
         }
     }
-    namespace PuergpCs.Variables {
-        class BoolVariable extends PuergpCs.Variables.BaseVariable$1<boolean>
-        {
-            public constructor ()
-        }
-        class BaseVariable$1<T> extends UnityEngine.ScriptableObject
-        {
-            public get value(): T;
-            public set value(value: T);
-            public GetValue () : T
-            public SetValue ($value: T) : void
-            public AddListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
-            public RemoveListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
-            public RemoveAllListeners () : void
-        }
-        class EnumItem extends System.Object
-        {
-            public key : number
-            public name : string
-            public constructor ()
-        }
-        class EnumDefine extends System.Object
-        {
-            public items : System.Array$1<PuergpCs.Variables.EnumItem>
-            public constructor ()
-        }
-        class EnumVariable extends PuergpCs.Variables.BaseVariable$1<PuergpCs.Variables.EnumDefine>
-        {
-            public constructor ()
-        }
-        class FloatVariable extends PuergpCs.Variables.BaseVariable$1<number>
-        {
-            public constructor ()
-        }
-        class GameObjectVariable extends PuergpCs.Variables.BaseVariable$1<UnityEngine.GameObject>
-        {
-            public constructor ()
-        }
-        class IntVariable extends PuergpCs.Variables.BaseVariable$1<number>
-        {
-            public constructor ()
-        }
-    }
-    namespace PuergpCs.Events {
+    namespace Puergp.Events {
         class BaseGameEvent extends UnityEngine.ScriptableObject
         {
             public constructor ()
         }
-        class EnumEvent extends PuergpCs.Events.GameEvent$1<PuergpCs.Variables.EnumDefine>
+        class EnumEvent extends Puergp.Events.GameEvent$1<Puergp.Variables.EnumDefine>
         {
             public constructor ()
         }
-        class GameEvent$1<T> extends PuergpCs.Events.BaseGameEvent
+        class GameEvent$1<T> extends Puergp.Events.BaseGameEvent
         {
             public Dispatch ($value: T) : void
-            public Register ($listener: PuergpCs.Events.GameEventListener$1<T>) : void
-            public Unregister ($listener: PuergpCs.Events.GameEventListener$1<T>) : void
+            public Register ($listener: Puergp.Events.GameEventListener$1<T>) : void
+            public Unregister ($listener: Puergp.Events.GameEventListener$1<T>) : void
             public Register ($action: System.Action$1<T>) : void
             public Unregister ($action: System.Action$1<T>) : void
             public UnregisterAll () : void
             public constructor ()
         }
-        class FloatEvent extends PuergpCs.Events.GameEvent$1<number>
+        class FloatEvent extends Puergp.Events.GameEvent$1<number>
         {
             public constructor ()
         }
-        class GameEvent extends PuergpCs.Events.BaseGameEvent
+        class GameEvent extends Puergp.Events.BaseGameEvent
         {
             public Dispatch () : void
-            public Register ($listener: PuergpCs.Events.GameEventListener) : void
-            public Unregister ($listener: PuergpCs.Events.GameEventListener) : void
+            public Register ($listener: Puergp.Events.GameEventListener) : void
+            public Unregister ($listener: Puergp.Events.GameEventListener) : void
             public Register ($action: System.Action) : void
             public Unregister ($action: System.Action) : void
             public UnregisterAll () : void
             public constructor ()
         }
-        class GameEventListener extends PuergpCs.Events.BaseGameEventListener
+        class GameEventListener extends Puergp.Events.BaseGameEventListener
         {
-            public gameEvent : PuergpCs.Events.GameEvent
+            public gameEvent : Puergp.Events.GameEvent
             public response : UnityEngine.Events.UnityEvent
             public OnEventDispatched () : void
             public constructor ()
@@ -25567,24 +25567,24 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class GameObjectEvent extends PuergpCs.Events.GameEvent$1<UnityEngine.GameObject>
+        class GameObjectEvent extends Puergp.Events.GameEvent$1<UnityEngine.GameObject>
         {
             public constructor ()
         }
-        class FloatEventListener extends PuergpCs.Events.GameEventListener$1<number>
+        class FloatEventListener extends Puergp.Events.GameEventListener$1<number>
         {
             public constructor ()
         }
-        class GameEventListener$1<T> extends PuergpCs.Events.BaseGameEventListener
+        class GameEventListener$1<T> extends Puergp.Events.BaseGameEventListener
         {
-            public gameEvent : PuergpCs.Events.GameEvent$1<T>
+            public gameEvent : Puergp.Events.GameEvent$1<T>
             public response : UnityEngine.Events.UnityEvent$1<T>
             public OnEventDispatched ($value: T) : void
             public constructor ()
         }
     }
-    namespace PuergpCs.Collections {
-        class FloatCollection extends PuergpCs.Collections.BaseCollection$1<number> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<number>
+    namespace Puergp.Collections {
+        class FloatCollection extends Puergp.Collections.BaseCollection$1<number> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<number>
         {
             public constructor ()
         }
@@ -25603,7 +25603,7 @@ declare module 'csharp' {
             public ToArray () : System.Array$1<T>
             public constructor ()
         }
-        class GameObjectCollection extends PuergpCs.Collections.BaseCollection$1<UnityEngine.GameObject> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<UnityEngine.GameObject>
+        class GameObjectCollection extends Puergp.Collections.BaseCollection$1<UnityEngine.GameObject> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<UnityEngine.GameObject>
         {
             public constructor ()
         }

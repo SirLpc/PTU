@@ -1,4 +1,4 @@
-import { PuergpCs, UnityEngine } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
 import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
 
@@ -23,9 +23,9 @@ export class TSComponentHub {
 
     private static _instance : TSComponentHub;
     
-    private _gameObjectOnEnableEvent : PuergpCs.Events.GameObjectEvent;
-    private _gameObjectOnDisableEvent : PuergpCs.Events.GameObjectEvent;
-    private _gameObjectOnDestroyEvent : PuergpCs.Events.GameObjectEvent;
+    private _gameObjectOnEnableEvent : Puergp.Events.GameObjectEvent;
+    private _gameObjectOnDisableEvent : Puergp.Events.GameObjectEvent;
+    private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
     
     private _tsComponents : Map<number, Set<ATSComponent>> = new Map<number, Set<ATSComponent>>();
 
@@ -44,7 +44,7 @@ export class TSComponentHub {
         }
         
         TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
-        tsComp.gameObject.GetOrAddComponent($typeof(PuergpCs.TSComponentEventHelper));
+        tsComp.gameObject.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
     }
     
     public static Unregister(tsComp : ATSComponent): void {

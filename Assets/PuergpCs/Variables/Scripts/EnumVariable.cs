@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PuergpCs.Variables
+namespace Puergp.Variables
 {
     
     [Serializable]

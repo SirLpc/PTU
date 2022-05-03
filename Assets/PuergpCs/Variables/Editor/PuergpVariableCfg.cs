@@ -24,9 +24,9 @@ public class PuergpVariableCfg
         {
             return new List<Type>()
             {
-                typeof(PuergpCs.Variables.BaseVariable<int>),
-                typeof(PuergpCs.Variables.BaseVariable<float>),
-                typeof(PuergpCs.Variables.BaseVariable<GameObject>),
+                typeof(Puergp.Variables.BaseVariable<int>),
+                typeof(Puergp.Variables.BaseVariable<float>),
+                typeof(Puergp.Variables.BaseVariable<GameObject>),
             };
         }
     }

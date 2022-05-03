@@ -16,11 +16,11 @@ setInterval(() => {
     TSComponentHub_1.TSComponentHub.Tick();
 }, 1 / 60);
 let gameApp = new GameApp_1.GameApp();
-// let iv : PuergpCs.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  PuergpCs.Variables.IntVariable;
-// let fv :  PuergpCs.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  PuergpCs.Variables.FloatVariable;
-// let evt : PuergpCs.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as PuergpCs.Events.FloatGameEvent;
-// let goPref : PuergpCs.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as PuergpCs.Variables.GameObjectVariable;
-// let col : PuergpCs.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as PuergpCs.Collections.GameObjectCollection;
+// let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
+// let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
+// let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
+// let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
+// let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
 // function onValueChanged(now:number):void
 // {
 //     UnityEngine.Debug.Log("changed " + now);

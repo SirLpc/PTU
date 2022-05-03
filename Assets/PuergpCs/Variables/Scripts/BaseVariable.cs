@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace PuergpCs.Variables
+namespace Puergp.Variables
 {
     
     public abstract class BaseVariable<T> : ScriptableObject

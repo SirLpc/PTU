@@ -25,12 +25,12 @@ public class PuergpEventsCfg
             return new List<Type>()
             {
                 // typeof(Puergp.Events.GameEventListener<int>),
-                typeof(PuergpCs.Events.GameEventListener),
-                typeof(PuergpCs.Events.GameEventListener<float>),
+                typeof(Puergp.Events.GameEventListener),
+                typeof(Puergp.Events.GameEventListener<float>),
                 // typeof(Puergp.Variables.BaseVariable<GameObject>),
                 
-                typeof(PuergpCs.Events.GameEvent),
-                typeof(PuergpCs.Events.GameEvent<float>),
+                typeof(Puergp.Events.GameEvent),
+                typeof(Puergp.Events.GameEvent<float>),
             };
         }
     }

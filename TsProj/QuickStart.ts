@@ -1,6 +1,6 @@
 //部署:npm run build
 
-import { UnityEngine, PuertsTest, System, PuergpCs } from 'csharp'
+import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
 import { IApp } from './src/CoreFramework/IApp'
@@ -30,14 +30,14 @@ setInterval(()=>
 let gameApp : IApp = new GameApp();
 
 
-// let iv : PuergpCs.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  PuergpCs.Variables.IntVariable;
+// let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 
-// let fv :  PuergpCs.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  PuergpCs.Variables.FloatVariable;
+// let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 
-// let evt : PuergpCs.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as PuergpCs.Events.FloatGameEvent;
+// let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
 
-// let goPref : PuergpCs.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as PuergpCs.Variables.GameObjectVariable;
-// let col : PuergpCs.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as PuergpCs.Collections.GameObjectCollection;
+// let goPref : Puergp.Variables.GameObjectVariable = UnityEngine.Resources.Load("GameObjectVariable") as Puergp.Variables.GameObjectVariable;
+// let col : Puergp.Collections.GameObjectCollection = UnityEngine.Resources.Load("GameObjectCollection") as Puergp.Collections.GameObjectCollection;
 
 // function onValueChanged(now:number):void
 // {

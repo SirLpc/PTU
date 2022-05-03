@@ -1,7 +1,7 @@
-﻿import { UnityEngine, PuergpCs } from "csharp";
+﻿import { UnityEngine, Puergp } from "csharp";
 
 export class VariableTool {
-    public static Get<T extends PuergpCs.Variables.BaseVariable$1<K>, K>(path: string): T {
+    public static Get<T extends Puergp.Variables.BaseVariable$1<K>, K>(path: string): T {
         return UnityEngine.Resources.Load(path) as T;
     }
 }

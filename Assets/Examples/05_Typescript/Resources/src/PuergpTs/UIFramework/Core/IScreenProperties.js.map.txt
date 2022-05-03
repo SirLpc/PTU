@@ -1,0 +1,1 @@
+{"version":3,"file":"IScreenProperties.js","sourceRoot":"","sources":["../../../../../src/PuergpTs/UIFramework/Core/IScreenProperties.ts"],"names":[],"mappings":""}

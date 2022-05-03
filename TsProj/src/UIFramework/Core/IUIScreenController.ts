@@ -1,4 +1,4 @@
-import { PuergpCs } from "csharp";
+import { Puergp } from "csharp";
 import { IScreenProperties } from "./IScreenProperties";
 
 export interface IUIScreenController {
@@ -9,19 +9,19 @@ export interface IUIScreenController {
     Show(props: IScreenProperties): void;
     Hide(animate: boolean) : void;
 
-    inTransitionFinished: PuergpCs.Events.GameObjectEvent;
-    outTransitionFinished: PuergpCs.Events.GameObjectEvent;
-    closeRequest: PuergpCs.Events.GameObjectEvent;
-    screenDestroyed: PuergpCs.Events.GameObjectEvent;
+    inTransitionFinished: Puergp.Events.GameObjectEvent;
+    outTransitionFinished: Puergp.Events.GameObjectEvent;
+    closeRequest: Puergp.Events.GameObjectEvent;
+    screenDestroyed: Puergp.Events.GameObjectEvent;
 
 }
 
 export interface IWindowController extends IUIScreenController {
-    hideOnForegroundLost: PuergpCs.Variables.BoolVariable;
-    isPopup: PuergpCs.Variables.BoolVariable;
-    priority: PuergpCs.Variables.IntVariable;
+    hideOnForegroundLost: Puergp.Variables.BoolVariable;
+    isPopup: Puergp.Variables.BoolVariable;
+    priority: Puergp.Variables.IntVariable;
 }
 
 export interface IPanelController extends IUIScreenController {
-    priority: PuergpCs.Variables.IntVariable;
+    priority: Puergp.Variables.IntVariable;
 }

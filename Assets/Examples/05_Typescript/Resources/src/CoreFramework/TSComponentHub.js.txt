@@ -43,7 +43,7 @@ class TSComponentHub {
             TSComponentHub._instance._tsComponents.set(unityGoID, new Set());
         }
         TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
-        tsComp.gameObject.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.PuergpCs.TSComponentEventHelper));
+        tsComp.gameObject.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.Puergp.TSComponentEventHelper));
     }
     static Unregister(tsComp) {
         const unityGoID = tsComp.gameObject.GetInstanceID();

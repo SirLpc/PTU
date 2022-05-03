@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PuergpCs.Variables
+namespace Puergp.Variables
 {
     [CreateAssetMenu(fileName = "IntVariable.asset", menuName = "Puergp/Variables/IntVariable")]
     public class IntVariable : BaseVariable<int>
