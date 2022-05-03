@@ -8,4 +8,10 @@ export class UISystem extends System
     {
         UnityEngine.Debug.Log("aa");    
     }
+
+    onAdd(): void {
+    }
+
+    onRemove(): void {
+    }
 }

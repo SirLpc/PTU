@@ -8,17 +8,28 @@ import { GameApp } from './src/GameApp'
 import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
 import { ECS as ECS } from './src/ECS/ECS'
 import { UISystem } from './src/UIFramework/UISystem'
+import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
+import {TestTSComponent} from "./src/TestTSComponent";
 
 
-let ecs : ECS = new ECS();
-ecs.addSystem(new UISystem())
+// let ecs : ECS = new ECS();
+// ecs.addSystem(new UISystem())
+//
+// setInterval(()=>
+// {
+//     ecs.update();
+// }, 1000);
 
+TSComponentHub.Init();
 setInterval(()=>
 {
-    ecs.update();
-}, 1000);
+    TSComponentHub.Tick();
+}, 1 / 60);
 
-// let gameApp : IApp = new GameApp();
+let go = new UnityEngine.GameObject("GameApp");
+TSComponentHub.Bind(go, new TestTSComponent());
+
+let gameApp : IApp = new GameApp();
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

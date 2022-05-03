@@ -8,6 +8,10 @@ class UISystem extends ECS_1.System {
     update(entities) {
         csharp_1.UnityEngine.Debug.Log("aa");
     }
+    onAdd() {
+    }
+    onRemove() {
+    }
 }
 exports.UISystem = UISystem;
 //# sourceMappingURL=UISystem.js.map

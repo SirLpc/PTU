@@ -1,16 +1,16 @@
 import { UnityEngine } from "csharp";
 import { IAbstractFactory } from "./IAbstractFactory";
 import { IAssetAddress } from "./IAssetAddress";
-import { IAssetLoadder } from "./IAssetLoadder";
+import { IAssetLoader } from "./IAssetLoader";
 
 export class GameObjectFactory implements IAbstractFactory<UnityEngine.GameObject>
 {
 
     public nullGameObject : UnityEngine.GameObject = new UnityEngine.GameObject("NullGameObject");
 
-    private _loader : IAssetLoadder = null;
+    private _loader : IAssetLoader = null;
 
-    public constructor(loader: IAssetLoadder)
+    public constructor(loader: IAssetLoader)
     {
         this._loader = loader;
     }

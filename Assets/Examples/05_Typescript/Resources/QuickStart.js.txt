@@ -1,15 +1,25 @@
 "use strict";
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
+const csharp_1 = require("csharp");
 require("./ExtensionDecl");
-const ECS_1 = require("./src/ECS/ECS");
-const UISystem_1 = require("./src/UIFramework/UISystem");
-let ecs = new ECS_1.ECS();
-ecs.addSystem(new UISystem_1.UISystem());
+const GameApp_1 = require("./src/GameApp");
+const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
+const TestTSComponent_1 = require("./src/TestTSComponent");
+// let ecs : ECS = new ECS();
+// ecs.addSystem(new UISystem())
+//
+// setInterval(()=>
+// {
+//     ecs.update();
+// }, 1000);
+TSComponentHub_1.TSComponentHub.Init();
 setInterval(() => {
-    ecs.update();
-}, 1000);
-// let gameApp : IApp = new GameApp();
+    TSComponentHub_1.TSComponentHub.Tick();
+}, 1 / 60);
+let go = new csharp_1.UnityEngine.GameObject("GameApp");
+TSComponentHub_1.TSComponentHub.Bind(go, new TestTSComponent_1.TestTSComponent());
+let gameApp = new GameApp_1.GameApp();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

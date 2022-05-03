@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Puergp.Events
 {
-    [CreateAssetMenu(fileName = "GameEvent.asset", menuName = "Puergp/GameEvents/GameEvent")]
     public class GameEvent : BaseGameEvent
     {
         [SerializeField]

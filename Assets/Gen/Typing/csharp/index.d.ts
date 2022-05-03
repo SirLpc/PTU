@@ -628,6 +628,10 @@ declare module 'csharp' {
             public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public constructor ()
         }
+        /** Base class for all objects Unity can reference. */
+        interface Object {
+            IsNull () : boolean;
+        }
         /** The type of the log message in Debug.unityLogger.Log or delegate registered with Application.RegisterLogCallback. */
         enum LogType
         { Error = 0, Assert = 1, Warning = 2, Log = 3, Exception = 4 }
@@ -768,6 +772,10 @@ declare module 'csharp' {
             public constructor ($name: string)
             public constructor ()
             public constructor ($name: string, ...components: System.Type[])
+        }
+        /** Base class for all entities in Unity Scenes. */
+        interface GameObject {
+            GetOrAddComponent ($type: System.Type) : UnityEngine.Component;
         }
         /** Base class for everything attached to GameObjects. */
         class Component extends UnityEngine.Object
@@ -24505,7 +24513,7 @@ declare module 'csharp' {
         {
             action () : void
         }
-        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Flyable, PuertsDeclareTest.Zombies.Walkable
+        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Walkable, PuertsDeclareTest.Zombies.Flyable
         {
             public constructor ()
             public action () : void
@@ -25500,12 +25508,23 @@ declare module 'csharp' {
             public constructor ()
         }
     }
+    namespace Puergp {
+        class PuergpExtensions extends System.Object
+        {
+            public static IsNull ($o: UnityEngine.Object) : boolean
+            public static GetOrAddComponent ($o: UnityEngine.GameObject, $type: System.Type) : UnityEngine.Component
+        }
+        class TSComponentEventHelper extends UnityEngine.MonoBehaviour
+        {
+            public constructor ()
+        }
+    }
     namespace Puergp.Events {
         class BaseGameEvent extends UnityEngine.ScriptableObject
         {
             public constructor ()
         }
-        class FloatGameEvent extends Puergp.Events.GameEvent$1<number>
+        class EnumEvent extends Puergp.Events.GameEvent$1<Puergp.Variables.EnumDefine>
         {
             public constructor ()
         }
@@ -25517,6 +25536,10 @@ declare module 'csharp' {
             public Register ($action: System.Action$1<T>) : void
             public Unregister ($action: System.Action$1<T>) : void
             public UnregisterAll () : void
+            public constructor ()
+        }
+        class FloatEvent extends Puergp.Events.GameEvent$1<number>
+        {
             public constructor ()
         }
         class GameEvent extends Puergp.Events.BaseGameEvent
@@ -25540,7 +25563,11 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class FloatGameEventListener extends Puergp.Events.GameEventListener$1<number>
+        class GameObjectEvent extends Puergp.Events.GameEvent$1<UnityEngine.GameObject>
+        {
+            public constructor ()
+        }
+        class FloatEventListener extends Puergp.Events.GameEventListener$1<number>
         {
             public constructor ()
         }
