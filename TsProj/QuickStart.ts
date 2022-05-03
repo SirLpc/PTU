@@ -5,7 +5,6 @@ import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
 import { IApp } from './src/CoreFramework/IApp'
 import { GameApp } from './src/GameApp'
-import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
 import { ECS as ECS } from './src/ECS/ECS'
 import { UISystem } from './src/UIFramework/UISystem'
 import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
