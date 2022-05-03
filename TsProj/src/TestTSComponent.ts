@@ -1,7 +1,7 @@
-﻿import {TSComponent} from "./CoreFramework/TSComponentHub";
+﻿import {ATSComponent} from "./CoreFramework/TSComponentHub";
 import { UnityEngine } from "csharp";
 
-export class TestTSComponent extends TSComponent{
+export class TestTSComponent extends ATSComponent{
     enableUpdate: boolean = true;
     public OnEnable() : void{
         super.OnEnable();

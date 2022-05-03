@@ -1,0 +1,1 @@
+{"version":3,"file":"IUIScreenController.js","sourceRoot":"","sources":["../../../../src/UIFramework/Core/IUIScreenController.ts"],"names":[],"mappings":""}

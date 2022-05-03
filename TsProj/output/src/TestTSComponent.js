@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TestTSComponent = void 0;
 const TSComponentHub_1 = require("./CoreFramework/TSComponentHub");
 const csharp_1 = require("csharp");
-class TestTSComponent extends TSComponentHub_1.TSComponent {
+class TestTSComponent extends TSComponentHub_1.ATSComponent {
     enableUpdate = true;
     OnEnable() {
         super.OnEnable();

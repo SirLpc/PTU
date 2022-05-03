@@ -1,10 +1,18 @@
-import { Puergp, UnityEngine } from "csharp";
+import { PuergpCs, UnityEngine } from "csharp";
 import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
 
-export abstract class TSComponent {
+export abstract class ATSComponent {
+    public constructor(unityGo : UnityEngine.GameObject, enableUpdate : boolean) {
+        this.gameObject = unityGo;
+        this.enableUpdate = enableUpdate;
+
+        this.Awake();
+    };
+
     public gameObject : UnityEngine.GameObject;
-    public abstract enableUpdate : boolean;
+    public enableUpdate : boolean;
+    public Awake() : void {};
     public OnEnable() : void {};
     public Update() : void {};
     public OnDisable() : void {};
@@ -15,11 +23,11 @@ export class TSComponentHub {
 
     private static _instance : TSComponentHub;
     
-    private _gameObjectOnEnableEvent : Puergp.Events.GameObjectEvent;
-    private _gameObjectOnDisableEvent : Puergp.Events.GameObjectEvent;
-    private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
+    private _gameObjectOnEnableEvent : PuergpCs.Events.GameObjectEvent;
+    private _gameObjectOnDisableEvent : PuergpCs.Events.GameObjectEvent;
+    private _gameObjectOnDestroyEvent : PuergpCs.Events.GameObjectEvent;
     
-    private _tsComponents : Map<number, Set<TSComponent>> = new Map<number, Set<TSComponent>>();
+    private _tsComponents : Map<number, Set<ATSComponent>> = new Map<number, Set<ATSComponent>>();
 
     public static Init(): void {
         TSComponentHub._instance = new TSComponentHub();
@@ -29,20 +37,18 @@ export class TSComponentHub {
         TSComponentHub._instance.UpdateTSComponents();
     }
     
-    public static Bind(unityGo : UnityEngine.GameObject, tsComp : TSComponent): void {
-        const unityGoID = unityGo.GetInstanceID();
+    public static Register(tsComp : ATSComponent): void {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
-            TSComponentHub._instance._tsComponents.set(unityGoID, new Set<TSComponent>());
+            TSComponentHub._instance._tsComponents.set(unityGoID, new Set<ATSComponent>());
         }
         
         TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
-        tsComp.gameObject = unityGo;
-        
-        unityGo.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
+        tsComp.gameObject.GetOrAddComponent($typeof(PuergpCs.TSComponentEventHelper));
     }
     
-    public static UnBind(unityGo : UnityEngine.GameObject, tsComp : TSComponent): void {
-        const unityGoID = unityGo.GetInstanceID();
+    public static Unregister(tsComp : ATSComponent): void {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }

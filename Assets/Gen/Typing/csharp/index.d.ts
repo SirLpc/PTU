@@ -24513,7 +24513,7 @@ declare module 'csharp' {
         {
             action () : void
         }
-        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Walkable, PuertsDeclareTest.Zombies.Flyable
+        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Flyable, PuertsDeclareTest.Zombies.Walkable
         {
             public constructor ()
             public action () : void
@@ -25054,45 +25054,6 @@ declare module 'csharp' {
         {
         }
     }
-    namespace Puergp.Variables {
-        class EnumItem extends System.Object
-        {
-            public key : number
-            public name : string
-            public constructor ()
-        }
-        class EnumDefine extends System.Object
-        {
-            public items : System.Array$1<Puergp.Variables.EnumItem>
-            public constructor ()
-        }
-        class EnumVariable extends Puergp.Variables.BaseVariable$1<Puergp.Variables.EnumDefine>
-        {
-            public constructor ()
-        }
-        class BaseVariable$1<T> extends UnityEngine.ScriptableObject
-        {
-            public get value(): T;
-            public set value(value: T);
-            public GetValue () : T
-            public SetValue ($value: T) : void
-            public AddListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
-            public RemoveListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
-            public RemoveAllListeners () : void
-        }
-        class FloatVariable extends Puergp.Variables.BaseVariable$1<number>
-        {
-            public constructor ()
-        }
-        class GameObjectVariable extends Puergp.Variables.BaseVariable$1<UnityEngine.GameObject>
-        {
-            public constructor ()
-        }
-        class IntVariable extends Puergp.Variables.BaseVariable$1<number>
-        {
-            public constructor ()
-        }
-    }
     namespace UnityEngine.UI.Dropdown {
         class OptionData extends System.Object
         {
@@ -25242,7 +25203,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
+        class NavigationPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
         {
             public constructor ()
         }
@@ -25277,8 +25238,9 @@ declare module 'csharp' {
         }
     }
     namespace deVoid.UIFramework {
-        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
+        class APanelController extends deVoid.UIFramework.APanelController$1<deVoid.UIFramework.PanelProperties> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
         {
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25290,7 +25252,6 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
-            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
@@ -25307,8 +25268,9 @@ declare module 'csharp' {
         {
             Priority : deVoid.UIFramework.PanelPriority
         }
-        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
+        class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
         {
+            public get Priority(): deVoid.UIFramework.PanelPriority;
             public get ScreenId(): string;
             public set ScreenId(value: string);
             public get IsVisible(): boolean;
@@ -25320,7 +25282,6 @@ declare module 'csharp' {
             public set CloseRequest(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
             public get ScreenDestroyed(): System.Action$1<deVoid.UIFramework.IUIScreenController>;
             public set ScreenDestroyed(value: System.Action$1<deVoid.UIFramework.IUIScreenController>);
-            public get Priority(): deVoid.UIFramework.PanelPriority;
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
@@ -25508,7 +25469,7 @@ declare module 'csharp' {
             public constructor ()
         }
     }
-    namespace Puergp {
+    namespace PuergpCs {
         class PuergpExtensions extends System.Object
         {
             public static IsNull ($o: UnityEngine.Object) : boolean
@@ -25519,42 +25480,85 @@ declare module 'csharp' {
             public constructor ()
         }
     }
-    namespace Puergp.Events {
+    namespace PuergpCs.Variables {
+        class BoolVariable extends PuergpCs.Variables.BaseVariable$1<boolean>
+        {
+            public constructor ()
+        }
+        class BaseVariable$1<T> extends UnityEngine.ScriptableObject
+        {
+            public get value(): T;
+            public set value(value: T);
+            public GetValue () : T
+            public SetValue ($value: T) : void
+            public AddListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
+            public RemoveListener ($action: UnityEngine.Events.UnityAction$1<T>) : void
+            public RemoveAllListeners () : void
+        }
+        class EnumItem extends System.Object
+        {
+            public key : number
+            public name : string
+            public constructor ()
+        }
+        class EnumDefine extends System.Object
+        {
+            public items : System.Array$1<PuergpCs.Variables.EnumItem>
+            public constructor ()
+        }
+        class EnumVariable extends PuergpCs.Variables.BaseVariable$1<PuergpCs.Variables.EnumDefine>
+        {
+            public constructor ()
+        }
+        class FloatVariable extends PuergpCs.Variables.BaseVariable$1<number>
+        {
+            public constructor ()
+        }
+        class GameObjectVariable extends PuergpCs.Variables.BaseVariable$1<UnityEngine.GameObject>
+        {
+            public constructor ()
+        }
+        class IntVariable extends PuergpCs.Variables.BaseVariable$1<number>
+        {
+            public constructor ()
+        }
+    }
+    namespace PuergpCs.Events {
         class BaseGameEvent extends UnityEngine.ScriptableObject
         {
             public constructor ()
         }
-        class EnumEvent extends Puergp.Events.GameEvent$1<Puergp.Variables.EnumDefine>
+        class EnumEvent extends PuergpCs.Events.GameEvent$1<PuergpCs.Variables.EnumDefine>
         {
             public constructor ()
         }
-        class GameEvent$1<T> extends Puergp.Events.BaseGameEvent
+        class GameEvent$1<T> extends PuergpCs.Events.BaseGameEvent
         {
             public Dispatch ($value: T) : void
-            public Register ($listener: Puergp.Events.GameEventListener$1<T>) : void
-            public Unregister ($listener: Puergp.Events.GameEventListener$1<T>) : void
+            public Register ($listener: PuergpCs.Events.GameEventListener$1<T>) : void
+            public Unregister ($listener: PuergpCs.Events.GameEventListener$1<T>) : void
             public Register ($action: System.Action$1<T>) : void
             public Unregister ($action: System.Action$1<T>) : void
             public UnregisterAll () : void
             public constructor ()
         }
-        class FloatEvent extends Puergp.Events.GameEvent$1<number>
+        class FloatEvent extends PuergpCs.Events.GameEvent$1<number>
         {
             public constructor ()
         }
-        class GameEvent extends Puergp.Events.BaseGameEvent
+        class GameEvent extends PuergpCs.Events.BaseGameEvent
         {
             public Dispatch () : void
-            public Register ($listener: Puergp.Events.GameEventListener) : void
-            public Unregister ($listener: Puergp.Events.GameEventListener) : void
+            public Register ($listener: PuergpCs.Events.GameEventListener) : void
+            public Unregister ($listener: PuergpCs.Events.GameEventListener) : void
             public Register ($action: System.Action) : void
             public Unregister ($action: System.Action) : void
             public UnregisterAll () : void
             public constructor ()
         }
-        class GameEventListener extends Puergp.Events.BaseGameEventListener
+        class GameEventListener extends PuergpCs.Events.BaseGameEventListener
         {
-            public gameEvent : Puergp.Events.GameEvent
+            public gameEvent : PuergpCs.Events.GameEvent
             public response : UnityEngine.Events.UnityEvent
             public OnEventDispatched () : void
             public constructor ()
@@ -25563,24 +25567,24 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class GameObjectEvent extends Puergp.Events.GameEvent$1<UnityEngine.GameObject>
+        class GameObjectEvent extends PuergpCs.Events.GameEvent$1<UnityEngine.GameObject>
         {
             public constructor ()
         }
-        class FloatEventListener extends Puergp.Events.GameEventListener$1<number>
+        class FloatEventListener extends PuergpCs.Events.GameEventListener$1<number>
         {
             public constructor ()
         }
-        class GameEventListener$1<T> extends Puergp.Events.BaseGameEventListener
+        class GameEventListener$1<T> extends PuergpCs.Events.BaseGameEventListener
         {
-            public gameEvent : Puergp.Events.GameEvent$1<T>
+            public gameEvent : PuergpCs.Events.GameEvent$1<T>
             public response : UnityEngine.Events.UnityEvent$1<T>
             public OnEventDispatched ($value: T) : void
             public constructor ()
         }
     }
-    namespace Puergp.Collections {
-        class FloatCollection extends Puergp.Collections.BaseCollection$1<number> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<number>
+    namespace PuergpCs.Collections {
+        class FloatCollection extends PuergpCs.Collections.BaseCollection$1<number> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<number>
         {
             public constructor ()
         }
@@ -25599,7 +25603,7 @@ declare module 'csharp' {
             public ToArray () : System.Array$1<T>
             public constructor ()
         }
-        class GameObjectCollection extends Puergp.Collections.BaseCollection$1<UnityEngine.GameObject> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<UnityEngine.GameObject>
+        class GameObjectCollection extends PuergpCs.Collections.BaseCollection$1<UnityEngine.GameObject> implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<UnityEngine.GameObject>
         {
             public constructor ()
         }
@@ -25745,7 +25749,7 @@ declare module 'csharp' {
             public UI_Start () : void
             public constructor ()
         }
-        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
+        class ToastPanelController extends deVoid.UIFramework.APanelController implements deVoid.UIFramework.IPanelController, deVoid.UIFramework.IUIScreenController
         {
             public constructor ()
         }

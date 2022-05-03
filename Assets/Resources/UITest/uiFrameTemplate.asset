@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d07c277f0a4f72b75ebde679a39513, type: 3}
+  m_Name: uiFrameTemplate
+  m_EditorClassIdentifier: 
+  _value: {fileID: 6404940976377762148, guid: 9992c891027d2324cbf08499a400b7bd, type: 3}
+  _readOnly: 1
+  _logWaringWhenSetOnReadOnly: 1
+  _onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []

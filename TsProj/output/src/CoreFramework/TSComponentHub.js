@@ -1,11 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TSComponentHub = exports.TSComponent = void 0;
+exports.TSComponentHub = exports.ATSComponent = void 0;
 const csharp_1 = require("csharp");
 const EventTool_1 = require("./EventTool");
 const puerts_1 = require("puerts");
-class TSComponent {
+class ATSComponent {
+    constructor(unityGo, enableUpdate) {
+        this.gameObject = unityGo;
+        this.enableUpdate = enableUpdate;
+        this.Awake();
+    }
+    ;
     gameObject;
+    enableUpdate;
+    Awake() { }
+    ;
     OnEnable() { }
     ;
     Update() { }
@@ -15,7 +24,7 @@ class TSComponent {
     OnDestroy() { }
     ;
 }
-exports.TSComponent = TSComponent;
+exports.ATSComponent = ATSComponent;
 class TSComponentHub {
     static _instance;
     _gameObjectOnEnableEvent;
@@ -28,17 +37,16 @@ class TSComponentHub {
     static Tick() {
         TSComponentHub._instance.UpdateTSComponents();
     }
-    static Bind(unityGo, tsComp) {
-        const unityGoID = unityGo.GetInstanceID();
+    static Register(tsComp) {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             TSComponentHub._instance._tsComponents.set(unityGoID, new Set());
         }
         TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
-        tsComp.gameObject = unityGo;
-        unityGo.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.Puergp.TSComponentEventHelper));
+        tsComp.gameObject.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.PuergpCs.TSComponentEventHelper));
     }
-    static UnBind(unityGo, tsComp) {
-        const unityGoID = unityGo.GetInstanceID();
+    static Unregister(tsComp) {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }

@@ -1,19 +1,19 @@
-import { UnityEngine } from "csharp";
+
+
+import { PuergpCs, UnityEngine } from "csharp";
+import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 import { UISetting as UISetting } from "../Configs/UISetting";
 
-export class UIFrame
+export class UIFrame extends ATSComponent
 {
     private _uiSetting : UISetting;
-    private _go : UnityEngine.GameObject;
+    private _uiFrameGo : UnityEngine.GameObject;
 
-    public Create(uiSetting:UISetting) : boolean 
-    {
-        this._uiSetting = uiSetting;
+    public static Create(uiSetting:UISetting) : UIFrame  {
+        let instanceGo = UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value) as UnityEngine.GameObject;
+        let instance = new UIFrame(instanceGo, true);
 
-        this._go = UnityEngine.GameObject.Instantiate(this._uiSetting.uiFrameTemplate) as UnityEngine.GameObject;
-
-
-
-        return true;
+        instance._uiSetting = uiSetting;
+        return instance;
     }
 }
