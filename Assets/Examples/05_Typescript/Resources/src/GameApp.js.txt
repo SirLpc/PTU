@@ -5,7 +5,7 @@ const UIFrame_1 = require("./UIFramework/UIFrames/UIFrame");
 const UISetting_1 = require("./UIFramework/Configs/UISetting");
 class GameApp {
     constructor() {
-        let uiFrame = UIFrame_1.PuergpTs.UIFrame.Create(new UISetting_1.UISetting());
+        let uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting());
     }
 }
 exports.GameApp = GameApp;
