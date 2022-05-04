@@ -1,0 +1,1 @@
+{"version":3,"file":"ALogger.js","sourceRoot":"","sources":["../../../src/CoreFramework/ALogger.ts"],"names":[],"mappings":";;;AAAA,MAAsB,OAAO;CAG5B;AAHD,0BAGC"}

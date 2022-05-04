@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
 const GameApp_1 = require("./src/GameApp");
 const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
+const UnityDebugLogger_1 = require("./src/UnityDebugLogger");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -16,6 +17,9 @@ setInterval(() => {
     TSComponentHub_1.TSComponentHub.Tick();
 }, 1 / 60);
 let gameApp = new GameApp_1.GameApp();
+function GetLogger() {
+    return new UnityDebugLogger_1.UnityDebugLogger();
+}
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

@@ -1,1 +1,1 @@
-{"version":3,"file":"ILogger.js","sourceRoot":"","sources":["../../../src/CoreFramework/ILogger.ts"],"names":[],"mappings":""}
+{"version":3,"file":"ILogger.js","sourceRoot":"","sources":["../../../src/CoreFramework/ILogger.ts"],"names":[],"mappings":";;;AAAA,MAAsB,OAAO;CAG5B;AAHD,0BAGC"}

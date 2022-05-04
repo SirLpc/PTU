@@ -1,4 +1,4 @@
-export interface ILogger
+export abstract class ILogger
 {
-    LogError(message: string): void;
+    public abstract LogError(message: string): void;
 }

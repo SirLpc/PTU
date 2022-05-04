@@ -3,13 +3,15 @@
 import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
-import { IApp } from './src/CoreFramework/IApp'
+import { App } from './src/CoreFramework/App'
 import { GameApp } from './src/GameApp'
 import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
 import { ECS as ECS } from './src/ECS/ECS'
 import { UISystem } from './src/UIFramework/UISystem'
 import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
 import {TestTSComponent} from "./src/TestTSComponent";
+import { ILogger } from './src/CoreFramework/ILogger'
+import { UnityDebugLogger } from './src/UnityDebugLogger'
 
 
 // let ecs : ECS = new ECS();
@@ -27,7 +29,11 @@ setInterval(()=>
 }, 1 / 60);
 
 
-let gameApp : IApp = new GameApp();
+let gameApp : App = new GameApp();
+
+function GetLogger() : ILogger {
+    return new UnityDebugLogger();
+}
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

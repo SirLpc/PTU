@@ -1,0 +1,1 @@
+{"version":3,"file":"UnityDebugLogger.js","sourceRoot":"","sources":["../../src/UnityDebugLogger.ts"],"names":[],"mappings":";;;AAAA,mCAAqC;AAGrC,MAAa,gBAAgB;IAElB,QAAQ,CAAC,OAAe;QAC3B,oBAAW,CAAC,KAAK,CAAC,QAAQ,CAAC,OAAO,CAAC,CAAC;IACxC,CAAC;CAEJ;AAND,4CAMC"}

@@ -2,17 +2,20 @@ import { UnityEngine, Puergp, Puerts } from "csharp";
 import { IAssetAddress } from "./CoreFramework/IAssetAddress";
 import { FactoryProducer } from "./CoreFramework/FactoryProducer";
 import { GameObjectFactory } from "./CoreFramework/GameObjectFactory";
-import { IApp } from "./CoreFramework/IApp";
+import { App } from "./CoreFramework/App";
 import { DefaultAssetAddress } from "./CoreFramework/DefaultAssetAddress";
 import {ResourceLoader} from "./CoreFramework/ResourceLoader";
 import {VariableTool} from "./CoreFramework/VariableTool";
 import { UISetting } from "./UIFramework/Configs/UISetting";
 import { UIFrame } from "./UIFramework/UIFrames/UIFrame";
+import { ILogger } from "./CoreFramework/ILogger";
+import { ServiceLocator } from "./CoreFramework/ServiceLocator";
+import { UnityDebugLogger } from "./UnityDebugLogger";
 
-export class GameApp implements IApp
-{
-    constructor()
-    {
-        let uiFrame = UIFrame.Create(new UISetting());
+export class GameApp extends App {
+    constructor() {
+        // let uiFrame = UIFrame.Create(new UISetting());
+        super();
     }
+    public logger: ILogger = new UnityDebugLogger();
 }
