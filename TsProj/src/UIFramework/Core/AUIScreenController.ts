@@ -17,7 +17,7 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     public animOut: ATransitionComponent;
     public properties: TProps;
 
-    protected Awake(): void {
+    public Awake(): void {
         this.AddListeners();
     }
 
@@ -70,7 +70,36 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     }
 
     private DoAnimation(caller: ATransitionComponent, callWhenFinished: ()=>void, isVisible:boolean) {
-        
+        if (caller == null) {
+            this.gameObject.SetActive(isVisible);
+            if (callWhenFinished != null) {
+                callWhenFinished();
+            }
+            else {
+                if (isVisible && this.gameObject.activeSelf) {
+                    this.gameObject.SetActive(true);
+                }
+
+                caller.Animate(this.gameObject.transform, callWhenFinished);
+            }
+        }
+    }
+
+    private OnTransitionInFinished(): void {
+        this.isVisible = true;
+
+        if (this.inTransitionFinished.IsNull() == false) {
+            this.inTransitionFinished.Dispatch(this.gameObject);
+        }
+    }
+
+    private OnTransitionOutFinished(): void {
+        this.isVisible = false;
+        this.gameObject.SetActive(false);
+
+        if (this.outTransitionFinished.IsNull() == false) {
+            this.outTransitionFinished.Dispatch(this.gameObject);
+        }
     }
 
 
