@@ -17,9 +17,9 @@ export interface IUIScreenController {
 }
 
 export interface IWindowController extends IUIScreenController {
-    hideOnForegroundLost: Puergp.Variables.BoolVariable;
-    isPopup: Puergp.Variables.BoolVariable;
-    priority: Puergp.Variables.IntVariable;
+    get hideOnForegroundLost(): Puergp.Variables.BoolVariable;
+    get isPopup(): Puergp.Variables.BoolVariable;
+    get priority(): Puergp.Variables.IntVariable;
 }
 
 export interface IPanelController extends IUIScreenController {
