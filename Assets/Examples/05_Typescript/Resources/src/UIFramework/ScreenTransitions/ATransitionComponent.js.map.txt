@@ -1,0 +1,1 @@
+{"version":3,"file":"ATransitionComponent.js","sourceRoot":"","sources":["../../../../src/UIFramework/ScreenTransitions/ATransitionComponent.ts"],"names":[],"mappings":";;;AACA,uEAAkE;AAElE,MAAsB,oBAAqB,SAAQ,6BAAY;CAE9D;AAFD,oDAEC"}
