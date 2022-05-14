@@ -1,0 +1,1 @@
+{"version":3,"file":"WindowPriority.js","sourceRoot":"","sources":["../../../../src/UIFramework/Window/WindowPriority.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;IAChB,MAAM,CAAC,eAAe,GAAW,CAAC,CAAC;IACnC,MAAM,CAAC,OAAO,GAAW,CAAC,CAAC;;AAFtC,wCAGC"}

@@ -9,7 +9,7 @@ class AWindowControllerT extends AUIScreenController_1.AUIScreenController {
     get isPopup() {
         return this.properties.isPopup;
     }
-    get priority() {
+    get windowPriority() {
         return this.properties.windowQueuePriority;
     }
     UI_Close() {

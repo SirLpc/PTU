@@ -46,7 +46,7 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
 
     protected HierarchyFixOnShow(): void {}
 
-    public Hide(animate: boolean): void {
+    public Hide(animate: boolean = true): void {
         this.DoAnimation(animate ? this.animOut : null, this.OnTransitionOutFinished.bind(this), false);
         this.WhileHiding();
     }

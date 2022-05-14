@@ -12,7 +12,7 @@ export abstract class AWindowControllerT<TProps extends IWindowProperties> exten
     get isPopup(): Puergp.Variables.BoolVariable {
         return this.properties.isPopup;
     }
-    get priority(): Puergp.Variables.IntVariable {
+    get windowPriority(): Puergp.Variables.IntVariable {
         return this.properties.windowQueuePriority;
     }
  

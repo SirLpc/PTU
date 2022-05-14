@@ -7,7 +7,7 @@ export interface IUIScreenController {
     isVisible: boolean;
 
     Show(props: IScreenProperties): void;
-    Hide(animate: boolean) : void;
+    Hide(animate?: boolean) : void;
 
     inTransitionFinished: Puergp.Events.GameObjectEvent;
     outTransitionFinished: Puergp.Events.GameObjectEvent;
@@ -19,7 +19,7 @@ export interface IUIScreenController {
 export interface IWindowController extends IUIScreenController {
     get hideOnForegroundLost(): Puergp.Variables.BoolVariable;
     get isPopup(): Puergp.Variables.BoolVariable;
-    get priority(): Puergp.Variables.IntVariable;
+    get windowPriority(): Puergp.Variables.IntVariable;
 }
 
 export interface IPanelController extends IUIScreenController {

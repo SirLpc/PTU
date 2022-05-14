@@ -631,6 +631,7 @@ declare module 'csharp' {
         /** Base class for all objects Unity can reference. */
         interface Object {
             IsNull () : boolean;
+            IsNotNull () : boolean;
         }
         /** The type of the log message in Debug.unityLogger.Log or delegate registered with Application.RegisterLogCallback. */
         enum LogType
@@ -25516,6 +25517,7 @@ declare module 'csharp' {
         class PuergpExtensions extends System.Object
         {
             public static IsNull ($o: UnityEngine.Object) : boolean
+            public static IsNotNull ($o: UnityEngine.Object) : boolean
             public static GetOrAddComponent ($o: UnityEngine.GameObject, $type: System.Type) : UnityEngine.Component
         }
         class TSComponentEventHelper extends UnityEngine.MonoBehaviour

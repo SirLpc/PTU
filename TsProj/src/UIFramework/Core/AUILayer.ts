@@ -41,9 +41,9 @@ export abstract class AUILayer<TScreen extends IUIScreenController> extends ATSC
         }
     }
 
-    public ShowScreenById<TProps extends IScreenProperties>(screenId: string, properties: TProps): void;
     public ShowScreenById(screenId: string): void;
-    public ShowScreenById<TProps extends IScreenProperties>(screenId: string, properties?: TProps): void {
+    public ShowScreenById<TProps extends IScreenProperties>(screenId: string, properties: TProps): void;
+    public ShowScreenById(screenId: string, properties?: any): void {
         if (this.registeredScreens.has(screenId)) {
             if (properties === undefined) {
                 this.ShowScreen(this.registeredScreens.get(screenId));

@@ -9,6 +9,11 @@ namespace Puergp
         {
             return o == null;
         }
+        
+        public static bool IsNotNull(this UnityEngine.Object o) 
+        {
+            return o != null;
+        }
 
         public static Component GetOrAddComponent(this UnityEngine.GameObject o, Type type)
         {

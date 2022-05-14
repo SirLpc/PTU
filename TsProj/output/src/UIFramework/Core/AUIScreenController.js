@@ -32,7 +32,7 @@ class AUIScreenController extends TSComponentHub_1.ATSComponent {
         this.properties = props;
     }
     HierarchyFixOnShow() { }
-    Hide(animate) {
+    Hide(animate = true) {
         this.DoAnimation(animate ? this.animOut : null, this.OnTransitionOutFinished.bind(this), false);
         this.WhileHiding();
     }
