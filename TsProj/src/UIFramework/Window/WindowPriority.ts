@@ -1,4 +1,4 @@
-export class WindowPriority {
-    public static forceForeground: number = 0;
-    public static enqueue: number = 1;
+export enum WindowPriority {
+    ForceForeground = 0,
+    Enqueue = 1,
 }

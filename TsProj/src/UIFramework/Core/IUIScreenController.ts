@@ -6,7 +6,7 @@ export interface IUIScreenController {
     screenId: string;
     isVisible: boolean;
 
-    Show(props: IScreenProperties): void;
+    Show(props?: IScreenProperties): void;
     Hide(animate?: boolean) : void;
 
     inTransitionFinished: Puergp.Events.GameObjectEvent;
@@ -23,5 +23,5 @@ export interface IWindowController extends IUIScreenController {
 }
 
 export interface IPanelController extends IUIScreenController {
-    priority: Puergp.Variables.IntVariable;
+    get priority(): Puergp.Variables.IntVariable;
 }

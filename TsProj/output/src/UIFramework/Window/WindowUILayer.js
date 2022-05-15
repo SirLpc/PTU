@@ -93,9 +93,9 @@ class WindowUILayer extends AUILayer_1.AUILayer {
             return false;
         }
         if (windowProp != null && windowProp.suppressPrefabProperties.value) {
-            return windowProp.windowQueuePriority.value != WindowPriority_1.WindowPriority.forceForeground;
+            return windowProp.windowQueuePriority.value != WindowPriority_1.WindowPriority.ForceForeground;
         }
-        if (controller.windowPriority.value != WindowPriority_1.WindowPriority.forceForeground) {
+        if (controller.windowPriority.value != WindowPriority_1.WindowPriority.ForceForeground) {
             return true;
         }
         return false;

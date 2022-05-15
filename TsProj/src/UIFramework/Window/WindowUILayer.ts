@@ -120,10 +120,10 @@ export class WindowUILayer extends AUILayer<IWindowController> {
         } 
 
         if (windowProp != null && windowProp.suppressPrefabProperties.value) {
-            return windowProp.windowQueuePriority.value != WindowPriority.forceForeground;
+            return windowProp.windowQueuePriority.value != WindowPriority.ForceForeground;
         }
 
-        if (controller.windowPriority.value != WindowPriority.forceForeground) {
+        if (controller.windowPriority.value != WindowPriority.ForceForeground) {
             return true;
         }
 

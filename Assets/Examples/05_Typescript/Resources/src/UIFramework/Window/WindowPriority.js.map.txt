@@ -1,1 +1,1 @@
-{"version":3,"file":"WindowPriority.js","sourceRoot":"","sources":["../../../../src/UIFramework/Window/WindowPriority.ts"],"names":[],"mappings":";;;AAAA,MAAa,cAAc;IAChB,MAAM,CAAC,eAAe,GAAW,CAAC,CAAC;IACnC,MAAM,CAAC,OAAO,GAAW,CAAC,CAAC;;AAFtC,wCAGC"}
+{"version":3,"file":"WindowPriority.js","sourceRoot":"","sources":["../../../../src/UIFramework/Window/WindowPriority.ts"],"names":[],"mappings":";;;AAAA,IAAY,cAGX;AAHD,WAAY,cAAc;IACtB,yEAAmB,CAAA;IACnB,yDAAW,CAAA;AACf,CAAC,EAHW,cAAc,GAAd,sBAAc,KAAd,sBAAc,QAGzB"}

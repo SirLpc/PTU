@@ -6,6 +6,8 @@ const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
 class UIFrame extends TSComponentHub_1.ATSComponent {
     _uiSetting;
     _uiFrameGo;
+    windowLayer;
+    //private 
     static Create(uiSetting) {
         let instanceGo = csharp_1.UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value);
         let instance = new UIFrame(instanceGo, true);
