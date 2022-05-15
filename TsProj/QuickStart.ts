@@ -31,9 +31,7 @@ setInterval(()=>
 
 let gameApp : App = new GameApp();
 
-function GetLogger() : ILogger {
-    return new UnityDebugLogger();
-}
+
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

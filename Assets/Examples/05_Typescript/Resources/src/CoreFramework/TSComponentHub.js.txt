@@ -8,6 +8,7 @@ class ATSComponent {
     constructor(unityGo, enableUpdate) {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
+        TSComponentHub.Register(this);
         this.Awake();
     }
     ;

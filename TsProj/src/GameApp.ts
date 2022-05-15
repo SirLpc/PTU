@@ -14,8 +14,9 @@ import { UnityDebugLogger } from "./UnityDebugLogger";
 
 export class GameApp extends App {
     constructor() {
-        // let uiFrame = UIFrame.Create(new UISetting());
         super();
+        
+        let uiFrame = UIFrame.Create(new UISetting());
     }
     public logger: ILogger = new UnityDebugLogger();
 }

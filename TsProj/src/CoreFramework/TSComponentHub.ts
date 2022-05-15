@@ -6,6 +6,7 @@ export abstract class ATSComponent {
     public constructor(unityGo : UnityEngine.GameObject, enableUpdate : boolean) {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
+        TSComponentHub.Register(this);
 
         this.Awake();
     };
