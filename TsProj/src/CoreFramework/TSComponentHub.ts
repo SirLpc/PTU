@@ -3,6 +3,14 @@ import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
 
 export abstract class ATSComponent {
+    public gameObject : UnityEngine.GameObject;
+    public enableUpdate : boolean;
+    public Awake() : void {};
+    public OnEnable() : void {};
+    public Update() : void {};
+    public OnDisable() : void {};
+    public OnDestroy() : void {};
+
     public constructor(unityGo : UnityEngine.GameObject, enableUpdate : boolean) {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
@@ -11,14 +19,12 @@ export abstract class ATSComponent {
         this.Awake();
     };
 
-    public gameObject : UnityEngine.GameObject;
-    public enableUpdate : boolean;
-    public Awake() : void {};
-    public OnEnable() : void {};
-    public Update() : void {};
-    public OnDisable() : void {};
-    public OnDestroy() : void {};
+    public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+        return TSComponentHub.GetTSComponet(this, targetCompType);
+    }
 }
+
+
 
 export class TSComponentHub {
 
@@ -29,6 +35,8 @@ export class TSComponentHub {
     private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
     
     private _tsComponents : Map<number, Set<ATSComponent>> = new Map<number, Set<ATSComponent>>();
+
+    //public static get registeredTSComponents(): 
 
     public static Init(): void {
         TSComponentHub._instance = new TSComponentHub();
@@ -56,6 +64,22 @@ export class TSComponentHub {
 
         TSComponentHub._instance._tsComponents.get(unityGoID).delete(tsComp);
         tsComp.gameObject = null;
+    }
+
+    public static GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
+        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+            return null;
+        }
+
+        let comps = TSComponentHub._instance._tsComponents.get(unityGoID);
+        for (const iterator of comps) {
+            if (iterator instanceof targetCompType) {
+                return iterator;
+            }
+        }
+
+        return null;
     }
 
     constructor() {

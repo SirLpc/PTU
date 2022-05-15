@@ -2,7 +2,6 @@
 import { UnityEngine } from "csharp";
 
 export class TestTSComponent extends ATSComponent{
-    enableUpdate: boolean = true;
     public OnEnable() : void{
         super.OnEnable();
         

@@ -5,6 +5,7 @@ const csharp_1 = require("csharp");
 const puerts_1 = require("puerts");
 const App_1 = require("../../CoreFramework/App");
 const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
+const TestTSComponent_1 = require("../../TestTSComponent");
 class UIFrame extends TSComponentHub_1.ATSComponent {
     _uiSetting;
     _uiFrameGo;
@@ -24,10 +25,14 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
     }
     Awake() {
         this.mainCanvas = this.gameObject.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.Canvas));
-        App_1.App.logger.LogError("dd");
     }
     OnEnable() {
         App_1.App.logger.LogError("onenable)");
+        let tst = new TestTSComponent_1.TestTSComponent(this.gameObject, false);
+        let getComp = this.GetTSComponet(TestTSComponent_1.TestTSComponent);
+        App_1.App.logger.Log("ddddddddddddd-------------------");
+        App_1.App.logger.Log(this.gameObject.name);
+        App_1.App.logger.Log(getComp.gameObject.name);
     }
     Initialize() {
         if (this.panelLayer == null) {
@@ -35,7 +40,7 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         }
     }
     Update() {
-        App_1.App.logger.Log("bbL");
+        // App.logger.Log("bbL");
     }
 }
 exports.UIFrame = UIFrame;

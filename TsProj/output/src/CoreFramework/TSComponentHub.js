@@ -5,13 +5,6 @@ const csharp_1 = require("csharp");
 const EventTool_1 = require("./EventTool");
 const puerts_1 = require("puerts");
 class ATSComponent {
-    constructor(unityGo, enableUpdate) {
-        this.gameObject = unityGo;
-        this.enableUpdate = enableUpdate;
-        TSComponentHub.Register(this);
-        this.Awake();
-    }
-    ;
     gameObject;
     enableUpdate;
     Awake() { }
@@ -24,6 +17,16 @@ class ATSComponent {
     ;
     OnDestroy() { }
     ;
+    constructor(unityGo, enableUpdate) {
+        this.gameObject = unityGo;
+        this.enableUpdate = enableUpdate;
+        TSComponentHub.Register(this);
+        this.Awake();
+    }
+    ;
+    GetTSComponet(targetCompType) {
+        return TSComponentHub.GetTSComponet(this, targetCompType);
+    }
 }
 exports.ATSComponent = ATSComponent;
 class TSComponentHub {
@@ -32,6 +35,7 @@ class TSComponentHub {
     _gameObjectOnDisableEvent;
     _gameObjectOnDestroyEvent;
     _tsComponents = new Map();
+    //public static get registeredTSComponents(): 
     static Init() {
         TSComponentHub._instance = new TSComponentHub();
     }
@@ -53,6 +57,19 @@ class TSComponentHub {
         }
         TSComponentHub._instance._tsComponents.get(unityGoID).delete(tsComp);
         tsComp.gameObject = null;
+    }
+    static GetTSComponet(tsComp, targetCompType) {
+        const unityGoID = tsComp.gameObject.GetInstanceID();
+        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+            return null;
+        }
+        let comps = TSComponentHub._instance._tsComponents.get(unityGoID);
+        for (const iterator of comps) {
+            if (iterator instanceof targetCompType) {
+                return iterator;
+            }
+        }
+        return null;
     }
     constructor() {
         this.SetupEvents();
