@@ -25,6 +25,11 @@ export abstract class ATSComponent {
 }
 
 
+class TSComponentEntry {
+    constructor(public instanceID: number, public gameObject: UnityEngine.GameObject, public tsComponents: Set<ATSComponent>) 
+    {}
+}
+
 
 export class TSComponentHub {
 
@@ -34,7 +39,7 @@ export class TSComponentHub {
     private _gameObjectOnDisableEvent : Puergp.Events.GameObjectEvent;
     private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
     
-    private _tsComponents : Map<number, Set<ATSComponent>> = new Map<number, Set<ATSComponent>>();
+    private _tsComponents : Map<number, TSComponentEntry> = new Map<number, TSComponentEntry>();
 
     //public static get registeredTSComponents(): 
 
@@ -49,10 +54,11 @@ export class TSComponentHub {
     public static Register(tsComp : ATSComponent): void {
         const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
-            TSComponentHub._instance._tsComponents.set(unityGoID, new Set<ATSComponent>());
+            let entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set<ATSComponent>())
+            TSComponentHub._instance._tsComponents.set(unityGoID, entry);
         }
         
-        TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
+        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
         tsComp.gameObject.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
     }
     
@@ -62,7 +68,7 @@ export class TSComponentHub {
             return;
         }
 
-        TSComponentHub._instance._tsComponents.get(unityGoID).delete(tsComp);
+        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.delete(tsComp);
         tsComp.gameObject = null;
     }
 
@@ -72,10 +78,29 @@ export class TSComponentHub {
             return null;
         }
 
-        let comps = TSComponentHub._instance._tsComponents.get(unityGoID);
+        let comps = TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents;
         for (const iterator of comps) {
             if (iterator instanceof targetCompType) {
                 return iterator;
+            }
+        }
+
+        return null;
+    }
+
+    public static GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+        const res = TSComponentHub.GetTSComponet(tsComp, targetCompType);
+        if (res != null) {
+            return res;
+        }
+
+        for (const [k,v] of TSComponentHub._instance._tsComponents) {
+            if (v.gameObject.transform.IsChildOf(tsComp.gameObject.transform)) {
+                for (const iterator of v.tsComponents) {
+                    if (iterator instanceof targetCompType) {
+                        return iterator;
+                    }
+                }
             }
         }
 
@@ -102,7 +127,7 @@ export class TSComponentHub {
             return;
         }
         
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnEnable();
         }
     }
@@ -113,7 +138,7 @@ export class TSComponentHub {
             return;
         }
 
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDisable();
         }
     }
@@ -124,7 +149,7 @@ export class TSComponentHub {
             return;
         }
 
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDestroy();
         }
         
@@ -133,11 +158,11 @@ export class TSComponentHub {
     
     private UpdateTSComponents(): void {
        for (const tsComps of TSComponentHub._instance._tsComponents.values()) {
-           if (tsComps.size == 0) {
+           if (tsComps.tsComponents.size == 0) {
                continue;
            }
            
-           for (const tsComp of tsComps) {
+           for (const tsComp of tsComps.tsComponents) {
                if (tsComp.enableUpdate && tsComp.gameObject.activeInHierarchy) {
                    tsComp.Update();
                }
