@@ -22,6 +22,10 @@ export abstract class ATSComponent {
     public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
         return TSComponentHub.GetTSComponet(this, targetCompType);
     }
+
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+        return TSComponentHub.GetTSComponetInChildren(this, targetCompType);
+    }
 }
 
 
@@ -88,6 +92,7 @@ export class TSComponentHub {
         return null;
     }
 
+    //TODO optimization
     public static GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
         const res = TSComponentHub.GetTSComponet(tsComp, targetCompType);
         if (res != null) {

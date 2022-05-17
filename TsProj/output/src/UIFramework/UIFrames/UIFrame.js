@@ -5,7 +5,8 @@ const csharp_1 = require("csharp");
 const puerts_1 = require("puerts");
 const App_1 = require("../../CoreFramework/App");
 const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
-const TestTSComponent_1 = require("../../TestTSComponent");
+const PanelUILayer_1 = require("../Panel/PanelUILayer");
+const WindowUILayer_1 = require("../Window/WindowUILayer");
 class UIFrame extends TSComponentHub_1.ATSComponent {
     _uiSetting;
     _uiFrameGo;
@@ -28,19 +29,61 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
     }
     OnEnable() {
         App_1.App.logger.LogError("onenable)");
-        let tst = new TestTSComponent_1.TestTSComponent(this.gameObject, false);
-        let getComp = this.GetTSComponet(TestTSComponent_1.TestTSComponent);
-        App_1.App.logger.Log("ddddddddddddd-------------------");
-        App_1.App.logger.Log(this.gameObject.name);
-        App_1.App.logger.Log(getComp.gameObject.name);
+        // let tst: TestTSComponent = new TestTSComponent(this.gameObject, false);
+        // let getComp :TestTSComponent = this.GetTSComponet(TestTSComponent);
+        // App.logger.Log("ddddddddddddd-------------------");
+        // App.logger.Log(this.gameObject.name);
+        // App.logger.Log(getComp.gameObject.name);
     }
     Initialize() {
         if (this.panelLayer == null) {
-            //this.panelLayer = this.gameObject.GetComponentInChildren($typeof(Uni))
+            this.panelLayer = this.GetTSComponetInChildren(PanelUILayer_1.PanelUILayer);
+            if (this.panelLayer == null) {
+                App_1.App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
+            }
+            else {
+                this.panelLayer.Initialize();
+            }
+        }
+        if (this.windowLayer == null) {
+            this.windowLayer = this.GetTSComponetInChildren(WindowUILayer_1.WindowUILayer);
+            if (this.windowLayer == null) {
+                App_1.App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
+            }
+            else {
+                this.windowLayer.Initialize();
+                this.windowLayer.requestScreenBlock.Register(this.OnRequestScreenBlock.bind(this));
+                this.windowLayer.requestScreenUnblock.Register(this.OnRequestScreenUnblock.bind(this));
+            }
+        }
+        this.graphicRaycaster = this.mainCanvas.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.UI.GraphicRaycaster));
+    }
+    ShowPanel(screenId, properties) {
+        if (properties === undefined) {
+            this.panelLayer.ShowScreenById(screenId);
+        }
+        else {
+            this.panelLayer.ShowScreenById(screenId, properties);
         }
     }
-    Update() {
-        // App.logger.Log("bbL");
+    HidePanel(screenId) {
+        this.panelLayer.HideScreenById(screenId);
+    }
+    OpenWindow(screenId, properties) {
+        if (properties === undefined) {
+            this.windowLayer.ShowScreenById(screenId);
+        }
+        else {
+            this.windowLayer.ShowScreenById(screenId, properties);
+        }
+    }
+    CloseWindow(screenId) {
+        this.windowLayer.HideScreenById(screenId);
+    }
+    CloseCurrentWindow() {
+        if (this.windowLayer.currentWindow != null) {
+            this.CloseWindow(this.windowLayer.currentWindow.screenId);
+        }
     }
 }
 exports.UIFrame = UIFrame;
