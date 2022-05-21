@@ -85,6 +85,88 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
             this.CloseWindow(this.windowLayer.currentWindow.screenId);
         }
     }
+    ShowScreen(screenId) {
+        if (this.IsWindowRegistered(screenId)) {
+            this.OpenWindow(screenId);
+            return;
+        }
+        if (this.IsPanelRegistered(screenId)) {
+            this.ShowPanel(screenId);
+            return;
+        }
+        App_1.App.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
+    }
+    RegisterScreen(screenId, controller, screenTransform) {
+        let window = controller;
+        if (window != null) {
+            this.windowLayer.RegisterScreen(screenId, window);
+            if (screenTransform.IsNotNull()) {
+                this.windowLayer.ReparentScreen(controller, screenTransform);
+            }
+            return;
+        }
+        let panel = controller;
+        if (panel != null) {
+            this.panelLayer.RegisterScreen(screenId, panel);
+            if (screenTransform.IsNotNull()) {
+                this.panelLayer.ReparentScreen(controller, screenTransform);
+            }
+        }
+    }
+    RegisterPanel(screenId, controller) {
+        this.panelLayer.RegisterScreen(screenId, controller);
+    }
+    UnregisterPanel(screenId, controller) {
+        this.panelLayer.RegisterScreen(screenId, controller);
+    }
+    RegisterWindow(screenId, controller) {
+        this.windowLayer.RegisterScreen(screenId, controller);
+    }
+    UnregisterWindow(screenId, controller) {
+        this.windowLayer.RegisterScreen(screenId, controller);
+    }
+    IsPanelOpen(panelId) {
+        return this.panelLayer.IsPanelVisition(panelId);
+    }
+    HideAll(animate = true) {
+        this.CloseAllWindows(animate);
+        this.HideAllPanels(animate);
+    }
+    HideAllPanels(animate = true) {
+        this.panelLayer.HideAll(animate);
+    }
+    CloseAllWindows(animate = true) {
+        this.windowLayer.HideAll(animate);
+    }
+    IsScreenRegistered(screenId) {
+        if (this.IsWindowRegistered(screenId)) {
+            return true;
+        }
+        if (this.IsPanelRegistered(screenId)) {
+            return true;
+        }
+        return false;
+    }
+    IsWindowRegistered(screenId) {
+        if (this.windowLayer.IsScreenRegistered(screenId)) {
+            return true;
+        }
+    }
+    IsPanelRegistered(screenId) {
+        if (this.panelLayer.IsScreenRegistered(screenId)) {
+            return true;
+        }
+    }
+    OnRequestScreenBlock() {
+        if (this.graphicRaycaster.IsNotNull()) {
+            this.graphicRaycaster.enabled = false;
+        }
+    }
+    OnRequestScreenUnblock() {
+        if (this.graphicRaycaster.IsNotNull()) {
+            this.graphicRaycaster.enabled = true;
+        }
+    }
 }
 exports.UIFrame = UIFrame;
 //# sourceMappingURL=UIFrame.js.map

@@ -7,6 +7,7 @@ import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 import { TestTSComponent } from "../../TestTSComponent";
 import { UISetting } from "../Configs/UISetting";
 import { IPanelProperties, IWindowProperties } from "../Core/IScreenProperties";
+import { IPanelController, IUIScreenController, IWindowController } from "../Core/IUIScreenController";
 import { PanelUILayer } from "../Panel/PanelUILayer";
 import { WindowUILayer } from "../Window/WindowUILayer";
 
@@ -115,14 +116,108 @@ export class UIFrame extends ATSComponent
         }
     }
 
-    
+    public ShowScreen(screenId: string) {
+        if (this.IsWindowRegistered(screenId)) {
+            this.OpenWindow(screenId);
+            return;
+        }
 
+        if (this.IsPanelRegistered(screenId)) {
+            this.ShowPanel(screenId);
+            return;
+        }
 
+        App.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
+    }
 
+    public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
+        let window = controller as IWindowController;
+        if (window != null) {
+            this.windowLayer.RegisterScreen(screenId, window);
+            if (screenTransform.IsNotNull()) {
+                this.windowLayer.ReparentScreen(controller, screenTransform);
+            }
 
+            return;
+        }
 
+        let panel = controller as IPanelController;
+        if (panel != null) {
+            this.panelLayer.RegisterScreen(screenId, panel);
+            if (screenTransform.IsNotNull()) {
+                this.panelLayer.ReparentScreen(controller, screenTransform);
+            }
+        }
+    }
 
+    public RegisterPanel<TPanel extends IPanelController>(screenId: string, controller: TPanel) : void {
+        this.panelLayer.RegisterScreen(screenId, controller);
+    }
 
+    public UnregisterPanel<TPanel extends IPanelController>(screenId: string, controller: TPanel) : void {
+        this.panelLayer.RegisterScreen(screenId, controller);
+    }
+
+    public RegisterWindow<TWindow extends IWindowController>(screenId: string, controller: TWindow) : void {
+        this.windowLayer.RegisterScreen(screenId, controller);
+    }
+
+    public UnregisterWindow<TWindow extends IWindowController>(screenId: string, controller: TWindow) : void {
+        this.windowLayer.RegisterScreen(screenId, controller);
+    }
+
+    public IsPanelOpen(panelId: string) : boolean {
+        return this.panelLayer.IsPanelVisition(panelId);
+    }
+
+    public HideAll(animate: boolean = true) {
+        this.CloseAllWindows(animate);
+        this.HideAllPanels(animate);
+    }
+
+    public HideAllPanels(animate: boolean = true) {
+        this.panelLayer.HideAll(animate);
+    }
+
+    public CloseAllWindows(animate:boolean = true) {
+        this.windowLayer.HideAll(animate);
+    }
+
+    public IsScreenRegistered(screenId: string) : boolean {
+        if (this.IsWindowRegistered(screenId)) {
+            return true;
+        }
+
+        if (this.IsPanelRegistered(screenId)) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public IsWindowRegistered(screenId: string) : boolean {
+        if (this.windowLayer.IsScreenRegistered(screenId)) {
+            return true;
+        }
+    }
+
+    public IsPanelRegistered(screenId: string) : boolean {
+        if (this.panelLayer.IsScreenRegistered(screenId)) {
+            return true;
+        }
+    }
+
+    public OnRequestScreenBlock() : void {
+        if (this.graphicRaycaster.IsNotNull()) {
+            this.graphicRaycaster.enabled = false;
+        }
+    }
+
+    public OnRequestScreenUnblock() : void {
+        if (this.graphicRaycaster.IsNotNull()) {
+            this.graphicRaycaster.enabled = true;
+        }
+    }
 }
 
 

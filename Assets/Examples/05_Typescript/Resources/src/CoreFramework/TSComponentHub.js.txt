@@ -27,8 +27,21 @@ class ATSComponent {
     GetTSComponet(targetCompType) {
         return TSComponentHub.GetTSComponet(this, targetCompType);
     }
+    GetTSComponetInChildren(targetCompType) {
+        return TSComponentHub.GetTSComponetInChildren(this, targetCompType);
+    }
 }
 exports.ATSComponent = ATSComponent;
+class TSComponentEntry {
+    instanceID;
+    gameObject;
+    tsComponents;
+    constructor(instanceID, gameObject, tsComponents) {
+        this.instanceID = instanceID;
+        this.gameObject = gameObject;
+        this.tsComponents = tsComponents;
+    }
+}
 class TSComponentHub {
     static _instance;
     _gameObjectOnEnableEvent;
@@ -45,9 +58,10 @@ class TSComponentHub {
     static Register(tsComp) {
         const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
-            TSComponentHub._instance._tsComponents.set(unityGoID, new Set());
+            let entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set());
+            TSComponentHub._instance._tsComponents.set(unityGoID, entry);
         }
-        TSComponentHub._instance._tsComponents.get(unityGoID).add(tsComp);
+        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
         tsComp.gameObject.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.Puergp.TSComponentEventHelper));
     }
     static Unregister(tsComp) {
@@ -55,7 +69,7 @@ class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }
-        TSComponentHub._instance._tsComponents.get(unityGoID).delete(tsComp);
+        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.delete(tsComp);
         tsComp.gameObject = null;
     }
     static GetTSComponet(tsComp, targetCompType) {
@@ -63,10 +77,27 @@ class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return null;
         }
-        let comps = TSComponentHub._instance._tsComponents.get(unityGoID);
+        let comps = TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents;
         for (const iterator of comps) {
             if (iterator instanceof targetCompType) {
                 return iterator;
+            }
+        }
+        return null;
+    }
+    //TODO optimization
+    static GetTSComponetInChildren(tsComp, targetCompType) {
+        const res = TSComponentHub.GetTSComponet(tsComp, targetCompType);
+        if (res != null) {
+            return res;
+        }
+        for (const [k, v] of TSComponentHub._instance._tsComponents) {
+            if (v.gameObject.transform.IsChildOf(tsComp.gameObject.transform)) {
+                for (const iterator of v.tsComponents) {
+                    if (iterator instanceof targetCompType) {
+                        return iterator;
+                    }
+                }
             }
         }
         return null;
@@ -87,7 +118,7 @@ class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnEnable();
         }
     }
@@ -96,7 +127,7 @@ class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDisable();
         }
     }
@@ -105,17 +136,17 @@ class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID)) {
+        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDestroy();
         }
         TSComponentHub._instance._tsComponents.delete(unityGoID);
     }
     UpdateTSComponents() {
         for (const tsComps of TSComponentHub._instance._tsComponents.values()) {
-            if (tsComps.size == 0) {
+            if (tsComps.tsComponents.size == 0) {
                 continue;
             }
-            for (const tsComp of tsComps) {
+            for (const tsComp of tsComps.tsComponents) {
                 if (tsComp.enableUpdate && tsComp.gameObject.activeInHierarchy) {
                     tsComp.Update();
                 }
