@@ -11,12 +11,24 @@ import { UIFrame } from "./UIFramework/UIFrames/UIFrame";
 import { ILogger } from "./CoreFramework/ILogger";
 import { ServiceLocator } from "./CoreFramework/ServiceLocator";
 import { UnityDebugLogger } from "./UnityDebugLogger";
+import { $typeof } from "puerts";
+import { DynamicClass } from "./CoreFramework/DynamicClass";
+
 
 export class GameApp extends App {
     constructor() {
         super();
         
         let uiFrame = UIFrame.Create(new UISetting());
+        //uiFrame.OpenWindow("StartGameWindow");
+
+
+        App.logger.Log(uiFrame.gameObject.name);
+        let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;
+        App.logger.Log(tsCompBinder.tsTComponentType);
+
+        let plugin = DynamicClass.Create(tsCompBinder.tsTComponentType, uiFrame.gameObject, true);
+
     }
     public logger: ILogger = new UnityDebugLogger();
 }

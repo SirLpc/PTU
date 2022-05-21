@@ -37,10 +37,11 @@ export class UIFrame extends ATSComponent
 
     public Awake(): void {
         this.mainCanvas = this.gameObject.GetComponent($typeof(UnityEngine.Canvas)) as UnityEngine.Canvas;
+        App.logger.Log(this.mainCanvas.name);
     }
 
     public OnEnable(): void {
-        App.logger.LogError("onenable)");
+        App.logger.LogError("uiframe onenable");
 
         // let tst: TestTSComponent = new TestTSComponent(this.gameObject, false);
         // let getComp :TestTSComponent = this.GetTSComponet(TestTSComponent);
@@ -72,7 +73,9 @@ export class UIFrame extends ATSComponent
             }
         }
 
-        this.graphicRaycaster = this.mainCanvas.GetComponent($typeof(UnityEngine.UI.GraphicRaycaster)) as UnityEngine.UI.GraphicRaycaster; 
+        App.logger.Log(this.gameObject.name);
+
+        this.graphicRaycaster = this.gameObject.GetComponent($typeof(UnityEngine.UI.GraphicRaycaster)) as UnityEngine.UI.GraphicRaycaster; 
     }
 
 

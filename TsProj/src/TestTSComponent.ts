@@ -2,10 +2,22 @@
 import { UnityEngine } from "csharp";
 
 export class TestTSComponent extends ATSComponent{
+    public Awake(): void {
+        super.Awake();
+
+        UnityEngine.Debug.Log("awkae");
+    }
+
     public OnEnable() : void{
         super.OnEnable();
         
         UnityEngine.Debug.Log("on enable");
+    }
+
+    public Start(): void {
+        super.OnEnable();
+        
+        UnityEngine.Debug.Log("start");
     }
     
     public Update(): void {

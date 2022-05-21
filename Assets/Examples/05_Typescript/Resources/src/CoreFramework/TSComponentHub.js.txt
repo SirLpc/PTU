@@ -11,6 +11,8 @@ class ATSComponent {
     ;
     OnEnable() { }
     ;
+    Start() { }
+    ;
     Update() { }
     ;
     OnDisable() { }
@@ -48,19 +50,25 @@ class TSComponentHub {
     _gameObjectOnDisableEvent;
     _gameObjectOnDestroyEvent;
     _tsComponents = new Map();
+    _firstOnEnableComponents = new Set();
+    _firstStartComponents = new Set();
     //public static get registeredTSComponents(): 
     static Init() {
         TSComponentHub._instance = new TSComponentHub();
     }
     static Tick() {
+        TSComponentHub._instance.FirstOnEnableTSComponents();
+        TSComponentHub._instance.FirstStartTSComponents();
         TSComponentHub._instance.UpdateTSComponents();
     }
     static Register(tsComp) {
         const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
-            let entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set());
+            const entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set());
             TSComponentHub._instance._tsComponents.set(unityGoID, entry);
         }
+        TSComponentHub._instance._firstOnEnableComponents.add(tsComp);
+        TSComponentHub._instance._firstStartComponents.add(tsComp);
         TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
         tsComp.gameObject.GetOrAddComponent((0, puerts_1.$typeof)(csharp_1.Puergp.TSComponentEventHelper));
     }
@@ -119,7 +127,9 @@ class TSComponentHub {
             return;
         }
         for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
-            tsComp.OnEnable();
+            if (TSComponentHub._instance._firstOnEnableComponents.has(tsComp) == false) {
+                tsComp.OnEnable();
+            }
         }
     }
     OnGameObjectDisable(unityGo) {
@@ -140,6 +150,18 @@ class TSComponentHub {
             tsComp.OnDestroy();
         }
         TSComponentHub._instance._tsComponents.delete(unityGoID);
+    }
+    FirstOnEnableTSComponents() {
+        for (const iterator of TSComponentHub._instance._firstOnEnableComponents) {
+            iterator.OnEnable();
+        }
+        TSComponentHub._instance._firstOnEnableComponents.clear();
+    }
+    FirstStartTSComponents() {
+        for (const iterator of TSComponentHub._instance._firstStartComponents) {
+            iterator.Start();
+        }
+        TSComponentHub._instance._firstStartComponents.clear();
     }
     UpdateTSComponents() {
         for (const tsComps of TSComponentHub._instance._tsComponents.values()) {

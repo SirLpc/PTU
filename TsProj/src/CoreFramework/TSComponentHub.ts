@@ -1,12 +1,14 @@
 import { Puergp, UnityEngine } from "csharp";
 import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
+import { App } from "./App";
 
 export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
     public enableUpdate : boolean;
     public Awake() : void {};
     public OnEnable() : void {};
+    public Start() : void {};
     public Update() : void {};
     public OnDisable() : void {};
     public OnDestroy() : void {};
@@ -44,6 +46,8 @@ export class TSComponentHub {
     private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
     
     private _tsComponents : Map<number, TSComponentEntry> = new Map<number, TSComponentEntry>();
+    private _firstOnEnableComponents : Set<ATSComponent> = new Set<ATSComponent>();
+    private _firstStartComponents : Set<ATSComponent> = new Set<ATSComponent>();
 
     //public static get registeredTSComponents(): 
 
@@ -52,17 +56,23 @@ export class TSComponentHub {
     }
     
     public static Tick(): void {
+        TSComponentHub._instance.FirstOnEnableTSComponents();
+        TSComponentHub._instance.FirstStartTSComponents();
         TSComponentHub._instance.UpdateTSComponents();
     }
     
     public static Register(tsComp : ATSComponent): void {
         const unityGoID = tsComp.gameObject.GetInstanceID();
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
-            let entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set<ATSComponent>())
+            const entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set<ATSComponent>())
             TSComponentHub._instance._tsComponents.set(unityGoID, entry);
+
         }
         
+        TSComponentHub._instance._firstOnEnableComponents.add(tsComp);
+        TSComponentHub._instance._firstStartComponents.add(tsComp);
         TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
+        
         tsComp.gameObject.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
     }
     
@@ -131,9 +141,12 @@ export class TSComponentHub {
         if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
             return;
         }
+
         
         for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
-            tsComp.OnEnable();
+            if (TSComponentHub._instance._firstOnEnableComponents.has(tsComp) == false) {
+                tsComp.OnEnable();
+            }
         }
     }
 
@@ -159,6 +172,22 @@ export class TSComponentHub {
         }
         
         TSComponentHub._instance._tsComponents.delete(unityGoID)
+    }
+
+    private FirstOnEnableTSComponents(): void {
+        for (const iterator of TSComponentHub._instance._firstOnEnableComponents) {
+            iterator.OnEnable();
+        }
+
+        TSComponentHub._instance._firstOnEnableComponents.clear();
+    }
+
+    private FirstStartTSComponents(): void {
+       for (const iterator of TSComponentHub._instance._firstStartComponents) {
+            iterator.Start();
+        }
+        
+        TSComponentHub._instance._firstStartComponents.clear();
     }
     
     private UpdateTSComponents(): void {

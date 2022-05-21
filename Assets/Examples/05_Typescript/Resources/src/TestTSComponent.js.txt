@@ -4,9 +4,17 @@ exports.TestTSComponent = void 0;
 const TSComponentHub_1 = require("./CoreFramework/TSComponentHub");
 const csharp_1 = require("csharp");
 class TestTSComponent extends TSComponentHub_1.ATSComponent {
+    Awake() {
+        super.Awake();
+        csharp_1.UnityEngine.Debug.Log("awkae");
+    }
     OnEnable() {
         super.OnEnable();
         csharp_1.UnityEngine.Debug.Log("on enable");
+    }
+    Start() {
+        super.OnEnable();
+        csharp_1.UnityEngine.Debug.Log("start");
     }
     Update() {
         super.Update();

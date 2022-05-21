@@ -7,8 +7,10 @@ import { VariableTool } from '../../CoreFramework/VariableTool';
 
 export class UISetting implements IBaseConfig {
 
-    location: string = "UITest/";
-    uiFrameTemplate : Puergp.Variables.GameObjectVariable;
+    public location: string = "UITest/";
+    public uiFrameTemplate : Puergp.Variables.GameObjectVariable;
+    public screensToRegister : Puergp.Collections.GameObjectCollection;
+    public deactivateScreenGOs : Puergp.Variables.BoolVariable;
 
     constructor(location: string = null) {
         if (location != null) {
@@ -16,6 +18,8 @@ export class UISetting implements IBaseConfig {
         }
 
         this.uiFrameTemplate = VariableTool.Get(this.location + "uiFrameTemplate")
+        this.screensToRegister = VariableTool.GetCollection(this.location + "screensToRegister")
+        this.deactivateScreenGOs = VariableTool.Get(this.location + "deactivateScreenGOs")
     }
 
 
