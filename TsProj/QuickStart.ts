@@ -22,13 +22,6 @@ import { UnityDebugLogger } from './src/UnityDebugLogger'
 //     ecs.update();
 // }, 1000);
 
-TSComponentHub.Init();
-setInterval(()=>
-{
-    TSComponentHub.Tick();
-}, 1 / 60);
-
-
 let gameApp : App = new GameApp();
 
 

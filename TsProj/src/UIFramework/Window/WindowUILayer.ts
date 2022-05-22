@@ -22,7 +22,6 @@ export class WindowUILayer extends AUILayer<IWindowController> {
 
     private screensTransitioning: Set<IUIScreenController>;
 
-    private bbttss: string;
 
     private get isScreenTransitionInProgress() {
         return this.screensTransitioning.size != 0;
@@ -35,8 +34,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
         this.requestScreenUnblock = this.binder.Get("requestScreenUnblock") as Puergp.Events.GameEvent;
 
         App.logger.Log("WindowUILayer.Awake()");
-        this.bbttss = "bbttss setted";
-        App.logger.Log(this.bbttss);
+        App.logger.Log(this.gameObject.GetInstanceID().toString());
         App.logger.Log(this.requestScreenBlock.name);
         App.logger.Log(this.requestScreenUnblock.name);
     }
@@ -45,7 +43,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
         super.Initialize();
 
         App.logger.Log("iiiiiiiii");
-        App.logger.Log(this.bbttss);
+        App.logger.Log(this.gameObject.GetInstanceID().toString());
         App.logger.Log(this.requestScreenBlock.name);
         App.logger.Log(this.requestScreenUnblock.name);
 

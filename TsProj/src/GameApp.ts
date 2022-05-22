@@ -13,6 +13,7 @@ import { ServiceLocator } from "./CoreFramework/ServiceLocator";
 import { UnityDebugLogger } from "./UnityDebugLogger";
 import { $typeof } from "puerts";
 import { DynamicClass } from "./CoreFramework/DynamicClass";
+import { TestTSComponent } from "./TestTSComponent";
 
 
 export class GameApp extends App {
@@ -22,6 +23,7 @@ export class GameApp extends App {
         let uiFrame = UIFrame.Create(new UISetting());
         //uiFrame.OpenWindow("StartGameWindow");
 
+        let tstcomp = new TestTSComponent(uiFrame.gameObject, false);
 
         // App.logger.Log(uiFrame.gameObject.name);
         // let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;

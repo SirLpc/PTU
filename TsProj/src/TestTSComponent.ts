@@ -18,6 +18,10 @@ export class TestTSComponent extends ATSComponent{
         super.OnEnable();
         
         UnityEngine.Debug.Log("start");
+
+        let s = new Son("aa");
+        //s.Init();
+        UnityEngine.Debug.Log(s.var2);
     }
     
     public override Update(): void {
@@ -36,5 +40,30 @@ export class TestTSComponent extends ATSComponent{
         super.OnDestroy();
 
         UnityEngine.Debug.Log("on destroy");
+    }
+}
+
+class Parent {
+    public var1: string;
+    constructor(para: string) {
+        this.Init();
+    }
+
+    public Init():void {}
+}
+
+class Son extends Parent {
+    public var2: string;
+
+    // constructor(para: string) {
+    //     super(para);
+    // }
+
+    public override Init():void {
+        super.Init();
+
+        UnityEngine.Debug.Log("Init called method.");
+
+        this.var2 = "inited";
     }
 }

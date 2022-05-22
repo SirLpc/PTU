@@ -18,8 +18,8 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         return this.mainCanvas.worldCamera;
     }
     static Create(uiSetting) {
-        let instanceGo = csharp_1.UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value);
-        let instance = new UIFrame(instanceGo, true);
+        const instanceGo = csharp_1.UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value);
+        const instance = App_1.App.compHub.AddComponent(instanceGo, true, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
         return instance;
@@ -33,7 +33,7 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
     }
     Initialize() {
         if (this.panelLayer == null) {
-            this.panelLayer = new PanelUILayer_1.PanelUILayer(this.binder.Get("panelLayer"), false);
+            this.panelLayer = App_1.App.compHub.AddComponent(this.binder.Get("panelLayer"), true, PanelUILayer_1.PanelUILayer);
             if (this.panelLayer == null) {
                 App_1.App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
             }
@@ -42,7 +42,7 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
             }
         }
         if (this.windowLayer == null) {
-            this.windowLayer = new WindowUILayer_1.WindowUILayer(this.binder.Get("windowLayer"), false);
+            this.windowLayer = App_1.App.compHub.AddComponent(this.binder.Get("windowLayer"), false, WindowUILayer_1.WindowUILayer);
             if (this.windowLayer == null) {
                 App_1.App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
             }

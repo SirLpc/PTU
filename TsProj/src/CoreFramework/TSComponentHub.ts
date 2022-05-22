@@ -7,7 +7,7 @@ export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
     public enableUpdate : boolean;
     public binder : Js.JsBinding;
-    public Awake() : void {};
+    public Awake() : void {};   //Use constructor
     public OnEnable() : void {};
     public Start() : void {};
     public Update() : void {};
@@ -18,17 +18,14 @@ export abstract class ATSComponent {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
         this.binder = unityGo.GetComponent($typeof(Js.JsBinding)) as Js.JsBinding;
-        TSComponentHub.Register(this);
-
-        this.Awake();
     };
 
     public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
-        return TSComponentHub.GetTSComponet(this, targetCompType);
+        return App.compHub.GetTSComponet(this, targetCompType);
     }
 
     public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
-        return TSComponentHub.GetTSComponetInChildren(this, targetCompType);
+        return App.compHub.GetTSComponetInChildren(this, targetCompType);
     }
 }
 
@@ -40,9 +37,6 @@ class TSComponentEntry {
 
 
 export class TSComponentHub {
-
-    private static _instance : TSComponentHub;
-    
     private _gameObjectOnEnableEvent : Puergp.Events.GameObjectEvent;
     private _gameObjectOnDisableEvent : Puergp.Events.GameObjectEvent;
     private _gameObjectOnDestroyEvent : Puergp.Events.GameObjectEvent;
@@ -51,50 +45,57 @@ export class TSComponentHub {
     private _firstOnEnableComponents : Set<ATSComponent> = new Set<ATSComponent>();
     private _firstStartComponents : Set<ATSComponent> = new Set<ATSComponent>();
 
-    //public static get registeredTSComponents(): 
 
-    public static Init(): void {
-        TSComponentHub._instance = new TSComponentHub();
+    public Tick(): void {
+        this.FirstOnEnableTSComponents();
+        this.FirstStartTSComponents();
+        this.UpdateTSComponents();
+    }
+
+    public AddComponent<TSComp extends ATSComponent>(
+        gameObject : UnityEngine.GameObject, 
+        enableUpdate: boolean, 
+        targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp))
+        : TSComp
+    {
+        const tsComp = new targetCompType(gameObject, enableUpdate);
+        this.Register(tsComp);
+        tsComp.Awake();
+        return tsComp;
     }
     
-    public static Tick(): void {
-        TSComponentHub._instance.FirstOnEnableTSComponents();
-        TSComponentHub._instance.FirstStartTSComponents();
-        TSComponentHub._instance.UpdateTSComponents();
-    }
-    
-    public static Register(tsComp : ATSComponent): void {
+    public Register(tsComp : ATSComponent): void {
         const unityGoID = tsComp.gameObject.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             const entry = new TSComponentEntry(unityGoID, tsComp.gameObject, new Set<ATSComponent>())
-            TSComponentHub._instance._tsComponents.set(unityGoID, entry);
+            this._tsComponents.set(unityGoID, entry);
 
         }
         
-        TSComponentHub._instance._firstOnEnableComponents.add(tsComp);
-        TSComponentHub._instance._firstStartComponents.add(tsComp);
-        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
+        this._firstOnEnableComponents.add(tsComp);
+        this._firstStartComponents.add(tsComp);
+        this._tsComponents.get(unityGoID).tsComponents.add(tsComp);
 
         tsComp.gameObject.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
     }
     
-    public static Unregister(tsComp : ATSComponent): void {
+    public Unregister(tsComp : ATSComponent): void {
         const unityGoID = tsComp.gameObject.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             return;
         }
 
-        TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.delete(tsComp);
+        this._tsComponents.get(unityGoID).tsComponents.delete(tsComp);
         tsComp.gameObject = null;
     }
 
-    public static GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+    public GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
         const unityGoID = tsComp.gameObject.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             return null;
         }
 
-        let comps = TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents;
+        let comps = this._tsComponents.get(unityGoID).tsComponents;
         for (const iterator of comps) {
             if (iterator instanceof targetCompType) {
                 return iterator;
@@ -105,13 +106,13 @@ export class TSComponentHub {
     }
 
     //TODO optimization
-    public static GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
-        const res = TSComponentHub.GetTSComponet(tsComp, targetCompType);
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+        const res = this.GetTSComponet(tsComp, targetCompType);
         if (res != null) {
             return res;
         }
 
-        for (const [k,v] of TSComponentHub._instance._tsComponents) {
+        for (const [k,v] of this._tsComponents) {
             if (v.gameObject.transform.IsChildOf(tsComp.gameObject.transform)) {
                 for (const iterator of v.tsComponents) {
                     if (iterator instanceof targetCompType) {
@@ -140,13 +141,13 @@ export class TSComponentHub {
     
     private OnGameObjectEnable(unityGo: UnityEngine.GameObject): void {
         const unityGoID = unityGo.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             return;
         }
 
         
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
-            if (TSComponentHub._instance._firstOnEnableComponents.has(tsComp) == false) {
+        for (const tsComp of this._tsComponents.get(unityGoID).tsComponents) {
+            if (this._firstOnEnableComponents.has(tsComp) == false) {
                 tsComp.OnEnable();
             }
         }
@@ -154,46 +155,46 @@ export class TSComponentHub {
 
     private OnGameObjectDisable(unityGo: UnityEngine.GameObject): void {
         const unityGoID = unityGo.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             return;
         }
 
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
+        for (const tsComp of this._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDisable();
         }
     }
 
     private OnGameObjectDestroy(unityGo: UnityEngine.GameObject): void {
         const unityGoID = unityGo.GetInstanceID();
-        if (TSComponentHub._instance._tsComponents.has(unityGoID) == false) {
+        if (this._tsComponents.has(unityGoID) == false) {
             return;
         }
 
-        for (const tsComp of TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents) {
+        for (const tsComp of this._tsComponents.get(unityGoID).tsComponents) {
             tsComp.OnDestroy();
         }
         
-        TSComponentHub._instance._tsComponents.delete(unityGoID)
+        this._tsComponents.delete(unityGoID)
     }
 
     private FirstOnEnableTSComponents(): void {
-        for (const iterator of TSComponentHub._instance._firstOnEnableComponents) {
+        for (const iterator of this._firstOnEnableComponents) {
             iterator.OnEnable();
         }
 
-        TSComponentHub._instance._firstOnEnableComponents.clear();
+        this._firstOnEnableComponents.clear();
     }
 
     private FirstStartTSComponents(): void {
-       for (const iterator of TSComponentHub._instance._firstStartComponents) {
+       for (const iterator of this._firstStartComponents) {
             iterator.Start();
         }
         
-        TSComponentHub._instance._firstStartComponents.clear();
+        this._firstStartComponents.clear();
     }
     
     private UpdateTSComponents(): void {
-       for (const tsComps of TSComponentHub._instance._tsComponents.values()) {
+       for (const tsComps of this._tsComponents.values()) {
            if (tsComps.tsComponents.size == 0) {
                continue;
            }

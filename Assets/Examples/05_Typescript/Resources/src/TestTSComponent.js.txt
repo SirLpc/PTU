@@ -15,6 +15,9 @@ class TestTSComponent extends TSComponentHub_1.ATSComponent {
     Start() {
         super.OnEnable();
         csharp_1.UnityEngine.Debug.Log("start");
+        let s = new Son("aa");
+        //s.Init();
+        csharp_1.UnityEngine.Debug.Log(s.var2);
     }
     Update() {
         super.Update();
@@ -30,4 +33,22 @@ class TestTSComponent extends TSComponentHub_1.ATSComponent {
     }
 }
 exports.TestTSComponent = TestTSComponent;
+class Parent {
+    var1;
+    constructor(para) {
+        this.Init();
+    }
+    Init() { }
+}
+class Son extends Parent {
+    var2;
+    // constructor(para: string) {
+    //     super(para);
+    // }
+    Init() {
+        super.Init();
+        csharp_1.UnityEngine.Debug.Log("Init called method.");
+        this.var2 = "inited";
+    }
+}
 //# sourceMappingURL=TestTSComponent.js.map

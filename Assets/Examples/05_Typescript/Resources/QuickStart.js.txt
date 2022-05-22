@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
 const GameApp_1 = require("./src/GameApp");
-const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -11,10 +10,6 @@ const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
 // {
 //     ecs.update();
 // }, 1000);
-TSComponentHub_1.TSComponentHub.Init();
-setInterval(() => {
-    TSComponentHub_1.TSComponentHub.Tick();
-}, 1 / 60);
 let gameApp = new GameApp_1.GameApp();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;

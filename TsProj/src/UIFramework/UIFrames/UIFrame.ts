@@ -27,8 +27,8 @@ export class UIFrame extends ATSComponent
     }
 
     public static Create(uiSetting:UISetting) : UIFrame  {
-        let instanceGo = UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value) as UnityEngine.GameObject;
-        let instance = new UIFrame(instanceGo, true);
+        const instanceGo = UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value) as UnityEngine.GameObject;
+        const instance = App.compHub.AddComponent(instanceGo, true, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
         return instance;
@@ -46,7 +46,7 @@ export class UIFrame extends ATSComponent
 
     public Initialize() {
         if (this.panelLayer == null) {
-            this.panelLayer = new PanelUILayer(this.binder.Get("panelLayer") as UnityEngine.GameObject, false);
+            this.panelLayer = App.compHub.AddComponent(this.binder.Get("panelLayer") as UnityEngine.GameObject, true, PanelUILayer);
             if (this.panelLayer == null) {
                 App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
             }
@@ -56,7 +56,7 @@ export class UIFrame extends ATSComponent
         }
 
         if (this.windowLayer == null) {
-            this.windowLayer = new WindowUILayer(this.binder.Get("windowLayer") as UnityEngine.GameObject, false);
+            this.windowLayer = App.compHub.AddComponent(this.binder.Get("windowLayer") as UnityEngine.GameObject, false, WindowUILayer);
             if (this.windowLayer == null) {
                 App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
             }
