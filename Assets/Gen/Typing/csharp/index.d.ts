@@ -25973,6 +25973,7 @@ declare module 'csharp' {
         class JsBinding extends UnityEngine.MonoBehaviour
         {
             public args : System.Array$1<Js.JsArg>
+            public Get ($name: string) : UnityEngine.Object
             public constructor ()
         }
         class JsArg extends System.ValueType

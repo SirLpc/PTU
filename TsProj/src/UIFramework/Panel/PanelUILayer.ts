@@ -1,4 +1,5 @@
 import { UnityEngine } from "csharp";
+import { App } from "../../CoreFramework/App";
 import { AUILayer } from "../Core/AUILayer";
 import { IScreenProperties } from "../Core/IScreenProperties";
 import { IPanelController, IUIScreenController } from "../Core/IUIScreenController";
@@ -7,6 +8,10 @@ import { PanelPriority, PanelPriorityLayerList } from "./PanelPriority";
 export class PanelUILayer extends AUILayer<IPanelController> {
 
     private priorityLayers: PanelPriorityLayerList = null;
+
+    public override Awake(): void {
+        App.logger.Log("PanelUILayer.Awake()");
+    }
 
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {
         let ctl = controller as IPanelController;

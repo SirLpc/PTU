@@ -1,5 +1,6 @@
 import { Puergp, UnityEngine } from "csharp";
 import { App } from "../../CoreFramework/App";
+import { VariableTool } from "../../CoreFramework/VariableTool";
 import { AUILayer } from "../Core/AUILayer";
 import { IScreenProperties, IWindowProperties } from "../Core/IScreenProperties";
 import { IUIScreenController, IWindowController } from "../Core/IUIScreenController";
@@ -21,12 +22,32 @@ export class WindowUILayer extends AUILayer<IWindowController> {
 
     private screensTransitioning: Set<IUIScreenController>;
 
+    private bbttss: string;
+
     private get isScreenTransitionInProgress() {
         return this.screensTransitioning.size != 0;
     }
 
+    public override Awake(): void {
+        super.Awake();
+
+        this.requestScreenBlock = this.binder.Get("requestScreenBlock") as Puergp.Events.GameEvent;
+        this.requestScreenUnblock = this.binder.Get("requestScreenUnblock") as Puergp.Events.GameEvent;
+
+        App.logger.Log("WindowUILayer.Awake()");
+        this.bbttss = "bbttss setted";
+        App.logger.Log(this.bbttss);
+        App.logger.Log(this.requestScreenBlock.name);
+        App.logger.Log(this.requestScreenUnblock.name);
+    }
+
     public override Initialize(): void {
         super.Initialize();
+
+        App.logger.Log("iiiiiiiii");
+        App.logger.Log(this.bbttss);
+        App.logger.Log(this.requestScreenBlock.name);
+        App.logger.Log(this.requestScreenUnblock.name);
 
         this.registeredScreens = new Map<string, IWindowController>();
         this.windowQueue = [];

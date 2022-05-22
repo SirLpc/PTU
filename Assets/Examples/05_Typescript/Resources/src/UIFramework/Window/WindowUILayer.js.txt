@@ -13,11 +13,26 @@ class WindowUILayer extends AUILayer_1.AUILayer {
     requestScreenBlock;
     requestScreenUnblock;
     screensTransitioning;
+    bbttss;
     get isScreenTransitionInProgress() {
         return this.screensTransitioning.size != 0;
     }
+    Awake() {
+        super.Awake();
+        this.requestScreenBlock = this.binder.Get("requestScreenBlock");
+        this.requestScreenUnblock = this.binder.Get("requestScreenUnblock");
+        App_1.App.logger.Log("WindowUILayer.Awake()");
+        this.bbttss = "bbttss setted";
+        App_1.App.logger.Log(this.bbttss);
+        App_1.App.logger.Log(this.requestScreenBlock.name);
+        App_1.App.logger.Log(this.requestScreenUnblock.name);
+    }
     Initialize() {
         super.Initialize();
+        App_1.App.logger.Log("iiiiiiiii");
+        App_1.App.logger.Log(this.bbttss);
+        App_1.App.logger.Log(this.requestScreenBlock.name);
+        App_1.App.logger.Log(this.requestScreenUnblock.name);
         this.registeredScreens = new Map();
         this.windowQueue = [];
         this.windowHistory = [];

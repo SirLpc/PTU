@@ -5,6 +5,7 @@
     "jsx": "react",
     "sourceMap": true,
     "noImplicitAny": true,
+    "noImplicitOverride": true,
     "typeRoots": [
       "../Assets/Puerts/Typing",
       "../Assets/Gen/Typing",

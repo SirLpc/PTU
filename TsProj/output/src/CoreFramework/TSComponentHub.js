@@ -7,6 +7,7 @@ const puerts_1 = require("puerts");
 class ATSComponent {
     gameObject;
     enableUpdate;
+    binder;
     Awake() { }
     ;
     OnEnable() { }
@@ -22,6 +23,7 @@ class ATSComponent {
     constructor(unityGo, enableUpdate) {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
+        this.binder = unityGo.GetComponent((0, puerts_1.$typeof)(csharp_1.Js.JsBinding));
         TSComponentHub.Register(this);
         this.Awake();
     }

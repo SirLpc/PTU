@@ -23,11 +23,11 @@ export class GameApp extends App {
         //uiFrame.OpenWindow("StartGameWindow");
 
 
-        App.logger.Log(uiFrame.gameObject.name);
-        let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;
-        App.logger.Log(tsCompBinder.tsTComponentType);
+        // App.logger.Log(uiFrame.gameObject.name);
+        // let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;
+        // App.logger.Log(tsCompBinder.tsTComponentType);
 
-        let plugin = DynamicClass.Create(tsCompBinder.tsTComponentType, uiFrame.gameObject, true);
+        // let plugin = DynamicClass.Create(tsCompBinder.tsTComponentType, uiFrame.gameObject, true);
 
     }
     public logger: ILogger = new UnityDebugLogger();

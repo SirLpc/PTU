@@ -17,11 +17,11 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     public animOut: ATransitionComponent;
     public properties: TProps;
 
-    public Awake(): void {
+    public override Awake(): void {
         this.AddListeners();
     }
 
-    public OnDestroy(): void {
+    public override OnDestroy(): void {
         if (this.screenDestroyed.IsNull() == false) {
             this.screenDestroyed.Dispatch(this.gameObject);
         }

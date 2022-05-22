@@ -1,9 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PanelUILayer = void 0;
+const App_1 = require("../../CoreFramework/App");
 const AUILayer_1 = require("../Core/AUILayer");
 class PanelUILayer extends AUILayer_1.AUILayer {
     priorityLayers = null;
+    Awake() {
+        App_1.App.logger.Log("PanelUILayer.Awake()");
+    }
     ReparentScreen(controller, screenTransform) {
         let ctl = controller;
         if (ctl != null) {

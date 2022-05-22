@@ -2,37 +2,37 @@
 import { UnityEngine } from "csharp";
 
 export class TestTSComponent extends ATSComponent{
-    public Awake(): void {
+    public override Awake(): void {
         super.Awake();
 
         UnityEngine.Debug.Log("awkae");
     }
 
-    public OnEnable() : void{
+    public override OnEnable() : void{
         super.OnEnable();
         
         UnityEngine.Debug.Log("on enable");
     }
 
-    public Start(): void {
+    public override Start(): void {
         super.OnEnable();
         
         UnityEngine.Debug.Log("start");
     }
     
-    public Update(): void {
+    public override Update(): void {
         super.Update();
         
         UnityEngine.Debug.Log("update..");
     }
 
-    public OnDisable() : void{
+    public override OnDisable() : void{
         super.OnDisable();
         
         UnityEngine.Debug.Log("on disable");
     }
     
-    public OnDestroy(): void {
+    public override OnDestroy(): void {
         super.OnDestroy();
 
         UnityEngine.Debug.Log("on destroy");

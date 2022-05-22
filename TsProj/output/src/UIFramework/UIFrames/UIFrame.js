@@ -21,24 +21,19 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         let instanceGo = csharp_1.UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value);
         let instance = new UIFrame(instanceGo, true);
         instance._uiSetting = uiSetting;
-        instance.Initialize();
+        instance._uiFrameGo = instanceGo;
         return instance;
     }
     Awake() {
         this.mainCanvas = this.gameObject.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.Canvas));
-        App_1.App.logger.Log(this.mainCanvas.name);
     }
-    OnEnable() {
-        App_1.App.logger.LogError("uiframe onenable");
-        // let tst: TestTSComponent = new TestTSComponent(this.gameObject, false);
-        // let getComp :TestTSComponent = this.GetTSComponet(TestTSComponent);
-        // App.logger.Log("ddddddddddddd-------------------");
-        // App.logger.Log(this.gameObject.name);
-        // App.logger.Log(getComp.gameObject.name);
+    Start() {
+        App_1.App.logger.LogError("uiframe start");
+        this.Initialize();
     }
     Initialize() {
         if (this.panelLayer == null) {
-            this.panelLayer = this.GetTSComponetInChildren(PanelUILayer_1.PanelUILayer);
+            this.panelLayer = new PanelUILayer_1.PanelUILayer(this.binder.Get("panelLayer"), false);
             if (this.panelLayer == null) {
                 App_1.App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
             }
@@ -47,12 +42,15 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
             }
         }
         if (this.windowLayer == null) {
-            this.windowLayer = this.GetTSComponetInChildren(WindowUILayer_1.WindowUILayer);
+            this.windowLayer = new WindowUILayer_1.WindowUILayer(this.binder.Get("windowLayer"), false);
             if (this.windowLayer == null) {
                 App_1.App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
             }
             else {
                 this.windowLayer.Initialize();
+                App_1.App.logger.Log("sssss");
+                App_1.App.logger.Log(this.windowLayer.requestScreenBlock.name);
+                App_1.App.logger.Log(this.windowLayer.requestScreenUnblock.name);
                 this.windowLayer.requestScreenBlock.Register(this.OnRequestScreenBlock.bind(this));
                 this.windowLayer.requestScreenUnblock.Register(this.OnRequestScreenUnblock.bind(this));
             }

@@ -16,6 +16,19 @@ namespace Js
     public class JsBinding : MonoBehaviour
     {
         public JsArg[] args;
+        
+        public Object Get(string name)
+        {
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (string.Equals(args[i].name, name))
+                {
+                    return args[i].value;
+                }
+            }
+
+            return null;
+        }
     }
     [Serializable]
     public struct JsArg

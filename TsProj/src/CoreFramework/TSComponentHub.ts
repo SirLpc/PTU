@@ -1,4 +1,4 @@
-import { Puergp, UnityEngine } from "csharp";
+import { Js, Puergp, UnityEngine } from "csharp";
 import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
 import { App } from "./App";
@@ -6,6 +6,7 @@ import { App } from "./App";
 export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
     public enableUpdate : boolean;
+    public binder : Js.JsBinding;
     public Awake() : void {};
     public OnEnable() : void {};
     public Start() : void {};
@@ -16,6 +17,7 @@ export abstract class ATSComponent {
     public constructor(unityGo : UnityEngine.GameObject, enableUpdate : boolean) {
         this.gameObject = unityGo;
         this.enableUpdate = enableUpdate;
+        this.binder = unityGo.GetComponent($typeof(Js.JsBinding)) as Js.JsBinding;
         TSComponentHub.Register(this);
 
         this.Awake();
@@ -72,7 +74,7 @@ export class TSComponentHub {
         TSComponentHub._instance._firstOnEnableComponents.add(tsComp);
         TSComponentHub._instance._firstStartComponents.add(tsComp);
         TSComponentHub._instance._tsComponents.get(unityGoID).tsComponents.add(tsComp);
-        
+
         tsComp.gameObject.GetOrAddComponent($typeof(Puergp.TSComponentEventHelper));
     }
     
