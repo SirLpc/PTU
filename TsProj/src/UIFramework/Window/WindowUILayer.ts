@@ -32,20 +32,10 @@ export class WindowUILayer extends AUILayer<IWindowController> {
 
         this.requestScreenBlock = this.binder.Get("requestScreenBlock") as Puergp.Events.GameEvent;
         this.requestScreenUnblock = this.binder.Get("requestScreenUnblock") as Puergp.Events.GameEvent;
-
-        App.logger.Log("WindowUILayer.Awake()");
-        App.logger.Log(this.gameObject.GetInstanceID().toString());
-        App.logger.Log(this.requestScreenBlock.name);
-        App.logger.Log(this.requestScreenUnblock.name);
     }
 
     public override Initialize(): void {
         super.Initialize();
-
-        App.logger.Log("iiiiiiiii");
-        App.logger.Log(this.gameObject.GetInstanceID().toString());
-        App.logger.Log(this.requestScreenBlock.name);
-        App.logger.Log(this.requestScreenUnblock.name);
 
         this.registeredScreens = new Map<string, IWindowController>();
         this.windowQueue = [];

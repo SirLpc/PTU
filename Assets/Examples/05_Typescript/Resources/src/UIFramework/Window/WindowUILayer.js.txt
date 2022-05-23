@@ -20,17 +20,9 @@ class WindowUILayer extends AUILayer_1.AUILayer {
         super.Awake();
         this.requestScreenBlock = this.binder.Get("requestScreenBlock");
         this.requestScreenUnblock = this.binder.Get("requestScreenUnblock");
-        App_1.App.logger.Log("WindowUILayer.Awake()");
-        App_1.App.logger.Log(this.gameObject.GetInstanceID().toString());
-        App_1.App.logger.Log(this.requestScreenBlock.name);
-        App_1.App.logger.Log(this.requestScreenUnblock.name);
     }
     Initialize() {
         super.Initialize();
-        App_1.App.logger.Log("iiiiiiiii");
-        App_1.App.logger.Log(this.gameObject.GetInstanceID().toString());
-        App_1.App.logger.Log(this.requestScreenBlock.name);
-        App_1.App.logger.Log(this.requestScreenUnblock.name);
         this.registeredScreens = new Map();
         this.windowQueue = [];
         this.windowHistory = [];

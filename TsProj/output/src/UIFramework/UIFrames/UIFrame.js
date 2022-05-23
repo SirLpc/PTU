@@ -22,14 +22,12 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         const instance = App_1.App.compHub.AddComponent(instanceGo, true, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
+        instance.Initialize();
         return instance;
     }
     Awake() {
         this.mainCanvas = this.gameObject.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.Canvas));
-    }
-    Start() {
-        App_1.App.logger.LogError("uiframe start");
-        this.Initialize();
+        this.graphicRaycaster = this.gameObject.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.UI.GraphicRaycaster));
     }
     Initialize() {
         if (this.panelLayer == null) {
@@ -48,15 +46,10 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
             }
             else {
                 this.windowLayer.Initialize();
-                App_1.App.logger.Log("sssss");
-                App_1.App.logger.Log(this.windowLayer.requestScreenBlock.name);
-                App_1.App.logger.Log(this.windowLayer.requestScreenUnblock.name);
                 this.windowLayer.requestScreenBlock.Register(this.OnRequestScreenBlock.bind(this));
                 this.windowLayer.requestScreenUnblock.Register(this.OnRequestScreenUnblock.bind(this));
             }
         }
-        App_1.App.logger.Log(this.gameObject.name);
-        this.graphicRaycaster = this.gameObject.GetComponent((0, puerts_1.$typeof)(csharp_1.UnityEngine.UI.GraphicRaycaster));
     }
     ShowPanel(screenId, properties) {
         if (properties === undefined) {

@@ -21,7 +21,7 @@ export class GameApp extends App {
         super();
         
         let uiFrame = UIFrame.Create(new UISetting());
-        //uiFrame.OpenWindow("StartGameWindow");
+        uiFrame.OpenWindow("StartGameWindow");
 
         let tstcomp = new TestTSComponent(uiFrame.gameObject, false);
 

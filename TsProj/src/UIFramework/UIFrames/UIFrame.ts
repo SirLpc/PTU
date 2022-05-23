@@ -31,17 +31,13 @@ export class UIFrame extends ATSComponent
         const instance = App.compHub.AddComponent(instanceGo, true, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
+        instance.Initialize();
         return instance;
     }
 
     public override Awake(): void {
         this.mainCanvas = this.gameObject.GetComponent($typeof(UnityEngine.Canvas)) as UnityEngine.Canvas;
-    }
-
-    public override Start(): void {
-        App.logger.LogError("uiframe start");
-
-        this.Initialize();
+        this.graphicRaycaster = this.gameObject.GetComponent($typeof(UnityEngine.UI.GraphicRaycaster)) as UnityEngine.UI.GraphicRaycaster; 
     }
 
     public Initialize() {
@@ -62,19 +58,11 @@ export class UIFrame extends ATSComponent
             }
             else {
                 this.windowLayer.Initialize();
-
-                App.logger.Log("sssss");
-                App.logger.Log(this.windowLayer.requestScreenBlock.name);
-                App.logger.Log(this.windowLayer.requestScreenUnblock.name);
                 
                 this.windowLayer.requestScreenBlock.Register(this.OnRequestScreenBlock.bind(this));
                 this.windowLayer.requestScreenUnblock.Register(this.OnRequestScreenUnblock.bind(this));
             }
         }
-
-        App.logger.Log(this.gameObject.name);
-
-        this.graphicRaycaster = this.gameObject.GetComponent($typeof(UnityEngine.UI.GraphicRaycaster)) as UnityEngine.UI.GraphicRaycaster; 
     }
 
 

@@ -10,7 +10,7 @@ class GameApp extends App_1.App {
     constructor() {
         super();
         let uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting());
-        //uiFrame.OpenWindow("StartGameWindow");
+        uiFrame.OpenWindow("StartGameWindow");
         let tstcomp = new TestTSComponent_1.TestTSComponent(uiFrame.gameObject, false);
         // App.logger.Log(uiFrame.gameObject.name);
         // let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;
