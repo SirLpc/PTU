@@ -9,6 +9,7 @@ import { WindowParaLayer } from "./WindowParaLayer";
 import { WindowPriority } from "./WindowPriority";
 
 export class WindowUILayer extends AUILayer<IWindowController> {
+    public enableUpdate: boolean;
 
     private priorityParaLayer: WindowParaLayer;
 

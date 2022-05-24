@@ -51,6 +51,13 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
             }
         }
     }
+    RegisterScreensInSetting() {
+        for (let index = 0; index < this._uiSetting.screensToRegister.Count(); index++) {
+            const element = this._uiSetting.screensToRegister.get_Item(index);
+            const screenInstance = csharp_1.UnityEngine.Object.Instantiate(element);
+            // const screenController = App.compHub.AddComponent(screenInstance, false, )
+        }
+    }
     ShowPanel(screenId, properties) {
         if (properties === undefined) {
             this.panelLayer.ShowScreenById(screenId);

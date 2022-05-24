@@ -13,6 +13,7 @@ import { WindowUILayer } from "../Window/WindowUILayer";
 
 export class UIFrame extends ATSComponent
 {
+    public enableUpdate: boolean = false;
     private _uiSetting : UISetting;
     private _uiFrameGo : UnityEngine.GameObject;
 
@@ -28,10 +29,11 @@ export class UIFrame extends ATSComponent
 
     public static Create(uiSetting:UISetting) : UIFrame  {
         const instanceGo = UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value) as UnityEngine.GameObject;
-        const instance = App.compHub.AddComponent(instanceGo, true, UIFrame);
+        const instance = App.compHub.AddComponent(instanceGo, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
         instance.Initialize();
+        instance.RegisterScreensInSetting();
         return instance;
     }
 
@@ -42,7 +44,7 @@ export class UIFrame extends ATSComponent
 
     public Initialize() {
         if (this.panelLayer == null) {
-            this.panelLayer = App.compHub.AddComponent(this.binder.Get("panelLayer") as UnityEngine.GameObject, true, PanelUILayer);
+            this.panelLayer = App.compHub.AddComponent(this.binder.Get("panelLayer") as UnityEngine.GameObject, PanelUILayer);
             if (this.panelLayer == null) {
                 App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
             }
@@ -52,7 +54,7 @@ export class UIFrame extends ATSComponent
         }
 
         if (this.windowLayer == null) {
-            this.windowLayer = App.compHub.AddComponent(this.binder.Get("windowLayer") as UnityEngine.GameObject, false, WindowUILayer);
+            this.windowLayer = App.compHub.AddComponent(this.binder.Get("windowLayer") as UnityEngine.GameObject, WindowUILayer);
             if (this.windowLayer == null) {
                 App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
             }
@@ -62,6 +64,21 @@ export class UIFrame extends ATSComponent
                 this.windowLayer.requestScreenBlock.Register(this.OnRequestScreenBlock.bind(this));
                 this.windowLayer.requestScreenUnblock.Register(this.OnRequestScreenUnblock.bind(this));
             }
+        }
+    }
+
+    public RegisterScreensInSetting(): void {
+        for (let index = 0; index < this._uiSetting.screensToRegister.Count(); index++) {
+            const screenPrefab = this._uiSetting.screensToRegister.get_Item(index);
+            if (this._uiSetting.binds.binds.has(screenPrefab.name) == false) {
+                App.logger.LogError("Can not found TSController for " + screenPrefab.name);
+                continue;
+            }
+
+            var tsControllerType = this._uiSetting.binds.binds.get(screenPrefab.name);
+            const screenInstance = UnityEngine.Object.Instantiate(screenPrefab) as UnityEngine.GameObject;
+            const screenController = App.compHub.AddComponent(screenInstance, tsControllerType);
+            this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
         }
     }
 

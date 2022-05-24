@@ -14,16 +14,17 @@ import { UnityDebugLogger } from "./UnityDebugLogger";
 import { $typeof } from "puerts";
 import { DynamicClass } from "./CoreFramework/DynamicClass";
 import { TestTSComponent } from "./TestTSComponent";
+import { SampleScreenBind } from "./Sample/ScreenControllers/SampleScreenBind";
 
 
 export class GameApp extends App {
     constructor() {
         super();
         
-        let uiFrame = UIFrame.Create(new UISetting());
+        let uiFrame = UIFrame.Create(new UISetting(new SampleScreenBind()));
         uiFrame.OpenWindow("StartGameWindow");
 
-        let tstcomp = new TestTSComponent(uiFrame.gameObject, false);
+        //let tstcomp = new TestTSComponent(uiFrame.gameObject);
 
         // App.logger.Log(uiFrame.gameObject.name);
         // let tsCompBinder : Puergp.TSComponentBinder = uiFrame.gameObject.GetComponent($typeof(Puergp.TSComponentBinder)) as Puergp.TSComponentBinder;

@@ -1,0 +1,1 @@
+{"version":3,"file":"SampleScreenBind.js","sourceRoot":"","sources":["../../../../src/Sample/ScreenControllers/SampleScreenBind.ts"],"names":[],"mappings":";;;AAAA,mEAA6E;AAC7E,mEAAgE;AAEhE,MAAa,gBAAiB,SAAQ,kCAAsB;IAEhD,MAAM,GAAsB,IAAI,GAAG,CAEvC;QACI,CAAC,mBAAmB,EAAE,6CAAqB,CAAC;KAC/C,CACJ,CAAC;IAEF,IAAW,KAAK;QACZ,OAAO,IAAI,CAAC,MAAM,CAAC;IACvB,CAAC;CAGJ;AAdD,4CAcC"}

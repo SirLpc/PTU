@@ -5,7 +5,7 @@ import { App } from "./App";
 
 export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
-    public enableUpdate : boolean;
+    public abstract enableUpdate : boolean;
     public binder : Js.JsBinding;
     public Awake() : void {};   //Use constructor
     public OnEnable() : void {};
@@ -14,17 +14,16 @@ export abstract class ATSComponent {
     public OnDisable() : void {};
     public OnDestroy() : void {};
 
-    public constructor(unityGo : UnityEngine.GameObject, enableUpdate : boolean) {
+    public constructor(unityGo : UnityEngine.GameObject) {
         this.gameObject = unityGo;
-        this.enableUpdate = enableUpdate;
         this.binder = unityGo.GetComponent($typeof(Js.JsBinding)) as Js.JsBinding;
     };
 
-    public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+    public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
         return App.compHub.GetTSComponet(this, targetCompType);
     }
 
-    public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
         return App.compHub.GetTSComponetInChildren(this, targetCompType);
     }
 }
@@ -54,11 +53,10 @@ export class TSComponentHub {
 
     public AddComponent<TSComp extends ATSComponent>(
         gameObject : UnityEngine.GameObject, 
-        enableUpdate: boolean, 
-        targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp))
+        targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp))
         : TSComp
     {
-        const tsComp = new targetCompType(gameObject, enableUpdate);
+        const tsComp = new targetCompType(gameObject);
         this.Register(tsComp);
         tsComp.Awake();
         return tsComp;
@@ -89,7 +87,7 @@ export class TSComponentHub {
         tsComp.gameObject = null;
     }
 
-    public GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+    public GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
         const unityGoID = tsComp.gameObject.GetInstanceID();
         if (this._tsComponents.has(unityGoID) == false) {
             return null;
@@ -106,7 +104,7 @@ export class TSComponentHub {
     }
 
     //TODO optimization
-    public GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject, enableUpdate : boolean) => TSComp)): TSComp {
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
         const res = this.GetTSComponet(tsComp, targetCompType);
         if (res != null) {
             return res;

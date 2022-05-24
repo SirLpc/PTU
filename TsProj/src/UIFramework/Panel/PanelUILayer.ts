@@ -6,6 +6,7 @@ import { IPanelController, IUIScreenController } from "../Core/IUIScreenControll
 import { PanelPriority, PanelPriorityLayerList } from "./PanelPriority";
 
 export class PanelUILayer extends AUILayer<IPanelController> {
+    public enableUpdate: boolean;
 
     private priorityLayers: PanelPriorityLayerList = null;
 

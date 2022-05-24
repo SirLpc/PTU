@@ -25606,6 +25606,7 @@ declare module 'csharp' {
             public IndexOf ($item: T) : number
             public RemoveAt ($index: number) : void
             public Insert ($index: number, $item: T) : void
+            public Count () : number
             public GetEnumerator () : System.Collections.Generic.IEnumerator$1<T>
             public ToArray () : System.Array$1<T>
             public constructor ()

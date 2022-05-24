@@ -6,10 +6,11 @@ const UISetting_1 = require("./UIFramework/Configs/UISetting");
 const UIFrame_1 = require("./UIFramework/UIFrames/UIFrame");
 const UnityDebugLogger_1 = require("./UnityDebugLogger");
 const TestTSComponent_1 = require("./TestTSComponent");
+const SampleScreenBind_1 = require("./Sample/ScreenControllers/SampleScreenBind");
 class GameApp extends App_1.App {
     constructor() {
         super();
-        let uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting());
+        let uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting(new SampleScreenBind_1.SampleScreenBind()));
         uiFrame.OpenWindow("StartGameWindow");
         let tstcomp = new TestTSComponent_1.TestTSComponent(uiFrame.gameObject, false);
         // App.logger.Log(uiFrame.gameObject.name);

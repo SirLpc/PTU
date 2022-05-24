@@ -69,6 +69,11 @@ namespace Puergp.Collections
             }
         }
 
+        public virtual int Count()
+        {
+            return _list.Count;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             return _list.GetEnumerator();
