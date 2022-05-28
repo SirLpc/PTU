@@ -1,4 +1,5 @@
-import { Puergp } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
+import { App } from "../../CoreFramework/App";
 import { AUIScreenController } from "../Core/AUIScreenController";
 import { IWindowProperties } from "../Core/IScreenProperties";
 import { IWindowController } from "../Core/IUIScreenController";
@@ -14,6 +15,19 @@ export abstract class AWindowControllerT<TProps extends IWindowProperties> exten
     }
     get windowPriority(): Puergp.Variables.IntVariable {
         return this.properties.windowQueuePriority;
+    }
+
+    constructor(unityGo : UnityEngine.GameObject){
+        super(unityGo);
+
+        this.properties = new WindowProperties();
+        this.properties.hideOnForegroundLost = this.binder.Get("hideOnForegroundLost") as Puergp.Variables.BoolVariable;
+        this.properties.windowQueuePriority = this.binder.Get("windowPriority") as Puergp.Variables.IntVariable;
+        this.properties.isPopup = this.binder.Get("isPopup") as Puergp.Variables.BoolVariable;
+    }
+
+    public override Awake(): void {
+        super.Awake();
     }
  
     public UI_Close(): void {

@@ -549,3 +549,9 @@ MonoBehaviour:
     value: {fileID: 11400000, guid: 2f70e2d5dcc53cd48a404adaaed3b489, type: 2}
   - name: screenDestroyed
     value: {fileID: 11400000, guid: e680a22d0de043d47be4eea5454a850d, type: 2}
+  - name: hideOnForegroundLost
+    value: {fileID: 11400000, guid: 626308b966af3da46911031da69b0c19, type: 2}
+  - name: isPopup
+    value: {fileID: 11400000, guid: b8e2c1d23573aee4f9a82f7cdb3abd9c, type: 2}
+  - name: windowPriority
+    value: {fileID: 11400000, guid: 31c9b4b616397824f97b9aee4ee70024, type: 2}

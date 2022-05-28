@@ -12,11 +12,14 @@ class AUIScreenController extends TSComponentHub_1.ATSComponent {
     animIn;
     animOut;
     properties;
-    Awake() {
+    constructor(unityGo) {
+        super(unityGo);
         this.inTransitionFinished = this.binder.Get("inTransitionFinished");
         this.outTransitionFinished = this.binder.Get("outTransitionFinished");
         this.closeRequest = this.binder.Get("closeRequest");
         this.screenDestroyed = this.binder.Get("screenDestroyed");
+    }
+    Awake() {
         this.AddListeners();
     }
     OnDestroy() {

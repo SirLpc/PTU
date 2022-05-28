@@ -1,4 +1,4 @@
-import { Puergp } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 import { ATransitionComponent } from "../ScreenTransitions/ATransitionComponent";
 import { IScreenProperties } from "./IScreenProperties";
@@ -17,11 +17,17 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     public animOut: ATransitionComponent;
     public properties: TProps;
 
-    public override Awake(): void {
+    constructor(unityGo : UnityEngine.GameObject){
+        super(unityGo);
+
         this.inTransitionFinished = this.binder.Get("inTransitionFinished") as Puergp.Events.GameObjectEvent;
         this.outTransitionFinished = this.binder.Get("outTransitionFinished") as Puergp.Events.GameObjectEvent;
         this.closeRequest = this.binder.Get("closeRequest") as Puergp.Events.GameObjectEvent;
         this.screenDestroyed = this.binder.Get("screenDestroyed") as Puergp.Events.GameObjectEvent;
+    }
+
+    public override Awake(): void {
+
 
         this.AddListeners();
     }

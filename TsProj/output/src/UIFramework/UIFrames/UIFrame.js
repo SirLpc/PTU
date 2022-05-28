@@ -176,11 +176,13 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
     OnRequestScreenBlock() {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = false;
+            App_1.App.logger.Log("request block");
         }
     }
     OnRequestScreenUnblock() {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = true;
+            App_1.App.logger.Log("Request unblick");
         }
     }
 }

@@ -8,12 +8,22 @@ namespace PuertsTest
 {
     public class TsQuickStart : MonoBehaviour
     {
+        public bool debug;
         JsEnv jsEnv;
 
         void Start()
         {
-            jsEnv = new JsEnv();
-            
+            if (debug)
+            {
+                jsEnv = new JsEnv(new DefaultLoader("D:/UnityPrograms/PTU/TsProj/output"), 8080);
+                jsEnv.WaitDebugger();
+            }
+            else
+            {
+                jsEnv = new JsEnv();
+            }
+
+
             jsEnv.UsingAction<int>();
             jsEnv.UsingAction<float>();
             jsEnv.UsingAction<GameObject>();

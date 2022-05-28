@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AWindowController = exports.AWindowControllerT = void 0;
 const AUIScreenController_1 = require("../Core/AUIScreenController");
+const WindowProperties_1 = require("./WindowProperties");
 class AWindowControllerT extends AUIScreenController_1.AUIScreenController {
     get hideOnForegroundLost() {
         return this.properties.hideOnForegroundLost;
@@ -11,6 +12,16 @@ class AWindowControllerT extends AUIScreenController_1.AUIScreenController {
     }
     get windowPriority() {
         return this.properties.windowQueuePriority;
+    }
+    constructor(unityGo) {
+        super(unityGo);
+        this.properties = new WindowProperties_1.WindowProperties();
+        this.properties.hideOnForegroundLost = this.binder.Get("hideOnForegroundLost");
+        this.properties.windowQueuePriority = this.binder.Get("windowPriority");
+        this.properties.isPopup = this.binder.Get("isPopup");
+    }
+    Awake() {
+        super.Awake();
     }
     UI_Close() {
         this.closeRequest.Dispatch(this.gameObject);

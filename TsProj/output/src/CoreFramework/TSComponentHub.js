@@ -81,7 +81,13 @@ class TSComponentHub {
         tsComp.gameObject = null;
     }
     GetTSComponet(tsComp, targetCompType) {
-        const unityGoID = tsComp.gameObject.GetInstanceID();
+        let unityGoID = 0;
+        if (tsComp instanceof ATSComponent) {
+            unityGoID = tsComp.gameObject.GetInstanceID();
+        }
+        else {
+            unityGoID = tsComp.GetInstanceID();
+        }
         if (this._tsComponents.has(unityGoID) == false) {
             return null;
         }

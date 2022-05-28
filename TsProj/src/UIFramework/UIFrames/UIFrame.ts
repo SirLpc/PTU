@@ -225,12 +225,14 @@ export class UIFrame extends ATSComponent
     public OnRequestScreenBlock() : void {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = false;
+            App.logger.Log("request block");
         }
     }
 
     public OnRequestScreenUnblock() : void {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = true;
+            App.logger.Log("Request unblick");
         }
     }
 }

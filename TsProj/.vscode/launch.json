@@ -1,0 +1,10 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+        "name": "Puerts Debug",
+        "type": "node",
+        "request": "attach",
+        "protocol": "inspector",
+        "port": 8080
+    }]
+}

@@ -19,11 +19,11 @@ export abstract class ATSComponent {
         this.binder = unityGo.GetComponent($typeof(Js.JsBinding)) as Js.JsBinding;
     };
 
-    public GetTSComponet<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
+    public GetTSComponet<TSComp extends ATSComponent>(targetCompType: TSComp): TSComp {
         return App.compHub.GetTSComponet(this, targetCompType);
     }
 
-    public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: TSComp): TSComp {
         return App.compHub.GetTSComponetInChildren(this, targetCompType);
     }
 }
@@ -87,16 +87,26 @@ export class TSComponentHub {
         tsComp.gameObject = null;
     }
 
-    public GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
-        const unityGoID = tsComp.gameObject.GetInstanceID();
+
+    public GetTSComponet<TSComp extends ATSComponent>(unityGo: UnityEngine.GameObject, targetCompType: any): TSComp;
+    public GetTSComponet<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: any): TSComp;
+    public GetTSComponet<TSComp extends ATSComponent>(tsComp: any, targetCompType: any): TSComp {
+        let unityGoID = 0;
+        if (tsComp instanceof ATSComponent) {
+            unityGoID = tsComp.gameObject.GetInstanceID();
+        }
+        else {
+            unityGoID = tsComp.GetInstanceID();
+        }
+
         if (this._tsComponents.has(unityGoID) == false) {
             return null;
         }
 
         let comps = this._tsComponents.get(unityGoID).tsComponents;
         for (const iterator of comps) {
-            if (iterator instanceof targetCompType) {
-                return iterator;
+            if (iterator instanceof <any>targetCompType) {
+                return iterator as TSComp;
             }
         }
 
@@ -104,8 +114,8 @@ export class TSComponentHub {
     }
 
     //TODO optimization
-    public GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType: (new (unityGo : UnityEngine.GameObject) => TSComp)): TSComp {
-        const res = this.GetTSComponet(tsComp, targetCompType);
+    public GetTSComponetInChildren<TSComp extends ATSComponent>(tsComp: ATSComponent, targetCompType : any): TSComp {
+        const res = this.GetTSComponet<TSComp>(tsComp, targetCompType);
         if (res != null) {
             return res;
         }
@@ -113,8 +123,8 @@ export class TSComponentHub {
         for (const [k,v] of this._tsComponents) {
             if (v.gameObject.transform.IsChildOf(tsComp.gameObject.transform)) {
                 for (const iterator of v.tsComponents) {
-                    if (iterator instanceof targetCompType) {
-                        return iterator;
+                    if (iterator instanceof <any>targetCompType) {
+                        return iterator as TSComp;
                     }
                 }
             }

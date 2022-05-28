@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindowUILayer = void 0;
 const App_1 = require("../../CoreFramework/App");
 const AUILayer_1 = require("../Core/AUILayer");
+const AWindowController_1 = require("./AWindowController");
 const WindowHistoryEntry_1 = require("./WindowHistoryEntry");
 const WindowPriority_1 = require("./WindowPriority");
 class WindowUILayer extends AUILayer_1.AUILayer {
@@ -84,7 +85,7 @@ class WindowUILayer extends AUILayer_1.AUILayer {
             App_1.App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }
         else {
-            if (window.isPopup) {
+            if (window.isPopup.value) {
                 this.priorityParaLayer.AddScreen(screenTransform);
                 return;
             }
@@ -133,19 +134,22 @@ class WindowUILayer extends AUILayer_1.AUILayer {
         }
         this.windowHistory.push(windowEntry);
         this.AddTransition(windowEntry.screen);
-        if (windowEntry.screen.isPopup) {
+        if (windowEntry.screen.isPopup.value) {
             this.priorityParaLayer.DarkenBG();
         }
         windowEntry.Show();
         this.currentWindow = windowEntry.screen;
     }
-    OnInAnimationFinished(screen) {
-        this.RemoveTransition(screen);
+    OnInAnimationFinished(screenGo) {
+        const tsComp = App_1.App.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
+        this.RemoveTransition((tsComp));
     }
-    OnOutAnimationFinished(screen) {
-        this.RemoveTransition(screen);
-        let window = screen;
-        if (window.isPopup) {
+    OnOutAnimationFinished(screenGo) {
+        const tsComp = App_1.App.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
+        const ctr = (tsComp);
+        this.RemoveTransition(ctr);
+        let window = ctr;
+        if (window.isPopup.value) {
             this.priorityParaLayer.RefreshDarken();
         }
     }

@@ -2,8 +2,10 @@ import { Puergp, UnityEngine } from "csharp";
 import { App } from "../../CoreFramework/App";
 import { VariableTool } from "../../CoreFramework/VariableTool";
 import { AUILayer } from "../Core/AUILayer";
+import { AUIScreenController } from "../Core/AUIScreenController";
 import { IScreenProperties, IWindowProperties } from "../Core/IScreenProperties";
 import { IUIScreenController, IWindowController } from "../Core/IUIScreenController";
+import { AWindowController } from "./AWindowController";
 import { WindowHistoryEntry } from "./WindowHistoryEntry";
 import { WindowParaLayer } from "./WindowParaLayer";
 import { WindowPriority } from "./WindowPriority";
@@ -111,7 +113,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
             App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }
         else {
-            if (window.isPopup) {
+            if (window.isPopup.value) {
                 this.priorityParaLayer.AddScreen(screenTransform);
                 return;
             }
@@ -174,7 +176,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
         this.windowHistory.push(windowEntry);
         this.AddTransition(windowEntry.screen);
 
-        if (windowEntry.screen.isPopup) {
+        if (windowEntry.screen.isPopup.value) {
             this.priorityParaLayer.DarkenBG();
         }
 
@@ -184,14 +186,17 @@ export class WindowUILayer extends AUILayer<IWindowController> {
     }
 
 
-    private OnInAnimationFinished(screen: IUIScreenController): void {
-        this.RemoveTransition(screen);
+    private OnInAnimationFinished(screenGo: UnityEngine.GameObject): void {
+        const tsComp = App.compHub.GetTSComponet(screenGo, AWindowController);
+        this.RemoveTransition(<unknown>(tsComp) as IUIScreenController);
     }
 
-   private OnOutAnimationFinished(screen: IUIScreenController ): void {
-        this.RemoveTransition(screen);
-        let window = screen as IWindowController;
-        if (window.isPopup) {
+   private OnOutAnimationFinished(screenGo: UnityEngine.GameObject): void {
+        const tsComp = App.compHub.GetTSComponet(screenGo, AWindowController);
+        const ctr = <unknown>(tsComp) as IUIScreenController;
+        this.RemoveTransition(ctr);
+        let window = ctr as IWindowController;
+        if (window.isPopup.value) {
             this.priorityParaLayer.RefreshDarken();
         }
    }
