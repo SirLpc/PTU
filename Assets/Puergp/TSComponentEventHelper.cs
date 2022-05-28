@@ -9,6 +9,8 @@ namespace Puergp
         private Puergp.Events.GameObjectEvent _onEnableEvent = null;
         private Puergp.Events.GameObjectEvent _onDisableEvent = null;
         private Puergp.Events.GameObjectEvent _onDestroyEvent = null;
+
+        private static bool _quiting = false;
         
         private void Awake()
         {
@@ -29,7 +31,15 @@ namespace Puergp
 
         private void OnDestroy()
         {
-            _onDestroyEvent.Dispatch(gameObject);
+            if (!_quiting)
+            {
+                _onDestroyEvent.Dispatch(gameObject);
+            }
+        }
+
+        private void OnApplicationQuit()
+        {
+            _quiting = true;
         }
     }
 }

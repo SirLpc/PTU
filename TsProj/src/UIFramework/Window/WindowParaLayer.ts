@@ -2,6 +2,7 @@ import { Puergp, UnityEngine } from "csharp";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 
 export class WindowParaLayer extends ATSComponent {
+    public enableUpdate: boolean;
     private darkenBgObject: Puergp.Variables.GameObjectVariable;
 
     private containedScreens: UnityEngine.GameObject[] = [];

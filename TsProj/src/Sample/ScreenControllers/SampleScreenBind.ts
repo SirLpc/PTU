@@ -6,7 +6,7 @@ export class SampleScreenBind extends AScreenTSComponentBind {
     private _binds : Map<string, any> = new Map<string, any>
     (
         [
-            ["./TestTSComponent", StartWindowController],
+            ["StartGameWindow", StartWindowController],
         ]
     );
 

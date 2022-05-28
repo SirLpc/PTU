@@ -6,6 +6,7 @@ const AUILayer_1 = require("../Core/AUILayer");
 const WindowHistoryEntry_1 = require("./WindowHistoryEntry");
 const WindowPriority_1 = require("./WindowPriority");
 class WindowUILayer extends AUILayer_1.AUILayer {
+    enableUpdate;
     priorityParaLayer;
     currentWindow;
     windowQueue;

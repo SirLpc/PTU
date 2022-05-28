@@ -1,1 +1,1 @@
-{"version":3,"file":"StartWindowController.js","sourceRoot":"","sources":["../../../../src/Sample/ScreenControllers/StartWindowController.ts"],"names":[],"mappings":";;;AAAA,+EAA6E;AAE7E,MAAa,qBAAsB,SAAQ,oCAAiB;CAI3D;AAJD,sDAIC"}
+{"version":3,"file":"StartWindowController.js","sourceRoot":"","sources":["../../../../src/Sample/ScreenControllers/StartWindowController.ts"],"names":[],"mappings":";;;AAAA,kFAA+E;AAE/E,MAAa,qBAAsB,SAAQ,qCAAiB;IACjD,YAAY,GAAY,KAAK,CAAC;CAIxC;AALD,sDAKC"}

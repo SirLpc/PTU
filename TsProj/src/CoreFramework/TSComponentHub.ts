@@ -7,7 +7,7 @@ export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
     public abstract enableUpdate : boolean;
     public binder : Js.JsBinding;
-    public Awake() : void {};   //Use constructor
+    public Awake() : void {};
     public OnEnable() : void {};
     public Start() : void {};
     public Update() : void {};

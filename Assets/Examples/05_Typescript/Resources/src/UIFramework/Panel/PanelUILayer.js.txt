@@ -4,6 +4,7 @@ exports.PanelUILayer = void 0;
 const App_1 = require("../../CoreFramework/App");
 const AUILayer_1 = require("../Core/AUILayer");
 class PanelUILayer extends AUILayer_1.AUILayer {
+    enableUpdate;
     priorityLayers = null;
     Awake() {
         App_1.App.logger.Log("PanelUILayer.Awake()");

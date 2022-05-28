@@ -2,6 +2,7 @@
 import { UnityEngine } from "csharp";
 
 export class TestTSComponent extends ATSComponent{
+    public enableUpdate: boolean;
     public override Awake(): void {
         super.Awake();
 

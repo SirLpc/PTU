@@ -77,8 +77,13 @@ export class UIFrame extends ATSComponent
 
             var tsControllerType = this._uiSetting.binds.binds.get(screenPrefab.name);
             const screenInstance = UnityEngine.Object.Instantiate(screenPrefab) as UnityEngine.GameObject;
-            const screenController = App.compHub.AddComponent(screenInstance, tsControllerType);
-            this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
+            const screenController = <unknown>(App.compHub.AddComponent(screenInstance, tsControllerType)) as IUIScreenController;
+            if (screenController != null) {
+                this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
+            }
+            else {
+                App.logger.LogError("Register config type " + tsControllerType + " should impliment IUIScreenController.");
+            }
         }
     }
 
@@ -138,6 +143,7 @@ export class UIFrame extends ATSComponent
     }
 
     public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
+        App.logger.Log("regi " + screenId);
         let window = controller as IWindowController;
         if (window != null) {
             this.windowLayer.RegisterScreen(screenId, window);
@@ -145,7 +151,8 @@ export class UIFrame extends ATSComponent
                 this.windowLayer.ReparentScreen(controller, screenTransform);
             }
 
-            return;
+        App.logger.Log("regi window" + screenId);
+        return;
         }
 
         let panel = controller as IPanelController;
@@ -153,6 +160,7 @@ export class UIFrame extends ATSComponent
             this.panelLayer.RegisterScreen(screenId, panel);
             if (screenTransform.IsNotNull()) {
                 this.panelLayer.ReparentScreen(controller, screenTransform);
+                App.logger.Log("regi panel" + screenId);
             }
         }
     }

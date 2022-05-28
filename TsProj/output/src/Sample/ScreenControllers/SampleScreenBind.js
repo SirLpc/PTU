@@ -5,7 +5,7 @@ const UISetting_1 = require("../../UIFramework/Configs/UISetting");
 const StartWindowController_1 = require("./StartWindowController");
 class SampleScreenBind extends UISetting_1.AScreenTSComponentBind {
     _binds = new Map([
-        ["./TestTSComponent", StartWindowController_1.StartWindowController],
+        ["StartGameWindow", StartWindowController_1.StartWindowController],
     ]);
     get binds() {
         return this._binds;

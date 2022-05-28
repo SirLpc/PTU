@@ -7,10 +7,9 @@ const puerts_1 = require("puerts");
 const App_1 = require("./App");
 class ATSComponent {
     gameObject;
-    enableUpdate;
     binder;
     Awake() { }
-    ; //Use constructor
+    ;
     OnEnable() { }
     ;
     Start() { }
@@ -21,9 +20,8 @@ class ATSComponent {
     ;
     OnDestroy() { }
     ;
-    constructor(unityGo, enableUpdate) {
+    constructor(unityGo) {
         this.gameObject = unityGo;
-        this.enableUpdate = enableUpdate;
         this.binder = unityGo.GetComponent((0, puerts_1.$typeof)(csharp_1.Js.JsBinding));
     }
     ;
@@ -57,8 +55,8 @@ class TSComponentHub {
         this.FirstStartTSComponents();
         this.UpdateTSComponents();
     }
-    AddComponent(gameObject, enableUpdate, targetCompType) {
-        const tsComp = new targetCompType(gameObject, enableUpdate);
+    AddComponent(gameObject, targetCompType) {
+        const tsComp = new targetCompType(gameObject);
         this.Register(tsComp);
         tsComp.Awake();
         return tsComp;

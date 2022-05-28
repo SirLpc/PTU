@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindowParaLayer = void 0;
 const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
 class WindowParaLayer extends TSComponentHub_1.ATSComponent {
+    enableUpdate;
     darkenBgObject;
     containedScreens = [];
     AddScreen(screenRectTransform) {

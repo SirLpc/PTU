@@ -23,4 +23,4 @@ export abstract class APanelControllerT<TProps extends IPanelProperties> extends
 
  }
  
- export abstract class AWindowController extends APanelControllerT<PanelProperties> { }
+ export abstract class APanelController extends APanelControllerT<PanelProperties> { }

@@ -18,6 +18,11 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     public properties: TProps;
 
     public override Awake(): void {
+        this.inTransitionFinished = this.binder.Get("inTransitionFinished") as Puergp.Events.GameObjectEvent;
+        this.outTransitionFinished = this.binder.Get("outTransitionFinished") as Puergp.Events.GameObjectEvent;
+        this.closeRequest = this.binder.Get("closeRequest") as Puergp.Events.GameObjectEvent;
+        this.screenDestroyed = this.binder.Get("screenDestroyed") as Puergp.Events.GameObjectEvent;
+
         this.AddListeners();
     }
 

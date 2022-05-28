@@ -9,7 +9,7 @@ class ATSComponent {
     gameObject;
     binder;
     Awake() { }
-    ; //Use constructor
+    ;
     OnEnable() { }
     ;
     Start() { }
