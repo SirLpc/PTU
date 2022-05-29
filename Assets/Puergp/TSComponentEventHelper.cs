@@ -26,7 +26,10 @@ namespace Puergp
 
         private void OnDisable()
         {
-            _onDisableEvent.Dispatch(gameObject);
+            if (!_quiting)
+            {
+                _onDisableEvent.Dispatch(gameObject);
+            }
         }
 
         private void OnDestroy()

@@ -143,7 +143,6 @@ export class UIFrame extends ATSComponent
     }
 
     public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
-        App.logger.Log("regi " + screenId);
         let window = controller as IWindowController;
         if (window != null) {
             this.windowLayer.RegisterScreen(screenId, window);
@@ -151,8 +150,7 @@ export class UIFrame extends ATSComponent
                 this.windowLayer.ReparentScreen(controller, screenTransform);
             }
 
-        App.logger.Log("regi window" + screenId);
-        return;
+            return;
         }
 
         let panel = controller as IPanelController;

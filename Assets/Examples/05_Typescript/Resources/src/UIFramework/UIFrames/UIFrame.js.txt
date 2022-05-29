@@ -110,14 +110,12 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         App_1.App.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
     }
     RegisterScreen(screenId, controller, screenTransform) {
-        App_1.App.logger.Log("regi " + screenId);
         let window = controller;
         if (window != null) {
             this.windowLayer.RegisterScreen(screenId, window);
             if (screenTransform.IsNotNull()) {
                 this.windowLayer.ReparentScreen(controller, screenTransform);
             }
-            App_1.App.logger.Log("regi window" + screenId);
             return;
         }
         let panel = controller;
