@@ -1,4 +1,4 @@
-import { Puergp } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
 import { AUIScreenController } from "../Core/AUIScreenController";
 import { IPanelProperties } from "../Core/IScreenProperties";
 import { IPanelController } from "../Core/IUIScreenController";
@@ -15,6 +15,13 @@ export abstract class APanelControllerT<TProps extends IPanelProperties> extends
            return null;
        }
    }
+
+   constructor(unityGo : UnityEngine.GameObject){
+    super(unityGo);
+
+    this.properties = new PanelProperties();
+    this.properties.priority = this.binder.Get("priority") as Puergp.Variables.IntVariable;
+    }
 
     
     protected override SetProperties(props: PanelProperties): void {

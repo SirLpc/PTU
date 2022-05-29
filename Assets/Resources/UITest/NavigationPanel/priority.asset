@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20265f37b3564ff085fd77739b6a9ae6, type: 3}
-  m_Name: screensToRegister
+  m_Script: {fileID: 11500000, guid: 0f445abebbe34431991d1a1ad4482ef6, type: 3}
+  m_Name: priority
   m_EditorClassIdentifier: 
-  _list:
-  - {fileID: 7617306793594988998, guid: 64923d0f8c18a904981792aa8831010e, type: 3}
-  - {fileID: 3955197997429667027, guid: e9c9e620c45ca354d94bd8e146bfbd9b, type: 3}
-  _distinct: 0
+  _value: 0
+  _readOnly: 0
+  _logWaringWhenSetOnReadOnly: 0
+  _onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []

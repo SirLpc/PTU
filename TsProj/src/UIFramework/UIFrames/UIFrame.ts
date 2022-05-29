@@ -8,7 +8,9 @@ import { TestTSComponent } from "../../TestTSComponent";
 import { UISetting } from "../Configs/UISetting";
 import { IPanelProperties, IWindowProperties } from "../Core/IScreenProperties";
 import { IPanelController, IUIScreenController, IWindowController } from "../Core/IUIScreenController";
+import { APanelControllerT } from "../Panel/APanelController";
 import { PanelUILayer } from "../Panel/PanelUILayer";
+import { AWindowController, AWindowControllerT } from "../Window/AWindowController";
 import { WindowUILayer } from "../Window/WindowUILayer";
 
 export class UIFrame extends ATSComponent
@@ -143,22 +145,27 @@ export class UIFrame extends ATSComponent
     }
 
     public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
-        let window = controller as IWindowController;
-        if (window != null) {
-            this.windowLayer.RegisterScreen(screenId, window);
-            if (screenTransform.IsNotNull()) {
-                this.windowLayer.ReparentScreen(controller, screenTransform);
+        if (controller instanceof AWindowControllerT) {
+            let window = controller as IWindowController;
+            if (window != null) {
+                this.windowLayer.RegisterScreen(screenId, window);
+                if (screenTransform.IsNotNull()) {
+                    this.windowLayer.ReparentScreen(controller, screenTransform);
+                    App.logger.Log("regi window" + screenId);
+                }
+    
+                return;
             }
-
-            return;
         }
 
-        let panel = controller as IPanelController;
-        if (panel != null) {
-            this.panelLayer.RegisterScreen(screenId, panel);
-            if (screenTransform.IsNotNull()) {
-                this.panelLayer.ReparentScreen(controller, screenTransform);
-                App.logger.Log("regi panel" + screenId);
+        if (controller instanceof APanelControllerT) {
+            let panel = controller as IPanelController;
+            if (panel != null) {
+                this.panelLayer.RegisterScreen(screenId, panel);
+                if (screenTransform.IsNotNull()) {
+                    this.panelLayer.ReparentScreen(controller, screenTransform);
+                    App.logger.Log("regi panel" + screenId);
+                }
             }
         }
     }

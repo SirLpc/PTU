@@ -17,13 +17,13 @@ export class GameObjectFactory implements IAbstractFactory<UnityEngine.GameObjec
 
     public GetInstance(address: IAssetAddress): UnityEngine.GameObject
     {
-        let prefab = this._loader.Load(address) as UnityEngine.GameObject;
-        if (prefab == null)
-        {
-            return this.nullGameObject;
+        let ast = this._loader.Load(address);
+        if (ast instanceof UnityEngine.GameObject) {
+            let prefab = ast  as UnityEngine.GameObject;
+            return UnityEngine.Object.Instantiate(prefab) as UnityEngine.GameObject;
         }
 
-        return UnityEngine.Object.Instantiate(prefab) as UnityEngine.GameObject;
+        return this.nullGameObject;
     }
     
 }

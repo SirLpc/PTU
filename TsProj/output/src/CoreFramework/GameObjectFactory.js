@@ -9,11 +9,12 @@ class GameObjectFactory {
         this._loader = loader;
     }
     GetInstance(address) {
-        let prefab = this._loader.Load(address);
-        if (prefab == null) {
-            return this.nullGameObject;
+        let ast = this._loader.Load(address);
+        if (ast instanceof csharp_1.UnityEngine.GameObject) {
+            let prefab = ast;
+            return csharp_1.UnityEngine.Object.Instantiate(prefab);
         }
-        return csharp_1.UnityEngine.Object.Instantiate(prefab);
+        return this.nullGameObject;
     }
 }
 exports.GameObjectFactory = GameObjectFactory;

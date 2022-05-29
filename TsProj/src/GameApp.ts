@@ -18,11 +18,27 @@ import { SampleScreenBind } from "./Sample/ScreenControllers/SampleScreenBind";
 
 
 export class GameApp extends App {
+
+    public uiFrame: UIFrame;
+
     constructor() {
         super();
         
-        let uiFrame = UIFrame.Create(new UISetting(new SampleScreenBind()));
-        uiFrame.OpenWindow("StartGameWindow");
+        this.uiFrame = UIFrame.Create(new UISetting(new SampleScreenBind()));
+        this.uiFrame.OpenWindow("StartGameWindow");
+
+        let test = <number>(<unknown>this.uiFrame);
+        if (test == null)
+        {
+            this.logger.LogError(" == null");
+        } 
+        else {
+            this.logger.LogError(" != null");
+            this.logger.LogError(test.toString());
+        }
+
+        let StartDemoSignal = VariableTool.GetEvent("UITest/Signals/StartDemoSignal");
+        StartDemoSignal.Register(this.OnStartDemo.bind(this));
 
         //let tstcomp = new TestTSComponent(uiFrame.gameObject);
 
@@ -33,5 +49,10 @@ export class GameApp extends App {
         // let plugin = DynamicClass.Create(tsCompBinder.tsTComponentType, uiFrame.gameObject, true);
 
     }
+
+    public OnStartDemo(): void {
+        this.uiFrame.ShowPanel("NavigationPanel");
+    }
+
     public logger: ILogger = new UnityDebugLogger();
 }

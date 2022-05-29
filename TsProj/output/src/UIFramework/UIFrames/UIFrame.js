@@ -5,7 +5,9 @@ const csharp_1 = require("csharp");
 const puerts_1 = require("puerts");
 const App_1 = require("../../CoreFramework/App");
 const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
+const APanelController_1 = require("../Panel/APanelController");
 const PanelUILayer_1 = require("../Panel/PanelUILayer");
+const AWindowController_1 = require("../Window/AWindowController");
 const WindowUILayer_1 = require("../Window/WindowUILayer");
 class UIFrame extends TSComponentHub_1.ATSComponent {
     enableUpdate = false;
@@ -110,20 +112,25 @@ class UIFrame extends TSComponentHub_1.ATSComponent {
         App_1.App.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
     }
     RegisterScreen(screenId, controller, screenTransform) {
-        let window = controller;
-        if (window != null) {
-            this.windowLayer.RegisterScreen(screenId, window);
-            if (screenTransform.IsNotNull()) {
-                this.windowLayer.ReparentScreen(controller, screenTransform);
+        if (controller instanceof AWindowController_1.AWindowControllerT) {
+            let window = controller;
+            if (window != null) {
+                this.windowLayer.RegisterScreen(screenId, window);
+                if (screenTransform.IsNotNull()) {
+                    this.windowLayer.ReparentScreen(controller, screenTransform);
+                    App_1.App.logger.Log("regi window" + screenId);
+                }
+                return;
             }
-            return;
         }
-        let panel = controller;
-        if (panel != null) {
-            this.panelLayer.RegisterScreen(screenId, panel);
-            if (screenTransform.IsNotNull()) {
-                this.panelLayer.ReparentScreen(controller, screenTransform);
-                App_1.App.logger.Log("regi panel" + screenId);
+        if (controller instanceof APanelController_1.APanelControllerT) {
+            let panel = controller;
+            if (panel != null) {
+                this.panelLayer.RegisterScreen(screenId, panel);
+                if (screenTransform.IsNotNull()) {
+                    this.panelLayer.ReparentScreen(controller, screenTransform);
+                    App_1.App.logger.Log("regi panel" + screenId);
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 import { AScreenTSComponentBind } from "../../UIFramework/Configs/UISetting";
+import { NavigationPanelController } from "./NavigationPanelController";
 import { StartWindowController } from "./StartWindowController";
 
 export class SampleScreenBind extends AScreenTSComponentBind {
@@ -7,6 +8,7 @@ export class SampleScreenBind extends AScreenTSComponentBind {
     (
         [
             ["StartGameWindow", StartWindowController],
+            ["NavigationPanel", NavigationPanelController],
         ]
     );
 

@@ -15,6 +15,8 @@ export class PanelUILayer extends AUILayer<IPanelController> {
     }
 
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {
+        
+
         let ctl = controller as IPanelController;
         if (ctl != null) {
             this.ReparentToParaLayer(ctl.priority.value, screenTransform);
