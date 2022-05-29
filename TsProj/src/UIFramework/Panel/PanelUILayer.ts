@@ -1,8 +1,10 @@
 import { UnityEngine } from "csharp";
 import { App } from "../../CoreFramework/App";
+import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { AUILayer } from "../Core/AUILayer";
 import { IScreenProperties } from "../Core/IScreenProperties";
 import { IPanelController, IUIScreenController } from "../Core/IUIScreenController";
+import { APanelController } from "./APanelController";
 import { PanelPriority, PanelPriorityLayerList } from "./PanelPriority";
 
 export class PanelUILayer extends AUILayer<IPanelController> {
@@ -15,9 +17,7 @@ export class PanelUILayer extends AUILayer<IPanelController> {
     }
 
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {
-        
-
-        let ctl = controller as IPanelController;
+        let ctl = TSHelpers.Cast<IPanelController>(controller, APanelController);
         if (ctl != null) {
             this.ReparentToParaLayer(ctl.priority.value, screenTransform);
         }

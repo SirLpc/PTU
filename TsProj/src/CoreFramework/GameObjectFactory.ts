@@ -2,6 +2,7 @@ import { UnityEngine } from "csharp";
 import { IAbstractFactory } from "./IAbstractFactory";
 import { IAssetAddress } from "./IAssetAddress";
 import { IAssetLoader } from "./IAssetLoader";
+import { TSHelpers } from "./TSHelpers";
 
 export class GameObjectFactory implements IAbstractFactory<UnityEngine.GameObject>
 {
@@ -18,8 +19,8 @@ export class GameObjectFactory implements IAbstractFactory<UnityEngine.GameObjec
     public GetInstance(address: IAssetAddress): UnityEngine.GameObject
     {
         let ast = this._loader.Load(address);
-        if (ast instanceof UnityEngine.GameObject) {
-            let prefab = ast  as UnityEngine.GameObject;
+        let prefab = TSHelpers.Cast<UnityEngine.GameObject>(ast, UnityEngine.GameObject);
+        if (prefab.IsNotNull()) {
             return UnityEngine.Object.Instantiate(prefab) as UnityEngine.GameObject;
         }
 

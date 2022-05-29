@@ -4,8 +4,10 @@ import { Puergp, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
 import { App } from "../../CoreFramework/App";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
+import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { TestTSComponent } from "../../TestTSComponent";
 import { UISetting } from "../Configs/UISetting";
+import { AUIScreenController } from "../Core/AUIScreenController";
 import { IPanelProperties, IWindowProperties } from "../Core/IScreenProperties";
 import { IPanelController, IUIScreenController, IWindowController } from "../Core/IUIScreenController";
 import { APanelControllerT } from "../Panel/APanelController";
@@ -79,7 +81,8 @@ export class UIFrame extends ATSComponent
 
             var tsControllerType = this._uiSetting.binds.binds.get(screenPrefab.name);
             const screenInstance = UnityEngine.Object.Instantiate(screenPrefab) as UnityEngine.GameObject;
-            const screenController = <unknown>(App.compHub.AddComponent(screenInstance, tsControllerType)) as IUIScreenController;
+            const screenControllerInst = App.compHub.AddComponent(screenInstance, tsControllerType);
+            const screenController = TSHelpers.Cast<IUIScreenController>(screenControllerInst, AUIScreenController);
             if (screenController != null) {
                 this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
             }
@@ -145,27 +148,23 @@ export class UIFrame extends ATSComponent
     }
 
     public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
-        if (controller instanceof AWindowControllerT) {
-            let window = controller as IWindowController;
-            if (window != null) {
-                this.windowLayer.RegisterScreen(screenId, window);
-                if (screenTransform.IsNotNull()) {
-                    this.windowLayer.ReparentScreen(controller, screenTransform);
-                    App.logger.Log("regi window" + screenId);
-                }
-    
-                return;
+        let window = TSHelpers.Cast<IWindowController>(controller, AWindowControllerT);
+        if (window != null) {
+            App.logger.Log("regi window" + screenId);
+            this.windowLayer.RegisterScreen(screenId, window);
+            if (screenTransform.IsNotNull()) {
+                this.windowLayer.ReparentScreen(controller, screenTransform);
             }
+
+            return;
         }
 
-        if (controller instanceof APanelControllerT) {
-            let panel = controller as IPanelController;
-            if (panel != null) {
-                this.panelLayer.RegisterScreen(screenId, panel);
-                if (screenTransform.IsNotNull()) {
-                    this.panelLayer.ReparentScreen(controller, screenTransform);
-                    App.logger.Log("regi panel" + screenId);
-                }
+        let panel = TSHelpers.Cast<IPanelController>(controller, APanelControllerT);
+        if (panel != null) {
+            App.logger.Log("regi panel" + screenId);
+            this.panelLayer.RegisterScreen(screenId, panel);
+            if (screenTransform.IsNotNull()) {
+                this.panelLayer.ReparentScreen(controller, screenTransform);
             }
         }
     }

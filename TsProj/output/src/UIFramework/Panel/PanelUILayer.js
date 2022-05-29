@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PanelUILayer = void 0;
 const App_1 = require("../../CoreFramework/App");
+const TSHelpers_1 = require("../../CoreFramework/TSHelpers");
 const AUILayer_1 = require("../Core/AUILayer");
+const APanelController_1 = require("./APanelController");
 class PanelUILayer extends AUILayer_1.AUILayer {
     enableUpdate;
     priorityLayers = null;
@@ -10,7 +12,7 @@ class PanelUILayer extends AUILayer_1.AUILayer {
         App_1.App.logger.Log("PanelUILayer.Awake()");
     }
     ReparentScreen(controller, screenTransform) {
-        let ctl = controller;
+        let ctl = TSHelpers_1.TSHelpers.Cast(controller, APanelController_1.APanelController);
         if (ctl != null) {
             this.ReparentToParaLayer(ctl.priority.value, screenTransform);
         }

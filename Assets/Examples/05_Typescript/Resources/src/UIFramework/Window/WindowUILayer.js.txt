@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindowUILayer = void 0;
 const App_1 = require("../../CoreFramework/App");
+const TSHelpers_1 = require("../../CoreFramework/TSHelpers");
 const AUILayer_1 = require("../Core/AUILayer");
 const AWindowController_1 = require("./AWindowController");
 const WindowHistoryEntry_1 = require("./WindowHistoryEntry");
@@ -80,7 +81,7 @@ class WindowUILayer extends AUILayer_1.AUILayer {
         this.windowHistory.length = 0;
     }
     ReparentScreen(controller, screenTransform) {
-        let window = controller;
+        let window = TSHelpers_1.TSHelpers.Cast(controller, AWindowController_1.AWindowControllerT);
         if (window == null) {
             App_1.App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }

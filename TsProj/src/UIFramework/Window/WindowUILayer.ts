@@ -1,11 +1,12 @@
 import { Puergp, UnityEngine } from "csharp";
 import { App } from "../../CoreFramework/App";
+import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { VariableTool } from "../../CoreFramework/VariableTool";
 import { AUILayer } from "../Core/AUILayer";
 import { AUIScreenController } from "../Core/AUIScreenController";
 import { IScreenProperties, IWindowProperties } from "../Core/IScreenProperties";
 import { IUIScreenController, IWindowController } from "../Core/IUIScreenController";
-import { AWindowController } from "./AWindowController";
+import { AWindowController, AWindowControllerT } from "./AWindowController";
 import { WindowHistoryEntry } from "./WindowHistoryEntry";
 import { WindowParaLayer } from "./WindowParaLayer";
 import { WindowPriority } from "./WindowPriority";
@@ -107,8 +108,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
     }
 
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {
-        let window = controller as IWindowController;
-
+        let window = TSHelpers.Cast<IWindowController>(controller, AWindowControllerT);
         if (window == null) {
             App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }
