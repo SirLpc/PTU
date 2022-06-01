@@ -13,14 +13,6 @@ class GameApp extends App_1.App {
         super();
         this.uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting(new SampleScreenBind_1.SampleScreenBind()));
         this.uiFrame.OpenWindow("StartGameWindow");
-        let test = this.uiFrame;
-        if (test == null) {
-            this.logger.LogError(" == null");
-        }
-        else {
-            this.logger.LogError(" != null");
-            this.logger.LogError(test.toString());
-        }
         let StartDemoSignal = VariableTool_1.VariableTool.GetEvent("UITest/Signals/StartDemoSignal");
         StartDemoSignal.Register(this.OnStartDemo.bind(this));
         //let tstcomp = new TestTSComponent(uiFrame.gameObject);

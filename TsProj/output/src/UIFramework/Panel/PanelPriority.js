@@ -4,7 +4,7 @@ exports.PanelPriorityLayerList = exports.PanelPriorityLayerListEntry = exports.P
 var PanelPriority;
 (function (PanelPriority) {
     PanelPriority[PanelPriority["None"] = 0] = "None";
-    PanelPriority[PanelPriority["Priority"] = 1] = "Priority";
+    PanelPriority[PanelPriority["Prioritary"] = 1] = "Prioritary";
     PanelPriority[PanelPriority["Tutorial"] = 2] = "Tutorial";
     PanelPriority[PanelPriority["Blocker"] = 3] = "Blocker";
 })(PanelPriority = exports.PanelPriority || (exports.PanelPriority = {}));
@@ -19,7 +19,7 @@ class PanelPriorityLayerListEntry {
 exports.PanelPriorityLayerListEntry = PanelPriorityLayerListEntry;
 class PanelPriorityLayerList {
     paraLayers;
-    lookup;
+    lookup = null;
     get paraLayerLookup() {
         if (this.lookup == null || this.lookup.size == 0) {
             this.CacheLookup();

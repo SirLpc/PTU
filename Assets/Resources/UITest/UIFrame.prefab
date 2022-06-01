@@ -237,6 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1994109017947380173}
   - component: {fileID: 7843379768279424496}
+  - component: {fileID: 2409226075565881759}
   m_Layer: 5
   m_Name: PanelLayer
   m_TagString: Untagged
@@ -283,6 +284,25 @@ MonoBehaviour:
       targetParent: {fileID: 310472267987625303}
     - priority: 2
       targetParent: {fileID: 291234465181832256}
+--- !u!114 &2409226075565881759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3940090283735938056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e753c7c47f84834387000a4a830aa78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  args:
+  - name: panelLayer
+    value: {fileID: 3940090283735938056}
+  - name: priorityPanelLayer
+    value: {fileID: 1985850983345001446}
+  - name: tutorialPanelLayer
+    value: {fileID: 5283807304502250602}
 --- !u!1 &4496382984029757211
 GameObject:
   m_ObjectHideFlags: 0

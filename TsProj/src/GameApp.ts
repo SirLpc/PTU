@@ -27,16 +27,6 @@ export class GameApp extends App {
         this.uiFrame = UIFrame.Create(new UISetting(new SampleScreenBind()));
         this.uiFrame.OpenWindow("StartGameWindow");
 
-        let test = <number>(<unknown>this.uiFrame);
-        if (test == null)
-        {
-            this.logger.LogError(" == null");
-        } 
-        else {
-            this.logger.LogError(" != null");
-            this.logger.LogError(test.toString());
-        }
-
         let StartDemoSignal = VariableTool.GetEvent("UITest/Signals/StartDemoSignal");
         StartDemoSignal.Register(this.OnStartDemo.bind(this));
 

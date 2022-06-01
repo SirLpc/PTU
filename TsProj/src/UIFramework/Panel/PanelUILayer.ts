@@ -5,7 +5,7 @@ import { AUILayer } from "../Core/AUILayer";
 import { IScreenProperties } from "../Core/IScreenProperties";
 import { IPanelController, IUIScreenController } from "../Core/IUIScreenController";
 import { APanelController } from "./APanelController";
-import { PanelPriority, PanelPriorityLayerList } from "./PanelPriority";
+import { PanelPriority, PanelPriorityLayerList, PanelPriorityLayerListEntry } from "./PanelPriority";
 
 export class PanelUILayer extends AUILayer<IPanelController> {
     public enableUpdate: boolean;
@@ -14,6 +14,17 @@ export class PanelUILayer extends AUILayer<IPanelController> {
 
     public override Awake(): void {
         App.logger.Log("PanelUILayer.Awake()");
+
+        if (this.priorityLayers == null) {
+            let prioList : PanelPriorityLayerListEntry[] = [];
+            let panelLayerGO = this.binder.Get("panelLayer") as UnityEngine.GameObject;
+            let prioPanelLayer = this.binder.Get("priorityPanelLayer") as UnityEngine.GameObject;
+            let tutorialPanelLayer = this.binder.Get("tutorialPanelLayer") as UnityEngine.GameObject;
+            prioList.push(new PanelPriorityLayerListEntry(PanelPriority.None, panelLayerGO.transform));
+            prioList.push(new PanelPriorityLayerListEntry(PanelPriority.Prioritary, prioPanelLayer.transform));
+            prioList.push(new PanelPriorityLayerListEntry(PanelPriority.Tutorial, tutorialPanelLayer.transform));
+            this.priorityLayers = new PanelPriorityLayerList(prioList);
+        }
     }
 
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {

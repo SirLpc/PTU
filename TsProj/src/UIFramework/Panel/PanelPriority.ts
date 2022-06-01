@@ -2,7 +2,7 @@ import { UnityEngine } from "csharp";
 
 export enum PanelPriority {
     None = 0,
-    Priority = 1,
+    Prioritary = 1,
     Tutorial = 2,
     Blocker = 3,
 }
@@ -17,7 +17,7 @@ export class PanelPriorityLayerListEntry {
 export class PanelPriorityLayerList {
     private paraLayers: PanelPriorityLayerListEntry[];
 
-    private lookup: Map<PanelPriority, UnityEngine.Transform>;
+    private lookup: Map<PanelPriority, UnityEngine.Transform> = null;
 
     public get paraLayerLookup() : Map<PanelPriority, UnityEngine.Transform> {
         if (this.lookup == null || this.lookup.size == 0) {
