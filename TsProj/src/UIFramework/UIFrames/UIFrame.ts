@@ -85,9 +85,12 @@ export class UIFrame extends ATSComponent
             const screenController = TSHelpers.Cast<IUIScreenController>(screenControllerInst, AUIScreenController);
             if (screenController != null) {
                 this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
+                if (this._uiSetting.deactivateScreenGOs.value && screenInstance.activeSelf) {
+                    screenInstance.SetActive(false);
+                }
             }
             else {
-                App.logger.LogError("Register config type " + tsControllerType + " should impliment IUIScreenController.");
+                App.logger.LogError("[UI Frame] Register config type " + tsControllerType + " should impliment IUIScreenController.");
             }
         }
     }

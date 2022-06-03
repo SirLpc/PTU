@@ -50,7 +50,7 @@ class AUIScreenController extends TSComponentHub_1.ATSComponent {
         this.HierarchyFixOnShow();
         this.OnPropertiesSet();
         if (this.gameObject.activeSelf == false) {
-            this.DoAnimation(this.animIn, this.OnTransitionOutFinished.bind(this), true);
+            this.DoAnimation(this.animIn, this.OnTransitionInFinished.bind(this), true);
         }
         else {
             if (this.inTransitionFinished.IsNull() == false) {
@@ -65,7 +65,7 @@ class AUIScreenController extends TSComponentHub_1.ATSComponent {
                 callWhenFinished();
             }
             else {
-                if (isVisible && this.gameObject.activeSelf) {
+                if (isVisible && this.gameObject.activeSelf == false) {
                     this.gameObject.SetActive(true);
                 }
                 caller.Animate(this.gameObject.transform, callWhenFinished);
