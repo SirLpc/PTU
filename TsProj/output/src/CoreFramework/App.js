@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
+const ILogger_1 = require("./ILogger");
+const Locator_1 = require("./Locator");
 const TSComponentHub_1 = require("./TSComponentHub");
 class App {
     static _appInstance = null;
@@ -9,7 +11,7 @@ class App {
         App._appInstance = this;
     }
     static get logger() {
-        return App._appInstance.logger;
+        return Locator_1.Locator.get(ILogger_1.ILogger);
     }
     static get compHub() {
         if (App._appInstance._compHub != null) {

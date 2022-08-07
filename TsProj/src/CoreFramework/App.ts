@@ -1,11 +1,11 @@
 import { ILogger } from "./ILogger";
+import { Locator } from "./Locator";
 import { TSComponentHub } from "./TSComponentHub";
 
 export abstract class App {
 
     private static _appInstance : App = null;
 
-    protected abstract logger : ILogger;
     private _compHub : TSComponentHub = null;
 
     constructor() {
@@ -13,7 +13,7 @@ export abstract class App {
     }
 
     public static get logger(): ILogger {
-        return App._appInstance.logger;
+        return Locator.get<ILogger>(ILogger);
     }
 
     public static get compHub(): TSComponentHub {

@@ -2,7 +2,9 @@
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
+const App_1 = require("./src/CoreFramework/App");
 const GameApp_1 = require("./src/GameApp");
+const Locator_1 = require("./src/CoreFramework/Locator");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -10,7 +12,7 @@ const GameApp_1 = require("./src/GameApp");
 // {
 //     ecs.update();
 // }, 1000);
-let gameApp = new GameApp_1.GameApp();
+Locator_1.Locator.set(App_1.App, new GameApp_1.GameApp);
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

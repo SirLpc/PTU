@@ -12,6 +12,7 @@ import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
 import {TestTSComponent} from "./src/TestTSComponent";
 import { ILogger } from './src/CoreFramework/ILogger'
 import { UnityDebugLogger } from './src/UnityDebugLogger'
+import { Locator } from './src/CoreFramework/Locator'
 
 
 // let ecs : ECS = new ECS();
@@ -22,7 +23,8 @@ import { UnityDebugLogger } from './src/UnityDebugLogger'
 //     ecs.update();
 // }, 1000);
 
-let gameApp : App = new GameApp();
+
+Locator.set<App>(App, new GameApp);
 
 
 
