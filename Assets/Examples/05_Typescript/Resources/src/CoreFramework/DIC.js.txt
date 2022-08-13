@@ -38,4 +38,4 @@ class DIC {
     }
 }
 exports.DIC = DIC;
-//# sourceMappingURL=Locator.js.map
+//# sourceMappingURL=DIC.js.map

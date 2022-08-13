@@ -3,16 +3,16 @@
 import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
-import { App } from './src/CoreFramework/App'
+import { AApp } from './src/CoreFramework/AApp'
 import { GameApp } from './src/GameApp'
 import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
 import { ECS as ECS } from './src/ECS/ECS'
 import { UISystem } from './src/UIFramework/UISystem'
 import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
 import {TestTSComponent} from "./src/TestTSComponent";
-import { ILogger } from './src/CoreFramework/ILogger'
+import { ALogger } from './src/CoreFramework/ALogger'
 import { UnityDebugLogger } from './src/UnityDebugLogger'
-import { Locator } from './src/CoreFramework/Locator'
+import { DIC as DIC } from './src/CoreFramework/DIC'
 
 
 // let ecs : ECS = new ECS();
@@ -24,9 +24,19 @@ import { Locator } from './src/CoreFramework/Locator'
 // }, 1000);
 
 
-Locator.set<App>(App, new GameApp);
+console.log('get started!');
 
 
+DIC.Register(ALogger, function():ALogger { return new UnityDebugLogger(); });
+DIC.Register(TSComponentHub, function():TSComponentHub { return new TSComponentHub(); });
+
+DIC.Register(AApp, function():AApp {
+     return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub));
+  });
+
+DIC.Make<AApp>(AApp).Start();
+
+console.log('get started11111111111!');
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

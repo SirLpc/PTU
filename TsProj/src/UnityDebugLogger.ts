@@ -1,7 +1,7 @@
 import { UnityEngine } from "csharp";
-import { ILogger } from "./CoreFramework/ILogger";
+import { ALogger } from "./CoreFramework/ALogger";
 
-export class UnityDebugLogger implements ILogger {
+export class UnityDebugLogger implements ALogger {
     public Log(message: string): void {
         UnityEngine.Debug.Log(message);
     }

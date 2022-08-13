@@ -1,5 +1,5 @@
 import { Puergp, UnityEngine } from "csharp";
-import { App } from "../../CoreFramework/App";
+import { AApp } from "../../CoreFramework/AApp";
 import { AUIScreenController } from "../Core/AUIScreenController";
 import { IWindowProperties } from "../Core/IScreenProperties";
 import { IWindowController } from "../Core/IUIScreenController";

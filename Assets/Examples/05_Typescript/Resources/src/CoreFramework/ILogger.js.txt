@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ILogger = void 0;
-class ILogger {
+exports.ALogger = void 0;
+class ALogger {
+    constructor() { }
+    ;
 }
-exports.ILogger = ILogger;
+exports.ALogger = ALogger;
 //# sourceMappingURL=ILogger.js.map

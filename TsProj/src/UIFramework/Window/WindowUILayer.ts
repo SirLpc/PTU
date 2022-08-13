@@ -1,5 +1,5 @@
 import { Puergp, UnityEngine } from "csharp";
-import { App } from "../../CoreFramework/App";
+import { AApp } from "../../CoreFramework/AApp";
 import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { VariableTool } from "../../CoreFramework/VariableTool";
 import { AUILayer } from "../Core/AUILayer";
@@ -95,7 +95,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
             }
         }
         else {
-            App.logger.LogError("[WindowUILayer] Hide requested on WindowId " + screen.screenId + " but that`s not the currently open one (" + (this.currentWindow != null ? this.currentWindow.screenId : "current is null") + ")! Ignoring request.")
+            AApp.logger.LogError("[WindowUILayer] Hide requested on WindowId " + screen.screenId + " but that`s not the currently open one (" + (this.currentWindow != null ? this.currentWindow.screenId : "current is null") + ")! Ignoring request.")
         }
 
     }
@@ -110,7 +110,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
     public override ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform): void {
         let window = TSHelpers.Cast<IWindowController>(controller, AWindowControllerT);
         if (window == null) {
-            App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
+            AApp.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }
         else {
             if (window.isPopup.value) {
@@ -162,7 +162,7 @@ export class WindowUILayer extends AUILayer<IWindowController> {
 
     private DoShow(windowEntry: WindowHistoryEntry) {
         if (this.currentWindow == windowEntry.screen) {
-            App.logger.LogWarning(
+            AApp.logger.LogWarning(
                 "[WindowUILayer] The requested WindowId (" + this.currentWindow.screenId + ") is already open! This will add a duplicate to the " +
                 "history and might cause inconsistent behaviour. It is recommended that if you need to open the same" +
                 "screen multiple times (eg: when implementing a warning message pop-up), it closes itself upon the player input" +
@@ -187,12 +187,12 @@ export class WindowUILayer extends AUILayer<IWindowController> {
 
 
     private OnInAnimationFinished(screenGo: UnityEngine.GameObject): void {
-        const tsComp = App.compHub.GetTSComponet(screenGo, AWindowController);
+        const tsComp = AApp.compHub.GetTSComponet(screenGo, AWindowController);
         this.RemoveTransition(<unknown>(tsComp) as IUIScreenController);
     }
 
    private OnOutAnimationFinished(screenGo: UnityEngine.GameObject): void {
-        const tsComp = App.compHub.GetTSComponet(screenGo, AWindowController);
+        const tsComp = AApp.compHub.GetTSComponet(screenGo, AWindowController);
         const ctr = <unknown>(tsComp) as IUIScreenController;
         this.RemoveTransition(ctr);
         let window = ctr as IWindowController;

@@ -2,7 +2,7 @@
 
 import { Puergp, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
-import { App } from "../../CoreFramework/App";
+import { AApp } from "../../CoreFramework/AApp";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { TestTSComponent } from "../../TestTSComponent";
@@ -33,7 +33,7 @@ export class UIFrame extends ATSComponent
 
     public static Create(uiSetting:UISetting) : UIFrame  {
         const instanceGo = UnityEngine.GameObject.Instantiate(uiSetting.uiFrameTemplate.value) as UnityEngine.GameObject;
-        const instance = App.compHub.AddComponent(instanceGo, UIFrame);
+        const instance = AApp.compHub.AddComponent(instanceGo, UIFrame);
         instance._uiSetting = uiSetting;
         instance._uiFrameGo = instanceGo;
         instance.Initialize();
@@ -48,9 +48,9 @@ export class UIFrame extends ATSComponent
 
     public Initialize() {
         if (this.panelLayer == null) {
-            this.panelLayer = App.compHub.AddComponent(this.binder.Get("panelLayer") as UnityEngine.GameObject, PanelUILayer);
+            this.panelLayer = AApp.compHub.AddComponent(this.binder.Get("panelLayer") as UnityEngine.GameObject, PanelUILayer);
             if (this.panelLayer == null) {
-                App.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
+                AApp.logger.LogError("[UI Frame] UI Frame lacks Panel Layer!");
             }
             else {
                 this.panelLayer.Initialize();
@@ -58,9 +58,9 @@ export class UIFrame extends ATSComponent
         }
 
         if (this.windowLayer == null) {
-            this.windowLayer = App.compHub.AddComponent(this.binder.Get("windowLayer") as UnityEngine.GameObject, WindowUILayer);
+            this.windowLayer = AApp.compHub.AddComponent(this.binder.Get("windowLayer") as UnityEngine.GameObject, WindowUILayer);
             if (this.windowLayer == null) {
-                App.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
+                AApp.logger.LogError("[UI Frame] UI Frame lacks Window Layer!");
             }
             else {
                 this.windowLayer.Initialize();
@@ -75,13 +75,13 @@ export class UIFrame extends ATSComponent
         for (let index = 0; index < this._uiSetting.screensToRegister.Count(); index++) {
             const screenPrefab = this._uiSetting.screensToRegister.get_Item(index);
             if (this._uiSetting.binds.binds.has(screenPrefab.name) == false) {
-                App.logger.LogError("Can not found TSController for " + screenPrefab.name);
+                AApp.logger.LogError("Can not found TSController for " + screenPrefab.name);
                 continue;
             }
 
             var tsControllerType = this._uiSetting.binds.binds.get(screenPrefab.name);
             const screenInstance = UnityEngine.Object.Instantiate(screenPrefab) as UnityEngine.GameObject;
-            const screenControllerInst = App.compHub.AddComponent(screenInstance, tsControllerType);
+            const screenControllerInst = AApp.compHub.AddComponent(screenInstance, tsControllerType);
             const screenController = TSHelpers.Cast<IUIScreenController>(screenControllerInst, AUIScreenController);
             if (screenController != null) {
                 this.RegisterScreen(screenPrefab.name, screenController, screenInstance.gameObject.transform);
@@ -90,7 +90,7 @@ export class UIFrame extends ATSComponent
                 }
             }
             else {
-                App.logger.LogError("[UI Frame] Register config type " + tsControllerType + " should impliment IUIScreenController.");
+                AApp.logger.LogError("[UI Frame] Register config type " + tsControllerType + " should impliment IUIScreenController.");
             }
         }
     }
@@ -147,13 +147,13 @@ export class UIFrame extends ATSComponent
             return;
         }
 
-        App.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
+        AApp.logger.LogError("Tried to open Screen id " + screenId + " but it's not registered as Window or Panel!");
     }
 
     public RegisterScreen(screenId: string , controller: IUIScreenController, screenTransform: UnityEngine.Transform) : void {
         let window = TSHelpers.Cast<IWindowController>(controller, AWindowControllerT);
         if (window != null) {
-            App.logger.Log("regi window" + screenId);
+            AApp.logger.Log("regi window" + screenId);
             this.windowLayer.RegisterScreen(screenId, window);
             if (screenTransform.IsNotNull()) {
                 this.windowLayer.ReparentScreen(controller, screenTransform);
@@ -164,7 +164,7 @@ export class UIFrame extends ATSComponent
 
         let panel = TSHelpers.Cast<IPanelController>(controller, APanelControllerT);
         if (panel != null) {
-            App.logger.Log("regi panel" + screenId);
+            AApp.logger.Log("regi panel" + screenId);
             this.panelLayer.RegisterScreen(screenId, panel);
             if (screenTransform.IsNotNull()) {
                 this.panelLayer.ReparentScreen(controller, screenTransform);
@@ -232,14 +232,14 @@ export class UIFrame extends ATSComponent
     public OnRequestScreenBlock() : void {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = false;
-            App.logger.Log("request block");
+            AApp.logger.Log("request block");
         }
     }
 
     public OnRequestScreenUnblock() : void {
         if (this.graphicRaycaster.IsNotNull()) {
             this.graphicRaycaster.enabled = true;
-            App.logger.Log("Request unblick");
+            AApp.logger.Log("Request unblick");
         }
     }
 }

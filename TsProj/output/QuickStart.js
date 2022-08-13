@@ -2,9 +2,12 @@
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
-const App_1 = require("./src/CoreFramework/App");
+const AApp_1 = require("./src/CoreFramework/AApp");
 const GameApp_1 = require("./src/GameApp");
-const Locator_1 = require("./src/CoreFramework/Locator");
+const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
+const ALogger_1 = require("./src/CoreFramework/ALogger");
+const UnityDebugLogger_1 = require("./src/UnityDebugLogger");
+const DIC_1 = require("./src/CoreFramework/DIC");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -12,7 +15,14 @@ const Locator_1 = require("./src/CoreFramework/Locator");
 // {
 //     ecs.update();
 // }, 1000);
-Locator_1.Locator.set(App_1.App, new GameApp_1.GameApp);
+console.log('get started!');
+DIC_1.DIC.Register(ALogger_1.ALogger, function () { return new UnityDebugLogger_1.UnityDebugLogger(); });
+DIC_1.DIC.Register(TSComponentHub_1.TSComponentHub, function () { return new TSComponentHub_1.TSComponentHub(); });
+DIC_1.DIC.Register(AApp_1.AApp, function () {
+    return new GameApp_1.GameApp(DIC_1.DIC.Make(TSComponentHub_1.TSComponentHub));
+});
+DIC_1.DIC.Make(AApp_1.AApp).Start();
+console.log('get started11111111111!');
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;
