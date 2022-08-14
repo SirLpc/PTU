@@ -1,7 +1,7 @@
 import { GameApp } from "../GameApp";
 import { UnityDebugLogger } from "../UnityDebugLogger";
-import { AApp } from "./AApp";
-import { ALogger } from "./ALogger";
+import { App } from "./App";
+import { Logger } from "./Logger";
 import { TSComponentHub } from "./TSComponentHub";
 
 
@@ -14,8 +14,6 @@ export class DIC {
   
       DIC.serviceMap = new Map();
       DIC.resolverMap = new Map();
-
-        console.log('Locator -> init complete');
     }
 
     public static Register<T>(fn: Function, inst: ()=>T): void {

@@ -1,0 +1,1 @@
+{"version":3,"file":"TSGameObject.js","sourceRoot":"","sources":["../../../src/CoreFramework/TSGameObject.ts"],"names":[],"mappings":";;;AAAA,MAAsB,IAAI;IACf,KAAK,KAAW,CAAC;IAAA,CAAC;IAClB,QAAQ,KAAW,CAAC;IAAA,CAAC;IACrB,KAAK,KAAW,CAAC;IAAA,CAAC;IAClB,MAAM,KAAW,CAAC;IAAA,CAAC;IACnB,SAAS,KAAW,CAAC;IAAA,CAAC;IACtB,SAAS,KAAW,CAAC;IAAA,CAAC;CAChC;AAPD,oBAOC"}

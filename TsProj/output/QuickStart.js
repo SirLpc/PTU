@@ -2,12 +2,14 @@
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
-const AApp_1 = require("./src/CoreFramework/AApp");
+const App_1 = require("./src/CoreFramework/App");
 const GameApp_1 = require("./src/GameApp");
 const TSComponentHub_1 = require("./src/CoreFramework/TSComponentHub");
-const ALogger_1 = require("./src/CoreFramework/ALogger");
+const Logger_1 = require("./src/CoreFramework/Logger");
 const UnityDebugLogger_1 = require("./src/UnityDebugLogger");
 const DIC_1 = require("./src/CoreFramework/DIC");
+const CubeGO_1 = require("./src/CubeGO");
+const TSBehaivourRunner_1 = require("./src/CoreFramework/TSBehaivourRunner");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -15,14 +17,14 @@ const DIC_1 = require("./src/CoreFramework/DIC");
 // {
 //     ecs.update();
 // }, 1000);
-console.log('get started!');
-DIC_1.DIC.Register(ALogger_1.ALogger, function () { return new UnityDebugLogger_1.UnityDebugLogger(); });
+DIC_1.DIC.Register(Logger_1.Logger, function () { return new UnityDebugLogger_1.UnityDebugLogger(); });
 DIC_1.DIC.Register(TSComponentHub_1.TSComponentHub, function () { return new TSComponentHub_1.TSComponentHub(); });
-DIC_1.DIC.Register(AApp_1.AApp, function () {
-    return new GameApp_1.GameApp(DIC_1.DIC.Make(TSComponentHub_1.TSComponentHub));
+DIC_1.DIC.Register(CubeGO_1.CubeGO, function () { return new CubeGO_1.CubeGO(DIC_1.DIC.Make(Logger_1.Logger)); });
+DIC_1.DIC.Register(TSBehaivourRunner_1.TSScene, function () { return new TSBehaivourRunner_1.TSScene(); });
+DIC_1.DIC.Register(App_1.App, function () {
+    return new GameApp_1.GameApp(DIC_1.DIC.Make(TSComponentHub_1.TSComponentHub), DIC_1.DIC.Make(TSBehaivourRunner_1.TSScene), DIC_1.DIC.Make(CubeGO_1.CubeGO));
 });
-DIC_1.DIC.Make(AApp_1.AApp).Start();
-console.log('get started11111111111!');
+DIC_1.DIC.Make(App_1.App).Start();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

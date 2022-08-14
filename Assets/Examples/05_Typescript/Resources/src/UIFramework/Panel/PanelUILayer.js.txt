@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PanelUILayer = void 0;
-const AApp_1 = require("../../CoreFramework/AApp");
+const App_1 = require("../../CoreFramework/App");
 const TSHelpers_1 = require("../../CoreFramework/TSHelpers");
 const AUILayer_1 = require("../Core/AUILayer");
 const APanelController_1 = require("./APanelController");
@@ -10,7 +10,7 @@ class PanelUILayer extends AUILayer_1.AUILayer {
     enableUpdate;
     priorityLayers = null;
     Awake() {
-        AApp_1.AApp.logger.Log("PanelUILayer.Awake()");
+        App_1.App.logger.Log("PanelUILayer.Awake()");
         if (this.priorityLayers == null) {
             let prioList = [];
             let panelLayerGO = this.binder.Get("panelLayer");

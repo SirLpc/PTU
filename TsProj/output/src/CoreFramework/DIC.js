@@ -8,7 +8,6 @@ class DIC {
         console.log('Locator -> init');
         DIC.serviceMap = new Map();
         DIC.resolverMap = new Map();
-        console.log('Locator -> init complete');
     }
     static Register(fn, inst) {
         console.log(`set ${fn.name}`);

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AApp = void 0;
+exports.App = void 0;
 const ALogger_1 = require("./ALogger");
 const DIC_1 = require("./DIC");
-class AApp {
+class App {
     static _appInstance = null;
     _compHub = null;
     constructor(compHub) {
-        AApp._appInstance = this;
+        App._appInstance = this;
         this._compHub = compHub;
         setInterval(() => {
             this.Update();
@@ -17,11 +17,11 @@ class AApp {
         return DIC_1.DIC.Make(ALogger_1.ALogger);
     }
     static get compHub() {
-        return AApp._appInstance._compHub;
+        return App._appInstance._compHub;
     }
     Update() {
         this._compHub.Tick();
     }
 }
-exports.AApp = AApp;
+exports.App = App;
 //# sourceMappingURL=AApp.js.map

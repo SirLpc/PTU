@@ -1,7 +1,7 @@
 import { Js, Puergp, UnityEngine } from "csharp";
 import {EventTool} from "./EventTool";
 import { $typeof } from "puerts";
-import { AApp } from "./AApp";
+import { App } from "./App";
 
 export abstract class ATSComponent {
     public gameObject : UnityEngine.GameObject;
@@ -20,11 +20,11 @@ export abstract class ATSComponent {
     };
 
     public GetTSComponet<TSComp extends ATSComponent>(targetCompType: TSComp): TSComp {
-        return AApp.compHub.GetTSComponet(this, targetCompType);
+        return App.compHub.GetTSComponet(this, targetCompType);
     }
 
     public GetTSComponetInChildren<TSComp extends ATSComponent>(targetCompType: TSComp): TSComp {
-        return AApp.compHub.GetTSComponetInChildren(this, targetCompType);
+        return App.compHub.GetTSComponetInChildren(this, targetCompType);
     }
 }
 

@@ -4,7 +4,7 @@ exports.TSComponentHub = exports.ATSComponent = void 0;
 const csharp_1 = require("csharp");
 const EventTool_1 = require("./EventTool");
 const puerts_1 = require("puerts");
-const AApp_1 = require("./AApp");
+const App_1 = require("./App");
 class ATSComponent {
     gameObject;
     binder;
@@ -26,10 +26,10 @@ class ATSComponent {
     }
     ;
     GetTSComponet(targetCompType) {
-        return AApp_1.AApp.compHub.GetTSComponet(this, targetCompType);
+        return App_1.App.compHub.GetTSComponet(this, targetCompType);
     }
     GetTSComponetInChildren(targetCompType) {
-        return AApp_1.AApp.compHub.GetTSComponetInChildren(this, targetCompType);
+        return App_1.App.compHub.GetTSComponetInChildren(this, targetCompType);
     }
 }
 exports.ATSComponent = ATSComponent;

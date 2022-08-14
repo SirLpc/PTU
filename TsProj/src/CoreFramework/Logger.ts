@@ -1,4 +1,4 @@
-export abstract class ALogger
+export abstract class Logger
 {
     public constructor(){};
     public abstract Log(message: string): void;

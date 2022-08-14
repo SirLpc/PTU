@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WindowUILayer = void 0;
-const AApp_1 = require("../../CoreFramework/AApp");
+const App_1 = require("../../CoreFramework/App");
 const TSHelpers_1 = require("../../CoreFramework/TSHelpers");
 const AUILayer_1 = require("../Core/AUILayer");
 const AWindowController_1 = require("./AWindowController");
@@ -71,7 +71,7 @@ class WindowUILayer extends AUILayer_1.AUILayer {
             }
         }
         else {
-            AApp_1.AApp.logger.LogError("[WindowUILayer] Hide requested on WindowId " + screen.screenId + " but that`s not the currently open one (" + (this.currentWindow != null ? this.currentWindow.screenId : "current is null") + ")! Ignoring request.");
+            App_1.App.logger.LogError("[WindowUILayer] Hide requested on WindowId " + screen.screenId + " but that`s not the currently open one (" + (this.currentWindow != null ? this.currentWindow.screenId : "current is null") + ")! Ignoring request.");
         }
     }
     HideAll(shouldAnimateWhenHiding = true) {
@@ -83,7 +83,7 @@ class WindowUILayer extends AUILayer_1.AUILayer {
     ReparentScreen(controller, screenTransform) {
         let window = TSHelpers_1.TSHelpers.Cast(controller, AWindowController_1.AWindowControllerT);
         if (window == null) {
-            AApp_1.AApp.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
+            App_1.App.logger.LogError("[WindowUILayer] Screen " + screenTransform.name + " is not a Window!");
         }
         else {
             if (window.isPopup.value) {
@@ -125,7 +125,7 @@ class WindowUILayer extends AUILayer_1.AUILayer {
     }
     DoShow(windowEntry) {
         if (this.currentWindow == windowEntry.screen) {
-            AApp_1.AApp.logger.LogWarning("[WindowUILayer] The requested WindowId (" + this.currentWindow.screenId + ") is already open! This will add a duplicate to the " +
+            App_1.App.logger.LogWarning("[WindowUILayer] The requested WindowId (" + this.currentWindow.screenId + ") is already open! This will add a duplicate to the " +
                 "history and might cause inconsistent behaviour. It is recommended that if you need to open the same" +
                 "screen multiple times (eg: when implementing a warning message pop-up), it closes itself upon the player input" +
                 "that triggers the continuation of the flow.");
@@ -142,11 +142,11 @@ class WindowUILayer extends AUILayer_1.AUILayer {
         this.currentWindow = windowEntry.screen;
     }
     OnInAnimationFinished(screenGo) {
-        const tsComp = AApp_1.AApp.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
+        const tsComp = App_1.App.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
         this.RemoveTransition((tsComp));
     }
     OnOutAnimationFinished(screenGo) {
-        const tsComp = AApp_1.AApp.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
+        const tsComp = App_1.App.compHub.GetTSComponet(screenGo, AWindowController_1.AWindowController);
         const ctr = (tsComp);
         this.RemoveTransition(ctr);
         let window = ctr;

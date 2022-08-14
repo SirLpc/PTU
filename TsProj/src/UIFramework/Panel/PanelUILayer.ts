@@ -1,5 +1,5 @@
 import { UnityEngine } from "csharp";
-import { AApp } from "../../CoreFramework/AApp";
+import { App } from "../../CoreFramework/App";
 import { TSHelpers } from "../../CoreFramework/TSHelpers";
 import { AUILayer } from "../Core/AUILayer";
 import { IScreenProperties } from "../Core/IScreenProperties";
@@ -13,7 +13,7 @@ export class PanelUILayer extends AUILayer<IPanelController> {
     private priorityLayers: PanelPriorityLayerList = null;
 
     public override Awake(): void {
-        AApp.logger.Log("PanelUILayer.Awake()");
+        App.logger.Log("PanelUILayer.Awake()");
 
         if (this.priorityLayers == null) {
             let prioList : PanelPriorityLayerListEntry[] = [];

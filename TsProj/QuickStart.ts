@@ -3,16 +3,18 @@
 import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
 import { $ref, $unref, $generic, $promise, $typeof } from 'puerts'
 import './ExtensionDecl'
-import { AApp } from './src/CoreFramework/AApp'
+import { App } from './src/CoreFramework/App'
 import { GameApp } from './src/GameApp'
 import { UIFrame as UIFrame } from './src/UIFramework/UIFrames/UIFrame'
 import { ECS as ECS } from './src/ECS/ECS'
 import { UISystem } from './src/UIFramework/UISystem'
 import {TSComponentHub} from "./src/CoreFramework/TSComponentHub";
 import {TestTSComponent} from "./src/TestTSComponent";
-import { ALogger } from './src/CoreFramework/ALogger'
+import { Logger } from './src/CoreFramework/Logger'
 import { UnityDebugLogger } from './src/UnityDebugLogger'
 import { DIC as DIC } from './src/CoreFramework/DIC'
+import { CubeGO } from './src/CubeGO'
+import { TSScene } from './src/CoreFramework/TSBehaivourRunner'
 
 
 // let ecs : ECS = new ECS();
@@ -24,19 +26,19 @@ import { DIC as DIC } from './src/CoreFramework/DIC'
 // }, 1000);
 
 
-console.log('get started!');
-
-
-DIC.Register(ALogger, function():ALogger { return new UnityDebugLogger(); });
+DIC.Register(Logger, function():Logger { return new UnityDebugLogger(); });
 DIC.Register(TSComponentHub, function():TSComponentHub { return new TSComponentHub(); });
+DIC.Register(CubeGO, function():CubeGO { return new CubeGO(DIC.Make(Logger)); })
+DIC.Register(TSScene, function():TSScene { return new TSScene(); })
 
-DIC.Register(AApp, function():AApp {
-     return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub));
-  });
+DIC.Register(App, function():App {
+    return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub), DIC.Make<TSScene>(TSScene), DIC.Make<CubeGO>(CubeGO));
+ });
 
-DIC.Make<AApp>(AApp).Start();
 
-console.log('get started11111111111!');
+
+DIC.Make<App>(App).Start();
+
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

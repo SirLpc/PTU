@@ -1,0 +1,1 @@
+{"version":3,"file":"TSComponent.js","sourceRoot":"","sources":["../../../src/CoreFramework/TSComponent.ts"],"names":[],"mappings":";;;AAAA,+CAA4C;AAE5C,MAAsB,WAAY,SAAQ,yBAAW;CAEpD;AAFD,kCAEC"}

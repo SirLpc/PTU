@@ -1,29 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AApp = void 0;
-const ILogger_1 = require("./ILogger");
-const Locator_1 = require("./Locator");
-const TSComponentHub_1 = require("./TSComponentHub");
-class AApp {
+exports.App = void 0;
+const Logger_1 = require("./Logger");
+const DIC_1 = require("./DIC");
+class App {
     static _appInstance = null;
     _compHub = null;
-    constructor() {
-        AApp._appInstance = this;
+    _behaviourRunner;
+    constructor(compHub, behaivourRunner) {
+        App._appInstance = this;
+        this._compHub = compHub;
+        this._behaviourRunner = behaivourRunner;
+        setInterval(() => {
+            this.Update();
+        }, 1000 / 60);
     }
     static get logger() {
-        return Locator_1.Locator.get(ILogger_1.ILogger);
+        return DIC_1.DIC.Make(Logger_1.Logger);
     }
     static get compHub() {
-        if (AApp._appInstance._compHub != null) {
-            return AApp._appInstance._compHub;
-        }
-        var hub = new TSComponentHub_1.TSComponentHub();
-        setInterval(() => {
-            hub.Tick();
-        }, 1 / 60);
-        AApp._appInstance._compHub = hub;
-        return hub;
+        return App._appInstance._compHub;
+    }
+    Update() {
+        this._compHub.Tick();
+        this._behaviourRunner.Update();
+    }
+    AttachActor(tsActor) {
+        this._behaviourRunner.AddChild(tsActor);
+    }
+    DetachActor(tsActor) {
     }
 }
-exports.AApp = AApp;
+exports.App = App;
 //# sourceMappingURL=App.js.map

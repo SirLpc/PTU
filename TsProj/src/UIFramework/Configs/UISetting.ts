@@ -1,5 +1,5 @@
 import { UnityEngine, PuertsTest, System, Puergp } from 'csharp'
-import { AApp } from '../../CoreFramework/AApp';
+import { App } from '../../CoreFramework/App';
 import { IBaseConfig as IBaseConfig } from '../../CoreFramework/IBaseConfig';
 import { VariableTool } from '../../CoreFramework/VariableTool';
 

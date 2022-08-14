@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AUILayer = void 0;
-const AApp_1 = require("../../CoreFramework/AApp");
+const App_1 = require("../../CoreFramework/App");
 const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
 class AUILayer extends TSComponentHub_1.ATSComponent {
     registeredScreens;
@@ -16,7 +16,7 @@ class AUILayer extends TSComponentHub_1.ATSComponent {
             this.ProcessScreenRegister(screenId, controller);
         }
         else {
-            AApp_1.AApp.logger.LogError("[AUILayerController] Screen controller already registered for id: " + screenId);
+            App_1.App.logger.LogError("[AUILayerController] Screen controller already registered for id: " + screenId);
         }
     }
     UnregisterScreen(screenId, controller) {
@@ -24,7 +24,7 @@ class AUILayer extends TSComponentHub_1.ATSComponent {
             this.ProcessScreenUnregister(screenId, controller);
         }
         else {
-            AApp_1.AApp.logger.LogError("[AUILayerController] Screen controller not registered for id: " + screenId);
+            App_1.App.logger.LogError("[AUILayerController] Screen controller not registered for id: " + screenId);
         }
     }
     ShowScreenById(screenId, properties) {
@@ -37,7 +37,7 @@ class AUILayer extends TSComponentHub_1.ATSComponent {
             }
         }
         else {
-            AApp_1.AApp.logger.LogError("[AUILayerController] Screen ID " + screenId + " not registered to this layer!");
+            App_1.App.logger.LogError("[AUILayerController] Screen ID " + screenId + " not registered to this layer!");
         }
     }
     HideScreenById(screenId) {
@@ -45,7 +45,7 @@ class AUILayer extends TSComponentHub_1.ATSComponent {
             this.HideScreen(this.registeredScreens.get(screenId));
         }
         else {
-            AApp_1.AApp.logger.LogError("[AUILayerController] Could not hide Screen ID " + screenId + " as it is not registered to this layer!");
+            App_1.App.logger.LogError("[AUILayerController] Could not hide Screen ID " + screenId + " as it is not registered to this layer!");
         }
     }
     IsScreenRegistered(screenId) {
