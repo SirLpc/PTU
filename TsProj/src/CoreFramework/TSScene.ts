@@ -43,9 +43,9 @@ export class TSScene extends TSActor {
     }
 
     public override Update(): void {
-        this._behaviourStetes.forEach(element => {
-            if (element.behaviour.)
-        });
+        // this._behaviourStetes.forEach(element => {
+        //     if (element.behaviour.)
+        // });
 
         this._behaviourStetes.forEach(element => {
             if (element.behaviour.enabled && element.awaked == false) {

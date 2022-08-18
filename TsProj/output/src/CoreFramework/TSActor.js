@@ -9,8 +9,10 @@ class TSActor extends TSBehaviour_1.TSBehaviour {
     _children = [];
     constructor(scene) {
         super();
-        this.scene = scene;
-        this.scene.AttachActor(this);
+        if (scene != null) {
+            this.scene = scene;
+            this.scene.AttachActor(this);
+        }
     }
     Awake() {
         this._components.forEach(element => {

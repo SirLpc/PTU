@@ -14,7 +14,7 @@ import { Logger } from './src/CoreFramework/Logger'
 import { UnityDebugLogger } from './src/UnityDebugLogger'
 import { DIC as DIC } from './src/CoreFramework/DIC'
 import { CubeGO } from './src/CubeGO'
-import { TSScene } from './src/CoreFramework/TSBehaivourRunner'
+import { TSScene } from './src/CoreFramework/TSScene'
 
 
 // let ecs : ECS = new ECS();
@@ -28,8 +28,8 @@ import { TSScene } from './src/CoreFramework/TSBehaivourRunner'
 
 DIC.Register(Logger, function():Logger { return new UnityDebugLogger(); });
 DIC.Register(TSComponentHub, function():TSComponentHub { return new TSComponentHub(); });
-DIC.Register(CubeGO, function():CubeGO { return new CubeGO(DIC.Make(Logger)); })
-DIC.Register(TSScene, function():TSScene { return new TSScene(); })
+DIC.Register(CubeGO, function():CubeGO { return new CubeGO(DIC.Make<TSScene>(TSScene), DIC.Make(Logger)); })
+DIC.Register(TSScene, function():TSScene { return new TSScene(null); })
 
 DIC.Register(App, function():App {
     return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub), DIC.Make<TSScene>(TSScene), DIC.Make<CubeGO>(CubeGO));

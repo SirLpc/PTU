@@ -4,8 +4,8 @@ exports.CubeGO = void 0;
 const TSActor_1 = require("./CoreFramework/TSActor");
 class CubeGO extends TSActor_1.TSActor {
     _logger;
-    constructor(logger) {
-        super();
+    constructor(scene, logger) {
+        super(scene);
         this._logger = logger;
     }
     Awake() {

@@ -14,8 +14,10 @@ export abstract class TSActor extends TSBehaviour {
     public constructor(scene: TSScene) {
         super();
 
-        this.scene = scene;
-        this.scene.AttachActor(this);
+        if (scene != null) {
+            this.scene = scene;
+            this.scene.AttachActor(this);
+        }
     }
 
     public override Awake() : void {

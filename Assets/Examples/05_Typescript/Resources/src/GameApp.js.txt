@@ -20,7 +20,7 @@ class GameApp extends App_1.App {
         // let plugin = DynamicClass.Create(tsCompBinder.tsTComponentType, uiFrame.gameObject, true);
     }
     Start() {
-        this.AttachActor(this._cube);
+        //this.AttachActor(this._cube);
         return;
         this.uiFrame = UIFrame_1.UIFrame.Create(new UISetting_1.UISetting(new SampleScreenBind_1.SampleScreenBind()));
         this.uiFrame.OpenWindow("StartGameWindow");

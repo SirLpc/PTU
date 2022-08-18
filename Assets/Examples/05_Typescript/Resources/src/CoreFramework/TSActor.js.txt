@@ -3,9 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSActor = void 0;
 const TSBehaviour_1 = require("./TSBehaviour");
 class TSActor extends TSBehaviour_1.TSBehaviour {
+    scene;
     parent;
     _components = [];
     _children = [];
+    constructor(scene) {
+        super();
+        if (scene != null) {
+            this.scene = scene;
+            this.scene.AttachActor(this);
+        }
+    }
     Awake() {
         this._components.forEach(element => {
             element.Awake();

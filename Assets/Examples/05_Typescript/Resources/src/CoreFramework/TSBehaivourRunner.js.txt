@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Scene = void 0;
+exports.TSScene = void 0;
 const TSActor_1 = require("./TSActor");
 class TSBehaviourState {
     behaviour;
@@ -8,15 +8,17 @@ class TSBehaviourState {
     started;
     activated;
     destroyed;
+    isActor;
     ResetBehaviour(behaviour, awaked) {
         this.behaviour = behaviour;
         this.awaked = awaked;
         this.started = false;
         this.activated = false;
         this.destroyed = false;
+        this.isActor = behaviour instanceof TSActor_1.TSActor;
     }
 }
-class Scene extends TSActor_1.TSActor {
+class TSScene extends TSActor_1.TSActor {
     _behaviourStetes = [];
     AttachActor(actor) {
         var suc = this.AddChild(actor);
@@ -32,11 +34,14 @@ class Scene extends TSActor_1.TSActor {
         }
         return suc;
     }
-    RemoveChild(tsActor) {
+    DetachActor(tsActor) {
         tsActor.destroyed = true;
-        return true;
     }
     Update() {
+        this._behaviourStetes.forEach(element => {
+            if (element.behaviour.)
+                ;
+        });
         this._behaviourStetes.forEach(element => {
             if (element.behaviour.enabled && element.awaked == false) {
                 element.behaviour.Awake();
@@ -79,5 +84,5 @@ class Scene extends TSActor_1.TSActor {
         });
     }
 }
-exports.Scene = Scene;
+exports.TSScene = TSScene;
 //# sourceMappingURL=TSBehaivourRunner.js.map

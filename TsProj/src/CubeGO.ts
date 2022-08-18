@@ -1,12 +1,13 @@
 import { Logger } from "./CoreFramework/Logger";
 import { TSActor } from "./CoreFramework/TSActor";
+import { TSScene } from "./CoreFramework/TSScene";
 
 export class CubeGO extends TSActor {
 
     private _logger : Logger;
 
-    constructor(logger: Logger) {
-        super();
+    constructor(scene: TSScene, logger: Logger) {
+        super(scene);
         this._logger = logger;
     }
 

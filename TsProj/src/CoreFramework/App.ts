@@ -1,7 +1,7 @@
 import { Logger as Logger } from "./Logger";
 import { DIC } from "./DIC";
 import { TSComponentHub } from "./TSComponentHub";
-import { TSScene } from "./TSBehaivourRunner";
+import { TSScene } from "./TSScene";
 import { TSActor } from "./TSActor";
 
 export abstract class App {
@@ -43,7 +43,6 @@ export abstract class App {
     }
 
     public DetachActor(tsActor: TSActor): void {
-
     }
 
 }
