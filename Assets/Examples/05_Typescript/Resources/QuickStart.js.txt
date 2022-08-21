@@ -19,8 +19,8 @@ const TSScene_1 = require("./src/CoreFramework/TSScene");
 // }, 1000);
 DIC_1.DIC.Register(Logger_1.Logger, function () { return new UnityDebugLogger_1.UnityDebugLogger(); });
 DIC_1.DIC.Register(TSComponentHub_1.TSComponentHub, function () { return new TSComponentHub_1.TSComponentHub(); });
-DIC_1.DIC.Register(CubeGO_1.CubeGO, function () { return new CubeGO_1.CubeGO(DIC_1.DIC.Make(TSScene_1.TSScene), DIC_1.DIC.Make(Logger_1.Logger)); });
-DIC_1.DIC.Register(TSScene_1.TSScene, function () { return new TSScene_1.TSScene(null); });
+DIC_1.DIC.Register(CubeGO_1.CubeGO, function () { return new CubeGO_1.CubeGO(DIC_1.DIC.Make(Logger_1.Logger)); });
+DIC_1.DIC.Register(TSScene_1.TSScene, function () { return new TSScene_1.TSScene(); });
 DIC_1.DIC.Register(App_1.App, function () {
     return new GameApp_1.GameApp(DIC_1.DIC.Make(TSComponentHub_1.TSComponentHub), DIC_1.DIC.Make(TSScene_1.TSScene), DIC_1.DIC.Make(CubeGO_1.CubeGO));
 });

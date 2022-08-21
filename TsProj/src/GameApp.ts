@@ -44,7 +44,7 @@ export class GameApp extends App {
 
     public Start(): void {
 
-        //this.AttachActor(this._cube);
+        this.AttachActor(this._cube);
 
         return;
 

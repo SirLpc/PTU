@@ -6,8 +6,8 @@ export class CubeGO extends TSActor {
 
     private _logger : Logger;
 
-    constructor(scene: TSScene, logger: Logger) {
-        super(scene);
+    constructor(logger: Logger) {
+        super();
         this._logger = logger;
     }
 

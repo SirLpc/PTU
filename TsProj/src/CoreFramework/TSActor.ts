@@ -5,19 +5,13 @@ import { TSComponent } from "./TSComponent";
 
 export abstract class TSActor extends TSBehaviour {
 
-    public scene : TSScene;
     public parent : TSActor;
 
     private _components : TSBehaviour[] = [];
     private _children : TSBehaviour[] = [];
 
-    public constructor(scene: TSScene) {
+    public constructor() {
         super();
-
-        if (scene != null) {
-            this.scene = scene;
-            this.scene.AttachActor(this);
-        }
     }
 
     public override Awake() : void {
@@ -109,7 +103,7 @@ export abstract class TSActor extends TSBehaviour {
             return true;
         }
 
-        this._children.slice(index, index);
+        this._children.slice(index, index + 1);
         tsActor.SetParent(null);
         return true;
     }

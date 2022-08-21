@@ -29,6 +29,7 @@ class App {
         this._behaviourRunner.AddChild(tsActor);
     }
     DetachActor(tsActor) {
+        tsActor.destroyed = true;
     }
 }
 exports.App = App;

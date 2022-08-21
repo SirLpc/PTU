@@ -72,12 +72,15 @@ class TSScene extends TSActor_1.TSActor {
                 element.activated = false;
             }
         });
-        this._behaviourStetes.forEach(element => {
+        for (let i = this._behaviourStetes.length - 1; i >= 0; i--) {
+            const element = this._behaviourStetes[i];
             if (element.behaviour.destroyed && element.destroyed == false) {
                 element.behaviour.OnDestroy();
                 element.destroyed = true;
+                //TODO recycle?
+                this._behaviourStetes.slice(i, i + 1);
             }
-        });
+        }
     }
 }
 exports.TSScene = TSScene;

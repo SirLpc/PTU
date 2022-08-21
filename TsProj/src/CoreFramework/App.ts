@@ -43,6 +43,7 @@ export abstract class App {
     }
 
     public DetachActor(tsActor: TSActor): void {
+        tsActor.destroyed = true;
     }
 
 }

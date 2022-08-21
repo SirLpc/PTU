@@ -3,16 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TSActor = void 0;
 const TSBehaviour_1 = require("./TSBehaviour");
 class TSActor extends TSBehaviour_1.TSBehaviour {
-    scene;
     parent;
     _components = [];
     _children = [];
-    constructor(scene) {
+    constructor() {
         super();
-        if (scene != null) {
-            this.scene = scene;
-            this.scene.AttachActor(this);
-        }
     }
     Awake() {
         this._components.forEach(element => {
@@ -97,7 +92,7 @@ class TSActor extends TSBehaviour_1.TSBehaviour {
         if (index == -1) {
             return true;
         }
-        this._children.slice(index, index);
+        this._children.slice(index, index + 1);
         tsActor.SetParent(null);
         return true;
     }
