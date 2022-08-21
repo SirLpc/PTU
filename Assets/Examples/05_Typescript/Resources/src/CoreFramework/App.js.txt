@@ -26,7 +26,7 @@ class App {
         this._behaviourRunner.Update();
     }
     AttachActor(tsActor) {
-        this._behaviourRunner.AddChild(tsActor);
+        this._behaviourRunner.AttachActor(tsActor);
     }
     DetachActor(tsActor) {
         tsActor.destroyed = true;

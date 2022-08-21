@@ -39,7 +39,7 @@ export abstract class App {
     }
 
     public AttachActor(tsActor: TSActor): void {
-        this._behaviourRunner.AddChild(tsActor);
+        this._behaviourRunner.AttachActor(tsActor);
     }
 
     public DetachActor(tsActor: TSActor): void {

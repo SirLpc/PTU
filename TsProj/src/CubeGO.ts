@@ -1,14 +1,18 @@
+import { UnityEngine } from "csharp";
 import { Logger } from "./CoreFramework/Logger";
 import { TSActor } from "./CoreFramework/TSActor";
 import { TSScene } from "./CoreFramework/TSScene";
+import { UnityGameObjectComponent } from "./CoreFramework/UnityGameObjectComponent";
 
 export class CubeGO extends TSActor {
 
     private _logger : Logger;
+    private _goComp : UnityGameObjectComponent;
 
-    constructor(logger: Logger) {
+    constructor(goComp: UnityGameObjectComponent, logger: Logger) {
         super();
         this._logger = logger;
+        this._goComp = goComp;
     }
 
     public override Awake(): void {
@@ -17,6 +21,7 @@ export class CubeGO extends TSActor {
     
     public override OnEnable(): void {
         this._logger.Log("Cube OnEnable");
+        this._goComp.SetActive(true);
     }
 
     public override Start(): void {
@@ -25,10 +30,16 @@ export class CubeGO extends TSActor {
 
     public override Update(): void {
         this._logger.Log("cube update");
+
+        if (UnityEngine.Input.GetKeyDown("d"))
+        {
+            this.enabled = false;
+        }
     }
 
     public override OnDisable(): void {
         this._logger.Log("cube ondisabe");
+        this._goComp.SetActive(false);
     }
 
     public override OnDestroy(): void {

@@ -10,14 +10,14 @@ class DIC {
         DIC.resolverMap = new Map();
     }
     static Register(fn, inst) {
-        console.log(`set ${fn.name}`);
+        //console.log(`set ${fn.name}`);
         if (DIC.resolverMap == undefined) {
             DIC.init();
         }
         DIC.resolverMap.set(fn.name, inst);
     }
     static Make(fn) {
-        console.log(`get ${fn.name}`);
+        //console.log(`get ${fn.name}`);
         if (DIC.serviceMap == undefined) {
             DIC.init();
         }

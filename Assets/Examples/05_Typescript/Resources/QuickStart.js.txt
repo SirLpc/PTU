@@ -1,6 +1,7 @@
 "use strict";
 //部署:npm run build
 Object.defineProperty(exports, "__esModule", { value: true });
+const csharp_1 = require("csharp");
 require("./ExtensionDecl");
 const App_1 = require("./src/CoreFramework/App");
 const GameApp_1 = require("./src/GameApp");
@@ -10,6 +11,7 @@ const UnityDebugLogger_1 = require("./src/UnityDebugLogger");
 const DIC_1 = require("./src/CoreFramework/DIC");
 const CubeGO_1 = require("./src/CubeGO");
 const TSScene_1 = require("./src/CoreFramework/TSScene");
+const UnityGameObjectComponent_1 = require("./src/CoreFramework/UnityGameObjectComponent");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -19,8 +21,12 @@ const TSScene_1 = require("./src/CoreFramework/TSScene");
 // }, 1000);
 DIC_1.DIC.Register(Logger_1.Logger, function () { return new UnityDebugLogger_1.UnityDebugLogger(); });
 DIC_1.DIC.Register(TSComponentHub_1.TSComponentHub, function () { return new TSComponentHub_1.TSComponentHub(); });
-DIC_1.DIC.Register(CubeGO_1.CubeGO, function () { return new CubeGO_1.CubeGO(DIC_1.DIC.Make(Logger_1.Logger)); });
+DIC_1.DIC.Register(CubeGO_1.CubeGO, function () { return new CubeGO_1.CubeGO(DIC_1.DIC.Make(UnityGameObjectComponent_1.UnityGameObjectComponent), DIC_1.DIC.Make(Logger_1.Logger)); });
 DIC_1.DIC.Register(TSScene_1.TSScene, function () { return new TSScene_1.TSScene(); });
+DIC_1.DIC.Register(UnityGameObjectComponent_1.UnityGameObjectComponent, function () {
+    let go = csharp_1.UnityEngine.GameObject.CreatePrimitive(csharp_1.UnityEngine.PrimitiveType.Cube);
+    return new UnityGameObjectComponent_1.UnityGameObjectComponent(go);
+});
 DIC_1.DIC.Register(App_1.App, function () {
     return new GameApp_1.GameApp(DIC_1.DIC.Make(TSComponentHub_1.TSComponentHub), DIC_1.DIC.Make(TSScene_1.TSScene), DIC_1.DIC.Make(CubeGO_1.CubeGO));
 });

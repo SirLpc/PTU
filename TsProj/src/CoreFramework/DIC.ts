@@ -17,7 +17,7 @@ export class DIC {
     }
 
     public static Register<T>(fn: Function, inst: ()=>T): void {
-        console.log(`set ${fn.name}`);
+        //console.log(`set ${fn.name}`);
   
         if (DIC.resolverMap == undefined) {
           DIC.init();
@@ -27,7 +27,7 @@ export class DIC {
     }
   
     public static Make<T>(fn: Function): T {
-      console.log(`get ${fn.name}`);
+      //console.log(`get ${fn.name}`);
   
       if (DIC.serviceMap == undefined) {
         DIC.init();
