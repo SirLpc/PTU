@@ -1,0 +1,1 @@
+{"version":3,"file":"TestGame.js","sourceRoot":"","sources":["../../../../src/Sample/TestNewEngine/TestGame.ts"],"names":[],"mappings":"AAAA,IAAU,aAAa,CAatB;AAbD,WAAU,aAAa;IACnB,MAAa,QAAQ;QACjB,WAAW;YACP,8CAA8C;QAClD,CAAC;QACD,MAAM,CAAC,IAAY;YACf,8CAA8C;QAClD,CAAC;QACD,MAAM,CAAC,IAAY;YACf,8CAA8C;QAClD,CAAC;KAEJ;IAXY,sBAAQ,WAWpB,CAAA;AACL,CAAC,EAbS,aAAa,KAAb,aAAa,QAatB"}
