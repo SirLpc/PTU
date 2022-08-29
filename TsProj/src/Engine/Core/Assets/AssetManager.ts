@@ -1,4 +1,9 @@
-﻿namespace NT {
+﻿import { Message } from "../Message/Message";
+import { IAsset } from "./IAsset";
+import { IAssetLoader } from "./IAssetLoader";
+import { JsonAssetLoader } from "./JsonAssetLoader";
+import { TextAssetLoader } from "./TestAssetLoader";
+
 
     /**
      * The message code prefix for asset load notifications.
@@ -77,4 +82,3 @@
             return undefined;
         }
     }
-}

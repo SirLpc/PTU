@@ -1,6 +1,6 @@
 // /// <reference path="ComponentManager.ts" />
 // /// <reference path="BaseComponent.ts" />
-// namespace NT {
+// 
 //     /**
 //      * The data for a sprite component.
 //      */

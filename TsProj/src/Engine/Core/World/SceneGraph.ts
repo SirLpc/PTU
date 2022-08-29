@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { TEntity } from "./TEntity";
+
 
     /**
      * A scene graph, which is responsible for managing the heirarchy of objects in a scene (essentially,
@@ -60,4 +61,3 @@
             this._root.render(  );
         }
     }
-}

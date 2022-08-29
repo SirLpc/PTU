@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { AssetManager } from "./AssetManager";
+import { IAsset } from "./IAsset";
+import { IAssetLoader } from "./IAssetLoader";
+
 
     /** Represents an Json asset */
     export class JsonAsset implements IAsset {
@@ -49,4 +52,3 @@
             }
         }
     }
-}

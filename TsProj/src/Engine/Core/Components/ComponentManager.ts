@@ -1,4 +1,6 @@
-﻿namespace NT {
+﻿import { IComponent } from "./IComponent";
+import { IComponentBuilder } from "./IComponentBuilder";
+
 
     /**
      * Manages components and their creation.
@@ -29,4 +31,3 @@
             }
         }
     }
-}

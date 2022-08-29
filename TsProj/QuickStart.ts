@@ -18,6 +18,8 @@ import { DIC as DIC } from './src/CoreFramework/DIC'
 import { CubeGO } from './src/CubeGO'
 import { TSScene } from './src/CoreFramework/TSScene'
 import { UnityGameObjectComponent } from './src/CoreFramework/UnityGameObjectComponent'
+import { Engine } from './src/Engine/Core/Engine'
+import { TestGame } from './src/Sample/TestNewEngine/TestGame'
 
 
 // let ecs : ECS = new ECS();
@@ -48,8 +50,8 @@ namespace NT{
     
 }
 
-let engine = new NT.Engine();
-engine.start(new TestNewEngine.TestGame());
+let engine = new Engine();
+engine.start(new TestGame());
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

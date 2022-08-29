@@ -1,4 +1,4 @@
-// namespace NT {
+// 
 //     enum TargaType {
 //         NO_DATA = 0,
 //         INDEXED = 1,

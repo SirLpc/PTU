@@ -1,4 +1,4 @@
-﻿// namespace NT {
+﻿// 
 
 //     /** Represents an image asset */
 //     export class ImageAsset implements IAsset {

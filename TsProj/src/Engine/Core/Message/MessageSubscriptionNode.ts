@@ -1,4 +1,6 @@
-﻿namespace NT {
+﻿import { IMessageHandler } from "./IMessageHandler";
+import { Message } from "./Message";
+
 
     /** A message callback function pointer type. */
     export type MessageCallback = ( message: Message ) => void;
@@ -68,4 +70,3 @@
             this.callback = callback;
         }
     }
-}

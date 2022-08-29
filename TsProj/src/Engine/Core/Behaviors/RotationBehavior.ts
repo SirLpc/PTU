@@ -1,7 +1,14 @@
 ﻿/// <reference path="BaseBehavior.ts" />
 /// <reference path="BehaviorManager.ts" />
 
-namespace NT {
+import { Vector3 } from "../Math/Vector3";
+import { BaseBehavior } from "./BaseBehavior";
+import { BehaviorManager } from "./BehaviorManager";
+import { IBehavior } from "./IBehavior";
+import { IBehaviorBuilder } from "./IBehaviorBuilder";
+import { IBehaviorData } from "./IBehaviorData";
+
+
 
     /**
      * The data for a rotation behavior.
@@ -74,4 +81,3 @@ namespace NT {
     }
 
     BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
-}

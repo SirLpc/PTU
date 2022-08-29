@@ -1,6 +1,9 @@
 ﻿/// <reference path="../Math/Vector2.ts" />
 
-namespace NT {
+import { Vector2 } from "../Math/Vector2";
+import { Message } from "../Message/Message";
+
+
 
     /** The message code for mouse down events. */
     export const MESSAGE_MOUSE_DOWN: string = "MOUSE_DOWN";
@@ -139,4 +142,3 @@ namespace NT {
             Message.send( MESSAGE_MOUSE_UP, this, new MouseContext( InputManager._leftDown, InputManager._rightDown, InputManager.getMousePosition() ) );
         }
     }
-}

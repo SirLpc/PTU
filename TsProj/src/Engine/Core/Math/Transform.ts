@@ -1,4 +1,6 @@
-﻿namespace NT {
+﻿import { Matrix4x4 } from "./Matrix4x4";
+import { Vector3 } from "./Vector3";
+
 
     /**
      * Represents the transformation of an object, providing position, rotation and scale.
@@ -55,4 +57,3 @@
             }
         }
     }
-}

@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { AssetManager } from "./AssetManager";
+import { IAsset } from "./IAsset";
+import { IAssetLoader } from "./IAssetLoader";
+
 
     /**
      * Represents a text file asset.
@@ -59,4 +62,3 @@
             }
         }
     }
-}

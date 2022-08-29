@@ -1,7 +1,14 @@
 ﻿/// <reference path="BaseBehavior.ts" />
 /// <reference path="BehaviorManager.ts" />
 
-namespace NT {
+import { InputManager, Keys } from "../Input/InputManager";
+import { BaseBehavior } from "./BaseBehavior";
+import { BehaviorManager } from "./BehaviorManager";
+import { IBehavior } from "./IBehavior";
+import { IBehaviorBuilder } from "./IBehaviorBuilder";
+import { IBehaviorData } from "./IBehaviorData";
+
+
 
     /**
      * Represents the data used to configure this behavior.
@@ -103,4 +110,3 @@ namespace NT {
 
     // Auto-registers the builder.
     BehaviorManager.registerBuilder( new KeyboardMovementBehaviorBuilder() );
-}

@@ -1,6 +1,14 @@
 /// <reference path="../Objects/TObject.ts" />
 
-namespace NT {
+import { IBehavior } from "../Behaviors/IBehavior";
+import { IComponent } from "../Components/IComponent";
+import { Matrix4x4 } from "../Math/Matrix4x4";
+import { Transform } from "../Math/Transform";
+import { Vector3 } from "../Math/Vector3";
+import { TObject } from "../Objects/TObject";
+import { SceneGraph } from "./SceneGraph";
+
+
 
     /**
      * Represents a single entity in the world. TEntities themselves do not get rendered or have behaviors.
@@ -254,4 +262,3 @@ namespace NT {
             }
         }
     }
-}

@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { IComponent } from "./IComponent";
+
 
     /** A builder which is used for component creation. */
     export interface IComponentBuilder {
@@ -12,4 +13,3 @@
          */
         buildFromJson( json: any ): IComponent;
     }
-}

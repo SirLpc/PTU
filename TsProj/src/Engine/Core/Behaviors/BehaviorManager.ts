@@ -1,4 +1,6 @@
-﻿namespace NT {
+﻿import { IBehavior } from "./IBehavior";
+import { IBehaviorBuilder } from "./IBehaviorBuilder";
+
 
     /**
      * Manages behaviors in the system.
@@ -28,4 +30,3 @@
             }
         }
     }
-}

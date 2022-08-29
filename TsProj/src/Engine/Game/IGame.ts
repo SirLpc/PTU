@@ -1,5 +1,5 @@
 
-namespace NT {
+
 
     /** 
      * An interface which represents an object that holds game-specific information. 
@@ -28,4 +28,3 @@ namespace NT {
         //Render( time: number, renderView: RenderView ): void;
         Render( time: number ): void;
     }
-}

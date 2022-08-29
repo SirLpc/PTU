@@ -1,4 +1,4 @@
-﻿namespace NT {
+﻿
 
     /** Represents an asset */
     export interface IAsset {
@@ -9,4 +9,3 @@
         /** The data of this asset. */
         readonly Data: any;
     }
-}

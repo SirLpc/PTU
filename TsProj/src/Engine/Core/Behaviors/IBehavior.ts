@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { TEntity } from "../World/TEntity";
+
 
     /**
      * Represents a behavior, which can be attached to a TEntity. Behaviors do not get rendered, 
@@ -33,4 +34,3 @@
          */
         apply( userData: any ): void;
     }
-}

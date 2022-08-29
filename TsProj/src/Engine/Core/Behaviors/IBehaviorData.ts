@@ -1,4 +1,4 @@
-﻿namespace NT {
+﻿
 
     /**
      * Represents data which is used to construct behaviors.
@@ -16,4 +16,3 @@
          */
         setFromJson( json: any ): void;
     }
-}

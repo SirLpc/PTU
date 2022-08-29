@@ -1,4 +1,4 @@
-﻿namespace NT {
+﻿
 
     /** Represents an asset loader. */
     export interface IAssetLoader {
@@ -12,4 +12,3 @@
          */
         LoadAsset( assetName: string ): void;
     }
-}

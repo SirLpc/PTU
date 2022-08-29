@@ -1,7 +1,16 @@
 ﻿/// <reference path="BaseBehavior.ts" />
 /// <reference path="BehaviorManager.ts" />
 
-namespace NT {
+import { MESSAGE_MOUSE_UP, MouseContext } from "../Input/InputManager";
+import { IMessageHandler } from "../Message/IMessageHandler";
+import { Message } from "../Message/Message";
+import { BaseBehavior } from "./BaseBehavior";
+import { BehaviorManager } from "./BehaviorManager";
+import { IBehavior } from "./IBehavior";
+import { IBehaviorBuilder } from "./IBehaviorBuilder";
+import { IBehaviorData } from "./IBehaviorData";
+
+
 
     /**
      * The data for a mouse click behavior.
@@ -114,4 +123,4 @@ namespace NT {
 
     // Auto-register the builder.
     BehaviorManager.registerBuilder( new MouseClickBehaviorBuilder() );
-} 
+ 

@@ -1,5 +1,6 @@
-﻿
-namespace NT {
+﻿import { Vector3 } from "./Vector3";
+
+
 
     /** Represents a 2-component vector. */
     export class Vector2 {
@@ -169,4 +170,3 @@ namespace NT {
             return new Vector2( this._x, this._y );
         }
     }
-}

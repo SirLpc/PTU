@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { TEntity } from "../World/TEntity";
+
 
     /**
      * Components are renderable objects which are attached to TEntities in the world.
@@ -38,4 +39,3 @@
         //render( renderView: RenderView ): void;
         render(  ): void;
     }
-}

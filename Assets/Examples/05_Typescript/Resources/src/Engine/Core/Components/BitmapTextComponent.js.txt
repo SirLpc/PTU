@@ -1,4 +1,4 @@
-// namespace NT {
+// 
 //     export class BitmapTextComponentData implements IComponentData {
 //         public name: string;
 //         public fontName: string;

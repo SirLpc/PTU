@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { TEntity } from "../World/TEntity";
+import { IBehavior } from "./IBehavior";
+import { IBehaviorData } from "./IBehaviorData";
+
 
     /**
      * The base behavior type from which all behaviors should inherit.
@@ -54,4 +57,3 @@
         public apply( userData: any ): void {
         }
     }
-}

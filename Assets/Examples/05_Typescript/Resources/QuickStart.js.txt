@@ -2,8 +2,10 @@
 /// <reference path="src/Engine/Core/Engine.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
-let engine = new NT.Engine();
-engine.start(new TestNewEngine.TestGame());
+const Engine_1 = require("./src/Engine/Core/Engine");
+const TestGame_1 = require("./src/Sample/TestNewEngine/TestGame");
+let engine = new Engine_1.Engine();
+engine.start(new TestGame_1.TestGame());
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

@@ -1,5 +1,6 @@
-namespace TestNewEngine {
-    export class TestGame implements NT.IGame {
+import { IGame } from "../../Engine/Game/IGame";
+
+    export class TestGame implements IGame {
         UpdateReady(): void {
             // throw new Error("Method not implemented.");
         }
@@ -11,4 +12,3 @@ namespace TestNewEngine {
         }
 
     }
-}

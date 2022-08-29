@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { IMessageHandler } from "./IMessageHandler";
+import { MessageBus } from "./MessageBus";
+import { MessageCallback } from "./MessageSubscriptionNode";
+
 
     /** Represents message priorities. */
     export enum MessagePriority {
@@ -95,4 +98,3 @@
             MessageBus.removeSubscription( code, undefined, callback );
         }
     }
-}

@@ -1,4 +1,4 @@
-namespace NT {
+
 
     /**
      * The basis from which all objects should be inherited. TObjects are each given
@@ -28,4 +28,3 @@ namespace NT {
             // NOTE: If this is ever added to a tracking system, it should be untracked here.
         }
     }
-}

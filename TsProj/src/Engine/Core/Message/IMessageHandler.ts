@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { Message } from "./Message";
+
 
     /**
      * Anb interface which provides a message handler for objects which are 
@@ -12,4 +13,3 @@
          */
         onMessage( message: Message ): void;
     }
-}

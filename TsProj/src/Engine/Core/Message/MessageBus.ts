@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { IMessageHandler } from "./IMessageHandler";
+import { Message, MessagePriority } from "./Message";
+import { MessageCallback, MessageQueueNode, MessageSubscriptionNode } from "./MessageSubscriptionNode";
+
 
     /** The message manager responsible for sending messages across the system. */
     export class MessageBus {
@@ -120,4 +123,3 @@
             }
         }
     }
-}

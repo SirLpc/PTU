@@ -1,6 +1,6 @@
 // /// <reference path="ComponentManager.ts" />
 // /// <reference path="BaseComponent.ts" />
-// namespace NT {
+// 
 //     export class CollisionComponentData implements IComponentData {
 //         public name: string;
 //         public shape: IShape2D;

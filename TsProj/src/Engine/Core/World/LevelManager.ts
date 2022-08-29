@@ -1,4 +1,8 @@
-﻿namespace NT {
+﻿import { AssetManager, MESSAGE_ASSET_LOADER_ASSET_LOADED } from "../Assets/AssetManager";
+import { JsonAsset } from "../Assets/JsonAssetLoader";
+import { Message } from "../Message/Message";
+import { Level } from "./Level";
+
 
     /**
      * Manages levels in the engine. Levels (for now) are registered with this manager
@@ -129,4 +133,3 @@
             LevelManager._configLoaded = true;
         }
     }
-}

@@ -1,4 +1,8 @@
-﻿namespace NT {
+﻿import { IGame } from "../Game/IGame";
+import { AssetManager } from "./Assets/AssetManager";
+import { MessageBus } from "./Message/MessageBus";
+import { LevelManager } from "./World/LevelManager";
+
 
     /**
      * The main game engine class.
@@ -156,4 +160,3 @@
             // this._renderer.EndRender();
         }
     }
-}

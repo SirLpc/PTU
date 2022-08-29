@@ -1,4 +1,5 @@
-﻿namespace NT {
+﻿import { IBehavior } from "./IBehavior";
+
 
     /**
      * An interface for a behavior builder.
@@ -16,4 +17,3 @@
          */
         buildFromJson( json: any ): IBehavior;
     }
-}

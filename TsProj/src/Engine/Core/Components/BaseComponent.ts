@@ -1,4 +1,7 @@
-﻿namespace NT {
+﻿import { TEntity } from "../World/TEntity";
+import { IComponent } from "./IComponent";
+import { IComponentData } from "./IComponentData";
+
 
 
     export abstract class BaseComponent implements IComponent {
@@ -56,4 +59,3 @@
         public render(  ): void {
         }
     }
-}

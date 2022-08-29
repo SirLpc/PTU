@@ -1,4 +1,11 @@
-﻿namespace NT {
+﻿import { IMessageHandler } from "../Message/IMessageHandler";
+import { Message } from "../Message/Message";
+import { BaseBehavior } from "./BaseBehavior";
+import { BehaviorManager } from "./BehaviorManager";
+import { IBehavior } from "./IBehavior";
+import { IBehaviorBuilder } from "./IBehaviorBuilder";
+import { IBehaviorData } from "./IBehaviorData";
+
 
     export class VisibilityOnMessageBehaviorData implements IBehaviorData {
         public name: string;
@@ -66,4 +73,3 @@
     }
 
     BehaviorManager.registerBuilder(new VisibilityOnMessageBehaviorBuilder());
-} 

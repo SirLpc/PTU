@@ -1,4 +1,8 @@
-﻿namespace NT {
+﻿import { BehaviorManager } from "../Behaviors/BehaviorManager";
+import { ComponentManager } from "../Components/ComponentManager";
+import { SceneGraph } from "./SceneGraph";
+import { TEntity } from "./TEntity";
+
 
     /**
      * Represents the basic level state.
@@ -246,4 +250,3 @@
             }
         }
     }
-}

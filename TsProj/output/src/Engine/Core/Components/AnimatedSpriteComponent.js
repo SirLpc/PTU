@@ -1,7 +1,7 @@
 // /// <reference path="ComponentManager.ts" />
 // /// <reference path="SpriteComponent.ts" />
 // /// <reference path="BaseComponent.ts" />
-// namespace NT {
+// 
 //     /**
 //      * The data for an animated sprite component. Inherited from sprite component data.
 //      */
