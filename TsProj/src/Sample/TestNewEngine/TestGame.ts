@@ -8,6 +8,7 @@ import { IGame } from "../../Engine/Game/IGame";
         }
         Update(time: number): void {
             // throw new Error("Method not implemented.");
+            console.log(LevelManager.activeLevel.name)
         }
         Render(time: number): void {
             // throw new Error("Method not implemented.");

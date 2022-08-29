@@ -9,6 +9,7 @@ class TestGame {
     }
     Update(time) {
         // throw new Error("Method not implemented.");
+        console.log(LevelManager_1.LevelManager.activeLevel.name);
     }
     Render(time) {
         // throw new Error("Method not implemented.");
