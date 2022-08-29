@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
+const UnityJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityJsonAssetLoader");
 const AssetManager_1 = require("./Assets/AssetManager");
 const MessageBus_1 = require("./Message/MessageBus");
 const LevelManager_1 = require("./World/LevelManager");
@@ -53,6 +54,7 @@ class Engine {
         // }
         // Initialize various sub-systems.
         AssetManager_1.AssetManager.Initialize();
+        AssetManager_1.AssetManager.registerLoader(new UnityJsonAssetLoader_1.UnityJsonAssetLoader());
         // ShaderManager.Initialize();
         // InputManager.Initialize( this._renderer.windowViewportCanvas );
         // Load fonts
@@ -86,7 +88,7 @@ class Engine {
         this.update(delta);
         this.render(delta);
         this._previousTime = performance.now();
-        requestAnimationFrame(this.loop.bind(this));
+        //requestAnimationFrame( this.loop.bind( this ) );
     }
     preloading() {
         // Make sure to always update the message bus.
@@ -100,7 +102,7 @@ class Engine {
         //     return;
         // }
         if (!LevelManager_1.LevelManager.isLoaded) {
-            requestAnimationFrame(this.preloading.bind(this));
+            //requestAnimationFrame( this.preloading.bind( this ) );
             return;
         }
         // Perform items such as loading the first/initial level, etc.

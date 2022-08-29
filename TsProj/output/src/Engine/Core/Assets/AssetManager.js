@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssetManager = exports.MESSAGE_ASSET_LOADER_ASSET_LOADED = void 0;
 const Message_1 = require("../Message/Message");
-const JsonAssetLoader_1 = require("./JsonAssetLoader");
-const TestAssetLoader_1 = require("./TestAssetLoader");
 /**
  * The message code prefix for asset load notifications.
  */
@@ -18,8 +16,8 @@ class AssetManager {
     /** Initializes this manager. */
     static Initialize() {
         // AssetManager._loaders.push( new ImageAssetLoader() );
-        AssetManager._loaders.push(new JsonAssetLoader_1.JsonAssetLoader());
-        AssetManager._loaders.push(new TestAssetLoader_1.TextAssetLoader());
+        // AssetManager._loaders.push( new JsonAssetLoader() );
+        // AssetManager._loaders.push( new TextAssetLoader() );
     }
     /**
      * Registers the provided loader with this asset manager.

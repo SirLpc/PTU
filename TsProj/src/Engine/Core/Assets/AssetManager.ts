@@ -23,8 +23,8 @@ import { TextAssetLoader } from "./TestAssetLoader";
         /** Initializes this manager. */
         public static Initialize(): void {
             // AssetManager._loaders.push( new ImageAssetLoader() );
-            AssetManager._loaders.push( new JsonAssetLoader() );
-            AssetManager._loaders.push( new TextAssetLoader() );
+            // AssetManager._loaders.push( new JsonAssetLoader() );
+            // AssetManager._loaders.push( new TextAssetLoader() );
         }
 
         /**

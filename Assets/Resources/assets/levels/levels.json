@@ -1,0 +1,8 @@
+{
+	"levels" : [
+		{
+			"name" : "main",
+			"file" : "assets/levels/main.json"
+		}
+	]
+}

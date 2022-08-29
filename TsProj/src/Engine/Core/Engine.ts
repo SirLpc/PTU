@@ -1,4 +1,5 @@
-﻿import { IGame } from "../Game/IGame";
+﻿import { UnityJsonAssetLoader } from "../CoreUnity/Assets/UnityJsonAssetLoader";
+import { IGame } from "../Game/IGame";
 import { AssetManager } from "./Assets/AssetManager";
 import { MessageBus } from "./Message/MessageBus";
 import { LevelManager } from "./World/LevelManager";
@@ -64,6 +65,8 @@ import { LevelManager } from "./World/LevelManager";
 
             // Initialize various sub-systems.
             AssetManager.Initialize();
+            AssetManager.registerLoader(new UnityJsonAssetLoader() );
+
             // ShaderManager.Initialize();
 
             // InputManager.Initialize( this._renderer.windowViewportCanvas );
@@ -111,7 +114,7 @@ import { LevelManager } from "./World/LevelManager";
 
             this._previousTime = performance.now();
 
-            requestAnimationFrame( this.loop.bind( this ) );
+            //requestAnimationFrame( this.loop.bind( this ) );
         }
 
         private preloading(): void {
@@ -130,7 +133,7 @@ import { LevelManager } from "./World/LevelManager";
             // }
 
             if ( !LevelManager.isLoaded ) {
-                requestAnimationFrame( this.preloading.bind( this ) );
+                //requestAnimationFrame( this.preloading.bind( this ) );
                 return;
             }
 
