@@ -59,7 +59,7 @@ class AssetManager {
      * Attempts to get an asset with the provided name. If found, it is returned; otherwise, undefined is returned.
      * @param assetName The asset name to get.
      */
-    static getAsset(assetName) {
+    static getAsset1(assetName) {
         if (AssetManager._loadedAssets[assetName] !== undefined) {
             return AssetManager._loadedAssets[assetName];
         }

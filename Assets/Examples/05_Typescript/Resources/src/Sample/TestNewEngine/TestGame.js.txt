@@ -6,6 +6,7 @@ class TestGame {
     UpdateReady() {
         // throw new Error("Method not implemented.");
         LevelManager_1.LevelManager.changeLevel("main");
+        console.log("Update ready, load main level.");
     }
     Update(time) {
         // throw new Error("Method not implemented.");

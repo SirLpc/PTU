@@ -72,7 +72,7 @@ import { TextAssetLoader } from "./TestAssetLoader";
          * Attempts to get an asset with the provided name. If found, it is returned; otherwise, undefined is returned.
          * @param assetName The asset name to get.
          */
-        public static getAsset( assetName: string ): IAsset {
+        public static getAsset1( assetName: string ): IAsset {
             if ( AssetManager._loadedAssets[assetName] !== undefined ) {
                 return AssetManager._loadedAssets[assetName];
             } else {

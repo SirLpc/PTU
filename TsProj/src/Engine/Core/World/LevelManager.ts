@@ -33,15 +33,19 @@ import { Level } from "./Level";
         public static load(): void {
 
             // Get the asset(s). TODO: This probably should come from a central asset manifest.
-            let asset = AssetManager.getAsset( "assets/levels/levels.json" );
+            let asset = AssetManager.getAsset1( "assets/levels/levels.json" );
+            console.log("call get");
+            console.log(AssetManager.getAsset1);
             if ( asset !== undefined ) {
                 LevelManager.processLevelConfigAsset( asset as JsonAsset );
+                console.log("not undefined.");
             } else {
 
                 // Listen for the asset load.
                 Message.subscribeCallback( MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json",
                     LevelManager.onMessage );
-            }
+                    console.log("register undefined.");
+                }
         }
 
         /**
@@ -61,7 +65,7 @@ import { Level } from "./Level";
                 // If the level asset is already loaded, get it and use it to load the level.
                 // Otherwise, retrieve the asset and load the level upon completion.
                 if ( AssetManager.isAssetLoaded( LevelManager._registeredLevels[name] ) ) {
-                    let asset = AssetManager.getAsset( LevelManager._registeredLevels[name] );
+                    let asset = AssetManager.getAsset1( LevelManager._registeredLevels[name] );
                     LevelManager.loadLevel( asset );
                 } else {
                     Message.subscribeCallback( MESSAGE_ASSET_LOADER_ASSET_LOADED + LevelManager._registeredLevels[name], LevelManager.onMessage );
@@ -77,6 +81,7 @@ import { Level } from "./Level";
          * @param message The message to be handled.
          */
         public static onMessage( message: Message ): void {
+            console.log( "onMessage level:" + message );
 
             // TODO: one for each asset.
             if ( message.code === MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json" ) {
@@ -117,7 +122,7 @@ import { Level } from "./Level";
         }
 
         private static processLevelConfigAsset( asset: JsonAsset ): void {
-
+            console.log("load complete")
             let levels = asset.Data.levels;
             if ( levels ) {
                 for ( let level of levels ) {

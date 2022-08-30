@@ -27,13 +27,17 @@ class LevelManager {
     /** Loads this manager. */
     static load() {
         // Get the asset(s). TODO: This probably should come from a central asset manifest.
-        let asset = AssetManager_1.AssetManager.getAsset("assets/levels/levels.json");
+        let asset = AssetManager_1.AssetManager.getAsset1("assets/levels/levels.json");
+        console.log("call get");
+        console.log(AssetManager_1.AssetManager.getAsset1);
         if (asset !== undefined) {
             LevelManager.processLevelConfigAsset(asset);
+            console.log("not undefined.");
         }
         else {
             // Listen for the asset load.
             Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
+            console.log("register undefined.");
         }
     }
     /**
@@ -51,7 +55,7 @@ class LevelManager {
             // If the level asset is already loaded, get it and use it to load the level.
             // Otherwise, retrieve the asset and load the level upon completion.
             if (AssetManager_1.AssetManager.isAssetLoaded(LevelManager._registeredLevels[name])) {
-                let asset = AssetManager_1.AssetManager.getAsset(LevelManager._registeredLevels[name]);
+                let asset = AssetManager_1.AssetManager.getAsset1(LevelManager._registeredLevels[name]);
                 LevelManager.loadLevel(asset);
             }
             else {
@@ -68,6 +72,7 @@ class LevelManager {
      * @param message The message to be handled.
      */
     static onMessage(message) {
+        console.log("onMessage level:" + message);
         // TODO: one for each asset.
         if (message.code === AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json") {
             Message_1.Message.unsubscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
@@ -100,6 +105,7 @@ class LevelManager {
         Message_1.Message.send("LEVEL_LOADED", this);
     }
     static processLevelConfigAsset(asset) {
+        console.log("load complete");
         let levels = asset.Data.levels;
         if (levels) {
             for (let level of levels) {
