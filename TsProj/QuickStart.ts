@@ -31,22 +31,22 @@ import { TestGame } from './src/Sample/TestNewEngine/TestGame'
 // }, 1000);
 
 // --------------My component system test
-DIC.Register(Logger, function():Logger { return new UnityDebugLogger(); });
-DIC.Register(TSComponentHub, function():TSComponentHub { return new TSComponentHub(); });
-DIC.Register(CubeGO, function():CubeGO { return new CubeGO(DIC.Make(UnityGameObjectComponent), DIC.Make(Logger)); })
-DIC.Register(TSScene, function():TSScene { return new TSScene(); })
-DIC.Register(UnityGameObjectComponent, function():UnityGameObjectComponent {
-        let go = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
-        return new UnityGameObjectComponent(go);
-    })
-DIC.Register(App, function():App {
-    return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub), DIC.Make<TSScene>(TSScene), DIC.Make<CubeGO>(CubeGO));
- });
-DIC.Make<App>(App).Start();
+// DIC.Register(Logger, function():Logger { return new UnityDebugLogger(); });
+// DIC.Register(TSComponentHub, function():TSComponentHub { return new TSComponentHub(); });
+// DIC.Register(CubeGO, function():CubeGO { return new CubeGO(DIC.Make(UnityGameObjectComponent), DIC.Make(Logger)); })
+// DIC.Register(TSScene, function():TSScene { return new TSScene(); })
+// DIC.Register(UnityGameObjectComponent, function():UnityGameObjectComponent {
+//         let go = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
+//         return new UnityGameObjectComponent(go);
+//     })
+// DIC.Register(App, function():App {
+//     return new GameApp(DIC.Make<TSComponentHub>(TSComponentHub), DIC.Make<TSScene>(TSScene), DIC.Make<CubeGO>(CubeGO));
+//  });
+// DIC.Make<App>(App).Start();
 
 // ---------------TSEngine test
-// let engine = new Engine();
-// engine.start(new TestGame());
+let engine = new Engine();
+engine.start(new TestGame());
 
 
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
