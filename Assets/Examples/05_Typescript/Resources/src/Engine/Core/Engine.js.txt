@@ -84,10 +84,13 @@ class Engine {
     loop() {
         if (this._isFirstUpdate) {
         }
-        let delta = performance.now() - this._previousTime;
+        //TODO 这个时间有问题
+        let nowTime = new Date().getUTCMilliseconds() / 1000;
+        let delta = nowTime - this._previousTime;
         this.update(delta);
         this.render(delta);
-        this._previousTime = performance.now();
+        console.log(delta);
+        this._previousTime = nowTime;
         //requestAnimationFrame( this.loop.bind( this ) );
     }
     preloading() {
@@ -109,6 +112,10 @@ class Engine {
         this._game.UpdateReady();
         // Kick off the render loop.
         this.loop();
+        //TODO 从unity中call
+        setInterval(() => {
+            this.loop();
+        }, 1000);
     }
     update(delta) {
         MessageBus_1.MessageBus.update(delta);

@@ -1,3 +1,8 @@
 {
-	"name" : "main"
+	"name" : "main",
+	"objects" : [
+		{
+			"name" : "cube"
+		}
+	]
 }

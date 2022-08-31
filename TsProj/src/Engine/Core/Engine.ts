@@ -107,12 +107,15 @@ import { LevelManager } from "./World/LevelManager";
 
             }
 
-            let delta = performance.now() - this._previousTime;
+            //TODO 这个时间有问题
+            let nowTime = new Date().getUTCMilliseconds() / 1000;
+            let delta = nowTime - this._previousTime;
 
             this.update( delta );
             this.render( delta );
+            console.log(delta)
 
-            this._previousTime = performance.now();
+            this._previousTime = nowTime;
 
             //requestAnimationFrame( this.loop.bind( this ) );
         }
@@ -142,6 +145,14 @@ import { LevelManager } from "./World/LevelManager";
 
             // Kick off the render loop.
             this.loop();
+
+                
+            //TODO 从unity中call
+            setInterval(()=>
+            {
+                this.loop();
+            }, 1000);
+
         }
 
         private update( delta: number ): void {
