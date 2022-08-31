@@ -66,6 +66,10 @@ class AssetManager {
         else {
             AssetManager.loadAsset(assetName);
         }
+        // AssetManager.loadAsset() maybe sync
+        if (AssetManager._loadedAssets[assetName] !== undefined) {
+            return AssetManager._loadedAssets[assetName];
+        }
         return undefined;
     }
 }

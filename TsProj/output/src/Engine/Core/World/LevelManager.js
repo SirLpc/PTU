@@ -28,16 +28,12 @@ class LevelManager {
     static load() {
         // Get the asset(s). TODO: This probably should come from a central asset manifest.
         let asset = AssetManager_1.AssetManager.getAsset1("assets/levels/levels.json");
-        console.log("call get");
-        console.log(AssetManager_1.AssetManager.getAsset1);
         if (asset !== undefined) {
             LevelManager.processLevelConfigAsset(asset);
-            console.log("not undefined.");
         }
         else {
             // Listen for the asset load.
             Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
-            console.log("register undefined.");
         }
     }
     /**
@@ -72,7 +68,6 @@ class LevelManager {
      * @param message The message to be handled.
      */
     static onMessage(message) {
-        console.log("onMessage level:" + message);
         // TODO: one for each asset.
         if (message.code === AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json") {
             Message_1.Message.unsubscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
@@ -105,7 +100,6 @@ class LevelManager {
         Message_1.Message.send("LEVEL_LOADED", this);
     }
     static processLevelConfigAsset(asset) {
-        console.log("load complete");
         let levels = asset.Data.levels;
         if (levels) {
             for (let level of levels) {

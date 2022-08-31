@@ -79,6 +79,11 @@ import { TextAssetLoader } from "./TestAssetLoader";
                 AssetManager.loadAsset( assetName );
             }
 
+            // AssetManager.loadAsset() maybe sync
+            if ( AssetManager._loadedAssets[assetName] !== undefined ) {
+                return AssetManager._loadedAssets[assetName];
+            }
+
             return undefined;
         }
     }
