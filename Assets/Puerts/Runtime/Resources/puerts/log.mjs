@@ -24,23 +24,39 @@ if (UnityEngine_Debug) {
     }
     
     console.log = function() {
-        if (console_org) console_org.log.apply(null, Array.prototype.slice.call(arguments));
-        UnityEngine_Debug.Log(toString(arguments));
+        // if (console_org) console_org.log.apply(null, Array.prototype.slice.call(arguments));
+        // UnityEngine_Debug.Log(toString(arguments));
+
+        let error = new Error(toString(arguments)).stack.split("Error: ")[1];
+        if (console_org) console_org.log(error);
+        UnityEngine_Debug.Log(error);
     }
     
     console.info = function() {
-        if (console_org) console_org.info.apply(null, Array.prototype.slice.call(arguments));
-        UnityEngine_Debug.Log(toString(arguments));
+        // if (console_org) console_org.info.apply(null, Array.prototype.slice.call(arguments));
+        // UnityEngine_Debug.Log(toString(arguments));
+
+        let error = new Error(toString(arguments)).stack.split("Error: ")[1];
+        if (console_org) console_org.info(error);
+        UnityEngine_Debug.Log(error);
     }
     
     console.warn = function() {
-        if (console_org) console_org.warn.apply(null, Array.prototype.slice.call(arguments));
-        UnityEngine_Debug.LogWarning(toString(arguments));
+        // if (console_org) console_org.warn.apply(null, Array.prototype.slice.call(arguments));
+        // UnityEngine_Debug.LogWarning(toString(arguments));
+
+        let error = new Error(toString(arguments)).stack.split("Error: ")[1];
+        if (console_org) console_org.warn(error);
+        UnityEngine_Debug.LogWarning(error);
     }
     
     console.error = function() {
-        if (console_org) console_org.error.apply(null, Array.prototype.slice.call(arguments));
-        UnityEngine_Debug.LogError(toString(arguments));
+        // if (console_org) console_org.error.apply(null, Array.prototype.slice.call(arguments));
+        // UnityEngine_Debug.LogError(toString(arguments));
+
+        let error = new Error(toString(arguments)).stack.split("Error: ")[1];
+        if (console_org) console_org.error(error);
+        UnityEngine_Debug.LogError(error);
     }
     
     console.trace = function() {
