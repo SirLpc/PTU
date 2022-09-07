@@ -21,8 +21,6 @@ class UnityJsonAssetLoader {
         this.onJsonLoaded(assetName, txtAst);
     }
     onJsonLoaded(assetName, txtAsset) {
-        console.log(assetName);
-        console.log(txtAsset);
         console.log("onUnityJsonLoaded: assetName :", assetName);
         //TODO unity object null check
         let json = JSON.parse(txtAsset.text);

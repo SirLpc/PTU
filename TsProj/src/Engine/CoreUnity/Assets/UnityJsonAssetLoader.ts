@@ -26,8 +26,6 @@ export class UnityJsonAssetLoader implements IAssetLoader {
     }
 
     private onJsonLoaded( assetName: string, txtAsset: UnityEngine.TextAsset ): void {
-        console.log( assetName );
-        console.log( txtAsset );
         console.log( "onUnityJsonLoaded: assetName :", assetName );
 
         //TODO unity object null check

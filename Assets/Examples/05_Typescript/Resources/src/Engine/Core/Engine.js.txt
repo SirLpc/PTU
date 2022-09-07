@@ -84,12 +84,10 @@ class Engine {
     loop() {
         if (this._isFirstUpdate) {
         }
-        //TODO 这个时间有问题
-        let nowTime = new Date().getUTCMilliseconds() / 1000;
+        let nowTime = Date.now();
         let delta = nowTime - this._previousTime;
         this.update(delta);
         this.render(delta);
-        console.log(delta);
         this._previousTime = nowTime;
         //requestAnimationFrame( this.loop.bind( this ) );
     }
