@@ -4,16 +4,12 @@ exports.TestGame = void 0;
 const LevelManager_1 = require("../../Engine/Core/World/LevelManager");
 class TestGame {
     UpdateReady() {
-        // throw new Error("Method not implemented.");
         LevelManager_1.LevelManager.changeLevel("main");
         console.log("Update ready, load main level.");
     }
     Update(time) {
-        // throw new Error("Method not implemented.");
-        console.log(LevelManager_1.LevelManager.activeLevel.name);
     }
     Render(time) {
-        // throw new Error("Method not implemented.");
     }
 }
 exports.TestGame = TestGame;
