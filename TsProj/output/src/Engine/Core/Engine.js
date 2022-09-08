@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
 const UnityJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityJsonAssetLoader");
+const UnityLevelToJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityLevelToJsonAssetLoader");
 const AssetManager_1 = require("./Assets/AssetManager");
 const MessageBus_1 = require("./Message/MessageBus");
 const LevelManager_1 = require("./World/LevelManager");
@@ -55,6 +56,7 @@ class Engine {
         // Initialize various sub-systems.
         AssetManager_1.AssetManager.Initialize();
         AssetManager_1.AssetManager.registerLoader(new UnityJsonAssetLoader_1.UnityJsonAssetLoader());
+        AssetManager_1.AssetManager.registerLoader(new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader());
         // ShaderManager.Initialize();
         // InputManager.Initialize( this._renderer.windowViewportCanvas );
         // Load fonts

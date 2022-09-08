@@ -27,7 +27,7 @@ class LevelManager {
     /** Loads this manager. */
     static load() {
         // Get the asset(s). TODO: This probably should come from a central asset manifest.
-        let asset = AssetManager_1.AssetManager.getAsset1("assets/levels/levels.json");
+        let asset = AssetManager_1.AssetManager.getAsset("assets/levels/levels.json");
         if (asset !== undefined) {
             LevelManager.processLevelConfigAsset(asset);
         }
@@ -51,7 +51,7 @@ class LevelManager {
             // If the level asset is already loaded, get it and use it to load the level.
             // Otherwise, retrieve the asset and load the level upon completion.
             if (AssetManager_1.AssetManager.isAssetLoaded(LevelManager._registeredLevels[name])) {
-                let asset = AssetManager_1.AssetManager.getAsset1(LevelManager._registeredLevels[name]);
+                let asset = AssetManager_1.AssetManager.getAsset(LevelManager._registeredLevels[name]);
                 LevelManager.loadLevel(asset);
             }
             else {

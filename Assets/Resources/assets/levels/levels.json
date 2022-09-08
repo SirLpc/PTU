@@ -2,7 +2,7 @@
 	"levels" : [
 		{
 			"name" : "main",
-			"file" : "assets/levels/main.json"
+			"file" : "assets/levels/main.level"
 		}
 	]
 }

@@ -1,4 +1,5 @@
 ﻿import { UnityJsonAssetLoader } from "../CoreUnity/Assets/UnityJsonAssetLoader";
+import { UnityLevelToJsonAssetLoader } from "../CoreUnity/Assets/UnityLevelToJsonAssetLoader";
 import { IGame } from "../Game/IGame";
 import { AssetManager } from "./Assets/AssetManager";
 import { MessageBus } from "./Message/MessageBus";
@@ -66,6 +67,7 @@ import { LevelManager } from "./World/LevelManager";
             // Initialize various sub-systems.
             AssetManager.Initialize();
             AssetManager.registerLoader(new UnityJsonAssetLoader() );
+            AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
 
             // ShaderManager.Initialize();
 
