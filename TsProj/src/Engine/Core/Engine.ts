@@ -2,6 +2,8 @@
 import { UnityLevelToJsonAssetLoader } from "../CoreUnity/Assets/UnityLevelToJsonAssetLoader";
 import { IGame } from "../Game/IGame";
 import { AssetManager } from "./Assets/AssetManager";
+import { BehaviorManager } from "./Behaviors/BehaviorManager";
+import { RotationBehaviorBuilder } from "./Behaviors/RotationBehavior";
 import { MessageBus } from "./Message/MessageBus";
 import { LevelManager } from "./World/LevelManager";
 
@@ -68,6 +70,9 @@ import { LevelManager } from "./World/LevelManager";
             AssetManager.Initialize();
             AssetManager.registerLoader(new UnityJsonAssetLoader() );
             AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
+
+
+            BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
 
             // ShaderManager.Initialize();
 

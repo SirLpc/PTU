@@ -4,6 +4,8 @@ exports.Engine = void 0;
 const UnityJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityJsonAssetLoader");
 const UnityLevelToJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityLevelToJsonAssetLoader");
 const AssetManager_1 = require("./Assets/AssetManager");
+const BehaviorManager_1 = require("./Behaviors/BehaviorManager");
+const RotationBehavior_1 = require("./Behaviors/RotationBehavior");
 const MessageBus_1 = require("./Message/MessageBus");
 const LevelManager_1 = require("./World/LevelManager");
 /**
@@ -57,6 +59,7 @@ class Engine {
         AssetManager_1.AssetManager.Initialize();
         AssetManager_1.AssetManager.registerLoader(new UnityJsonAssetLoader_1.UnityJsonAssetLoader());
         AssetManager_1.AssetManager.registerLoader(new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader());
+        BehaviorManager_1.BehaviorManager.registerBuilder(new RotationBehavior_1.RotationBehaviorBuilder());
         // ShaderManager.Initialize();
         // InputManager.Initialize( this._renderer.windowViewportCanvas );
         // Load fonts

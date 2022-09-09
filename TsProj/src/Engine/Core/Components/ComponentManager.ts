@@ -27,7 +27,7 @@ import { IComponentBuilder } from "./IComponentBuilder";
                     return ComponentManager._registeredBuilders[String( json.type )].buildFromJson( json );
                 }
 
-                throw new Error( "Component manager error - type is missing or builder is not registered for this type." );
+                throw new Error( "Behavior manager error - type is missing or builder is not registered for this type: " + json.type );
             }
         }
     }
