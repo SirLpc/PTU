@@ -1,6 +1,5 @@
 // /// <reference path="ComponentManager.ts" />
 // /// <reference path="BaseComponent.ts" />
-// 
 //     /**
 //      * The data for a sprite component.
 //      */
@@ -44,7 +43,7 @@
 //     /**
 //      * A component which renders a two-dimensional image on the screen.
 //      */
-//     export class SpriteComponent extends BaseComponent {
+//     export class UnityObjectComponent extends BaseComponent {
 //         private _sprite: Sprite;
 //         private _width: number;
 //         private _height: number;

@@ -1,12 +1,12 @@
 "use strict";
-/// <reference path="ComponentManager.ts" />
-/// <reference path="BaseComponent.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnityObjectComponent = exports.SpriteComponentBuilder = exports.SpriteComponentData = void 0;
+exports.UnityObjectComponent = exports.UnityObjectComponentBuilder = exports.UnityObjectComponentData = void 0;
+const BaseComponent_1 = require("../../Core/Components/BaseComponent");
+const ComponentManager_1 = require("../../Core/Components/ComponentManager");
 /**
  * The data for a sprite component.
  */
-class SpriteComponentData {
+class UnityObjectComponentData {
     name;
     materialName;
     origin = Vector3.zero;
@@ -30,11 +30,11 @@ class SpriteComponentData {
         }
     }
 }
-exports.SpriteComponentData = SpriteComponentData;
+exports.UnityObjectComponentData = UnityObjectComponentData;
 /**
  * The builder for a sprite component.
  */
-class SpriteComponentBuilder {
+class UnityObjectComponentBuilder {
     get type() {
         return "sprite";
     }
@@ -44,11 +44,11 @@ class SpriteComponentBuilder {
         return new SpriteComponent(data);
     }
 }
-exports.SpriteComponentBuilder = SpriteComponentBuilder;
+exports.UnityObjectComponentBuilder = UnityObjectComponentBuilder;
 /**
  * A component which renders a two-dimensional image on the screen.
  */
-class UnityObjectComponent extends BaseComponent {
+class UnityObjectComponent extends BaseComponent_1.BaseComponent {
     _sprite;
     _width;
     _height;
@@ -78,5 +78,5 @@ class UnityObjectComponent extends BaseComponent {
     }
 }
 exports.UnityObjectComponent = UnityObjectComponent;
-ComponentManager.registerBuilder(new SpriteComponentBuilder());
+ComponentManager_1.ComponentManager.registerBuilder(new UnityObjectComponentBuilder());
 //# sourceMappingURL=UnityObjectComponent.js.map
