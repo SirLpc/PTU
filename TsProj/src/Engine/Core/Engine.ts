@@ -1,9 +1,11 @@
 ﻿import { UnityJsonAssetLoader } from "../CoreUnity/Assets/UnityJsonAssetLoader";
 import { UnityLevelToJsonAssetLoader } from "../CoreUnity/Assets/UnityLevelToJsonAssetLoader";
+import { UnityObjectComponentBuilder } from "../CoreUnity/Assets/UnityObjectComponent";
 import { IGame } from "../Game/IGame";
 import { AssetManager } from "./Assets/AssetManager";
 import { BehaviorManager } from "./Behaviors/BehaviorManager";
 import { RotationBehaviorBuilder } from "./Behaviors/RotationBehavior";
+import { ComponentManager } from "./Components/ComponentManager";
 import { MessageBus } from "./Message/MessageBus";
 import { LevelManager } from "./World/LevelManager";
 
@@ -73,6 +75,7 @@ import { LevelManager } from "./World/LevelManager";
 
 
             BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
+            ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
 
             // ShaderManager.Initialize();
 
@@ -174,7 +177,10 @@ import { LevelManager } from "./World/LevelManager";
         private render( delta: number ): void {
             // this._renderer.BeginRender( delta, this._game );
 
-
+            // 下面是自己加到这的，不知道合理不
+            if ( LevelManager.isLoaded && LevelManager.activeLevel !== undefined && LevelManager.activeLevel.isLoaded ) {
+                LevelManager.activeLevel.render( );
+            }
 
             // this._renderer.EndRender();
         }

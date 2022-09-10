@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2188106760802919026}
   - component: {fileID: 2772924385047585887}
   - component: {fileID: 8565148821182360074}
+  - component: {fileID: 4496198599640277946}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -206,6 +207,20 @@ MonoBehaviour:
   type: rotation
   name: RotBehaviour
   rotation: 
+--- !u!114 &4496198599640277946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588625138362911591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfc3b5f817f41cea347f7492026407e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: UnityObjectComponent
+  name: Cube
 --- !u!1 &8766656886643565657
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 ﻿
+import { UnityEngine } from "csharp";
 import { BaseComponent } from "../../Core/Components/BaseComponent";
 import { ComponentManager } from "../../Core/Components/ComponentManager";
+import { IComponent } from "../../Core/Components/IComponent";
 import { IComponentBuilder } from "../../Core/Components/IComponentBuilder";
 import { IComponentData } from "../../Core/Components/IComponentData";
 
@@ -11,30 +13,10 @@ import { IComponentData } from "../../Core/Components/IComponentData";
      */
     export class UnityObjectComponentData implements IComponentData {
         public name: string;
-        public materialName: string;
-        public origin: Vector3 = Vector3.zero;
-        public width: number;
-        public height: number;
 
         public setFromJson( json: any ): void {
             if ( json.name !== undefined ) {
                 this.name = String( json.name );
-            }
-
-            if ( json.width !== undefined ) {
-                this.width = Number( json.width );
-            }
-
-            if ( json.height !== undefined ) {
-                this.height = Number( json.height );
-            }
-
-            if ( json.materialName !== undefined ) {
-                this.materialName = String( json.materialName );
-            }
-
-            if ( json.origin !== undefined ) {
-                this.origin.setFromJson( json.origin );
             }
         }
     }
@@ -45,13 +27,13 @@ import { IComponentData } from "../../Core/Components/IComponentData";
     export class UnityObjectComponentBuilder implements IComponentBuilder {
 
         public get type(): string {
-            return "sprite";
+            return "UnityObjectComponent";
         }
 
         public buildFromJson( json: any ): IComponent {
-            let data = new SpriteComponentData();
+            let data = new UnityObjectComponentData();
             data.setFromJson( json );
-            return new SpriteComponent( data );
+            return new UnityObjectComponent( data );
         }
     }
 
@@ -60,37 +42,36 @@ import { IComponentData } from "../../Core/Components/IComponentData";
      */
     export class UnityObjectComponent extends BaseComponent {
 
-        private _sprite: Sprite;
-        private _width: number;
-        private _height: number;
+        private _instanceID: number;
+        private _unityGO: UnityEngine.GameObject;
 
         /**
          * Creates a new SpriteComponent.
          * @param data The data to create from.
          */
-        public constructor( data: SpriteComponentData ) {
+        public constructor( data: UnityObjectComponentData ) {
             super( data );
-
-            this._width = data.width;
-            this._height = data.height;
-            this._sprite = new Sprite( name, data.materialName, this._width, this._height );
-            if ( !data.origin.equals( Vector3.zero ) ) {
-                this._sprite.origin.copyFrom( data.origin );
-            }
         }
 
         /** Loads this component. */
-        public load(): void {
-            this._sprite.load();
+        public override load(): void {
+            this._unityGO = UnityEngine.GameObject.Find(this.owner.name);
+
+            super.load( );
         }
 
         /**
          * Renders this component.
          */
-        public render( renderView: RenderView ): void {
-            this._sprite.draw( this.owner.worldMatrix, renderView.viewMatrix, renderView.projectionMatrix );
+        public override render( /*renderView: RenderView*/ ): void {
+            let pos : UnityEngine.Vector3 = new UnityEngine.Vector3(this.owner.transform.position.x, this.owner.transform.position.y, this.owner.transform.position.z);
+            let rot : UnityEngine.Vector3 = new UnityEngine.Vector3(this.owner.transform.rotation.x, this.owner.transform.rotation.y, this.owner.transform.rotation.z);
+            let scale : UnityEngine.Vector3 = new UnityEngine.Vector3(this.owner.transform.scale.x, this.owner.transform.scale.y, this.owner.transform.scale.z);
+            this._unityGO.transform.localPosition = pos;
+            this._unityGO.transform.localEulerAngles = rot;
+            this._unityGO.transform.localScale = scale;
 
-            super.render( renderView );
+            super.render( );
         }
     }
 

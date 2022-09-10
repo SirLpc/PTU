@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
 const UnityJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityJsonAssetLoader");
 const UnityLevelToJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityLevelToJsonAssetLoader");
+const UnityObjectComponent_1 = require("../CoreUnity/Assets/UnityObjectComponent");
 const AssetManager_1 = require("./Assets/AssetManager");
 const BehaviorManager_1 = require("./Behaviors/BehaviorManager");
 const RotationBehavior_1 = require("./Behaviors/RotationBehavior");
+const ComponentManager_1 = require("./Components/ComponentManager");
 const MessageBus_1 = require("./Message/MessageBus");
 const LevelManager_1 = require("./World/LevelManager");
 /**
@@ -60,6 +62,7 @@ class Engine {
         AssetManager_1.AssetManager.registerLoader(new UnityJsonAssetLoader_1.UnityJsonAssetLoader());
         AssetManager_1.AssetManager.registerLoader(new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader());
         BehaviorManager_1.BehaviorManager.registerBuilder(new RotationBehavior_1.RotationBehaviorBuilder());
+        ComponentManager_1.ComponentManager.registerBuilder(new UnityObjectComponent_1.UnityObjectComponentBuilder());
         // ShaderManager.Initialize();
         // InputManager.Initialize( this._renderer.windowViewportCanvas );
         // Load fonts
@@ -130,6 +133,10 @@ class Engine {
     }
     render(delta) {
         // this._renderer.BeginRender( delta, this._game );
+        // 下面是自己加到这的，不知道合理不
+        if (LevelManager_1.LevelManager.isLoaded && LevelManager_1.LevelManager.activeLevel !== undefined && LevelManager_1.LevelManager.activeLevel.isLoaded) {
+            LevelManager_1.LevelManager.activeLevel.render();
+        }
         // this._renderer.EndRender();
     }
 }

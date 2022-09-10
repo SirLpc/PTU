@@ -29,6 +29,7 @@ namespace TSEngine
         public TransformDescription transform;
         public EntityDescription[] children;
         public BehaviourDescription[] behaviors;
+        public ComponentDescription[] components;
 
         public EntityDescription(Transform tr)
         {
@@ -45,6 +46,13 @@ namespace TSEngine
             for (int i = 0; i < behaviourIjs.Length; i++)
             {
                 behaviors[i] = new BehaviourDescription(behaviourIjs[i]);
+            }
+            
+            var componentIjs = tr.GetComponents<ComponentInjector>();
+            components = new ComponentDescription[componentIjs.Length];
+            for (int i = 0; i < components.Length; i++)
+            {
+                components[i] = new ComponentDescription(componentIjs[i]);
             }
         }
     }
