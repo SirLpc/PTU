@@ -30,6 +30,8 @@ namespace TSEngine
         public string name;
         public string rotation;
 
+        public VariableCollection data;
+
     }
 
 }

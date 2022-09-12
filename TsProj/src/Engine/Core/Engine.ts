@@ -159,7 +159,7 @@ import { LevelManager } from "./World/LevelManager";
             setInterval(()=>
             {
                 this.loop();
-            }, 1000);
+            }, 1000 / 60);
 
         }
 

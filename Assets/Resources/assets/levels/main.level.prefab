@@ -207,6 +207,8 @@ MonoBehaviour:
   type: rotation
   name: RotBehaviour
   rotation: 
+  data:
+  - {fileID: 11400000, guid: 1ae778b5084262d4eae818ec580686c4, type: 2}
 --- !u!114 &4496198599640277946
 MonoBehaviour:
   m_ObjectHideFlags: 0

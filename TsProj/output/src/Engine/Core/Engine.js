@@ -121,7 +121,7 @@ class Engine {
         //TODO 从unity中call
         setInterval(() => {
             this.loop();
-        }, 1000);
+        }, 1000 / 60);
     }
     update(delta) {
         MessageBus_1.MessageBus.update(delta);
