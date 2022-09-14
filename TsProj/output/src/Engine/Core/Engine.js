@@ -22,20 +22,20 @@ class Engine {
     _game;
     /**
      * Creates a new engine.
+     * @param game The object containing game-specific logic.
      * @param width The width of the game in pixels.
      * @param height The height of the game in pixels.
      * */
-    constructor(width, height) {
+    constructor(game, width, height) {
+        this._game = game;
         this._gameWidth = width;
         this._gameHeight = height;
     }
     /**
      * Starts up this engine.
-     * @param game The object containing game-specific logic.
      * @param elementName The name (id) of the HTML element to use as the viewport. Must be the id of a canvas element.
      * */
-    start(game, elementName) {
-        this._game = game;
+    start(elementName) {
         // let rendererViewportCreateInfo: RendererViewportCreateInfo = new RendererViewportCreateInfo();
         // rendererViewportCreateInfo.elementId = elementName;
         // rendererViewportCreateInfo.projectionType = ViewportProjectionType.PERSPECTIVE;

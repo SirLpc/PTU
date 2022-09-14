@@ -26,22 +26,22 @@ import { LevelManager } from "./World/LevelManager";
 
         /**
          * Creates a new engine.
+         * @param game The object containing game-specific logic.
          * @param width The width of the game in pixels.
          * @param height The height of the game in pixels.
          * */
-        public constructor( width?: number, height?: number ) {
+        public constructor( game: IGame, width?: number, height?: number ) {
+            this._game = game;
+
             this._gameWidth = width;
             this._gameHeight = height;
         }
 
         /**
          * Starts up this engine.
-         * @param game The object containing game-specific logic.
          * @param elementName The name (id) of the HTML element to use as the viewport. Must be the id of a canvas element.
          * */
-        public start( game: IGame, elementName?: string ): void {
-
-            this._game = game;
+        public start( elementName?: string ): void {
 
             // let rendererViewportCreateInfo: RendererViewportCreateInfo = new RendererViewportCreateInfo();
             // rendererViewportCreateInfo.elementId = elementName;

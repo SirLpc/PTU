@@ -28,3 +28,5 @@
         //Render( time: number, renderView: RenderView ): void;
         Render( time: number ): void;
     }
+
+    export class IGameInterface {}

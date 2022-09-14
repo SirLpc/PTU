@@ -3,7 +3,7 @@
 /// <reference path="BehaviorManager.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RotationBehavior = exports.RotationBehaviorBuilder = exports.RotationBehaviorData = void 0;
-const Vector3_1 = require("../Math/Vector3");
+const Vector3VariableReference_1 = require("../../CoreUnity/VariableReferences/Vector3VariableReference");
 const BaseBehavior_1 = require("./BaseBehavior");
 const BehaviorManager_1 = require("./BehaviorManager");
 /**
@@ -13,7 +13,7 @@ class RotationBehaviorData {
     /** The name of the behavior. */
     name;
     /** The rotation amounts to be added per update. */
-    rotation = Vector3_1.Vector3.zero;
+    rotation = new Vector3VariableReference_1.Vector3VariableReference();
     /**
      * Sets the properties of this data from the provided json.
      * @param json The json to set from.
@@ -24,7 +24,7 @@ class RotationBehaviorData {
         }
         this.name = String(json.name);
         if (json.rotation !== undefined) {
-            this.rotation.setFromJson(json.rotation);
+            this.rotation.inject(json.rotation);
         }
     }
 }
@@ -60,7 +60,7 @@ class RotationBehavior extends BaseBehavior_1.BaseBehavior {
      * @param time The time in milliseconds since the last update.
      */
     update(time) {
-        this._owner.transform.rotation.add(this._rotation);
+        this._owner.transform.rotation.add(this._rotation.value);
         super.update(time);
     }
 }

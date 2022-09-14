@@ -1,7 +1,10 @@
 ﻿/// <reference path="BaseBehavior.ts" />
 /// <reference path="BehaviorManager.ts" />
 
+import { Vector3VariableReference } from "../../CoreUnity/VariableReferences/Vector3VariableReference";
 import { Vector3 } from "../Math/Vector3";
+import { BaseVariableInjectReference } from "../VariableReferences/BaseVariableInjectReference";
+import { IVariableRef } from "../VariableReferences/IVariableRef";
 import { BaseBehavior } from "./BaseBehavior";
 import { BehaviorManager } from "./BehaviorManager";
 import { IBehavior } from "./IBehavior";
@@ -19,7 +22,7 @@ import { IBehaviorData } from "./IBehaviorData";
         public name: string;
 
         /** The rotation amounts to be added per update. */
-        public rotation: Vector3 = Vector3.zero;
+        public rotation: IVariableRef<Vector3> = new Vector3VariableReference();
 
         /**
          * Sets the properties of this data from the provided json.
@@ -33,7 +36,7 @@ import { IBehaviorData } from "./IBehaviorData";
             this.name = String( json.name );
 
             if ( json.rotation !== undefined ) {
-                this.rotation.setFromJson( json.rotation );
+                this.rotation.inject( json.rotation );
             }
         }
     }
@@ -57,7 +60,7 @@ import { IBehaviorData } from "./IBehaviorData";
      */
     export class RotationBehavior extends BaseBehavior {
 
-        private _rotation: Vector3;
+        private _rotation: IVariableRef<Vector3>;
 
         /**
          * Creates a new RotationBehavior.
@@ -74,7 +77,7 @@ import { IBehaviorData } from "./IBehaviorData";
          * @param time The time in milliseconds since the last update.
          */
         public override update( time: number ): void {
-            this._owner.transform.rotation.add( this._rotation );
+            this._owner.transform.rotation.add( this._rotation.value );
 
             super.update( time );
         }

@@ -20,6 +20,7 @@ import { TSScene } from './src/CoreFramework/TSScene'
 import { UnityGameObjectComponent } from './src/CoreFramework/UnityGameObjectComponent'
 import { Engine } from './src/Engine/Core/Engine'
 import { TestGame } from './src/Sample/TestNewEngine/TestGame'
+import { IGame, IGameInterface } from './src/Engine/Game/IGame'
 
 
 // let ecs : ECS = new ECS();
@@ -45,9 +46,14 @@ import { TestGame } from './src/Sample/TestNewEngine/TestGame'
 // DIC.Make<App>(App).Start();
 
 // ---------------TSEngine test
-let engine = new Engine();
-engine.start(new TestGame());
 
+
+DIC.Register(Engine, function():Engine {return new Engine(DIC.Make(IGameInterface))});
+DIC.Register(IGameInterface, function():IGame {return new TestGame()});
+
+
+let engine = DIC.Make<Engine>(Engine);
+engine.start();
 
 
 

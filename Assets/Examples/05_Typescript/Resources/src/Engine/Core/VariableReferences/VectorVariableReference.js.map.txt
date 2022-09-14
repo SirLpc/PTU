@@ -1,0 +1,1 @@
+{"version":3,"file":"VectorVariableReference.js","sourceRoot":"","sources":["../../../../../src/Engine/Core/VariableReferences/VectorVariableReference.ts"],"names":[],"mappings":""}

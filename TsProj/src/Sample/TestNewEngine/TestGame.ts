@@ -4,7 +4,7 @@ import { IGame } from "../../Engine/Game/IGame";
     export class TestGame implements IGame {
         UpdateReady(): void {
             LevelManager.changeLevel("main");
-            console.log("Update ready, load main level.");
+            console.log("UpdateReady, load main level.");
         }
         Update(time: number): void {
         }

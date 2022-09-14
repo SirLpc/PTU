@@ -2,8 +2,10 @@
 /// <reference path="src/Engine/Core/Engine.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./ExtensionDecl");
+const DIC_1 = require("./src/CoreFramework/DIC");
 const Engine_1 = require("./src/Engine/Core/Engine");
 const TestGame_1 = require("./src/Sample/TestNewEngine/TestGame");
+const IGame_1 = require("./src/Engine/Game/IGame");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -25,8 +27,10 @@ const TestGame_1 = require("./src/Sample/TestNewEngine/TestGame");
 //  });
 // DIC.Make<App>(App).Start();
 // ---------------TSEngine test
-let engine = new Engine_1.Engine();
-engine.start(new TestGame_1.TestGame());
+DIC_1.DIC.Register(Engine_1.Engine, function () { return new Engine_1.Engine(DIC_1.DIC.Make(IGame_1.IGameInterface)); });
+DIC_1.DIC.Register(IGame_1.IGameInterface, function () { return new TestGame_1.TestGame(); });
+let engine = DIC_1.DIC.Make(Engine_1.Engine);
+engine.start();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
 // let fv :  Puergp.Variables.FloatVariable = UnityEngine.Resources.Load("FloatVariable") as  Puergp.Variables.FloatVariable;
 // let evt : Puergp.Events.FloatGameEvent = UnityEngine.Resources.Load("FloatGameEvent") as Puergp.Events.FloatGameEvent;

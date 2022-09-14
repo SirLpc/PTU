@@ -1,0 +1,1 @@
+{"version":3,"file":"IVariableReference copy.js","sourceRoot":"","sources":["../../../../../src/Engine/Core/VariableReferences/IVariableReference copy.ts"],"names":[],"mappings":""}
