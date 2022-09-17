@@ -3,23 +3,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DIC = void 0;
 class ServiceEntry {
     key;
-    _resolver;
-    _singleton;
+    resolver;
+    singleton;
     _service;
     get service() {
-        if (!this._singleton) {
-            return this._resolver();
+        if (!this.singleton) {
+            return this.resolver();
         }
         if (this._service != undefined) {
             return this._service;
         }
-        this._service = this._resolver();
+        this._service = this.resolver();
         return this._service;
     }
-    constructor(key, _resolver, _singleton) {
+    constructor(key, resolver, singleton) {
         this.key = key;
-        this._resolver = _resolver;
-        this._singleton = _singleton;
+        this.resolver = resolver;
+        this.singleton = singleton;
     }
 }
 class DIC {
@@ -42,9 +42,19 @@ class DIC {
         //console.log(`get ${fn.name}`);
         let service = DIC.serviceMap.get(fn.name);
         if (service == undefined) {
-            throw Error("You must register the service before retrieving it.");
+            throw Error("You must register the service before retrieving it instance." + fn.name);
         }
         return service.service;
+    }
+    static GetResolver(fn) {
+        let service = DIC.serviceMap.get(fn.name);
+        if (service == undefined) {
+            throw Error("You must register the service before retrieving it provider, named: " + fn.name);
+        }
+        if (service.singleton) {
+            throw Error("You can`t require a singleton provider, named: " + fn.name);
+        }
+        return service.resolver;
     }
 }
 exports.DIC = DIC;

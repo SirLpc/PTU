@@ -10,19 +10,19 @@ class ServiceEntry {
   private _service: any;
 
   public get service() {
-    if (!this._singleton) {
-      return this._resolver();
+    if (!this.singleton) {
+      return this.resolver();
     }
 
     if (this._service != undefined) {
       return this._service;
     }
 
-    this._service = this._resolver();
+    this._service = this.resolver();
     return this._service;
   }
 
-  public constructor(private key: string, private _resolver: ()=>any, private _singleton: boolean) {
+  public constructor(private key: string, public resolver: ()=>any, public singleton: boolean) {
   }
 }
 
@@ -55,10 +55,24 @@ export class DIC {
       let service = DIC.serviceMap.get(fn.name);
 
       if (service == undefined) {
-        throw Error("You must register the service before retrieving it.");
+        throw Error("You must register the service before retrieving it instance." + fn.name);
       }
 
       return service.service;
+    }
+
+    public static GetResolver(fn: Function): ()=>any {
+      let service = DIC.serviceMap.get(fn.name);
+
+      if (service == undefined) {
+        throw Error("You must register the service before retrieving it provider, named: " + fn.name);
+      }
+
+      if (service.singleton) {
+        throw Error("You can`t require a singleton provider, named: " + fn.name);
+      }
+
+      return service.resolver;
     }
   
   }

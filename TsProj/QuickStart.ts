@@ -26,6 +26,10 @@ import { IAssetLoader } from './src/CoreFramework/IAssetLoader'
 import { UnityLevelToJsonAssetLoader } from './src/Engine/CoreUnity/Assets/UnityLevelToJsonAssetLoader'
 import { AssetManager } from './src/Engine/Core/Assets/AssetManager'
 import { LevelManager } from './src/Engine/Core/World/LevelManager'
+import { ComponentManager } from './src/Engine/Core/Components/ComponentManager'
+import { UnityObjectComponent, UnityObjectComponentBuilder, UnityObjectComponentData } from './src/Engine/CoreUnity/Components/UnityObjectComponent'
+import { Level } from './src/Engine/Core/World/Level'
+import { SceneGraph } from './src/Engine/Core/World/SceneGraph'
 
 
 // let ecs : ECS = new ECS();
@@ -52,18 +56,31 @@ import { LevelManager } from './src/Engine/Core/World/LevelManager'
 
 // ---------------TSEngine test
 
-
+// register services in dic
 DIC.RegisterSingleton(Engine, function():Engine {return new Engine(DIC.Make(IGameInterface), DIC.Make(LevelManager))});
-DIC.RegisterSingleton(LevelManager, function():LevelManager{return new LevelManager(DIC.Make(AssetManager))});
+DIC.RegisterTransient(SceneGraph, function():SceneGraph{return new SceneGraph()});
+DIC.RegisterTransient(Level, function():Level{return new Level(DIC.Make(ComponentManager), DIC.Make(SceneGraph))});
+DIC.RegisterSingleton(LevelManager, function():LevelManager{return new LevelManager(DIC.Make(AssetManager), DIC.GetResolver(Level))});
 DIC.RegisterSingleton(IGameInterface, function():IGame {return new TestGame(DIC.Make(LevelManager))});
 
 DIC.RegisterSingleton<UnityJsonAssetLoader>(UnityJsonAssetLoader, function():UnityJsonAssetLoader {return new UnityJsonAssetLoader(DIC.Make(AssetManager))});
 DIC.RegisterSingleton<UnityLevelToJsonAssetLoader>(UnityLevelToJsonAssetLoader, function():UnityLevelToJsonAssetLoader {return new UnityLevelToJsonAssetLoader(DIC.Make(AssetManager))});
 DIC.RegisterSingleton(AssetManager, function():AssetManager{return new AssetManager()});
 
+DIC.RegisterSingleton(ComponentManager, function():ComponentManager {return new ComponentManager()});
 
+DIC.RegisterTransient(UnityObjectComponentData, function():UnityObjectComponentData {return new UnityObjectComponentData()});
+DIC.RegisterTransient(UnityObjectComponent, function():UnityObjectComponent {return new UnityObjectComponent()});
+DIC.RegisterSingleton(UnityObjectComponentBuilder, function():UnityObjectComponentBuilder {return new UnityObjectComponentBuilder(
+    DIC.Make(UnityObjectComponentData), DIC.Make(UnityObjectComponent), DIC.Make(ComponentManager)
+)})
+
+
+// premake required services in dic
 DIC.Make(UnityJsonAssetLoader);
 DIC.Make(UnityLevelToJsonAssetLoader);
+
+DIC.Make(UnityObjectComponentBuilder);
 
 
 let engine = DIC.Make<Engine>(Engine);

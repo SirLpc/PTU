@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Level = exports.LevelState = void 0;
 const BehaviorManager_1 = require("../Behaviors/BehaviorManager");
-const ComponentManager_1 = require("../Components/ComponentManager");
-const SceneGraph_1 = require("./SceneGraph");
 const TEntity_1 = require("./TEntity");
 /**
  * Represents the basic level state.
@@ -30,16 +28,24 @@ class Level {
     // private _registeredCameras: Dictionary<BaseCamera> = {};
     // private _activeCamera: BaseCamera;
     _defaultCameraName;
+    _componentManager;
     /**
      * Creates a new level.
+     * Could be used on level selection screens for some games.
+     */
+    constructor(componentManager, sceneGraph) {
+        this._sceneGraph = sceneGraph;
+        this._componentManager = componentManager;
+    }
+    /**
+     * Setup level.
      * @param name The name of this level.
      * @param description A brief description of this level.
      * Could be used on level selection screens for some games.
      */
-    constructor(name, description) {
+    setUp(name, description) {
         this._name = name;
         this._description = description;
-        this._sceneGraph = new SceneGraph_1.SceneGraph();
     }
     /** The name of this level. */
     get name() {
@@ -192,7 +198,7 @@ class Level {
         if (dataSection.components !== undefined) {
             for (let c in dataSection.components) {
                 let data = dataSection.components[c];
-                let component = ComponentManager_1.ComponentManager.extractComponent(data);
+                let component = this._componentManager.extractComponent(data);
                 entity.addComponent(component);
             }
         }

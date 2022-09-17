@@ -17,9 +17,12 @@ import { Level } from "./Level";
 
         private _assetManager: AssetManager;
 
+        private _levelProvider: () => Level;
+
         /** Private constructor to enforce singleton pattern. */
-        public constructor( assetManager: AssetManager) {
+        public constructor( assetManager: AssetManager, levelProvider: () => Level) {
             this._assetManager = assetManager;
+            this._levelProvider = levelProvider;
         }
 
         /** Indicates if this manager is loaded. */
@@ -108,7 +111,8 @@ import { Level } from "./Level";
                 description = String( data.description );
             }
 
-            this._activeLevel = new Level( levelName, description );
+            this._activeLevel = this._levelProvider();
+            this._activeLevel.setUp( levelName, description );
             this._activeLevel.initialize( data );
             this._activeLevel.onActivated();
             this._activeLevel.load();

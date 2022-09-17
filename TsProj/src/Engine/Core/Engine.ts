@@ -1,6 +1,6 @@
 ﻿import { UnityJsonAssetLoader } from "../CoreUnity/Assets/UnityJsonAssetLoader";
 import { UnityLevelToJsonAssetLoader } from "../CoreUnity/Assets/UnityLevelToJsonAssetLoader";
-import { UnityObjectComponentBuilder } from "../CoreUnity/Assets/UnityObjectComponent";
+import { UnityObjectComponentBuilder } from "../CoreUnity/Components/UnityObjectComponent";
 import { IGame } from "../Game/IGame";
 import { AssetManager } from "./Assets/AssetManager";
 import { BehaviorManager } from "./Behaviors/BehaviorManager";
@@ -77,7 +77,7 @@ import { LevelManager } from "./World/LevelManager";
 
 
             BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
-            ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
+            // ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
 
             // ShaderManager.Initialize();
 

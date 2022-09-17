@@ -9,14 +9,6 @@ class BaseComponent {
      * The name of this component.
      */
     name;
-    /**
-     * Creates a new BaseComponent.
-     * @param data The data for this component.
-     */
-    constructor(data) {
-        this._data = data;
-        this.name = data.name;
-    }
     /** The owning entity. */
     get owner() {
         return this._owner;
@@ -27,6 +19,14 @@ class BaseComponent {
      */
     setOwner(owner) {
         this._owner = owner;
+    }
+    /**
+     * Sets the data of this component.
+     * @param data The data for this component.
+     */
+    setData(data) {
+        this._data = data;
+        this.name = data.name;
     }
     /** Loads this component. */
     load() {

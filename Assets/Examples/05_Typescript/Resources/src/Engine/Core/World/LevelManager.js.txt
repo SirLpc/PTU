@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LevelManager = void 0;
 const AssetManager_1 = require("../Assets/AssetManager");
 const Message_1 = require("../Message/Message");
-const Level_1 = require("./Level");
 /**
  * Manages levels in the engine. Levels (for now) are registered with this manager
  * so that they may be loaded on demand. Register a level name
@@ -14,9 +13,11 @@ class LevelManager {
     _activeLevel;
     _configLoaded = false;
     _assetManager;
+    _levelProvider;
     /** Private constructor to enforce singleton pattern. */
-    constructor(assetManager) {
+    constructor(assetManager, levelProvider) {
         this._assetManager = assetManager;
+        this._levelProvider = levelProvider;
     }
     /** Indicates if this manager is loaded. */
     get isLoaded() {
@@ -95,7 +96,8 @@ class LevelManager {
         if (data.description !== undefined) {
             description = String(data.description);
         }
-        this._activeLevel = new Level_1.Level(levelName, description);
+        this._activeLevel = this._levelProvider();
+        this._activeLevel.setUp(levelName, description);
         this._activeLevel.initialize(data);
         this._activeLevel.onActivated();
         this._activeLevel.load();

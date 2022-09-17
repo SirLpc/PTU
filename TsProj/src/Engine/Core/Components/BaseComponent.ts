@@ -1,4 +1,5 @@
 ﻿import { TEntity } from "../World/TEntity";
+import { ComponentManager } from "./ComponentManager";
 import { IComponent } from "./IComponent";
 import { IComponentData } from "./IComponentData";
 
@@ -15,15 +16,6 @@ import { IComponentData } from "./IComponentData";
          */
         public name: string;
 
-        /**
-         * Creates a new BaseComponent.
-         * @param data The data for this component.
-         */
-        public constructor( data: IComponentData ) {
-            this._data = data;
-            this.name = data.name;
-        }
-
         /** The owning entity. */
         public get owner(): TEntity {
             return this._owner;
@@ -35,6 +27,15 @@ import { IComponentData } from "./IComponentData";
          */
         public setOwner( owner: TEntity ): void {
             this._owner = owner;
+        }
+
+        /**
+         * Sets the data of this component.
+         * @param data The data for this component.
+         */
+        public setData( data: IComponentData) {
+            this._data = data;
+            this.name = data.name;
         }
 
         /** Loads this component. */

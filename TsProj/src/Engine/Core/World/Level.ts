@@ -34,17 +34,26 @@ import { TEntity } from "./TEntity";
         // private _registeredCameras: Dictionary<BaseCamera> = {};
         // private _activeCamera: BaseCamera;
         private _defaultCameraName: string;
+        private _componentManager: ComponentManager;
 
         /**
          * Creates a new level.
+         * Could be used on level selection screens for some games.
+         */
+        public constructor( componentManager: ComponentManager, sceneGraph: SceneGraph ) {
+            this._sceneGraph = sceneGraph;
+            this._componentManager = componentManager;
+        }
+
+        /**
+         * Setup level.
          * @param name The name of this level.
          * @param description A brief description of this level. 
          * Could be used on level selection screens for some games.
          */
-        public constructor( name: string, description: string ) {
+        public setUp( name: string, description: string ): void {
             this._name = name;
             this._description = description;
-            this._sceneGraph = new SceneGraph();
         }
 
         /** The name of this level. */
@@ -225,7 +234,7 @@ import { TEntity } from "./TEntity";
             if ( dataSection.components !== undefined ) {
                 for ( let c in dataSection.components ) {
                     let data = dataSection.components[c];
-                    let component = ComponentManager.extractComponent( data );
+                    let component = this._componentManager.extractComponent( data );
                     entity.addComponent( component );
                 }
             }

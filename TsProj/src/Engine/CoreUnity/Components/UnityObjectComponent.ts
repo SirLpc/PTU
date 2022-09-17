@@ -26,14 +26,18 @@ import { IComponentData } from "../../Core/Components/IComponentData";
      */
     export class UnityObjectComponentBuilder implements IComponentBuilder {
 
+        public constructor(private _compData: UnityObjectComponentData, private _comp: UnityObjectComponent, private _compManager: ComponentManager) {
+            this._compManager.registerBuilder(this);
+        }
+
         public get type(): string {
             return "UnityObjectComponent";
         }
 
         public buildFromJson( json: any ): IComponent {
-            let data = new UnityObjectComponentData();
-            data.setFromJson( json );
-            return new UnityObjectComponent( data );
+            this._compData.setFromJson( json );
+            this._comp.setData( this._compData );
+            return this._comp;
         }
     }
 
@@ -44,14 +48,6 @@ import { IComponentData } from "../../Core/Components/IComponentData";
 
         private _instanceID: number;
         private _unityGO: UnityEngine.GameObject;
-
-        /**
-         * Creates a new SpriteComponent.
-         * @param data The data to create from.
-         */
-        public constructor( data: UnityObjectComponentData ) {
-            super( data );
-        }
 
         /** Loads this component. */
         public override load(): void {
@@ -75,4 +71,3 @@ import { IComponentData } from "../../Core/Components/IComponentData";
         }
     }
 
-    ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
