@@ -21,6 +21,11 @@ import { UnityGameObjectComponent } from './src/CoreFramework/UnityGameObjectCom
 import { Engine } from './src/Engine/Core/Engine'
 import { TestGame } from './src/Sample/TestNewEngine/TestGame'
 import { IGame, IGameInterface } from './src/Engine/Game/IGame'
+import { UnityJsonAssetLoader } from './src/Engine/CoreUnity/Assets/UnityJsonAssetLoader'
+import { IAssetLoader } from './src/CoreFramework/IAssetLoader'
+import { UnityLevelToJsonAssetLoader } from './src/Engine/CoreUnity/Assets/UnityLevelToJsonAssetLoader'
+import { AssetManager } from './src/Engine/Core/Assets/AssetManager'
+import { LevelManager } from './src/Engine/Core/World/LevelManager'
 
 
 // let ecs : ECS = new ECS();
@@ -48,8 +53,17 @@ import { IGame, IGameInterface } from './src/Engine/Game/IGame'
 // ---------------TSEngine test
 
 
-DIC.Register(Engine, function():Engine {return new Engine(DIC.Make(IGameInterface))});
-DIC.Register(IGameInterface, function():IGame {return new TestGame()});
+DIC.RegisterSingleton(Engine, function():Engine {return new Engine(DIC.Make(IGameInterface), DIC.Make(LevelManager))});
+DIC.RegisterSingleton(LevelManager, function():LevelManager{return new LevelManager(DIC.Make(AssetManager))});
+DIC.RegisterSingleton(IGameInterface, function():IGame {return new TestGame(DIC.Make(LevelManager))});
+
+DIC.RegisterSingleton<UnityJsonAssetLoader>(UnityJsonAssetLoader, function():UnityJsonAssetLoader {return new UnityJsonAssetLoader(DIC.Make(AssetManager))});
+DIC.RegisterSingleton<UnityLevelToJsonAssetLoader>(UnityLevelToJsonAssetLoader, function():UnityLevelToJsonAssetLoader {return new UnityLevelToJsonAssetLoader(DIC.Make(AssetManager))});
+DIC.RegisterSingleton(AssetManager, function():AssetManager{return new AssetManager()});
+
+
+DIC.Make(UnityJsonAssetLoader);
+DIC.Make(UnityLevelToJsonAssetLoader);
 
 
 let engine = DIC.Make<Engine>(Engine);

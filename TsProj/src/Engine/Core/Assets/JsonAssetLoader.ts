@@ -26,6 +26,12 @@ import { IAssetLoader } from "./IAssetLoader";
     /** Represents an Json asset loader. */
     export class JsonAssetLoader implements IAssetLoader {
 
+        private _assetManger: AssetManager;
+
+        constructor(assetManager: AssetManager) {
+            this._assetManger = assetManager;
+        }
+
         /** The extensions supported by this asset loader. */
         public get supportedExtensions(): string[] {
             return ["json"];
@@ -48,7 +54,7 @@ import { IAssetLoader } from "./IAssetLoader";
             if ( request.readyState === request.DONE ) {
                 let json = JSON.parse( request.responseText );
                 let asset = new JsonAsset( assetName, json );
-                AssetManager.onAssetLoaded( asset );
+                this._assetManger.onAssetLoaded( asset );
             }
         }
     }

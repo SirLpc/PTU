@@ -9,6 +9,13 @@ import { JsonAsset } from "../../Core/Assets/JsonAssetLoader";
 /** Represents an Json asset loader. */
 export class UnityLevelToJsonAssetLoader implements IAssetLoader {
 
+    private _assetManger: AssetManager;
+
+    constructor(assetManager: AssetManager) {
+        this._assetManger = assetManager;
+        this._assetManger.registerLoader(this);
+    }
+
     /** The extensions supported by this asset loader. */
     public get supportedExtensions(): string[] {
         return ["level"];
@@ -32,6 +39,6 @@ export class UnityLevelToJsonAssetLoader implements IAssetLoader {
         //TODO unity object null check
         let json = JSON.parse( levelDiscriptionJson );
         let asset = new JsonAsset( assetName, json );
-        AssetManager.onAssetLoaded( asset );
+        this._assetManger.onAssetLoaded( asset );
     }
 }

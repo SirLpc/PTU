@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TextAssetLoader = exports.TextAsset = void 0;
-const AssetManager_1 = require("./AssetManager");
 /**
  * Represents a text file asset.
  */
@@ -25,6 +24,10 @@ exports.TextAsset = TextAsset;
  * The loader for a text asset.
  */
 class TextAssetLoader {
+    _assetManger;
+    constructor(assetManager) {
+        this._assetManger = assetManager;
+    }
     /**
      * The list of supported file extensions.
      */
@@ -50,7 +53,7 @@ class TextAssetLoader {
         console.debug("onTextLoaded: assetName/request", assetName, request);
         if (request.readyState === request.DONE) {
             let asset = new TextAsset(assetName, request.responseText);
-            AssetManager_1.AssetManager.onAssetLoaded(asset);
+            this._assetManger.onAssetLoaded(asset);
         }
     }
 }

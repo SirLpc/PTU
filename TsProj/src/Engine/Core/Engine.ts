@@ -23,6 +23,7 @@ import { LevelManager } from "./World/LevelManager";
 
         // private _renderer: Renderer;
         private _game: IGame;
+        private _levelManager: LevelManager;
 
         /**
          * Creates a new engine.
@@ -30,8 +31,9 @@ import { LevelManager } from "./World/LevelManager";
          * @param width The width of the game in pixels.
          * @param height The height of the game in pixels.
          * */
-        public constructor( game: IGame, width?: number, height?: number ) {
+        public constructor( game: IGame, levelManager: LevelManager, width?: number, height?: number ) {
             this._game = game;
+            this._levelManager = levelManager;
 
             this._gameWidth = width;
             this._gameHeight = height;
@@ -69,9 +71,9 @@ import { LevelManager } from "./World/LevelManager";
             // }
 
             // Initialize various sub-systems.
-            AssetManager.Initialize();
-            AssetManager.registerLoader(new UnityJsonAssetLoader() );
-            AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
+            // AssetManager.Initialize();
+            // AssetManager.registerLoader(new UnityJsonAssetLoader() );
+            // AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
 
 
             BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
@@ -85,7 +87,7 @@ import { LevelManager } from "./World/LevelManager";
             // BitmapFontManager.load();
 
             // Load level config
-            LevelManager.load();
+            this._levelManager.load();
 
             // Load material configs
             // MaterialManager.load();
@@ -143,7 +145,7 @@ import { LevelManager } from "./World/LevelManager";
             //     return;
             // }
 
-            if ( !LevelManager.isLoaded ) {
+            if ( !this._levelManager.isLoaded ) {
                 //requestAnimationFrame( this.preloading.bind( this ) );
                 return;
             }
@@ -166,8 +168,8 @@ import { LevelManager } from "./World/LevelManager";
         private update( delta: number ): void {
 
             MessageBus.update( delta );
-            if ( LevelManager.isLoaded && LevelManager.activeLevel !== undefined && LevelManager.activeLevel.isLoaded ) {
-                LevelManager.activeLevel.update( delta );
+            if ( this._levelManager.isLoaded && this._levelManager.activeLevel !== undefined && this._levelManager.activeLevel.isLoaded ) {
+                this._levelManager.activeLevel.update( delta );
             }
             //CollisionManager.update( delta );
 
@@ -178,8 +180,8 @@ import { LevelManager } from "./World/LevelManager";
             // this._renderer.BeginRender( delta, this._game );
 
             // 下面是自己加到这的，不知道合理不
-            if ( LevelManager.isLoaded && LevelManager.activeLevel !== undefined && LevelManager.activeLevel.isLoaded ) {
-                LevelManager.activeLevel.render( );
+            if ( this._levelManager.isLoaded && this._levelManager.activeLevel !== undefined && this._levelManager.activeLevel.isLoaded ) {
+                this._levelManager.activeLevel.render( );
             }
 
             // this._renderer.EndRender();

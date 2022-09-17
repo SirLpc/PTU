@@ -30,6 +30,12 @@ import { IAssetLoader } from "./IAssetLoader";
      */
     export class TextAssetLoader implements IAssetLoader {
 
+        private _assetManger: AssetManager;
+
+        constructor(assetManager: AssetManager) {
+            this._assetManger = assetManager;
+        }
+
         /**
          * The list of supported file extensions.
          */
@@ -58,7 +64,7 @@ import { IAssetLoader } from "./IAssetLoader";
 
             if (request.readyState === request.DONE) {
                 let asset = new TextAsset(assetName, request.responseText);
-                AssetManager.onAssetLoaded(asset);
+                this._assetManger.onAssetLoaded(asset);
             }
         }
     }

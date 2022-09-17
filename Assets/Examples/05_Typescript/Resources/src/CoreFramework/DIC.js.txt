@@ -1,39 +1,50 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DIC = void 0;
-class DIC {
-    static serviceMap;
-    static resolverMap;
-    static init() {
-        console.log('Locator -> init');
-        DIC.serviceMap = new Map();
-        DIC.resolverMap = new Map();
-    }
-    static Register(fn, inst) {
-        //console.log(`set ${fn.name}`);
-        if (DIC.resolverMap == undefined) {
-            DIC.init();
+class ServiceEntry {
+    key;
+    _resolver;
+    _singleton;
+    _service;
+    get service() {
+        if (!this._singleton) {
+            return this._resolver();
         }
-        DIC.resolverMap.set(fn.name, inst);
+        if (this._service != undefined) {
+            return this._service;
+        }
+        this._service = this._resolver();
+        return this._service;
+    }
+    constructor(key, _resolver, _singleton) {
+        this.key = key;
+        this._resolver = _resolver;
+        this._singleton = _singleton;
+    }
+}
+class DIC {
+    static serviceMap = new Map();
+    static RegisterSingleton(fn, resolver) {
+        //console.log(`set ${fn.name}`);
+        if (DIC.serviceMap.has(fn.name)) {
+            throw Error(`Service named : ${fn.name}  has already registered!`);
+        }
+        DIC.serviceMap.set(fn.name, new ServiceEntry(fn.name, resolver, true));
+    }
+    static RegisterTransient(fn, resolver) {
+        //console.log(`set ${fn.name}`);
+        if (DIC.serviceMap.has(fn.name)) {
+            throw Error(`Service named : ${fn.name}  has already registered!`);
+        }
+        DIC.serviceMap.set(fn.name, new ServiceEntry(fn.name, resolver, false));
     }
     static Make(fn) {
         //console.log(`get ${fn.name}`);
-        if (DIC.serviceMap == undefined) {
-            DIC.init();
-        }
         let service = DIC.serviceMap.get(fn.name);
-        if (service != undefined) {
-            return service;
-        }
-        let resolver = DIC.resolverMap.get(fn.name);
-        if (resolver == undefined) {
+        if (service == undefined) {
             throw Error("You must register the service before retrieving it.");
         }
-        service = resolver();
-        if (service == undefined) {
-            throw Error("Invalid resolver to retrieving service.");
-        }
-        return service;
+        return service.service;
     }
 }
 exports.DIC = DIC;

@@ -10,53 +10,55 @@ const Level_1 = require("./Level");
  * with a file path and load the level configurations dynamically.
  */
 class LevelManager {
-    static _registeredLevels = {};
-    static _activeLevel;
-    static _configLoaded = false;
+    _registeredLevels = {};
+    _activeLevel;
+    _configLoaded = false;
+    _assetManager;
     /** Private constructor to enforce singleton pattern. */
-    constructor() {
+    constructor(assetManager) {
+        this._assetManager = assetManager;
     }
     /** Indicates if this manager is loaded. */
-    static get isLoaded() {
-        return LevelManager._configLoaded;
+    get isLoaded() {
+        return this._configLoaded;
     }
     /** Gets the active level. */
-    static get activeLevel() {
-        return LevelManager._activeLevel;
+    get activeLevel() {
+        return this._activeLevel;
     }
     /** Loads this manager. */
-    static load() {
+    load() {
         // Get the asset(s). TODO: This probably should come from a central asset manifest.
-        let asset = AssetManager_1.AssetManager.getAsset("assets/levels/levels.json");
+        let asset = this._assetManager.getAsset("assets/levels/levels.json");
         if (asset !== undefined) {
-            LevelManager.processLevelConfigAsset(asset);
+            this.processLevelConfigAsset(asset);
         }
         else {
             // Listen for the asset load.
-            Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
+            Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", this.onMessage.bind(this));
         }
     }
     /**
      * Changes the active level to the one with the provided name.
      * @param name The name of the level to change to.
      */
-    static changeLevel(name) {
-        if (LevelManager._activeLevel !== undefined) {
-            LevelManager._activeLevel.onDeactivated();
-            LevelManager._activeLevel.unload();
-            LevelManager._activeLevel = undefined;
+    changeLevel(name) {
+        if (this._activeLevel !== undefined) {
+            this._activeLevel.onDeactivated();
+            this._activeLevel.unload();
+            this._activeLevel = undefined;
         }
         // Make sure the level is registered.
-        if (LevelManager._registeredLevels[name] !== undefined) {
+        if (this._registeredLevels[name] !== undefined) {
             // If the level asset is already loaded, get it and use it to load the level.
             // Otherwise, retrieve the asset and load the level upon completion.
-            if (AssetManager_1.AssetManager.isAssetLoaded(LevelManager._registeredLevels[name])) {
-                let asset = AssetManager_1.AssetManager.getAsset(LevelManager._registeredLevels[name]);
-                LevelManager.loadLevel(asset);
+            if (this._assetManager.isAssetLoaded(this._registeredLevels[name])) {
+                let asset = this._assetManager.getAsset(this._registeredLevels[name]);
+                this.loadLevel(asset);
             }
             else {
-                Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + LevelManager._registeredLevels[name], LevelManager.onMessage);
-                AssetManager_1.AssetManager.loadAsset(LevelManager._registeredLevels[name]);
+                Message_1.Message.subscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + this._registeredLevels[name], this.onMessage.bind(this));
+                this._assetManager.loadAsset(this._registeredLevels[name]);
             }
         }
         else {
@@ -67,19 +69,19 @@ class LevelManager {
      * The message handler.
      * @param message The message to be handled.
      */
-    static onMessage(message) {
+    onMessage(message) {
         // TODO: one for each asset.
         if (message.code === AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json") {
-            Message_1.Message.unsubscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", LevelManager.onMessage);
-            LevelManager.processLevelConfigAsset(message.context);
+            Message_1.Message.unsubscribeCallback(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED + "assets/levels/levels.json", this.onMessage);
+            this.processLevelConfigAsset(message.context);
         }
         else if (message.code.indexOf(AssetManager_1.MESSAGE_ASSET_LOADER_ASSET_LOADED) !== -1) {
             console.log("Level loaded:" + message.code);
             let asset = message.context;
-            LevelManager.loadLevel(asset);
+            this.loadLevel(asset);
         }
     }
-    static loadLevel(asset) {
+    loadLevel(asset) {
         console.log("Loading level:" + asset.Name);
         let data = asset.Data;
         let levelName;
@@ -93,18 +95,18 @@ class LevelManager {
         if (data.description !== undefined) {
             description = String(data.description);
         }
-        LevelManager._activeLevel = new Level_1.Level(levelName, description);
-        LevelManager._activeLevel.initialize(data);
-        LevelManager._activeLevel.onActivated();
-        LevelManager._activeLevel.load();
+        this._activeLevel = new Level_1.Level(levelName, description);
+        this._activeLevel.initialize(data);
+        this._activeLevel.onActivated();
+        this._activeLevel.load();
         Message_1.Message.send("LEVEL_LOADED", this);
     }
-    static processLevelConfigAsset(asset) {
+    processLevelConfigAsset(asset) {
         let levels = asset.Data.levels;
         if (levels) {
             for (let level of levels) {
                 if (level.name !== undefined && level.file !== undefined) {
-                    LevelManager._registeredLevels[level.name] = String(level.file);
+                    this._registeredLevels[level.name] = String(level.file);
                 }
                 else {
                     throw new Error("Invalid level config file format: name or file is missing");
@@ -112,7 +114,7 @@ class LevelManager {
             }
         }
         // TODO: Should only set this if ALL queued assets have loaded.
-        LevelManager._configLoaded = true;
+        this._configLoaded = true;
     }
 }
 exports.LevelManager = LevelManager;

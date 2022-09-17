@@ -1,15 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
-const UnityJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityJsonAssetLoader");
-const UnityLevelToJsonAssetLoader_1 = require("../CoreUnity/Assets/UnityLevelToJsonAssetLoader");
 const UnityObjectComponent_1 = require("../CoreUnity/Assets/UnityObjectComponent");
-const AssetManager_1 = require("./Assets/AssetManager");
 const BehaviorManager_1 = require("./Behaviors/BehaviorManager");
 const RotationBehavior_1 = require("./Behaviors/RotationBehavior");
 const ComponentManager_1 = require("./Components/ComponentManager");
 const MessageBus_1 = require("./Message/MessageBus");
-const LevelManager_1 = require("./World/LevelManager");
 /**
  * The main game engine class.
  * */
@@ -20,14 +16,16 @@ class Engine {
     _isFirstUpdate = true;
     // private _renderer: Renderer;
     _game;
+    _levelManager;
     /**
      * Creates a new engine.
      * @param game The object containing game-specific logic.
      * @param width The width of the game in pixels.
      * @param height The height of the game in pixels.
      * */
-    constructor(game, width, height) {
+    constructor(game, levelManager, width, height) {
         this._game = game;
+        this._levelManager = levelManager;
         this._gameWidth = width;
         this._gameHeight = height;
     }
@@ -58,9 +56,9 @@ class Engine {
         //     console.debug( `UNMASKED_RENDERER_WEBGL:  ${gl.getParameter( debugRendererExtension.UNMASKED_RENDERER_WEBGL )}` );
         // }
         // Initialize various sub-systems.
-        AssetManager_1.AssetManager.Initialize();
-        AssetManager_1.AssetManager.registerLoader(new UnityJsonAssetLoader_1.UnityJsonAssetLoader());
-        AssetManager_1.AssetManager.registerLoader(new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader());
+        // AssetManager.Initialize();
+        // AssetManager.registerLoader(new UnityJsonAssetLoader() );
+        // AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
         BehaviorManager_1.BehaviorManager.registerBuilder(new RotationBehavior_1.RotationBehaviorBuilder());
         ComponentManager_1.ComponentManager.registerBuilder(new UnityObjectComponent_1.UnityObjectComponentBuilder());
         // ShaderManager.Initialize();
@@ -68,7 +66,7 @@ class Engine {
         // Load fonts
         // BitmapFontManager.load();
         // Load level config
-        LevelManager_1.LevelManager.load();
+        this._levelManager.load();
         // Load material configs
         // MaterialManager.load();
         // Load audio. Note that this does not hold up the engine from being ready.
@@ -110,7 +108,7 @@ class Engine {
         //     requestAnimationFrame( this.preloading.bind( this ) );
         //     return;
         // }
-        if (!LevelManager_1.LevelManager.isLoaded) {
+        if (!this._levelManager.isLoaded) {
             //requestAnimationFrame( this.preloading.bind( this ) );
             return;
         }
@@ -125,8 +123,8 @@ class Engine {
     }
     update(delta) {
         MessageBus_1.MessageBus.update(delta);
-        if (LevelManager_1.LevelManager.isLoaded && LevelManager_1.LevelManager.activeLevel !== undefined && LevelManager_1.LevelManager.activeLevel.isLoaded) {
-            LevelManager_1.LevelManager.activeLevel.update(delta);
+        if (this._levelManager.isLoaded && this._levelManager.activeLevel !== undefined && this._levelManager.activeLevel.isLoaded) {
+            this._levelManager.activeLevel.update(delta);
         }
         //CollisionManager.update( delta );
         this._game.Update(delta);
@@ -134,8 +132,8 @@ class Engine {
     render(delta) {
         // this._renderer.BeginRender( delta, this._game );
         // 下面是自己加到这的，不知道合理不
-        if (LevelManager_1.LevelManager.isLoaded && LevelManager_1.LevelManager.activeLevel !== undefined && LevelManager_1.LevelManager.activeLevel.isLoaded) {
-            LevelManager_1.LevelManager.activeLevel.render();
+        if (this._levelManager.isLoaded && this._levelManager.activeLevel !== undefined && this._levelManager.activeLevel.isLoaded) {
+            this._levelManager.activeLevel.render();
         }
         // this._renderer.EndRender();
     }

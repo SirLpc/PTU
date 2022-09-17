@@ -3,10 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UnityLevelToJsonAssetLoader = void 0;
 const csharp_1 = require("csharp");
 const puerts_1 = require("puerts");
-const AssetManager_1 = require("../../Core/Assets/AssetManager");
 const JsonAssetLoader_1 = require("../../Core/Assets/JsonAssetLoader");
 /** Represents an Json asset loader. */
 class UnityLevelToJsonAssetLoader {
+    _assetManger;
+    constructor(assetManager) {
+        this._assetManger = assetManager;
+        this._assetManger.registerLoader(this);
+    }
     /** The extensions supported by this asset loader. */
     get supportedExtensions() {
         return ["level"];
@@ -26,7 +30,7 @@ class UnityLevelToJsonAssetLoader {
         //TODO unity object null check
         let json = JSON.parse(levelDiscriptionJson);
         let asset = new JsonAssetLoader_1.JsonAsset(assetName, json);
-        AssetManager_1.AssetManager.onAssetLoaded(asset);
+        this._assetManger.onAssetLoaded(asset);
     }
 }
 exports.UnityLevelToJsonAssetLoader = UnityLevelToJsonAssetLoader;

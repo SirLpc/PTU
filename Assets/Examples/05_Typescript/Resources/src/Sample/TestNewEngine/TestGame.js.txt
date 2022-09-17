@@ -1,10 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TestGame = void 0;
-const LevelManager_1 = require("../../Engine/Core/World/LevelManager");
 class TestGame {
+    _levelManager;
+    constructor(levelManager) {
+        this._levelManager = levelManager;
+    }
     UpdateReady() {
-        LevelManager_1.LevelManager.changeLevel("main");
+        this._levelManager.changeLevel("main");
         console.log("UpdateReady, load main level.");
     }
     Update(time) {

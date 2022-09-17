@@ -6,6 +6,10 @@ const DIC_1 = require("./src/CoreFramework/DIC");
 const Engine_1 = require("./src/Engine/Core/Engine");
 const TestGame_1 = require("./src/Sample/TestNewEngine/TestGame");
 const IGame_1 = require("./src/Engine/Game/IGame");
+const UnityJsonAssetLoader_1 = require("./src/Engine/CoreUnity/Assets/UnityJsonAssetLoader");
+const UnityLevelToJsonAssetLoader_1 = require("./src/Engine/CoreUnity/Assets/UnityLevelToJsonAssetLoader");
+const AssetManager_1 = require("./src/Engine/Core/Assets/AssetManager");
+const LevelManager_1 = require("./src/Engine/Core/World/LevelManager");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -27,8 +31,14 @@ const IGame_1 = require("./src/Engine/Game/IGame");
 //  });
 // DIC.Make<App>(App).Start();
 // ---------------TSEngine test
-DIC_1.DIC.Register(Engine_1.Engine, function () { return new Engine_1.Engine(DIC_1.DIC.Make(IGame_1.IGameInterface)); });
-DIC_1.DIC.Register(IGame_1.IGameInterface, function () { return new TestGame_1.TestGame(); });
+DIC_1.DIC.RegisterSingleton(Engine_1.Engine, function () { return new Engine_1.Engine(DIC_1.DIC.Make(IGame_1.IGameInterface), DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
+DIC_1.DIC.RegisterSingleton(LevelManager_1.LevelManager, function () { return new LevelManager_1.LevelManager(DIC_1.DIC.Make(AssetManager_1.AssetManager)); });
+DIC_1.DIC.RegisterSingleton(IGame_1.IGameInterface, function () { return new TestGame_1.TestGame(DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
+DIC_1.DIC.RegisterSingleton(UnityJsonAssetLoader_1.UnityJsonAssetLoader, function () { return new UnityJsonAssetLoader_1.UnityJsonAssetLoader(DIC_1.DIC.Make(AssetManager_1.AssetManager)); });
+DIC_1.DIC.RegisterSingleton(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader, function () { return new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader(DIC_1.DIC.Make(AssetManager_1.AssetManager)); });
+DIC_1.DIC.RegisterSingleton(AssetManager_1.AssetManager, function () { return new AssetManager_1.AssetManager(); });
+DIC_1.DIC.Make(UnityJsonAssetLoader_1.UnityJsonAssetLoader);
+DIC_1.DIC.Make(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader);
 let engine = DIC_1.DIC.Make(Engine_1.Engine);
 engine.start();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

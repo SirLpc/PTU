@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JsonAssetLoader = exports.JsonAsset = void 0;
-const AssetManager_1 = require("./AssetManager");
 /** Represents an Json asset */
 class JsonAsset {
     /** The name of this asset. */
@@ -21,6 +20,10 @@ class JsonAsset {
 exports.JsonAsset = JsonAsset;
 /** Represents an Json asset loader. */
 class JsonAssetLoader {
+    _assetManger;
+    constructor(assetManager) {
+        this._assetManger = assetManager;
+    }
     /** The extensions supported by this asset loader. */
     get supportedExtensions() {
         return ["json"];
@@ -40,7 +43,7 @@ class JsonAssetLoader {
         if (request.readyState === request.DONE) {
             let json = JSON.parse(request.responseText);
             let asset = new JsonAsset(assetName, json);
-            AssetManager_1.AssetManager.onAssetLoaded(asset);
+            this._assetManger.onAssetLoaded(asset);
         }
     }
 }
