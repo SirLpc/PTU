@@ -25061,7 +25061,14 @@ declare module 'csharp' {
             public type : string
             public name : string
             public rotation : UnityEngine.Vector3
+            public data : System.Array$1<TSEngine.VariableEntry>
             public constructor ($data: TSEngine.BehaviourInjector)
+            public constructor ()
+        }
+        class VariableEntry extends System.Object
+        {
+            public name : string
+            public variable : UnityEngine.ScriptableObject
             public constructor ()
         }
         class BehaviourInjector extends UnityEngine.MonoBehaviour
@@ -25118,12 +25125,6 @@ declare module 'csharp' {
         class LevelInjector extends UnityEngine.MonoBehaviour
         {
             public ToJsonDescription () : string
-            public constructor ()
-        }
-        class VariableEntry extends System.Object
-        {
-            public name : string
-            public variable : UnityEngine.ScriptableObject
             public constructor ()
         }
     }

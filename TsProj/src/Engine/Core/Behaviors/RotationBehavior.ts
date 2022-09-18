@@ -35,7 +35,7 @@ import { IBehaviorData } from "./IBehaviorData";
                 throw new Error( "Name must be defined in behavior data." );
             }
 
-            this.name = String( json.behaviourName );
+            this.name = String( json.name );
 
             if ( json.rotation !== undefined ) {
                 this.rotation.inject( json.rotation );

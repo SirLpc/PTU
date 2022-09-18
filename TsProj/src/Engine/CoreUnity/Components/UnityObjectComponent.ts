@@ -16,7 +16,7 @@ import { IComponentData } from "../../Core/Components/IComponentData";
 
         public setFromJson( json: any ): IComponentData {
             if ( json.name !== undefined ) {
-                this.name = String( json.componentName );
+                this.name = String( json.name );
             }
             return this;
         }

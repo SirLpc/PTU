@@ -13,12 +13,14 @@ namespace TSEngine
         public string type;
         public string name;
         public Vector3 rotation;
+        public VariableEntry[] data;
 
         public BehaviourDescription(BehaviourInjector data)
         {
             this.type = data.type;
             this.name = data.behaviourName;
             this.rotation = new Vector3(10, 10, 10);
+            this.data = data.data.variables;
         }
     }
  

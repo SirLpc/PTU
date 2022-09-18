@@ -10,7 +10,7 @@ class UnityObjectComponentData {
     name;
     setFromJson(json) {
         if (json.name !== undefined) {
-            this.name = String(json.componentName);
+            this.name = String(json.name);
         }
         return this;
     }
