@@ -205,8 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: rotation
-  name: RotBehaviour
-  rotation: 
+  behaviourName: 
   data:
     variables:
     - name: rotation
@@ -224,7 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: UnityObjectComponent
-  name: Cube
+  componentName: 
+  data:
+    variables: []
 --- !u!1 &8766656886643565657
 GameObject:
   m_ObjectHideFlags: 0

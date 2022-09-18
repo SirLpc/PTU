@@ -13,21 +13,23 @@ namespace TSEngine
     {
         public string type;
         public string name;
+        public VariableEntry[] data;
 
         public ComponentDescription(ComponentInjector data)
         {
             this.type = data.type;
             this.name = data.componentName;
+            this.data = data.data.variables;
         }
     }
  
     public class ComponentInjector : MonoBehaviour
     {
         
-        //TODO 内容表达方式
         public string type;
         public string componentName;
 
+        public VariableCollection data;
     }
 
 }
