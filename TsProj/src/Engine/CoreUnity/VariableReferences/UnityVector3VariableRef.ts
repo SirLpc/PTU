@@ -17,6 +17,7 @@ export class Vector3VariableReference extends Vector3VariableRef<Puergp.Variable
         this._value.z = this._v3Variable.value.z;
         return this._value;
     }
+    
     get ijValue(): Puergp.Variables.Vector3Variable {
         return this._v3Variable;
     }

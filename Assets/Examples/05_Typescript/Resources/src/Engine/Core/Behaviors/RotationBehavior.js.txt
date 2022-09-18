@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RotationBehavior = exports.RotationBehaviorBuilder = exports.RotationBehaviorData = void 0;
 const BaseBehavior_1 = require("./BaseBehavior");
+const JsonUtility_1 = require("../../Utility/JsonUtility");
 /**
  * The data for a rotation behavior.
  */
@@ -23,7 +24,8 @@ class RotationBehaviorData {
         }
         this.name = String(json.name);
         if (json.rotation !== undefined) {
-            this.rotation.inject(json.data[0]);
+            let rotData = JsonUtility_1.JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
+            this.rotation.inject(rotData);
         }
         return this;
     }

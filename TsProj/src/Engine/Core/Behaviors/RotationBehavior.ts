@@ -8,6 +8,7 @@ import { BehaviorManager } from "./BehaviorManager";
 import { IBehavior } from "./IBehavior";
 import { IBehaviorBuilder } from "./IBehaviorBuilder";
 import { IBehaviorData } from "./IBehaviorData";
+import { JsonUtility } from "../../Utility/JsonUtility";
 
 
 
@@ -38,7 +39,8 @@ import { IBehaviorData } from "./IBehaviorData";
             this.name = String( json.name );
 
             if ( json.rotation !== undefined ) {
-                this.rotation.inject( json.data[0] );
+                let rotData = JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
+                this.rotation.inject( rotData );
             }
             
             return this;
