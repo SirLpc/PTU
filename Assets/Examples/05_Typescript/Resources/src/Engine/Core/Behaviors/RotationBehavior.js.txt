@@ -23,7 +23,7 @@ class RotationBehaviorData {
         }
         this.name = String(json.name);
         if (json.rotation !== undefined) {
-            this.rotation.inject(json.rotation);
+            this.rotation.inject(json.data[0]);
         }
         return this;
     }

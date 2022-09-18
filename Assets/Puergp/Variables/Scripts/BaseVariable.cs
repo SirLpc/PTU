@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using TSEngine;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Puergp.Variables
@@ -58,6 +60,15 @@ namespace Puergp.Variables
         {
             _onValueChanged.RemoveAllListeners();
         }
-        
+
+        protected void OnEnable()
+        {
+            InstanceHUB.Add(this);
+        }
+
+        protected void OnDisable()
+        {
+            InstanceHUB.Remove(this);
+        }
     }
 }

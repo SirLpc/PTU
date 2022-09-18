@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a8ec0c39254361ac269f2d06d95e99, type: 3}
   m_Name: rotation
   m_EditorClassIdentifier: 
-  _value: {x: 10, y: 10, z: 0}
+  _value: {x: 0, y: 0, z: 7.3}
   _readOnly: 0
   _logWaringWhenSetOnReadOnly: 0
   _onValueChanged:
