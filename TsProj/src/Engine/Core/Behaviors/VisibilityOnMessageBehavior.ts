@@ -12,7 +12,7 @@ import { IBehaviorData } from "./IBehaviorData";
         public messageCode: string;
         public visible: boolean;
 
-        public setFromJson(json: any): void {
+        public setFromJson(json: any): IBehaviorData {
             if (json.messageCode === undefined) {
                 throw new Error("VisibilityOnMessageBehaviorData requires 'messageCode' to be defined.");
             } else {
@@ -24,6 +24,8 @@ import { IBehaviorData } from "./IBehaviorData";
             } else {
                 this.visible = Boolean(json.visible);
             }
+
+            return this;
         }
     }
 
@@ -36,7 +38,7 @@ import { IBehaviorData } from "./IBehaviorData";
         public buildFromJson(json: any): IBehavior {
             let data = new VisibilityOnMessageBehaviorData();
             data.setFromJson(json);
-            return new VisibilityOnMessageBehavior(data);
+            return new VisibilityOnMessageBehavior().apply(data);
         }
     }
 
@@ -52,13 +54,13 @@ import { IBehaviorData } from "./IBehaviorData";
          * Creates a new VisibilityOnMessageBehavior.
          * @param data The data for this behavior.
          */
-        public constructor(data: VisibilityOnMessageBehaviorData) {
-            super(data);
-
+        public override apply(data: VisibilityOnMessageBehaviorData) {
             this._messageCode = data.messageCode;
             this._visible = data.visible;
 
             Message.subscribe(this._messageCode, this);
+
+            return this;
         }
 
         /**
@@ -72,4 +74,3 @@ import { IBehaviorData } from "./IBehaviorData";
         }
     }
 
-    BehaviorManager.registerBuilder(new VisibilityOnMessageBehaviorBuilder());

@@ -32,5 +32,5 @@
          * Applys this behavior with the given user data.
          * @param userData The user data to be applied.
          */
-        apply( userData: any ): void;
+        apply( userData: any ): IBehavior;
     }

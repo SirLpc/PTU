@@ -58,10 +58,10 @@ export class DIC {
         throw Error("You must register the service before retrieving it instance." + fn.name);
       }
 
-      return service.service;
+      return service.service as T;
     }
 
-    public static GetResolver(fn: Function): ()=>any {
+    public static GetResolver<T>(fn: Function): ()=>T {
       let service = DIC.serviceMap.get(fn.name);
 
       if (service == undefined) {
@@ -72,7 +72,7 @@ export class DIC {
         throw Error("You can`t require a singleton provider, named: " + fn.name);
       }
 
-      return service.resolver;
+      return service.resolver as ()=>T;
     }
   
   }

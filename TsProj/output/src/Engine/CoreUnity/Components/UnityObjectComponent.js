@@ -10,8 +10,9 @@ class UnityObjectComponentData {
     name;
     setFromJson(json) {
         if (json.name !== undefined) {
-            this.name = String(json.name);
+            this.name = String(json.componentName);
         }
+        return this;
     }
 }
 exports.UnityObjectComponentData = UnityObjectComponentData;
@@ -32,9 +33,9 @@ class UnityObjectComponentBuilder {
         return "UnityObjectComponent";
     }
     buildFromJson(json) {
-        this._compData.setFromJson(json);
-        this._comp.setData(this._compData);
-        return this._comp;
+        let data = this._compData().setFromJson(json);
+        let comp = this._comp().setData(data);
+        return comp;
     }
 }
 exports.UnityObjectComponentBuilder = UnityObjectComponentBuilder;

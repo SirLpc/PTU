@@ -20,7 +20,7 @@ import { TSScene } from './src/CoreFramework/TSScene'
 import { UnityGameObjectComponent } from './src/CoreFramework/UnityGameObjectComponent'
 import { Engine } from './src/Engine/Core/Engine'
 import { TestGame } from './src/Sample/TestNewEngine/TestGame'
-import { IGame, IGameInterface } from './src/Engine/Game/IGame'
+import { IGame, IGameKey } from './src/Engine/Game/IGame'
 import { UnityJsonAssetLoader } from './src/Engine/CoreUnity/Assets/UnityJsonAssetLoader'
 import { IAssetLoader } from './src/CoreFramework/IAssetLoader'
 import { UnityLevelToJsonAssetLoader } from './src/Engine/CoreUnity/Assets/UnityLevelToJsonAssetLoader'
@@ -30,6 +30,12 @@ import { ComponentManager } from './src/Engine/Core/Components/ComponentManager'
 import { UnityObjectComponent, UnityObjectComponentBuilder, UnityObjectComponentData } from './src/Engine/CoreUnity/Components/UnityObjectComponent'
 import { Level } from './src/Engine/Core/World/Level'
 import { SceneGraph } from './src/Engine/Core/World/SceneGraph'
+import { BehaviorManager } from './src/Engine/Core/Behaviors/BehaviorManager'
+import { RotationBehavior, RotationBehaviorBuilder, RotationBehaviorData } from './src/Engine/Core/Behaviors/RotationBehavior'
+import { Vector3VariableReference as UnityVector3VariableRef } from './src/Engine/CoreUnity/VariableReferences/UnityVector3VariableRef'
+import { Vector3VariableRef } from './src/Engine/Core/VariableReferences/Vector3VariableRef'
+import { Vector3 } from './src/Engine/Core/Math/Vector3'
+import { IVariableRef } from './src/Engine/Core/VariableReferences/IVariableRef'
 
 
 // let ecs : ECS = new ECS();
@@ -57,23 +63,41 @@ import { SceneGraph } from './src/Engine/Core/World/SceneGraph'
 // ---------------TSEngine test
 
 // register services in dic
-DIC.RegisterSingleton(Engine, function():Engine {return new Engine(DIC.Make(IGameInterface), DIC.Make(LevelManager))});
+DIC.RegisterSingleton(Engine, function():Engine {return new Engine(DIC.Make(IGameKey), DIC.Make(LevelManager))});
 DIC.RegisterTransient(SceneGraph, function():SceneGraph{return new SceneGraph()});
-DIC.RegisterTransient(Level, function():Level{return new Level(DIC.Make(ComponentManager), DIC.Make(SceneGraph))});
+DIC.RegisterTransient(Level, function():Level{return new Level(DIC.Make(ComponentManager), DIC.Make(BehaviorManager), DIC.Make(SceneGraph))});
 DIC.RegisterSingleton(LevelManager, function():LevelManager{return new LevelManager(DIC.Make(AssetManager), DIC.GetResolver(Level))});
-DIC.RegisterSingleton(IGameInterface, function():IGame {return new TestGame(DIC.Make(LevelManager))});
+DIC.RegisterSingleton(IGameKey, function():IGame {return new TestGame(DIC.Make(LevelManager))});
 
 DIC.RegisterSingleton<UnityJsonAssetLoader>(UnityJsonAssetLoader, function():UnityJsonAssetLoader {return new UnityJsonAssetLoader(DIC.Make(AssetManager))});
 DIC.RegisterSingleton<UnityLevelToJsonAssetLoader>(UnityLevelToJsonAssetLoader, function():UnityLevelToJsonAssetLoader {return new UnityLevelToJsonAssetLoader(DIC.Make(AssetManager))});
 DIC.RegisterSingleton(AssetManager, function():AssetManager{return new AssetManager()});
 
+DIC.RegisterTransient(Vector3VariableRef, function():IVariableRef<Vector3>{return new UnityVector3VariableRef()});
+
+
+
+DIC.RegisterSingleton(BehaviorManager, function():BehaviorManager {return new BehaviorManager()});
+
+DIC.RegisterTransient(RotationBehaviorData, function():RotationBehaviorData{return new RotationBehaviorData(DIC.Make(Vector3VariableRef))});
+DIC.RegisterTransient(RotationBehavior, function():RotationBehavior{return new RotationBehavior()});
+DIC.RegisterSingleton(RotationBehaviorBuilder, function():RotationBehaviorBuilder{
+    return new RotationBehaviorBuilder(
+        DIC.GetResolver(RotationBehaviorData), DIC.GetResolver(RotationBehavior), DIC.Make(BehaviorManager)
+    )
+});
+
+
+
 DIC.RegisterSingleton(ComponentManager, function():ComponentManager {return new ComponentManager()});
 
 DIC.RegisterTransient(UnityObjectComponentData, function():UnityObjectComponentData {return new UnityObjectComponentData()});
 DIC.RegisterTransient(UnityObjectComponent, function():UnityObjectComponent {return new UnityObjectComponent()});
-DIC.RegisterSingleton(UnityObjectComponentBuilder, function():UnityObjectComponentBuilder {return new UnityObjectComponentBuilder(
-    DIC.Make(UnityObjectComponentData), DIC.Make(UnityObjectComponent), DIC.Make(ComponentManager)
-)})
+DIC.RegisterSingleton(UnityObjectComponentBuilder, function():UnityObjectComponentBuilder {
+    return new UnityObjectComponentBuilder(
+        DIC.GetResolver(UnityObjectComponentData), DIC.GetResolver(UnityObjectComponent), DIC.Make(ComponentManager)
+    )
+});
 
 
 // premake required services in dic
@@ -81,6 +105,7 @@ DIC.Make(UnityJsonAssetLoader);
 DIC.Make(UnityLevelToJsonAssetLoader);
 
 DIC.Make(UnityObjectComponentBuilder);
+DIC.Make(RotationBehaviorBuilder);
 
 
 let engine = DIC.Make<Engine>(Engine);

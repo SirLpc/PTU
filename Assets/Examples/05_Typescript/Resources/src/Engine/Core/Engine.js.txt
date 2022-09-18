@@ -1,8 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
-const BehaviorManager_1 = require("./Behaviors/BehaviorManager");
-const RotationBehavior_1 = require("./Behaviors/RotationBehavior");
 const MessageBus_1 = require("./Message/MessageBus");
 /**
  * The main game engine class.
@@ -57,7 +55,7 @@ class Engine {
         // AssetManager.Initialize();
         // AssetManager.registerLoader(new UnityJsonAssetLoader() );
         // AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
-        BehaviorManager_1.BehaviorManager.registerBuilder(new RotationBehavior_1.RotationBehaviorBuilder());
+        // BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
         // ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
         // ShaderManager.Initialize();
         // InputManager.Initialize( this._renderer.windowViewportCanvas );

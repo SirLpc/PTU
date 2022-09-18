@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Level = exports.LevelState = void 0;
-const BehaviorManager_1 = require("../Behaviors/BehaviorManager");
 const TEntity_1 = require("./TEntity");
 /**
  * Represents the basic level state.
@@ -29,13 +28,15 @@ class Level {
     // private _activeCamera: BaseCamera;
     _defaultCameraName;
     _componentManager;
+    _behaviourManager;
     /**
      * Creates a new level.
      * Could be used on level selection screens for some games.
      */
-    constructor(componentManager, sceneGraph) {
+    constructor(componentManager, behaviourManager, sceneGraph) {
         this._sceneGraph = sceneGraph;
         this._componentManager = componentManager;
+        this._behaviourManager = behaviourManager;
     }
     /**
      * Setup level.
@@ -205,7 +206,7 @@ class Level {
         if (dataSection.behaviors !== undefined) {
             for (let b in dataSection.behaviors) {
                 let data = dataSection.behaviors[b];
-                let behavior = BehaviorManager_1.BehaviorManager.extractBehavior(data);
+                let behavior = this._behaviourManager.extractBehavior(data);
                 entity.addBehavior(behavior);
             }
         }

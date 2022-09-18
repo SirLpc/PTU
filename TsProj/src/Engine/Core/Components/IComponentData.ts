@@ -3,5 +3,5 @@
     export interface IComponentData {
         name: string;
 
-        setFromJson( json: any ): void;
+        setFromJson( json: any ): IComponentData;
     }

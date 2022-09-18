@@ -35,14 +35,16 @@ import { TEntity } from "./TEntity";
         // private _activeCamera: BaseCamera;
         private _defaultCameraName: string;
         private _componentManager: ComponentManager;
+        private _behaviourManager: BehaviorManager;
 
         /**
          * Creates a new level.
          * Could be used on level selection screens for some games.
          */
-        public constructor( componentManager: ComponentManager, sceneGraph: SceneGraph ) {
+        public constructor( componentManager: ComponentManager, behaviourManager: BehaviorManager, sceneGraph: SceneGraph ) {
             this._sceneGraph = sceneGraph;
             this._componentManager = componentManager;
+            this._behaviourManager = behaviourManager;
         }
 
         /**
@@ -242,7 +244,7 @@ import { TEntity } from "./TEntity";
             if ( dataSection.behaviors !== undefined ) {
                 for ( let b in dataSection.behaviors ) {
                     let data = dataSection.behaviors[b];
-                    let behavior = BehaviorManager.extractBehavior( data );
+                    let behavior = this._behaviourManager.extractBehavior( data );
                     entity.addBehavior( behavior );
                 }
             }

@@ -33,9 +33,10 @@ import { IComponentData } from "./IComponentData";
          * Sets the data of this component.
          * @param data The data for this component.
          */
-        public setData( data: IComponentData) {
+        public setData( data: IComponentData): IComponent {
             this._data = data;
             this.name = data.name;
+            return this;
         }
 
         /** Loads this component. */

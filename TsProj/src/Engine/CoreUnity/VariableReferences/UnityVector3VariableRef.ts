@@ -1,8 +1,8 @@
-import { UnityEngine } from "csharp";
+import { Puergp, UnityEngine } from "csharp";
 import { Vector3 } from "../../Core/Math/Vector3";
-import { BaseVariableInjectReference } from "../../Core/VariableReferences/BaseVariableInjectReference";
+import { Vector3VariableRef } from "../../Core/VariableReferences/Vector3VariableRef";
 
-export class Vector3VariableReference extends BaseVariableInjectReference<Vector3, UnityEngine.Vector3> {
+export class Vector3VariableReference extends Vector3VariableRef<Puergp.Variables.Vector3Variable> {
 
     private _value : Vector3;
 
@@ -14,7 +14,7 @@ export class Vector3VariableReference extends BaseVariableInjectReference<Vector
     get value(): Vector3 {
         return this._value;
     }
-    get ijValue(): UnityEngine.Vector3 {
+    get ijValue(): Puergp.Variables.Vector3Variable {
         throw new Error("Method not implemented.");
     }
 

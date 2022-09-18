@@ -21,12 +21,13 @@ import { IBehaviorData } from "./IBehaviorData";
         protected _owner: TEntity;
 
         /**
-         * Creates a new base behavior.
-         * @param data The data to be used when creating this object.
+         * Applys this behavior with the given user data.
+         * @param userData The user data to be applied.
          */
-        public constructor( data: IBehaviorData ) {
+         public apply( data: IBehaviorData): IBehavior {
             this._data = data;
-            this.name = this._data.name;
+            this.name = data.name;
+            return this;
         }
 
         /**
@@ -50,10 +51,4 @@ import { IBehaviorData } from "./IBehaviorData";
         public update( time: number ): void {
         }
 
-        /**
-         * Applys this behavior with the given user data.
-         * @param userData The user data to be applied.
-         */
-        public apply( userData: any ): void {
-        }
     }

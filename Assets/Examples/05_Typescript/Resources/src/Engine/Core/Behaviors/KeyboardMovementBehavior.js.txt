@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.KeyboardMovementBehavior = exports.KeyboardMovementBehaviorBuilder = exports.KeyboardMovementBehaviorData = void 0;
 const InputManager_1 = require("../Input/InputManager");
 const BaseBehavior_1 = require("./BaseBehavior");
-const BehaviorManager_1 = require("./BehaviorManager");
 /**
  * Represents the data used to configure this behavior.
  */
@@ -30,6 +29,7 @@ class KeyboardMovementBehaviorData {
         if (json.speed !== undefined) {
             this.speed = Number(json.speed);
         }
+        return this;
     }
 }
 exports.KeyboardMovementBehaviorData = KeyboardMovementBehaviorData;
@@ -50,7 +50,7 @@ class KeyboardMovementBehaviorBuilder {
     buildFromJson(json) {
         let data = new KeyboardMovementBehaviorData();
         data.setFromJson(json);
-        return new KeyboardMovementBehavior(data);
+        return new KeyboardMovementBehavior().apply(data);
     }
 }
 exports.KeyboardMovementBehaviorBuilder = KeyboardMovementBehaviorBuilder;
@@ -67,9 +67,9 @@ class KeyboardMovementBehavior extends BaseBehavior_1.BaseBehavior {
      * Creates a new KeyboardMovementBehavior.
      * @param data The data for this behavior.
      */
-    constructor(data) {
-        super(data);
+    apply(data) {
         this.speed = data.speed;
+        return this;
     }
     /**
      * Performs update procedures on this component.
@@ -92,6 +92,4 @@ class KeyboardMovementBehavior extends BaseBehavior_1.BaseBehavior {
     }
 }
 exports.KeyboardMovementBehavior = KeyboardMovementBehavior;
-// Auto-registers the builder.
-BehaviorManager_1.BehaviorManager.registerBuilder(new KeyboardMovementBehaviorBuilder());
 //# sourceMappingURL=KeyboardMovementBehavior.js.map

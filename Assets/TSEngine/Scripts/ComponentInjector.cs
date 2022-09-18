@@ -17,7 +17,7 @@ namespace TSEngine
         public ComponentDescription(ComponentInjector data)
         {
             this.type = data.type;
-            this.name = data.name;
+            this.name = data.componentName;
         }
     }
  
@@ -26,7 +26,7 @@ namespace TSEngine
         
         //TODO 内容表达方式
         public string type;
-        public string name;
+        public string componentName;
 
     }
 

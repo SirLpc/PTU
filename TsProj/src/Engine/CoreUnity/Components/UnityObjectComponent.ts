@@ -14,10 +14,11 @@ import { IComponentData } from "../../Core/Components/IComponentData";
     export class UnityObjectComponentData implements IComponentData {
         public name: string;
 
-        public setFromJson( json: any ): void {
+        public setFromJson( json: any ): IComponentData {
             if ( json.name !== undefined ) {
-                this.name = String( json.name );
+                this.name = String( json.componentName );
             }
+            return this;
         }
     }
 
@@ -26,7 +27,7 @@ import { IComponentData } from "../../Core/Components/IComponentData";
      */
     export class UnityObjectComponentBuilder implements IComponentBuilder {
 
-        public constructor(private _compData: UnityObjectComponentData, private _comp: UnityObjectComponent, private _compManager: ComponentManager) {
+        public constructor(private _compData: ()=>UnityObjectComponentData, private _comp: ()=>UnityObjectComponent, private _compManager: ComponentManager) {
             this._compManager.registerBuilder(this);
         }
 
@@ -35,9 +36,9 @@ import { IComponentData } from "../../Core/Components/IComponentData";
         }
 
         public buildFromJson( json: any ): IComponent {
-            this._compData.setFromJson( json );
-            this._comp.setData( this._compData );
-            return this._comp;
+            let data = this._compData().setFromJson( json );
+            let comp = this._comp().setData( data );
+            return comp;
         }
     }
 

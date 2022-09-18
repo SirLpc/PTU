@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.IGameInterface = void 0;
-class IGameInterface {
+exports.IGameKey = void 0;
+class IGameKey {
 }
-exports.IGameInterface = IGameInterface;
+exports.IGameKey = IGameKey;
 //# sourceMappingURL=IGame.js.map

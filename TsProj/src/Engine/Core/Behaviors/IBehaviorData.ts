@@ -14,5 +14,5 @@
          * Sets the properties of this data from the provided json.
          * @param json The json to set from.
          */
-        setFromJson( json: any ): void;
+        setFromJson( json: any ): IBehaviorData;
     }

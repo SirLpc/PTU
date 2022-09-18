@@ -17,7 +17,7 @@ namespace TSEngine
         public BehaviourDescription(BehaviourInjector data)
         {
             this.type = data.type;
-            this.name = data.name;
+            this.name = data.behaviourName;
             this.rotation = new Vector3(10, 10, 10);
         }
     }
@@ -27,7 +27,7 @@ namespace TSEngine
         
         //TODO 内容表达方式
         public string type;
-        public string name;
+        public string behaviourName;
         public string rotation;
 
         public VariableCollection data;

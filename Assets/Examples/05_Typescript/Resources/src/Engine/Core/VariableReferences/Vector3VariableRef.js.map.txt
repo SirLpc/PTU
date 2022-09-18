@@ -1,0 +1,1 @@
+{"version":3,"file":"Vector3VariableRef.js","sourceRoot":"","sources":["../../../../../src/Engine/Core/VariableReferences/Vector3VariableRef.ts"],"names":[],"mappings":";;;AAGA,MAAsB,kBAAkB;CAIvC;AAJD,gDAIC"}

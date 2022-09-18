@@ -6,7 +6,6 @@ exports.MouseClickBehavior = exports.MouseClickBehaviorBuilder = exports.MouseCl
 const InputManager_1 = require("../Input/InputManager");
 const Message_1 = require("../Message/Message");
 const BaseBehavior_1 = require("./BaseBehavior");
-const BehaviorManager_1 = require("./BehaviorManager");
 /**
  * The data for a mouse click behavior.
  */
@@ -46,6 +45,7 @@ class MouseClickBehaviorData {
         else {
             this.messageCode = String(json.messageCode);
         }
+        return this;
     }
 }
 exports.MouseClickBehaviorData = MouseClickBehaviorData;
@@ -59,7 +59,7 @@ class MouseClickBehaviorBuilder {
     buildFromJson(json) {
         let data = new MouseClickBehaviorData();
         data.setFromJson(json);
-        return new MouseClickBehavior(data);
+        return new MouseClickBehavior().apply(data);
     }
 }
 exports.MouseClickBehaviorBuilder = MouseClickBehaviorBuilder;
@@ -76,12 +76,12 @@ class MouseClickBehavior extends BaseBehavior_1.BaseBehavior {
      * Creates a new MouseClickBehavior.
      * @param data The data for this behavior.
      */
-    constructor(data) {
-        super(data);
+    apply(data) {
         this._width = data.width;
         this._height = data.height;
         this._messageCode = data.messageCode;
         Message_1.Message.subscribe(InputManager_1.MESSAGE_MOUSE_UP, this);
+        return this;
     }
     /**
      * The message handler.
@@ -105,6 +105,4 @@ class MouseClickBehavior extends BaseBehavior_1.BaseBehavior {
     }
 }
 exports.MouseClickBehavior = MouseClickBehavior;
-// Auto-register the builder.
-BehaviorManager_1.BehaviorManager.registerBuilder(new MouseClickBehaviorBuilder());
 //# sourceMappingURL=MouseClickBehavior.js.map

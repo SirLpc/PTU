@@ -16,12 +16,13 @@ class BaseBehavior {
      */
     _owner;
     /**
-     * Creates a new base behavior.
-     * @param data The data to be used when creating this object.
+     * Applys this behavior with the given user data.
+     * @param userData The user data to be applied.
      */
-    constructor(data) {
+    apply(data) {
         this._data = data;
-        this.name = this._data.name;
+        this.name = data.name;
+        return this;
     }
     /**
      * Sets the owner entity.
@@ -40,12 +41,6 @@ class BaseBehavior {
      * @param time The delta time in milliseconds since the last update.
      */
     update(time) {
-    }
-    /**
-     * Applys this behavior with the given user data.
-     * @param userData The user data to be applied.
-     */
-    apply(userData) {
     }
 }
 exports.BaseBehavior = BaseBehavior;

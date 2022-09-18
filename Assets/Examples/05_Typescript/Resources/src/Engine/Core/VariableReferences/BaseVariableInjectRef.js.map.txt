@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseVariableInjectRef.js","sourceRoot":"","sources":["../../../../../src/Engine/Core/VariableReferences/BaseVariableInjectRef.ts"],"names":[],"mappings":";;;AAEA,MAAsB,eAAe;CAIpC;AAJD,0CAIC"}

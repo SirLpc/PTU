@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.VisibilityOnMessageBehavior = exports.VisibilityOnMessageBehaviorBuilder = exports.VisibilityOnMessageBehaviorData = void 0;
 const Message_1 = require("../Message/Message");
 const BaseBehavior_1 = require("./BaseBehavior");
-const BehaviorManager_1 = require("./BehaviorManager");
 class VisibilityOnMessageBehaviorData {
     name;
     messageCode;
@@ -21,6 +20,7 @@ class VisibilityOnMessageBehaviorData {
         else {
             this.visible = Boolean(json.visible);
         }
+        return this;
     }
 }
 exports.VisibilityOnMessageBehaviorData = VisibilityOnMessageBehaviorData;
@@ -31,7 +31,7 @@ class VisibilityOnMessageBehaviorBuilder {
     buildFromJson(json) {
         let data = new VisibilityOnMessageBehaviorData();
         data.setFromJson(json);
-        return new VisibilityOnMessageBehavior(data);
+        return new VisibilityOnMessageBehavior().apply(data);
     }
 }
 exports.VisibilityOnMessageBehaviorBuilder = VisibilityOnMessageBehaviorBuilder;
@@ -45,11 +45,11 @@ class VisibilityOnMessageBehavior extends BaseBehavior_1.BaseBehavior {
      * Creates a new VisibilityOnMessageBehavior.
      * @param data The data for this behavior.
      */
-    constructor(data) {
-        super(data);
+    apply(data) {
         this._messageCode = data.messageCode;
         this._visible = data.visible;
         Message_1.Message.subscribe(this._messageCode, this);
+        return this;
     }
     /**
      * The message handler.
@@ -62,5 +62,4 @@ class VisibilityOnMessageBehavior extends BaseBehavior_1.BaseBehavior {
     }
 }
 exports.VisibilityOnMessageBehavior = VisibilityOnMessageBehavior;
-BehaviorManager_1.BehaviorManager.registerBuilder(new VisibilityOnMessageBehaviorBuilder());
 //# sourceMappingURL=VisibilityOnMessageBehavior.js.map

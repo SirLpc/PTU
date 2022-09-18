@@ -29,4 +29,4 @@
         Render( time: number ): void;
     }
 
-    export class IGameInterface {}
+    export class IGameKey {}

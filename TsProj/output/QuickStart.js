@@ -14,6 +14,10 @@ const ComponentManager_1 = require("./src/Engine/Core/Components/ComponentManage
 const UnityObjectComponent_1 = require("./src/Engine/CoreUnity/Components/UnityObjectComponent");
 const Level_1 = require("./src/Engine/Core/World/Level");
 const SceneGraph_1 = require("./src/Engine/Core/World/SceneGraph");
+const BehaviorManager_1 = require("./src/Engine/Core/Behaviors/BehaviorManager");
+const RotationBehavior_1 = require("./src/Engine/Core/Behaviors/RotationBehavior");
+const UnityVector3VariableRef_1 = require("./src/Engine/CoreUnity/VariableReferences/UnityVector3VariableRef");
+const Vector3VariableRef_1 = require("./src/Engine/Core/VariableReferences/Vector3VariableRef");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -36,24 +40,32 @@ const SceneGraph_1 = require("./src/Engine/Core/World/SceneGraph");
 // DIC.Make<App>(App).Start();
 // ---------------TSEngine test
 // register services in dic
-DIC_1.DIC.RegisterSingleton(Engine_1.Engine, function () { return new Engine_1.Engine(DIC_1.DIC.Make(IGame_1.IGameInterface), DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
+DIC_1.DIC.RegisterSingleton(Engine_1.Engine, function () { return new Engine_1.Engine(DIC_1.DIC.Make(IGame_1.IGameKey), DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
 DIC_1.DIC.RegisterTransient(SceneGraph_1.SceneGraph, function () { return new SceneGraph_1.SceneGraph(); });
-DIC_1.DIC.RegisterTransient(Level_1.Level, function () { return new Level_1.Level(DIC_1.DIC.Make(ComponentManager_1.ComponentManager), DIC_1.DIC.Make(SceneGraph_1.SceneGraph)); });
+DIC_1.DIC.RegisterTransient(Level_1.Level, function () { return new Level_1.Level(DIC_1.DIC.Make(ComponentManager_1.ComponentManager), DIC_1.DIC.Make(BehaviorManager_1.BehaviorManager), DIC_1.DIC.Make(SceneGraph_1.SceneGraph)); });
 DIC_1.DIC.RegisterSingleton(LevelManager_1.LevelManager, function () { return new LevelManager_1.LevelManager(DIC_1.DIC.Make(AssetManager_1.AssetManager), DIC_1.DIC.GetResolver(Level_1.Level)); });
-DIC_1.DIC.RegisterSingleton(IGame_1.IGameInterface, function () { return new TestGame_1.TestGame(DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
+DIC_1.DIC.RegisterSingleton(IGame_1.IGameKey, function () { return new TestGame_1.TestGame(DIC_1.DIC.Make(LevelManager_1.LevelManager)); });
 DIC_1.DIC.RegisterSingleton(UnityJsonAssetLoader_1.UnityJsonAssetLoader, function () { return new UnityJsonAssetLoader_1.UnityJsonAssetLoader(DIC_1.DIC.Make(AssetManager_1.AssetManager)); });
 DIC_1.DIC.RegisterSingleton(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader, function () { return new UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader(DIC_1.DIC.Make(AssetManager_1.AssetManager)); });
 DIC_1.DIC.RegisterSingleton(AssetManager_1.AssetManager, function () { return new AssetManager_1.AssetManager(); });
+DIC_1.DIC.RegisterTransient(Vector3VariableRef_1.Vector3VariableRef, function () { return new UnityVector3VariableRef_1.Vector3VariableReference(); });
+DIC_1.DIC.RegisterSingleton(BehaviorManager_1.BehaviorManager, function () { return new BehaviorManager_1.BehaviorManager(); });
+DIC_1.DIC.RegisterTransient(RotationBehavior_1.RotationBehaviorData, function () { return new RotationBehavior_1.RotationBehaviorData(DIC_1.DIC.Make(Vector3VariableRef_1.Vector3VariableRef)); });
+DIC_1.DIC.RegisterTransient(RotationBehavior_1.RotationBehavior, function () { return new RotationBehavior_1.RotationBehavior(); });
+DIC_1.DIC.RegisterSingleton(RotationBehavior_1.RotationBehaviorBuilder, function () {
+    return new RotationBehavior_1.RotationBehaviorBuilder(DIC_1.DIC.GetResolver(RotationBehavior_1.RotationBehaviorData), DIC_1.DIC.GetResolver(RotationBehavior_1.RotationBehavior), DIC_1.DIC.Make(BehaviorManager_1.BehaviorManager));
+});
 DIC_1.DIC.RegisterSingleton(ComponentManager_1.ComponentManager, function () { return new ComponentManager_1.ComponentManager(); });
 DIC_1.DIC.RegisterTransient(UnityObjectComponent_1.UnityObjectComponentData, function () { return new UnityObjectComponent_1.UnityObjectComponentData(); });
 DIC_1.DIC.RegisterTransient(UnityObjectComponent_1.UnityObjectComponent, function () { return new UnityObjectComponent_1.UnityObjectComponent(); });
 DIC_1.DIC.RegisterSingleton(UnityObjectComponent_1.UnityObjectComponentBuilder, function () {
-    return new UnityObjectComponent_1.UnityObjectComponentBuilder(DIC_1.DIC.Make(UnityObjectComponent_1.UnityObjectComponentData), DIC_1.DIC.Make(UnityObjectComponent_1.UnityObjectComponent), DIC_1.DIC.Make(ComponentManager_1.ComponentManager));
+    return new UnityObjectComponent_1.UnityObjectComponentBuilder(DIC_1.DIC.GetResolver(UnityObjectComponent_1.UnityObjectComponentData), DIC_1.DIC.GetResolver(UnityObjectComponent_1.UnityObjectComponent), DIC_1.DIC.Make(ComponentManager_1.ComponentManager));
 });
 // premake required services in dic
 DIC_1.DIC.Make(UnityJsonAssetLoader_1.UnityJsonAssetLoader);
 DIC_1.DIC.Make(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader);
 DIC_1.DIC.Make(UnityObjectComponent_1.UnityObjectComponentBuilder);
+DIC_1.DIC.Make(RotationBehavior_1.RotationBehaviorBuilder);
 let engine = DIC_1.DIC.Make(Engine_1.Engine);
 engine.start();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;

@@ -1,9 +1,7 @@
-﻿/// <reference path="BaseBehavior.ts" />
-/// <reference path="BehaviorManager.ts" />
-
-import { Vector3VariableReference } from "../../CoreUnity/VariableReferences/Vector3VariableReference";
+﻿
+import { Vector3VariableReference } from "../../CoreUnity/VariableReferences/UnityVector3VariableRef";
 import { Vector3 } from "../Math/Vector3";
-import { BaseVariableInjectReference } from "../VariableReferences/BaseVariableInjectReference";
+import { Vector3VariableRef } from "../VariableReferences/Vector3VariableRef";
 import { IVariableRef } from "../VariableReferences/IVariableRef";
 import { BaseBehavior } from "./BaseBehavior";
 import { BehaviorManager } from "./BehaviorManager";
@@ -22,35 +20,46 @@ import { IBehaviorData } from "./IBehaviorData";
         public name: string;
 
         /** The rotation amounts to be added per update. */
-        public rotation: IVariableRef<Vector3> = new Vector3VariableReference();
+        public rotation: IVariableRef<Vector3>;
+
+        public constructor(rotation: IVariableRef<Vector3>) {
+            this.rotation = rotation;
+        }
 
         /**
          * Sets the properties of this data from the provided json.
          * @param json The json to set from.
          */
-        public setFromJson( json: any ): void {
+        public setFromJson( json: any ): IBehaviorData {
             if ( json.name === undefined ) {
                 throw new Error( "Name must be defined in behavior data." );
             }
 
-            this.name = String( json.name );
+            this.name = String( json.behaviourName );
 
             if ( json.rotation !== undefined ) {
                 this.rotation.inject( json.rotation );
             }
+            
+            return this;
         }
     }
 
     /** The builder for a rotation behavior. */
     export class RotationBehaviorBuilder implements IBehaviorBuilder {
+
+        public constructor(private _data: ()=>RotationBehaviorData, private _behaviour: ()=>RotationBehavior, private _behaviourManager: BehaviorManager) {
+            this._behaviourManager.registerBuilder(this);
+        }
+
         public get type(): string {
             return "rotation";
         }
 
         public buildFromJson( json: any ): IBehavior {
-            let data = new RotationBehaviorData();
-            data.setFromJson( json );
-            return new RotationBehavior( data );
+            let data = this._data().setFromJson( json );
+            let behaviour = this._behaviour().apply( data );
+            return behaviour;
         }
     }
 
@@ -63,13 +72,12 @@ import { IBehaviorData } from "./IBehaviorData";
         private _rotation: IVariableRef<Vector3>;
 
         /**
-         * Creates a new RotationBehavior.
+         * Apply data on RotationBehavior.
          * @param data The data for this behavior.
          */
-        public constructor( data: RotationBehaviorData ) {
-            super( data );
-
-            this._rotation = data.rotation;
+        public override apply(userData: any): BaseBehavior {
+            this._rotation = userData.rotation;
+            return this;
         }
 
         /**
@@ -83,4 +91,3 @@ import { IBehaviorData } from "./IBehaviorData";
         }
     }
 
-    BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );

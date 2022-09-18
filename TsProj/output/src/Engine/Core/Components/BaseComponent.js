@@ -27,6 +27,7 @@ class BaseComponent {
     setData(data) {
         this._data = data;
         this.name = data.name;
+        return this;
     }
     /** Loads this component. */
     load() {

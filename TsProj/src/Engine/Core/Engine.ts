@@ -76,7 +76,7 @@ import { LevelManager } from "./World/LevelManager";
             // AssetManager.registerLoader(new UnityLevelToJsonAssetLoader() );
 
 
-            BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
+            // BehaviorManager.registerBuilder( new RotationBehaviorBuilder() );
             // ComponentManager.registerBuilder( new UnityObjectComponentBuilder() );
 
             // ShaderManager.Initialize();

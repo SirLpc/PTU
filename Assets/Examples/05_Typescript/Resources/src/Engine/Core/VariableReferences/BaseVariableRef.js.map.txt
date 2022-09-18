@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseVariableRef.js","sourceRoot":"","sources":["../../../../../src/Engine/Core/VariableReferences/BaseVariableRef.ts"],"names":[],"mappings":";;;AAGA,MAAsB,kBAAkB;CAIvC;AAJD,gDAIC"}

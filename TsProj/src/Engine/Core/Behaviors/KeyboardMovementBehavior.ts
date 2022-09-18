@@ -29,7 +29,7 @@ import { IBehaviorData } from "./IBehaviorData";
          * Sets the properties of this data from the provided JSON.
          * @param json The json to set from.
          */
-        public setFromJson( json: any ): void {
+        public setFromJson( json: any ): IBehaviorData {
             if ( json.name === undefined ) {
                 throw new Error( "Name must be defined in behavior data." );
             }
@@ -39,6 +39,8 @@ import { IBehaviorData } from "./IBehaviorData";
             if ( json.speed !== undefined ) {
                 this.speed = Number( json.speed );
             }
+
+            return this;
         }
     }
 
@@ -61,7 +63,7 @@ import { IBehaviorData } from "./IBehaviorData";
         public buildFromJson( json: any ): IBehavior {
             let data = new KeyboardMovementBehaviorData();
             data.setFromJson( json );
-            return new KeyboardMovementBehavior( data );
+            return new KeyboardMovementBehavior( ).apply( data );
         }
     }
 
@@ -80,10 +82,9 @@ import { IBehaviorData } from "./IBehaviorData";
          * Creates a new KeyboardMovementBehavior.
          * @param data The data for this behavior.
          */
-        public constructor( data: KeyboardMovementBehaviorData ) {
-            super( data );
-
+        public override apply(data: KeyboardMovementBehaviorData): IBehavior {
             this.speed = data.speed;
+            return this;
         }
 
         /**
@@ -108,5 +109,3 @@ import { IBehaviorData } from "./IBehaviorData";
         }
     }
 
-    // Auto-registers the builder.
-    BehaviorManager.registerBuilder( new KeyboardMovementBehaviorBuilder() );

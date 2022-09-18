@@ -33,7 +33,7 @@ import { IBehaviorData } from "./IBehaviorData";
          * Sets this data from the provided json.
          * @param json The json to set from.
          */
-        public setFromJson( json: any ): void {
+        public setFromJson( json: any ): IBehaviorData {
             if ( json.name === undefined ) {
                 throw new Error( "Name must be defined in behavior data." );
             }
@@ -57,6 +57,8 @@ import { IBehaviorData } from "./IBehaviorData";
             } else {
                 this.messageCode = String( json.messageCode );
             }
+
+            return this;
         }
     }
 
@@ -71,7 +73,7 @@ import { IBehaviorData } from "./IBehaviorData";
         public buildFromJson( json: any ): IBehavior {
             let data = new MouseClickBehaviorData();
             data.setFromJson( json );
-            return new MouseClickBehavior( data );
+            return new MouseClickBehavior().apply(data);
         }
     }
 
@@ -90,13 +92,13 @@ import { IBehaviorData } from "./IBehaviorData";
          * Creates a new MouseClickBehavior.
          * @param data The data for this behavior.
          */
-        public constructor( data: MouseClickBehaviorData ) {
-            super( data );
-
+        public override apply( data: MouseClickBehaviorData ) : BaseBehavior {
             this._width = data.width;
             this._height = data.height;
             this._messageCode = data.messageCode;
             Message.subscribe( MESSAGE_MOUSE_UP, this );
+
+            return this;
         }
 
         /**
@@ -121,6 +123,4 @@ import { IBehaviorData } from "./IBehaviorData";
         }
     }
 
-    // Auto-register the builder.
-    BehaviorManager.registerBuilder( new MouseClickBehaviorBuilder() );
  

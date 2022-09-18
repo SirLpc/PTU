@@ -1,11 +1,7 @@
 "use strict";
-/// <reference path="BaseBehavior.ts" />
-/// <reference path="BehaviorManager.ts" />
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RotationBehavior = exports.RotationBehaviorBuilder = exports.RotationBehaviorData = void 0;
-const Vector3VariableReference_1 = require("../../CoreUnity/VariableReferences/Vector3VariableReference");
 const BaseBehavior_1 = require("./BaseBehavior");
-const BehaviorManager_1 = require("./BehaviorManager");
 /**
  * The data for a rotation behavior.
  */
@@ -13,7 +9,10 @@ class RotationBehaviorData {
     /** The name of the behavior. */
     name;
     /** The rotation amounts to be added per update. */
-    rotation = new Vector3VariableReference_1.Vector3VariableReference();
+    rotation;
+    constructor(rotation) {
+        this.rotation = rotation;
+    }
     /**
      * Sets the properties of this data from the provided json.
      * @param json The json to set from.
@@ -22,22 +21,32 @@ class RotationBehaviorData {
         if (json.name === undefined) {
             throw new Error("Name must be defined in behavior data.");
         }
-        this.name = String(json.name);
+        this.name = String(json.behaviourName);
         if (json.rotation !== undefined) {
             this.rotation.inject(json.rotation);
         }
+        return this;
     }
 }
 exports.RotationBehaviorData = RotationBehaviorData;
 /** The builder for a rotation behavior. */
 class RotationBehaviorBuilder {
+    _data;
+    _behaviour;
+    _behaviourManager;
+    constructor(_data, _behaviour, _behaviourManager) {
+        this._data = _data;
+        this._behaviour = _behaviour;
+        this._behaviourManager = _behaviourManager;
+        this._behaviourManager.registerBuilder(this);
+    }
     get type() {
         return "rotation";
     }
     buildFromJson(json) {
-        let data = new RotationBehaviorData();
-        data.setFromJson(json);
-        return new RotationBehavior(data);
+        let data = this._data().setFromJson(json);
+        let behaviour = this._behaviour().apply(data);
+        return behaviour;
     }
 }
 exports.RotationBehaviorBuilder = RotationBehaviorBuilder;
@@ -48,12 +57,12 @@ exports.RotationBehaviorBuilder = RotationBehaviorBuilder;
 class RotationBehavior extends BaseBehavior_1.BaseBehavior {
     _rotation;
     /**
-     * Creates a new RotationBehavior.
+     * Apply data on RotationBehavior.
      * @param data The data for this behavior.
      */
-    constructor(data) {
-        super(data);
-        this._rotation = data.rotation;
+    apply(userData) {
+        this._rotation = userData.rotation;
+        return this;
     }
     /**
      * Performs update procedures on this behavior.
@@ -65,5 +74,4 @@ class RotationBehavior extends BaseBehavior_1.BaseBehavior {
     }
 }
 exports.RotationBehavior = RotationBehavior;
-BehaviorManager_1.BehaviorManager.registerBuilder(new RotationBehaviorBuilder());
 //# sourceMappingURL=RotationBehavior.js.map
