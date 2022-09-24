@@ -63,8 +63,26 @@ public class ExamplesCfg
                 typeof(PuertsDeclareTest.Zombies.Flyable),
                 typeof(PuertsDeclareTest.Zombies.BalloonZombie),
                 
-                typeof(ScriptableObjectArchitecture.BaseReference<Vector3, Vector3Variable>),
+                typeof(ScriptableObjectArchitecture.BaseReference<int, ScriptableObjectArchitecture.IntVariable>),
+                typeof(ScriptableObjectArchitecture.IntReference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<float, ScriptableObjectArchitecture.FloatVariable>),
+                typeof(ScriptableObjectArchitecture.FloatReference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<Vector2, ScriptableObjectArchitecture.Vector2Variable>),
+                typeof(ScriptableObjectArchitecture.Vector2Reference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<Vector3, ScriptableObjectArchitecture.Vector3Variable>),
                 typeof(ScriptableObjectArchitecture.Vector3Reference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<Vector4, ScriptableObjectArchitecture.Vector4Variable>),
+                typeof(ScriptableObjectArchitecture.Vector4Reference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<GameObject, ScriptableObjectArchitecture.GameObjectVariable>),
+                typeof(ScriptableObjectArchitecture.GameObjectReference),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<string, ScriptableObjectArchitecture.StringVariable>),
+                typeof(ScriptableObjectArchitecture.StringReference),
             };
         }
     }

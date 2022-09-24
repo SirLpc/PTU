@@ -235,9 +235,19 @@ MonoBehaviour:
   type: UnityObjectComponent
   componentName: 
   data:
-    variables: []
+    variables:
+    - id: 0
   references:
     version: 1
+    00000000:
+      type: {class: GameObjectVariableReference, ns: TSEngine, asm: Assembly-CSharp}
+      data:
+        name: gameObject
+        refID: 0
+        _variable:
+          _useConstant: 1
+          _constantValue: {fileID: 7588625138362911591}
+          _variable: {fileID: 0}
 --- !u!1 &8766656886643565657
 GameObject:
   m_ObjectHideFlags: 0

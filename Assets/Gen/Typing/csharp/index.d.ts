@@ -25099,10 +25099,10 @@ declare module 'csharp' {
         }
     }
     namespace ScriptableObjectArchitecture {
-        class Vector3Variable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Event> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        class IntVariable extends ScriptableObjectArchitecture.BaseVariable$2<number, ScriptableObjectArchitecture.IntEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
         {
         }
-        class Vector3Event extends UnityEngine.Events.UnityEvent$1<UnityEngine.Vector3> implements UnityEngine.ISerializationCallbackReceiver
+        class IntEvent extends UnityEngine.Events.UnityEvent$1<number> implements UnityEngine.ISerializationCallbackReceiver
         {
             public OnBeforeSerialize () : void
             public OnAfterDeserialize () : void
@@ -25149,10 +25149,10 @@ declare module 'csharp' {
         interface IGameEventListener
         {
         }
-        class Vector3Reference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable>
+        class IntReference extends ScriptableObjectArchitecture.BaseReference$2<number, ScriptableObjectArchitecture.IntVariable>
         {
             public constructor ()
-            public constructor ($value: UnityEngine.Vector3)
+            public constructor ($value: number)
         }
         class FloatVariable extends ScriptableObjectArchitecture.BaseVariable$2<number, ScriptableObjectArchitecture.FloatEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
         {
@@ -25162,6 +25162,50 @@ declare module 'csharp' {
             public OnBeforeSerialize () : void
             public OnAfterDeserialize () : void
         }
+        class FloatReference extends ScriptableObjectArchitecture.BaseReference$2<number, ScriptableObjectArchitecture.FloatVariable>
+        {
+            public constructor ()
+            public constructor ($value: number)
+        }
+        class Vector2Variable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.Vector2, ScriptableObjectArchitecture.Vector2Event> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class Vector2Event extends UnityEngine.Events.UnityEvent$1<UnityEngine.Vector2> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class Vector2Reference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.Vector2, ScriptableObjectArchitecture.Vector2Variable>
+        {
+            public constructor ()
+            public constructor ($value: UnityEngine.Vector2)
+        }
+        class Vector3Variable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Event> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class Vector3Event extends UnityEngine.Events.UnityEvent$1<UnityEngine.Vector3> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class Vector3Reference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable>
+        {
+            public constructor ()
+            public constructor ($value: UnityEngine.Vector3)
+        }
+        class Vector4Variable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.Vector4, ScriptableObjectArchitecture.Vector4Event> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class Vector4Event extends UnityEngine.Events.UnityEvent$1<UnityEngine.Vector4> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class Vector4Reference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.Vector4, ScriptableObjectArchitecture.Vector4Variable>
+        {
+            public constructor ()
+            public constructor ($value: UnityEngine.Vector4)
+        }
         class GameObjectVariable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
         {
         }
@@ -25169,6 +25213,30 @@ declare module 'csharp' {
         {
             public OnBeforeSerialize () : void
             public OnAfterDeserialize () : void
+        }
+        class GameObjectReference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectVariable>
+        {
+            public constructor ()
+            public constructor ($value: UnityEngine.GameObject)
+        }
+        class StringVariable extends ScriptableObjectArchitecture.BaseVariable$2<string, ScriptableObjectArchitecture.StringEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class StringEvent extends UnityEngine.Events.UnityEvent$1<string> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class StringReference extends ScriptableObjectArchitecture.BaseReference$2<string, ScriptableObjectArchitecture.StringVariable>
+        {
+            public constructor ()
+            public constructor ($value: string)
+        }
+        class Collection$1<T> extends ScriptableObjectArchitecture.BaseCollection implements System.Collections.IEnumerable, System.Collections.Generic.IEnumerable$1<T>
+        {
+        }
+        class BaseCollection extends ScriptableObjectArchitecture.SOArchitectureBaseObject implements System.Collections.IEnumerable
+        {
         }
     }
     namespace UnityEngine.Playables {
@@ -25711,30 +25779,34 @@ declare module 'csharp' {
         {
             public type : string
             public name : string
-            public data : System.Array$1<TSEngine.IInjectableReference>
+            public data : System.Array$1<TSEngine.BaseVariableReference>
             public constructor ($data: TSEngine.BehaviourInjector)
             public constructor ()
         }
-        interface IInjectableReference
+        class BaseVariableReference extends System.Object
         {
+            public name : string
+            public refID : number
+            public get variable(): any;
+            public constructor ()
         }
         class BehaviourInjector extends UnityEngine.MonoBehaviour
         {
             public type : string
             public behaviourName : string
-            public data : TSEngine.VariableCollection
+            public data : TSEngine.VariableReferenceCollection
             public constructor ()
         }
-        class VariableCollection extends System.Object
+        class VariableReferenceCollection extends System.Object
         {
-            public variables : System.Array$1<TSEngine.IInjectableReference>
+            public variables : System.Array$1<TSEngine.BaseVariableReference>
             public constructor ()
         }
         class ComponentDescription extends System.Object
         {
             public type : string
             public name : string
-            public data : System.Array$1<TSEngine.IInjectableReference>
+            public data : System.Array$1<TSEngine.BaseVariableReference>
             public constructor ($data: TSEngine.ComponentInjector)
             public constructor ()
         }
@@ -25742,7 +25814,7 @@ declare module 'csharp' {
         {
             public type : string
             public componentName : string
-            public data : TSEngine.VariableCollection
+            public data : TSEngine.VariableReferenceCollection
             public constructor ()
         }
         class InstanceHUB extends System.Object
@@ -25783,26 +25855,29 @@ declare module 'csharp' {
             public ToJsonDescription () : string
             public constructor ()
         }
-        class FloatInjectableReference extends TSEngine.BaseInjectableReference$2<number, ScriptableObjectArchitecture.FloatVariable> implements TSEngine.IInjectableReference
+        class FloatVariableReference extends TSEngine.BaseVariableReference$2<number, ScriptableObjectArchitecture.FloatVariable>
         {
             public constructor ()
         }
-        class BaseInjectableReference$2<TBase, TVariable> extends System.Object implements TSEngine.IInjectableReference
+        class BaseVariableReference$2<TBase, TVariable> extends TSEngine.BaseVariableReference$1<ScriptableObjectArchitecture.BaseReference$2<TBase, TVariable>>
         {
         }
-        class Vector3InjectableReference extends TSEngine.BaseInjectableReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable> implements TSEngine.IInjectableReference
+        class BaseVariableReference$1<T> extends TSEngine.BaseVariableReference
         {
-            public constructor ()
         }
-        class GameObjectInjectableReference extends TSEngine.BaseInjectableReference$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectVariable> implements TSEngine.IInjectableReference
-        {
-            public constructor ()
-        }
-        class FloatInjectableCollection extends TSEngine.BaseInjectableCollection$1<number> implements TSEngine.IInjectableReference
+        class Vector3VariableReference extends TSEngine.BaseVariableReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable>
         {
             public constructor ()
         }
-        class BaseInjectableCollection$1<T> extends System.Object implements TSEngine.IInjectableReference
+        class GameObjectVariableReference extends TSEngine.BaseVariableReference$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectVariable>
+        {
+            public constructor ()
+        }
+        class FloatVariableCollection extends TSEngine.BaseVariableCollection$1<number>
+        {
+            public constructor ()
+        }
+        class BaseVariableCollection$1<T> extends TSEngine.BaseVariableReference$1<ScriptableObjectArchitecture.Collection$1<T>>
         {
         }
     }
@@ -26074,18 +26149,18 @@ declare module 'csharp' {
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class PanelProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IPanelProperties
+        class PanelProperties extends System.Object implements deVoid.UIFramework.IPanelProperties, deVoid.UIFramework.IScreenProperties
         {
             public get Priority(): deVoid.UIFramework.PanelPriority;
             public set Priority(value: deVoid.UIFramework.PanelPriority);
             public constructor ()
         }
-        interface IScreenProperties
-        {
-        }
         interface IPanelProperties extends deVoid.UIFramework.IScreenProperties
         {
             Priority : deVoid.UIFramework.PanelPriority
+        }
+        interface IScreenProperties
+        {
         }
         class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {

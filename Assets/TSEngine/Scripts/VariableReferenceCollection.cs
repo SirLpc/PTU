@@ -10,6 +10,7 @@ namespace TSEngine
     public class BaseVariableReference
     {
         public string name;
+        [HideInInspector]
         public int refID;
         public virtual object variable { get; }
     }
