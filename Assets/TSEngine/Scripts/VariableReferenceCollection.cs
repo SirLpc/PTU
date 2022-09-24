@@ -7,11 +7,11 @@ namespace TSEngine
 {
 
     [Serializable]
-    public abstract class BaseVariableReference
+    public class BaseVariableReference
     {
         public string name;
         public int refID;
-        public abstract object variable { get; }
+        public virtual object variable { get; }
     }
     
     [Serializable]
