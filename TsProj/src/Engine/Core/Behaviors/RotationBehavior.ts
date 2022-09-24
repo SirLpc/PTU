@@ -38,7 +38,7 @@ import { JsonUtility } from "../../Utility/JsonUtility";
 
             this.name = String( json.name );
 
-            if ( json.rotation !== undefined ) {
+            if ( json.data !== undefined ) {
                 let rotData = JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
                 this.rotation.inject( rotData );
             }

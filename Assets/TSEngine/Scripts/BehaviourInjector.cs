@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -12,7 +13,7 @@ namespace TSEngine
     {
         public string type;
         public string name;
-        public VariableEntry[] data;
+        public BaseVariableReference[] data;
 
         public BehaviourDescription(BehaviourInjector data)
         {
@@ -28,8 +29,16 @@ namespace TSEngine
         public string type;
         public string behaviourName;
 
-        public VariableCollection data;
+        public VariableReferenceCollection data;
 
+        private void Awake()
+        {
+            foreach (var variableReference in data.variables)
+            {
+                variableReference.refID = GUID.Generate().GetHashCode();
+                InstanceHUB.Add(variableReference.refID, variableReference.variable);
+            }
+        }
     }
 
 }

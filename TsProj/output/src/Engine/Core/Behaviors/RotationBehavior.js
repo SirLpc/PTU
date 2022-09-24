@@ -23,7 +23,7 @@ class RotationBehaviorData {
             throw new Error("Name must be defined in behavior data.");
         }
         this.name = String(json.name);
-        if (json.rotation !== undefined) {
+        if (json.data !== undefined) {
             let rotData = JsonUtility_1.JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
             this.rotation.inject(rotData);
         }

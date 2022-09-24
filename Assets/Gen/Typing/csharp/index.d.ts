@@ -3454,6 +3454,23 @@ declare module 'csharp' {
             public constructor ($displayIndex: number)
             public constructor ($other: UnityEngine.Event)
         }
+        /** A class you can derive from if you want to create objects that don't need to be attached to game objects. */
+        class ScriptableObject extends UnityEngine.Object
+        {
+        /** Creates an instance of a scriptable object.
+            * @param className The type of the ScriptableObject to create, as the name of the type.
+            * @param type The type of the ScriptableObject to create, as a System.Type instance.
+            * @returns The created ScriptableObject. 
+            */
+            public static CreateInstance ($className: string) : UnityEngine.ScriptableObject
+            /** Creates an instance of a scriptable object.
+            * @param className The type of the ScriptableObject to create, as the name of the type.
+            * @param type The type of the ScriptableObject to create, as a System.Type instance.
+            * @returns The created ScriptableObject. 
+            */
+            public static CreateInstance ($type: System.Type) : UnityEngine.ScriptableObject
+            public constructor ()
+        }
         /** AndroidJavaRunnable is the Unity representation of a java.lang.Runnable object. */
         interface AndroidJavaRunnable
         { () : void; }
@@ -3936,23 +3953,6 @@ declare module 'csharp' {
             public OnStateIK ($animator: UnityEngine.Animator, $stateInfo: UnityEngine.AnimatorStateInfo, $layerIndex: number, $controller: UnityEngine.Animations.AnimatorControllerPlayable) : void
             public OnStateMachineEnter ($animator: UnityEngine.Animator, $stateMachinePathHash: number, $controller: UnityEngine.Animations.AnimatorControllerPlayable) : void
             public OnStateMachineExit ($animator: UnityEngine.Animator, $stateMachinePathHash: number, $controller: UnityEngine.Animations.AnimatorControllerPlayable) : void
-        }
-        /** A class you can derive from if you want to create objects that don't need to be attached to game objects. */
-        class ScriptableObject extends UnityEngine.Object
-        {
-        /** Creates an instance of a scriptable object.
-            * @param className The type of the ScriptableObject to create, as the name of the type.
-            * @param type The type of the ScriptableObject to create, as a System.Type instance.
-            * @returns The created ScriptableObject. 
-            */
-            public static CreateInstance ($className: string) : UnityEngine.ScriptableObject
-            /** Creates an instance of a scriptable object.
-            * @param className The type of the ScriptableObject to create, as the name of the type.
-            * @param type The type of the ScriptableObject to create, as a System.Type instance.
-            * @returns The created ScriptableObject. 
-            */
-            public static CreateInstance ($type: System.Type) : UnityEngine.ScriptableObject
-            public constructor ()
         }
         /** Information about the current or next state. */
         class AnimatorStateInfo extends System.ValueType
@@ -21679,6 +21679,584 @@ declare module 'csharp' {
             public set windPulseFrequency(value: number);
             public constructor ()
         }
+        class AssetPreviewAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Width(): number;
+            public get Height(): number;
+            public get UseLabel(): boolean;
+            public constructor ($width?: number, $height?: number, $useLabel?: boolean)
+            public constructor ()
+        }
+        class ChildObjectOnlyAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class ClampAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get MinValue(): number;
+            public get MaxValue(): number;
+            public constructor ($minValue: number, $maxValue: number)
+            public constructor ()
+        }
+        class DirectoryAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get RelativePath(): string;
+            public constructor ($relativePath?: string)
+            public constructor ()
+        }
+        class EnumFlagAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Style(): UnityEngine.EnumStyle;
+            public get ButtonsSpacing(): number;
+            public set ButtonsSpacing(value: number);
+            public get ButtonsHeight(): number;
+            public set ButtonsHeight(value: number);
+            public get ButtonsWidth(): number;
+            public set ButtonsWidth(value: number);
+            public constructor ($style?: UnityEngine.EnumStyle)
+            public constructor ()
+        }
+        enum EnumStyle
+        { Popup = 0, Button = 1 }
+        class EnumTogglesAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get ToggleWidth(): number;
+            public set ToggleWidth(value: number);
+            public get ToggleHeight(): number;
+            public set ToggleHeight(value: number);
+            public get ToggleSpacing(): number;
+            public set ToggleSpacing(value: number);
+            public constructor ()
+        }
+        class FormattedNumberAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Format(): string;
+            public get DecimalsToShow(): number;
+            public set DecimalsToShow(value: number);
+            public constructor ($format?: string)
+            public constructor ()
+        }
+        class LabelByChildAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get ChildName(): string;
+            public constructor ($childName: string)
+            public constructor ()
+        }
+        class LayerAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class LeftToggleAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class MinMaxSliderAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get MinValue(): number;
+            public get MaxValue(): number;
+            public constructor ($minValue: number, $maxValue: number)
+            public constructor ()
+        }
+        class NotNullAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Label(): string;
+            public constructor ()
+            public constructor ($label: string)
+        }
+        class OnValueChangedAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get CallbackMethodName(): string;
+            public constructor ($callbackMethodName: string)
+            public constructor ()
+        }
+        class PasswordAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class PrefabObjectOnlyAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class PresetAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get SourceHandle(): string;
+            public get OptionHandle(): string;
+            public constructor ($sourceHandle: string, $optionHandle?: string)
+            public constructor ()
+        }
+        class ProgressBarAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Name(): string;
+            public get MinValue(): number;
+            public get MaxValue(): number;
+            public get Color(): UnityEngine.Color;
+            public get HexColor(): string;
+            public set HexColor(value: string);
+            public constructor ($name?: string, $minValue?: number, $maxValue?: number)
+            public constructor ()
+        }
+        class SceneDetailsAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class SceneNameAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class SceneObjectOnlyAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class SearchableEnumAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class SuffixAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get SuffixLabel(): string;
+            public constructor ($suffixLabel: string)
+            public constructor ()
+        }
+        class TagSelectorAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class TypeConstraintAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get AssemblyType(): System.Type;
+            public get AllowAbstract(): boolean;
+            public set AllowAbstract(value: boolean);
+            public get AllowObsolete(): boolean;
+            public set AllowObsolete(value: boolean);
+            public get AddTextSearchField(): boolean;
+            public set AddTextSearchField(value: boolean);
+            public get OrderTypes(): boolean;
+            public set OrderTypes(value: boolean);
+            public get TypeGrouping(): UnityEngine.TypeGrouping;
+            public set TypeGrouping(value: UnityEngine.TypeGrouping);
+            public get TypeSettings(): UnityEngine.TypeSettings;
+            public set TypeSettings(value: UnityEngine.TypeSettings);
+            public constructor ($assemblyType: System.Type)
+            public constructor ()
+        }
+        enum ClassGrouping
+        { None = 0, ByNamespace = 1, ByNamespaceFlat = 2, ByAddComponentMenu = 3 }
+        enum TypeGrouping
+        { None = 0, ByNamespace = 1, ByNamespaceFlat = 2, ByAddComponentMenu = 3, ByFlatName = 4 }
+        enum TypeSettings
+        { Class = 1, Interface = 2 }
+        class ClassExtendsAttribute extends UnityEngine.TypeConstraintAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($baseType: System.Type)
+            public constructor ($assemblyType: System.Type)
+            public constructor ()
+        }
+        class ClassImplementsAttribute extends UnityEngine.TypeConstraintAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($interfaceType: System.Type)
+            public constructor ($assemblyType: System.Type)
+            public constructor ()
+        }
+        class HideLabelAttribute extends UnityEngine.NewLabelAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class NewLabelAttribute extends UnityEngine.PropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get NewLabel(): string;
+            public constructor ($newLabel: string)
+            public constructor ()
+        }
+        class ScriptablesListAttribute extends UnityEngine.ToolboxArchetypeAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Foldable(): boolean;
+            public set Foldable(value: boolean);
+            public get HasHeader(): boolean;
+            public set HasHeader(value: boolean);
+            public get HasLabels(): boolean;
+            public set HasLabels(value: boolean);
+            public constructor ()
+        }
+        class ToolboxArchetypeAttribute extends UnityEngine.ToolboxAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public Process () : System.Array$1<UnityEngine.ToolboxAttribute>
+        }
+        class ToolboxAttribute extends System.Attribute implements System.Runtime.InteropServices._Attribute
+        {
+        }
+        class TitleAttribute extends UnityEngine.ToolboxArchetypeAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Label(): string;
+            public constructor ($label: string)
+            public constructor ()
+        }
+        class ComparisonAttribute extends UnityEngine.ToolboxConditionAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get SourceHandle(): string;
+            public get ValueToMatch(): any;
+            public get Comparison(): UnityEngine.UnityComparisonMethod;
+            public set Comparison(value: UnityEngine.UnityComparisonMethod);
+        }
+        class ToolboxConditionAttribute extends UnityEngine.ToolboxAttribute implements System.Runtime.InteropServices._Attribute
+        {
+        }
+        enum ComparisionTestMethod
+        { Equal = 0, Greater = 1, Less = 2, GreaterEqual = 3, LessEqual = 4, Mask = 5 }
+        enum UnityComparisonMethod
+        { Equal = 0, Greater = 1, Less = 2, GreaterEqual = 3, LessEqual = 4, Mask = 5 }
+        class DisableAttribute extends UnityEngine.ToolboxConditionAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class DisableIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class DisableInPlayModeAttribute extends UnityEngine.ToolboxConditionAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class EnableIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class HideAttribute extends UnityEngine.ToolboxConditionAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class HideDisabledIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class HideIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class ShowDisabledIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class ShowIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($sourceHandle: string, $valueToMatch: any)
+            public constructor ()
+        }
+        class ShowWarningIfAttribute extends UnityEngine.ComparisonAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Message(): string;
+            public get DisableField(): boolean;
+            public set DisableField(value: boolean);
+            public constructor ($sourceHandle: string, $valueToMatch: any, $message: string)
+            public constructor ()
+        }
+        class BeginGroupAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Label(): string;
+            public get HasLabel(): boolean;
+            public constructor ($label?: string)
+            public constructor ()
+        }
+        class ToolboxDecoratorAttribute extends UnityEngine.ToolboxAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Order(): number;
+            public set Order(value: number);
+            public get ApplyCondition(): boolean;
+            public set ApplyCondition(value: boolean);
+        }
+        class BeginHorizontalAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get LabelToWidthRatio(): number;
+            public get FieldToWidthRatio(): number;
+            public constructor ($labelToWidthRatio?: number, $fieldToWidthRatio?: number)
+            public constructor ()
+        }
+        class BeginHorizontalGroupAttribute extends UnityEngine.BeginHorizontalAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Label(): string;
+            public get HasLabel(): boolean;
+            public get Height(): number;
+            public set Height(value: number);
+            public constructor ($labelToWidthRatio?: number, $fieldToWidthRatio?: number, $label?: string)
+            public constructor ($labelToWidthRatio?: number, $fieldToWidthRatio?: number)
+            public constructor ()
+        }
+        class BeginIndentAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get IndentToAdd(): number;
+            public constructor ($indentToAdd?: number)
+            public constructor ()
+        }
+        class BeginVerticalAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class DynamicHelpAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get SourceHandle(): string;
+            public get Type(): UnityEngine.UnityMessageType;
+            public constructor ($sourceHandle: string, $type?: UnityEngine.UnityMessageType)
+            public constructor ()
+        }
+        enum UnityMessageType
+        { None = 0, Info = 1, Warning = 2, Error = 3 }
+        class EditorButtonAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get MethodName(): string;
+            public get ValidateMethodName(): string;
+            public set ValidateMethodName(value: string);
+            public get ExtraLabel(): string;
+            public get Tooltip(): string;
+            public set Tooltip(value: string);
+            public get ActivityType(): UnityEngine.ButtonActivityType;
+            public constructor ($methodName: string, $extraLabel?: string, $activityType?: UnityEngine.ButtonActivityType)
+            public constructor ()
+        }
+        enum ButtonActivityType
+        { Nothing = 0, OnPlayMode = 1, OnEditMode = 2, Everything = -1 }
+        class EndGroupAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class EndHorizontalAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class EndHorizontalGroupAttribute extends UnityEngine.EndHorizontalAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class EndIndentAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get IndentToSubtract(): number;
+            public constructor ($indentToSubtract?: number)
+            public constructor ()
+        }
+        class EndVerticalAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class GuiColorAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Color(): UnityEngine.Color;
+            public constructor ($r: number, $g: number, $b: number)
+            public constructor ($hexColor: string)
+            public constructor ()
+        }
+        class HelpAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Text(): string;
+            public get Type(): UnityEngine.UnityMessageType;
+            public constructor ($text: string, $type?: UnityEngine.UnityMessageType)
+            public constructor ()
+        }
+        class HighlightAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Color(): UnityEngine.Color;
+            public constructor ($r: number, $g: number, $b: number)
+            public constructor ($hexColor: string)
+            public constructor ()
+        }
+        class ImageAreaAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Url(): string;
+            public get Height(): number;
+            public constructor ($url: string)
+            public constructor ($url: string, $height: number)
+            public constructor ()
+        }
+        class IndentAreaAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get IndentLevelChange(): number;
+            public constructor ()
+            public constructor ($indentLevelChange: number)
+        }
+        class LabelAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Label(): string;
+            public get FontStyle(): UnityEngine.FontStyle;
+            public get SkinStyle(): UnityEngine.SkinStyle;
+            public get Alignment(): UnityEngine.TextAnchor;
+            public set Alignment(value: UnityEngine.TextAnchor);
+            public get Asset(): string;
+            public set Asset(value: string);
+            public get SpaceBefore(): number;
+            public set SpaceBefore(value: number);
+            public get SpaceAfter(): number;
+            public set SpaceAfter(value: number);
+            public constructor ($label: string, $fontStyle?: UnityEngine.FontStyle, $skinStyle?: UnityEngine.SkinStyle)
+            public constructor ()
+        }
+        enum SkinStyle
+        { Normal = 0, Box = 1, Round = 2, Help = 3 }
+        class LineAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Thickness(): number;
+            public get Padding(): number;
+            public get IsHorizontal(): boolean;
+            public set IsHorizontal(value: boolean);
+            public get ApplyIndent(): boolean;
+            public set ApplyIndent(value: boolean);
+            public get HexColor(): string;
+            public set HexColor(value: string);
+            public get GuiColor(): UnityEngine.Color;
+            public constructor ($thickness?: number, $padding?: number)
+            public constructor ()
+        }
+        class SpaceAreaAttribute extends UnityEngine.ToolboxDecoratorAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get SpaceBefore(): number;
+            public get SpaceAfter(): number;
+            public constructor ($spaceBefore?: number, $spaceAfter?: number)
+            public constructor ()
+        }
+        class ReorderableListAttribute extends UnityEngine.ToolboxListPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Draggable(): boolean;
+            public get FixedSize(): boolean;
+            public get ListStyle(): UnityEngine.ListStyle;
+            public get ElementLabel(): string;
+            public get Foldable(): boolean;
+            public set Foldable(value: boolean);
+            public get HasHeader(): boolean;
+            public set HasHeader(value: boolean);
+            public get HasLabels(): boolean;
+            public set HasLabels(value: boolean);
+            public constructor ($style?: UnityEngine.ListStyle, $elementLabel?: string, $fixedSize?: boolean, $draggable?: boolean)
+            public constructor ()
+        }
+        class ToolboxListPropertyAttribute extends UnityEngine.ToolboxPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class ToolboxPropertyAttribute extends UnityEngine.ToolboxAttribute implements System.Runtime.InteropServices._Attribute
+        {
+        }
+        enum ListStyle
+        { Round = 0, Boxed = 1, Lined = 2 }
+        class ReorderableListExposedAttribute extends UnityEngine.ReorderableListAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get OverrideNewElementMethodName(): string;
+            public set OverrideNewElementMethodName(value: string);
+            public constructor ()
+        }
+        class ScrollableItemsAttribute extends UnityEngine.ToolboxListPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get DefaultMinIndex(): number;
+            public get DefaultMaxIndex(): number;
+            public constructor ($defaultMinIndex?: number, $defaultMaxIndex?: number)
+            public constructor ()
+        }
+        class DynamicMinMaxBaseAttribute extends UnityEngine.ToolboxSelfPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get MinValueSource(): string;
+            public get MaxValueSource(): string;
+        }
+        class ToolboxSelfPropertyAttribute extends UnityEngine.ToolboxPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+        }
+        class DynamicMinMaxSliderAttribute extends UnityEngine.DynamicMinMaxBaseAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($minValueSource: string, $maxValueSource: string)
+            public constructor ()
+        }
+        class DynamicRangeAttribute extends UnityEngine.DynamicMinMaxBaseAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ($minValueSource: string, $maxValueSource: string)
+            public constructor ()
+        }
+        class IgnoreParentAttribute extends UnityEngine.ToolboxSelfPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public constructor ()
+        }
+        class InLineEditorAttribute extends UnityEngine.ToolboxSelfPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get DrawPreview(): boolean;
+            public get DrawSettings(): boolean;
+            public get HideScript(): boolean;
+            public set HideScript(value: boolean);
+            public get DisableEditor(): boolean;
+            public set DisableEditor(value: boolean);
+            public get PreviewHeight(): number;
+            public set PreviewHeight(value: number);
+            public constructor ($drawPreview?: boolean, $drawSettings?: boolean)
+            public constructor ()
+        }
+        class ReferencePickerAttribute extends UnityEngine.ToolboxSelfPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get ParentType(): System.Type;
+            public set ParentType(value: System.Type);
+            public get TypeGrouping(): UnityEngine.TypeGrouping;
+            public set TypeGrouping(value: UnityEngine.TypeGrouping);
+            public constructor ()
+            public constructor ($parentType: System.Type)
+            public constructor ($parentType: System.Type, $typeGrouping: UnityEngine.TypeGrouping)
+        }
+        class RegexValueAttribute extends UnityEngine.ToolboxSelfPropertyAttribute implements System.Runtime.InteropServices._Attribute
+        {
+            public get Pattern(): string;
+            public get Message(): string;
+            public get HasMessage(): boolean;
+            public constructor ($pattern: string)
+            public constructor ($pattern: string, $message: string)
+            public constructor ()
+        }
+        class SerializedDateTime extends System.Object implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public get DateTime(): Date;
+            public set DateTime(value: Date);
+            public static op_Implicit ($sdt: UnityEngine.SerializedDateTime) : Date
+            public static op_Implicit ($dt: Date) : UnityEngine.SerializedDateTime
+            public constructor ()
+            public constructor ($ticks: bigint)
+            public constructor ($dateTime: Date)
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class SerializedDirectory extends System.Object implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public get DirectoryAsset(): UnityEditor.DefaultAsset;
+            public set DirectoryAsset(value: UnityEditor.DefaultAsset);
+            public get Path(): string;
+            public set Path(value: string);
+            public constructor ()
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class SerializedScene extends System.Object implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public get SceneReference(): UnityEditor.SceneAsset;
+            public set SceneReference(value: UnityEditor.SceneAsset);
+            public get SceneName(): string;
+            public set SceneName(value: string);
+            public get ScenePath(): string;
+            public set ScenePath(value: string);
+            public get BuildIndex(): number;
+            public set BuildIndex(value: number);
+            public static TryGetScenePath ($sceneAsset: UnityEditor.SceneAsset, $path: $Ref<string>) : boolean
+            public constructor ()
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class SerializedType extends System.Object implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public get Type(): System.Type;
+            public set Type(value: System.Type);
+            public static GetReferenceValue ($type: System.Type) : string
+            public static GetReferenceType ($referenceValue: string) : System.Type
+            public static op_Implicit ($typeReference: UnityEngine.SerializedType) : string
+            public static op_Implicit ($typeReference: UnityEngine.SerializedType) : System.Type
+            public static op_Implicit ($type: System.Type) : UnityEngine.SerializedType
+            public constructor ()
+            public constructor ($assemblyQualifiedTypeName: string)
+            public constructor ($type: System.Type)
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
     }
     namespace System {
         class Object
@@ -21973,6 +22551,9 @@ declare module 'csharp' {
         class UInt32 extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>, System.IFormattable
         {
         }
+        interface Action
+        { () : void; }
+        var Action: { new (func: () => void): Action; }
         interface AsyncCallback
         { (ar: System.IAsyncResult) : void; }
         var AsyncCallback: { new (func: (ar: System.IAsyncResult) => void): AsyncCallback; }
@@ -21999,9 +22580,6 @@ declare module 'csharp' {
         }
         interface Func$1<TResult>
         { () : TResult; }
-        interface Action
-        { () : void; }
-        var Action: { new (func: () => void): Action; }
         interface Action$2<T1, T2>
         { (arg1: T1, arg2: T2) : void; }
         class DateTime extends System.ValueType implements System.IComparable, System.IComparable$1<Date>, System.IConvertible, System.IEquatable$1<Date>, System.Runtime.Serialization.ISerializable, System.IFormattable
@@ -24520,6 +25098,79 @@ declare module 'csharp' {
             public action () : void
         }
     }
+    namespace ScriptableObjectArchitecture {
+        class Vector3Variable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Event> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class Vector3Event extends UnityEngine.Events.UnityEvent$1<UnityEngine.Vector3> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class BaseVariable$2<T, TEvent> extends ScriptableObjectArchitecture.BaseVariable$1<T> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class BaseVariable$1<T> extends ScriptableObjectArchitecture.BaseVariable implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class BaseVariable extends ScriptableObjectArchitecture.GameEventBase implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class GameEventBase extends ScriptableObjectArchitecture.SOArchitectureBaseObject implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class SOArchitectureBaseObject extends UnityEngine.ScriptableObject
+        {
+        }
+        interface IGameEvent
+        {
+        }
+        interface IStackTraceObject
+        {
+        }
+        class BaseReference$2<TBase, TVariable> extends ScriptableObjectArchitecture.BaseReference
+        {
+            public get Variable(): TVariable;
+            public set Variable(value: TVariable);
+            public get Value(): TBase;
+            public set Value(value: TBase);
+            public get IsValueDefined(): boolean;
+            public CreateCopy () : ScriptableObjectArchitecture.BaseReference
+            public AddListener ($listener: ScriptableObjectArchitecture.IGameEventListener) : void
+            public RemoveListener ($listener: ScriptableObjectArchitecture.IGameEventListener) : void
+            public AddListener ($action: System.Action) : void
+            public RemoveListener ($action: System.Action) : void
+            public constructor ()
+            public constructor ($baseValue: TBase)
+        }
+        class BaseReference extends System.Object
+        {
+        }
+        interface IGameEventListener
+        {
+        }
+        class Vector3Reference extends ScriptableObjectArchitecture.BaseReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable>
+        {
+            public constructor ()
+            public constructor ($value: UnityEngine.Vector3)
+        }
+        class FloatVariable extends ScriptableObjectArchitecture.BaseVariable$2<number, ScriptableObjectArchitecture.FloatEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class FloatEvent extends UnityEngine.Events.UnityEvent$1<number> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+        class GameObjectVariable extends ScriptableObjectArchitecture.BaseVariable$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class GameObjectEvent extends UnityEngine.Events.UnityEvent$1<UnityEngine.GameObject> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+        }
+    }
     namespace UnityEngine.Playables {
         /** Use the PlayableGraph to manage Playable creations and destructions. */
         class PlayableGraph extends System.ValueType
@@ -25060,34 +25711,30 @@ declare module 'csharp' {
         {
             public type : string
             public name : string
-            public rotation : UnityEngine.Vector3
-            public data : System.Array$1<TSEngine.VariableEntry>
+            public data : System.Array$1<TSEngine.IInjectableReference>
             public constructor ($data: TSEngine.BehaviourInjector)
             public constructor ()
         }
-        class VariableEntry extends System.Object
+        interface IInjectableReference
         {
-            public name : string
-            public variable : UnityEngine.ScriptableObject
-            public constructor ()
         }
         class BehaviourInjector extends UnityEngine.MonoBehaviour
         {
             public type : string
             public behaviourName : string
-            public rotation : string
             public data : TSEngine.VariableCollection
             public constructor ()
         }
         class VariableCollection extends System.Object
         {
-            public variables : System.Array$1<TSEngine.VariableEntry>
+            public variables : System.Array$1<TSEngine.IInjectableReference>
             public constructor ()
         }
         class ComponentDescription extends System.Object
         {
             public type : string
             public name : string
+            public data : System.Array$1<TSEngine.IInjectableReference>
             public constructor ($data: TSEngine.ComponentInjector)
             public constructor ()
         }
@@ -25095,13 +25742,16 @@ declare module 'csharp' {
         {
             public type : string
             public componentName : string
+            public data : TSEngine.VariableCollection
             public constructor ()
         }
         class InstanceHUB extends System.Object
         {
-            public static Add ($obj: UnityEngine.Object) : void
-            public static Remove ($obj: UnityEngine.Object) : void
-            public static Get ($instanceID: number) : UnityEngine.Object
+            public static AddObject ($obj: UnityEngine.Object) : void
+            public static Add ($key: number, $obj: any) : void
+            public static RemoveObject ($obj: UnityEngine.Object) : void
+            public static Remove ($key: number) : void
+            public static Get ($key: number) : any
         }
         class TransformDescription extends System.Object
         {
@@ -25132,6 +25782,28 @@ declare module 'csharp' {
         {
             public ToJsonDescription () : string
             public constructor ()
+        }
+        class FloatInjectableReference extends TSEngine.BaseInjectableReference$2<number, ScriptableObjectArchitecture.FloatVariable> implements TSEngine.IInjectableReference
+        {
+            public constructor ()
+        }
+        class BaseInjectableReference$2<TBase, TVariable> extends System.Object implements TSEngine.IInjectableReference
+        {
+        }
+        class Vector3InjectableReference extends TSEngine.BaseInjectableReference$2<UnityEngine.Vector3, ScriptableObjectArchitecture.Vector3Variable> implements TSEngine.IInjectableReference
+        {
+            public constructor ()
+        }
+        class GameObjectInjectableReference extends TSEngine.BaseInjectableReference$2<UnityEngine.GameObject, ScriptableObjectArchitecture.GameObjectVariable> implements TSEngine.IInjectableReference
+        {
+            public constructor ()
+        }
+        class FloatInjectableCollection extends TSEngine.BaseInjectableCollection$1<number> implements TSEngine.IInjectableReference
+        {
+            public constructor ()
+        }
+        class BaseInjectableCollection$1<T> extends System.Object implements TSEngine.IInjectableReference
+        {
         }
     }
     namespace Puergp.Variables {
@@ -25308,6 +25980,26 @@ declare module 'csharp' {
             public checkmark : UnityEngine.Sprite
             public dropdown : UnityEngine.Sprite
             public mask : UnityEngine.Sprite
+        }
+    }
+    namespace UnityEditor {
+        /** DefaultAsset is used for assets that do not have a specific type (yet). */
+        class DefaultAsset extends UnityEngine.Object
+        {
+        }
+        /** SceneAsset is used to reference Scene objects in the Editor. */
+        class SceneAsset extends UnityEngine.Object
+        {
+        }
+        /** Derive from this base class to create a custom inspector or editor for your custom object. */
+        class Editor extends UnityEngine.ScriptableObject implements UnityEditor.IToolModeOwner, UnityEditor.IPreviewable
+        {
+        }
+        interface IToolModeOwner
+        {
+        }
+        interface IPreviewable
+        {
         }
     }
         class UIEvent extends UnityEngine.MonoBehaviour
@@ -25551,7 +26243,7 @@ declare module 'csharp' {
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class WindowProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class WindowProperties extends System.Object implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public get WindowQueuePriority(): deVoid.UIFramework.WindowPriority;
             public set WindowQueuePriority(value: deVoid.UIFramework.WindowPriority);
@@ -25720,7 +26412,7 @@ declare module 'csharp' {
             public get LevelProgress(): System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>;
             public constructor ()
         }
-        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public WorldCamera : UnityEngine.Camera
             public TransformToFollow : UnityEngine.Transform
@@ -25754,7 +26446,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public Title : string
             public Message : string
@@ -25798,7 +26490,7 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
+        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
         {
             public PlayerData : System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>
             public constructor ($data: System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>)
@@ -26068,18 +26760,6 @@ declare module 'csharp' {
         class JsBindingEditor extends UnityEditor.Editor implements UnityEditor.IToolModeOwner, UnityEditor.IPreviewable
         {
             public constructor ()
-        }
-    }
-    namespace UnityEditor {
-        /** Derive from this base class to create a custom inspector or editor for your custom object. */
-        class Editor extends UnityEngine.ScriptableObject implements UnityEditor.IToolModeOwner, UnityEditor.IPreviewable
-        {
-        }
-        interface IToolModeOwner
-        {
-        }
-        interface IPreviewable
-        {
         }
     }
     namespace DG.Tweening.DOTweenModuleUI {

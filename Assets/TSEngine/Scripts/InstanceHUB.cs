@@ -5,14 +5,20 @@ namespace TSEngine
 {
     public static class InstanceHUB
     {
-        private static Dictionary<int, Object> _objects = new Dictionary<int, Object>();
+        private static Dictionary<int, object> _objects = new Dictionary<int, object>();
 
-        public static void Add(Object obj)
+        public static void AddObject(Object obj)
         {
             _objects[obj.GetInstanceID()] = obj;
         }
+        
+        public static void Add(int key, object obj)
+        {
+            _objects[key] = obj;
+            Debug.Log("add " + key);
+        }
 
-        public static void Remove(Object obj)
+        public static void RemoveObject(Object obj)
         {
             var instID = obj.GetInstanceID();
             if (_objects.ContainsKey(instID))
@@ -20,12 +26,21 @@ namespace TSEngine
                 _objects.Remove(instID);
             }
         }
-
-        public static Object Get(int instanceID)
+        
+        public static void Remove(int key)
         {
-            if (_objects.ContainsKey(instanceID))
+            if (_objects.ContainsKey(key))
             {
-                return _objects[instanceID];
+                _objects.Remove(key);
+            }
+        }
+
+        public static object Get(int key)
+        {
+            Debug.Log("Get " + key);
+            if (_objects.ContainsKey(key))
+            {
+                return _objects[key];
             }
 
             return null;

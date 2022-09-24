@@ -1,24 +1,25 @@
-import { Puergp, TSEngine, UnityEngine } from "csharp";
+import { Puergp, ScriptableObjectArchitecture, TSEngine, UnityEngine } from "csharp";
 import { Vector3 } from "../../Core/Math/Vector3";
 import { Vector3VariableRef } from "../../Core/VariableReferences/Vector3VariableRef";
 
-export class Vector3VariableReference extends Vector3VariableRef<Puergp.Variables.Vector3Variable> {
+export class Vector3VariableReference extends Vector3VariableRef<ScriptableObjectArchitecture.Vector3Reference> {
 
     private _value : Vector3 = new Vector3();
-    private _v3Variable: Puergp.Variables.Vector3Variable;
+    private _v3Variable: ScriptableObjectArchitecture.Vector3Reference;
 
     inject(data: any): void {
-        this._v3Variable = TSEngine.InstanceHUB.Get(data.variable.instanceID) as Puergp.Variables.Vector3Variable;
+        let obj = TSEngine.InstanceHUB.Get(data.refID);
+        this._v3Variable = obj as ScriptableObjectArchitecture.Vector3Reference;
     }
     
     get value(): Vector3 {
-        this._value.x = this._v3Variable.value.x;
-        this._value.y = this._v3Variable.value.y;
-        this._value.z = this._v3Variable.value.z;
+        this._value.x = this._v3Variable.Value.x;
+        this._value.y = this._v3Variable.Value.y;
+        this._value.z = this._v3Variable.Value.z;
         return this._value;
     }
     
-    get ijValue(): Puergp.Variables.Vector3Variable {
+    get ijValue(): ScriptableObjectArchitecture.Vector3Reference {
         return this._v3Variable;
     }
 

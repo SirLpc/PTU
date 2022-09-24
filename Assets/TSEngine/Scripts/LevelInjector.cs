@@ -77,7 +77,9 @@ namespace TSEngine
             EntityDescription root = new EntityDescription(transform);
             root.name = gameObject.name;
             LevelDescription level = new LevelDescription(root);
-            return JsonUtility.ToJson(level);
+            var json = JsonUtility.ToJson(level);
+            Debug.Log(json);
+            return json;
         }
         
     }

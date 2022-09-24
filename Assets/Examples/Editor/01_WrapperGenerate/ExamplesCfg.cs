@@ -8,7 +8,9 @@
 using System.Collections.Generic;
 using Puerts;
 using System;
+using Puergp.Variables;
 using UnityEngine;
+using Vector3Variable = ScriptableObjectArchitecture.Vector3Variable;
 
 //1、配置类必须打[Configure]标签
 //2、必须放Editor目录
@@ -60,6 +62,9 @@ public class ExamplesCfg
                 typeof(PuertsDeclareTest.Zombies.Walkable),
                 typeof(PuertsDeclareTest.Zombies.Flyable),
                 typeof(PuertsDeclareTest.Zombies.BalloonZombie),
+                
+                typeof(ScriptableObjectArchitecture.BaseReference<Vector3, Vector3Variable>),
+                typeof(ScriptableObjectArchitecture.Vector3Reference),
             };
         }
     }

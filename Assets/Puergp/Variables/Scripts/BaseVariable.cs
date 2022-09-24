@@ -63,12 +63,12 @@ namespace Puergp.Variables
 
         protected void OnEnable()
         {
-            InstanceHUB.Add(this);
+            InstanceHUB.AddObject(this);
         }
 
         protected void OnDisable()
         {
-            InstanceHUB.Remove(this);
+            InstanceHUB.RemoveObject(this);
         }
     }
 }

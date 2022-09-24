@@ -8,12 +8,13 @@ class Vector3VariableReference extends Vector3VariableRef_1.Vector3VariableRef {
     _value = new Vector3_1.Vector3();
     _v3Variable;
     inject(data) {
-        this._v3Variable = csharp_1.TSEngine.InstanceHUB.Get(data.variable.instanceID);
+        let obj = csharp_1.TSEngine.InstanceHUB.Get(data.refID);
+        this._v3Variable = obj;
     }
     get value() {
-        this._value.x = this._v3Variable.value.x;
-        this._value.y = this._v3Variable.value.y;
-        this._value.z = this._v3Variable.value.z;
+        this._value.x = this._v3Variable.Value.x;
+        this._value.y = this._v3Variable.Value.y;
+        this._value.z = this._v3Variable.Value.z;
         return this._value;
     }
     get ijValue() {
