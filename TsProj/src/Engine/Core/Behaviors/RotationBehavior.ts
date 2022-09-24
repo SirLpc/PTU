@@ -42,6 +42,9 @@ import { JsonUtility } from "../../Utility/JsonUtility";
                 let rotData = JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
                 this.rotation.inject( rotData );
             }
+            else {
+                throw new Error("RotationBehaviour need a data with rotation field.")
+            }
             
             return this;
         }

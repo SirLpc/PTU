@@ -75,9 +75,6 @@ class UnityObjectComponent extends BaseComponent_1.BaseComponent {
         this._sca.x = this.owner.transform.scale.x;
         this._sca.y = this.owner.transform.scale.y;
         this._sca.z = this.owner.transform.scale.z;
-        // pos : UnityEngine.Vector3 = new UnityEngine.Vector3(this.owner.transform.position.x, this.owner.transform.position.y, this.owner.transform.position.z);
-        // rot : UnityEngine.Vector3 = new UnityEngine.Vector3(this.owner.transform.rotation.x, this.owner.transform.rotation.y, this.owner.transform.rotation.z);
-        // scal = new UnityEngine.Vector3(this.owner.transform.scale.x, this.owner.transform.scale.y, this.owner.transform.scale.z);
         this._unityGO.transform.localPosition = this._pos;
         this._unityGO.transform.localEulerAngles = this._rot;
         this._unityGO.transform.localScale = this._sca;

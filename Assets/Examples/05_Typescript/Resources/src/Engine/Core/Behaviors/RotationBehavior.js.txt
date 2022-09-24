@@ -27,6 +27,9 @@ class RotationBehaviorData {
             let rotData = JsonUtility_1.JsonUtility.TryGetArrayItmeByName(json.data, "rotation");
             this.rotation.inject(rotData);
         }
+        else {
+            throw new Error("RotationBehaviour need a data with rotation field.");
+        }
         return this;
     }
 }
