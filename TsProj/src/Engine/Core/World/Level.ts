@@ -139,7 +139,7 @@ import { TEntity } from "./TEntity";
 
         /** Unloads this level. */
         public unload(): void {
-
+            this._sceneGraph.root.unload();
         }
 
         /**

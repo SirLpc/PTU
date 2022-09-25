@@ -38,4 +38,6 @@
          */
         //render( renderView: RenderView ): void;
         render(  ): void;
+
+        unload(): void;
     }

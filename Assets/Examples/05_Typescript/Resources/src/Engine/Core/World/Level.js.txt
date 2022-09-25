@@ -114,6 +114,7 @@ class Level {
     }
     /** Unloads this level. */
     unload() {
+        this._sceneGraph.root.unload();
     }
     /**
      * Updates this level.

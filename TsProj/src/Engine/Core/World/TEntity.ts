@@ -250,6 +250,23 @@ import { SceneGraph } from "./SceneGraph";
             }
         }
 
+        /** Performs loading procedures on this entity. */
+        public unload(): void {
+            this._isLoaded = true;
+
+            for ( let c of this._components ) {
+                c.unload();
+            }
+
+            for ( let c of this._behaviors ) {
+                c.unload();
+            }
+
+            for ( let c of this._children ) {
+                c.unload();
+            }
+        }
+
         /** Returns the world position of this entity. */
         public getWorldPosition(): Vector3 {
             return new Vector3( this._worldMatrix.data[12], this._worldMatrix.data[13], this._worldMatrix.data[14] );

@@ -47,6 +47,9 @@ class BaseComponent {
     // public render( renderView: RenderView ): void {
     render() {
     }
+    /** Unload this component. */
+    unload() {
+    }
 }
 exports.BaseComponent = BaseComponent;
 //# sourceMappingURL=BaseComponent.js.map

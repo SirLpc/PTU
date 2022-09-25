@@ -60,4 +60,8 @@ import { IComponentData } from "./IComponentData";
         // public render( renderView: RenderView ): void {
         public render(  ): void {
         }
+
+        /** Unload this component. */
+        public unload(): void {
+        }
     }

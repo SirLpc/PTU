@@ -205,6 +205,19 @@ class TEntity extends TObject_1.TObject {
             c.render();
         }
     }
+    /** Performs loading procedures on this entity. */
+    unload() {
+        this._isLoaded = true;
+        for (let c of this._components) {
+            c.unload();
+        }
+        for (let c of this._behaviors) {
+            c.unload();
+        }
+        for (let c of this._children) {
+            c.unload();
+        }
+    }
     /** Returns the world position of this entity. */
     getWorldPosition() {
         return new Vector3_1.Vector3(this._worldMatrix.data[12], this._worldMatrix.data[13], this._worldMatrix.data[14]);
