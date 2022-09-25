@@ -1,4 +1,5 @@
-﻿import { BehaviorManager } from "../Behaviors/BehaviorManager";
+﻿import { BaseBehaviorComponent } from "../Behaviors/BaseBehaviorComponent";
+import { BehaviorManager } from "../Behaviors/BehaviorManager";
 import { ComponentManager } from "../Components/ComponentManager";
 import { SceneGraph } from "./SceneGraph";
 import { TEntity } from "./TEntity";
@@ -244,7 +245,7 @@ import { TEntity } from "./TEntity";
             if ( dataSection.behaviors !== undefined ) {
                 for ( let b in dataSection.behaviors ) {
                     let data = dataSection.behaviors[b];
-                    let behavior = this._behaviourManager.extractBehavior( data );
+                    let behavior = this._componentManager.extractComponent( data ) as BaseBehaviorComponent;
                     entity.addBehavior( behavior );
                 }
             }

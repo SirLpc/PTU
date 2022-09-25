@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MoveBehaviour = exports.MoveBehaviorBuilder = void 0;
-const BaseBehavior_1 = require("./BaseBehavior");
-const CommonBehavior_1 = require("./CommonBehavior");
+const CommonComponent_1 = require("../Components/CommonComponent");
+const BaseBehaviorComponent_1 = require("./BaseBehaviorComponent");
 /** The builder for a rotation behavior. */
-class MoveBehaviorBuilder extends CommonBehavior_1.CommonBehaviorBuilder {
+class MoveBehaviorBuilder extends CommonComponent_1.CommonComponentBuilder {
     get type() {
         return "move";
     }
@@ -14,19 +14,14 @@ exports.MoveBehaviorBuilder = MoveBehaviorBuilder;
  * A behavior which continuously rotates the object to which it is attached by the
  * configured amount.
  */
-class MoveBehaviour extends BaseBehavior_1.BaseBehavior {
+class MoveBehaviour extends BaseBehaviorComponent_1.BaseBehaviorComponent {
     _position;
     constructor(_position) {
         super();
         this._position = _position;
     }
-    /**
-     * Apply data on RotationBehavior.
-     * @param data The data for this behavior.
-     */
-    apply(userData) {
-        userData.injectField(this._position, "position");
-        return this;
+    load() {
+        this.commonData.injectField(this._position, "position");
     }
     /**
      * Performs update procedures on this behavior.

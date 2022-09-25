@@ -38,7 +38,7 @@ import { Vector3 } from './src/Engine/Core/Math/Vector3'
 import { IVariableRef } from './src/Engine/Core/VariableReferences/IVariableRef'
 import { MoveBehaviorBuilder, MoveBehaviour } from './src/Engine/Core/Behaviors/MoveBehaviour'
 import { CommonBehaviorData } from './src/Engine/Core/Behaviors/CommonBehavior'
-import { CommonComponentBuilder, CommonComponentData } from './src/Engine/Core/Components/CommonBehavior copy'
+import { CommonComponentBuilder, CommonComponentData } from './src/Engine/Core/Components/CommonComponent'
 
 
 // let ecs : ECS = new ECS();
@@ -86,7 +86,7 @@ DIC.RegisterTransient(CommonBehaviorData, function (): CommonBehaviorData{return
 
 DIC.RegisterTransient(MoveBehaviour, function():MoveBehaviour{return new MoveBehaviour(DIC.Make(Vector3VariableRef))});
 DIC.RegisterSingleton(MoveBehaviorBuilder, function():MoveBehaviorBuilder{return new MoveBehaviorBuilder(
-    DIC.GetResolver(CommonBehaviorData), DIC.GetResolver(MoveBehaviour), DIC.Make(BehaviorManager))
+    DIC.GetResolver(CommonComponentData), DIC.GetResolver(MoveBehaviour), DIC.Make(ComponentManager))
 });
 
 DIC.RegisterTransient(RotationBehaviorData, function():RotationBehaviorData{return new RotationBehaviorData(DIC.Make(Vector3VariableRef))});

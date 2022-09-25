@@ -1,7 +1,7 @@
 ﻿
 import { ScriptableObjectArchitecture, TSEngine, UnityEngine } from "csharp";
 import { BaseComponent } from "../../Core/Components/BaseComponent";
-import { CommonComponent, CommonComponentBuilder } from "../../Core/Components/CommonBehavior copy";
+import { CommonComponent, CommonComponentBuilder } from "../../Core/Components/CommonComponent";
 import { ComponentManager } from "../../Core/Components/ComponentManager";
 import { IComponent } from "../../Core/Components/IComponent";
 import { IComponentBuilder } from "../../Core/Components/IComponentBuilder";

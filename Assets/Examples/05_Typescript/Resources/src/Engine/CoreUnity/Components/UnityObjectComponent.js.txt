@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UnityObjectComponent = exports.UnityObjectComponentBuilder = void 0;
 const csharp_1 = require("csharp");
-const CommonBehavior_copy_1 = require("../../Core/Components/CommonBehavior copy");
+const CommonComponent_1 = require("../../Core/Components/CommonComponent");
 const JsonUtility_1 = require("../../Utility/JsonUtility");
 /**
  * The builder for a sprite component.
  */
-class UnityObjectComponentBuilder extends CommonBehavior_copy_1.CommonComponentBuilder {
+class UnityObjectComponentBuilder extends CommonComponent_1.CommonComponentBuilder {
     get type() {
         return "UnityObjectComponent";
     }
@@ -16,7 +16,7 @@ exports.UnityObjectComponentBuilder = UnityObjectComponentBuilder;
 /**
  * A component which renders a two-dimensional image on the screen.
  */
-class UnityObjectComponent extends CommonBehavior_copy_1.CommonComponent {
+class UnityObjectComponent extends CommonComponent_1.CommonComponent {
     _unityGO;
     _pos = new csharp_1.UnityEngine.Vector3();
     _rot = new csharp_1.UnityEngine.Vector3();

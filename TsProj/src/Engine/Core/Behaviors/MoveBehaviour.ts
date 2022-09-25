@@ -10,10 +10,12 @@ import { IBehaviorBuilder } from "./IBehaviorBuilder";
 import { IBehaviorData } from "./IBehaviorData";
 import { JsonUtility } from "../../Utility/JsonUtility";
 import { CommonBehaviorBuilder, CommonBehaviorData } from "./CommonBehavior";
+import { CommonComponentBuilder } from "../Components/CommonComponent";
+import { BaseBehaviorComponent } from "./BaseBehaviorComponent";
 
 
     /** The builder for a rotation behavior. */
-    export class MoveBehaviorBuilder extends CommonBehaviorBuilder {
+    export class MoveBehaviorBuilder extends CommonComponentBuilder {
         public get type(): string {
             return "move";
         }
@@ -23,20 +25,16 @@ import { CommonBehaviorBuilder, CommonBehaviorData } from "./CommonBehavior";
      * A behavior which continuously rotates the object to which it is attached by the
      * configured amount.
      */
-    export class MoveBehaviour extends BaseBehavior {
+    export class MoveBehaviour extends BaseBehaviorComponent {
 
         constructor(private _position: IVariableRef<Vector3>) {
             super();
         }
 
-        /**
-         * Apply data on RotationBehavior.
-         * @param data The data for this behavior.
-         */
-        public override apply(userData: CommonBehaviorData): BaseBehavior {
-            userData.injectField(this._position, "position");
-            return this;
+        public override load(): void {
+            this.commonData.injectField(this._position, "position");
         }
+
 
         /**
          * Performs update procedures on this behavior.

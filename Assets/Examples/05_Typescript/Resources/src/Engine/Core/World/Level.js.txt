@@ -206,7 +206,7 @@ class Level {
         if (dataSection.behaviors !== undefined) {
             for (let b in dataSection.behaviors) {
                 let data = dataSection.behaviors[b];
-                let behavior = this._behaviourManager.extractBehavior(data);
+                let behavior = this._componentManager.extractComponent(data);
                 entity.addBehavior(behavior);
             }
         }

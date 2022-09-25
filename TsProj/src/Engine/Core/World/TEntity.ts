@@ -1,5 +1,6 @@
 /// <reference path="../Objects/TObject.ts" />
 
+import { BaseBehaviorComponent } from "../Behaviors/BaseBehaviorComponent";
 import { IBehavior } from "../Behaviors/IBehavior";
 import { IComponent } from "../Components/IComponent";
 import { Matrix4x4 } from "../Math/Matrix4x4";
@@ -22,7 +23,7 @@ import { SceneGraph } from "./SceneGraph";
         private _isLoaded: boolean = false;
         private _sceneGraph: SceneGraph;
         private _components: IComponent[] = [];
-        private _behaviors: IBehavior[] = [];
+        private _behaviors: BaseBehaviorComponent[] = [];
         private _isVisible: boolean = true;
 
         private _localMatrix: Matrix4x4 = Matrix4x4.identity();
@@ -118,7 +119,7 @@ import { SceneGraph } from "./SceneGraph";
         * Recursively attempts to retrieve a behavior with the given name from this entity or its children.
         * @param name The name of the behavior to retrieve.
         */
-        public getBehaviorByName( name: string ): IBehavior {
+        public getBehaviorByName( name: string ): BaseBehaviorComponent {
             for ( let behavior of this._behaviors ) {
                 if ( behavior.name === name ) {
                     return behavior;
@@ -167,7 +168,7 @@ import { SceneGraph } from "./SceneGraph";
          * Adds the given behavior to this entity.
          * @param behavior The behavior to be added.
          */
-        public addBehavior( behavior: IBehavior ): void {
+        public addBehavior( behavior: BaseBehaviorComponent ): void {
             this._behaviors.push( behavior );
             behavior.setOwner( this );
         }
@@ -177,6 +178,10 @@ import { SceneGraph } from "./SceneGraph";
             this._isLoaded = true;
 
             for ( let c of this._components ) {
+                c.load();
+            }
+
+            for ( let c of this._behaviors ) {
                 c.load();
             }
 
@@ -233,6 +238,10 @@ import { SceneGraph } from "./SceneGraph";
             }
 
             for ( let c of this._components ) {
+                c.render( );
+            }
+
+            for ( let c of this._behaviors ) {
                 c.render( );
             }
 

@@ -150,6 +150,9 @@ class TEntity extends TObject_1.TObject {
         for (let c of this._components) {
             c.load();
         }
+        for (let c of this._behaviors) {
+            c.load();
+        }
         for (let c of this._children) {
             c.load();
         }
@@ -193,6 +196,9 @@ class TEntity extends TObject_1.TObject {
             return;
         }
         for (let c of this._components) {
+            c.render();
+        }
+        for (let c of this._behaviors) {
             c.render();
         }
         for (let c of this._children) {

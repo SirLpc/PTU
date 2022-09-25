@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 1866722787795250580}
   - component: {fileID: 2188106760802919026}
   - component: {fileID: 2772924385047585887}
+  - component: {fileID: 8565148821182360074}
   - component: {fileID: 4496198599640277946}
   m_Layer: 0
   m_Name: Cube
@@ -344,6 +345,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8565148821182360074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7588625138362911591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a967644fd314853b1931869f2b79e7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: rotation
+  behaviourName: 
+  data:
+    variables:
+    - id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: Vector3VariableReference, ns: TSEngine, asm: Assembly-CSharp}
+      data:
+        name: rotation
+        refID: 0
+        _variable:
+          _useConstant: 0
+          _constantValue: {x: 0, y: 0, z: 0}
+          _variable: {fileID: 11400000, guid: 36dd87eea39ee3e45b2df3133cb06f5f, type: 2}
 --- !u!114 &4496198599640277946
 MonoBehaviour:
   m_ObjectHideFlags: 0
