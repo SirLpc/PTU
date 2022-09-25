@@ -27,7 +27,7 @@ import { UnityLevelToJsonAssetLoader } from './src/Engine/CoreUnity/Assets/Unity
 import { AssetManager } from './src/Engine/Core/Assets/AssetManager'
 import { LevelManager } from './src/Engine/Core/World/LevelManager'
 import { ComponentManager } from './src/Engine/Core/Components/ComponentManager'
-import { UnityObjectComponent, UnityObjectComponentBuilder, UnityObjectComponentData } from './src/Engine/CoreUnity/Components/UnityObjectComponent'
+import { UnityObjectComponent, UnityObjectComponentBuilder } from './src/Engine/CoreUnity/Components/UnityObjectComponent'
 import { Level } from './src/Engine/Core/World/Level'
 import { SceneGraph } from './src/Engine/Core/World/SceneGraph'
 import { BehaviorManager } from './src/Engine/Core/Behaviors/BehaviorManager'
@@ -38,6 +38,7 @@ import { Vector3 } from './src/Engine/Core/Math/Vector3'
 import { IVariableRef } from './src/Engine/Core/VariableReferences/IVariableRef'
 import { MoveBehaviorBuilder, MoveBehaviour } from './src/Engine/Core/Behaviors/MoveBehaviour'
 import { CommonBehaviorData } from './src/Engine/Core/Behaviors/CommonBehavior'
+import { CommonComponentBuilder, CommonComponentData } from './src/Engine/Core/Components/CommonBehavior copy'
 
 
 // let ecs : ECS = new ECS();
@@ -100,11 +101,12 @@ DIC.RegisterSingleton(RotationBehaviorBuilder, function():RotationBehaviorBuilde
 
 DIC.RegisterSingleton(ComponentManager, function():ComponentManager {return new ComponentManager()});
 
-DIC.RegisterTransient(UnityObjectComponentData, function():UnityObjectComponentData {return new UnityObjectComponentData()});
+DIC.RegisterTransient(CommonComponentData, function (): CommonComponentData{return new CommonComponentData()});
+
 DIC.RegisterTransient(UnityObjectComponent, function():UnityObjectComponent {return new UnityObjectComponent()});
 DIC.RegisterSingleton(UnityObjectComponentBuilder, function():UnityObjectComponentBuilder {
     return new UnityObjectComponentBuilder(
-        DIC.GetResolver(UnityObjectComponentData), DIC.GetResolver(UnityObjectComponent), DIC.Make(ComponentManager)
+        DIC.GetResolver(CommonComponentData), DIC.GetResolver(UnityObjectComponent), DIC.Make(ComponentManager)
     )
 });
 

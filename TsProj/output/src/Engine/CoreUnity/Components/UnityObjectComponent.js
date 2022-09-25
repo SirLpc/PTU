@@ -1,65 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UnityObjectComponent = exports.UnityObjectComponentBuilder = exports.UnityObjectComponentData = void 0;
+exports.UnityObjectComponent = exports.UnityObjectComponentBuilder = void 0;
 const csharp_1 = require("csharp");
-const BaseComponent_1 = require("../../Core/Components/BaseComponent");
+const CommonBehavior_copy_1 = require("../../Core/Components/CommonBehavior copy");
 const JsonUtility_1 = require("../../Utility/JsonUtility");
-/**
- * The data for a sprite component.
- */
-class UnityObjectComponentData {
-    name;
-    unityGo;
-    setFromJson(json) {
-        if (json.name !== undefined) {
-            this.name = String(json.name);
-        }
-        if (json.data !== undefined) {
-            let data = JsonUtility_1.JsonUtility.TryGetArrayItmeByName(json.data, "gameObject");
-            let obj = csharp_1.TSEngine.InstanceHUB.Get(data.refID);
-            this.unityGo = obj.Value;
-        }
-        else {
-            throw new Error("UnityObjectComponentData need a data with gameObject field.");
-        }
-        return this;
-    }
-}
-exports.UnityObjectComponentData = UnityObjectComponentData;
 /**
  * The builder for a sprite component.
  */
-class UnityObjectComponentBuilder {
-    _compData;
-    _comp;
-    _compManager;
-    constructor(_compData, _comp, _compManager) {
-        this._compData = _compData;
-        this._comp = _comp;
-        this._compManager = _compManager;
-        this._compManager.registerBuilder(this);
-    }
+class UnityObjectComponentBuilder extends CommonBehavior_copy_1.CommonComponentBuilder {
     get type() {
         return "UnityObjectComponent";
-    }
-    buildFromJson(json) {
-        let data = this._compData().setFromJson(json);
-        let comp = this._comp().setData(data);
-        return comp;
     }
 }
 exports.UnityObjectComponentBuilder = UnityObjectComponentBuilder;
 /**
  * A component which renders a two-dimensional image on the screen.
  */
-class UnityObjectComponent extends BaseComponent_1.BaseComponent {
+class UnityObjectComponent extends CommonBehavior_copy_1.CommonComponent {
     _unityGO;
     _pos = new csharp_1.UnityEngine.Vector3();
     _rot = new csharp_1.UnityEngine.Vector3();
     _sca = new csharp_1.UnityEngine.Vector3();
     /** Loads this component. */
     load() {
-        this._unityGO = this._data.unityGo;
+        // this._unityGO = (this._data as UnityObjectComponentData).unityGo;
+        let data = JsonUtility_1.JsonUtility.TryGetArrayItmeByName(this.commonData.data, "gameObject");
+        let obj = csharp_1.TSEngine.InstanceHUB.Get(data.refID);
+        this._unityGO = obj.Value;
         super.load();
     }
     /**

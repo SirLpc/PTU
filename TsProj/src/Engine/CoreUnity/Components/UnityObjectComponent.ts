@@ -1,6 +1,7 @@
 ﻿
 import { ScriptableObjectArchitecture, TSEngine, UnityEngine } from "csharp";
 import { BaseComponent } from "../../Core/Components/BaseComponent";
+import { CommonComponent, CommonComponentBuilder } from "../../Core/Components/CommonBehavior copy";
 import { ComponentManager } from "../../Core/Components/ComponentManager";
 import { IComponent } from "../../Core/Components/IComponent";
 import { IComponentBuilder } from "../../Core/Components/IComponentBuilder";
@@ -9,56 +10,19 @@ import { Vector3 } from "../../Core/Math/Vector3";
 import { JsonUtility } from "../../Utility/JsonUtility";
 
 
-
-    /**
-     * The data for a sprite component.
-     */
-    export class UnityObjectComponentData implements IComponentData {
-        public name: string;
-        public unityGo: UnityEngine.GameObject;
-
-        public setFromJson( json: any ): IComponentData {
-            if ( json.name !== undefined ) {
-                this.name = String( json.name );
-            }
- 
-            if ( json.data !== undefined ) {
-                let data = JsonUtility.TryGetArrayItmeByName(json.data, "gameObject");
-                let obj = TSEngine.InstanceHUB.Get(data.refID);
-                this.unityGo = (obj as ScriptableObjectArchitecture.GameObjectReference).Value;
-            }
-            else {
-                throw new Error("UnityObjectComponentData need a data with gameObject field.")
-            }
-            
-            return this;
-        }
-    }
-
     /**
      * The builder for a sprite component.
      */
-    export class UnityObjectComponentBuilder implements IComponentBuilder {
-
-        public constructor(private _compData: ()=>UnityObjectComponentData, private _comp: ()=>UnityObjectComponent, private _compManager: ComponentManager) {
-            this._compManager.registerBuilder(this);
-        }
-
+    export class UnityObjectComponentBuilder extends CommonComponentBuilder {
         public get type(): string {
             return "UnityObjectComponent";
-        }
-
-        public buildFromJson( json: any ): IComponent {
-            let data = this._compData().setFromJson( json );
-            let comp = this._comp().setData( data );
-            return comp;
         }
     }
 
     /**
      * A component which renders a two-dimensional image on the screen.
      */
-    export class UnityObjectComponent extends BaseComponent {
+    export class UnityObjectComponent extends CommonComponent {
 
         private _unityGO: UnityEngine.GameObject;
         private _pos : UnityEngine.Vector3 = new UnityEngine.Vector3();
@@ -67,7 +31,11 @@ import { JsonUtility } from "../../Utility/JsonUtility";
 
         /** Loads this component. */
         public override load(): void {
-            this._unityGO = (this._data as UnityObjectComponentData).unityGo;
+            // this._unityGO = (this._data as UnityObjectComponentData).unityGo;
+        
+            let data = JsonUtility.TryGetArrayItmeByName(this.commonData.data, "gameObject");
+            let obj = TSEngine.InstanceHUB.Get(data.refID);
+            this._unityGO = (obj as ScriptableObjectArchitecture.GameObjectReference).Value;
 
             super.load( );
         }

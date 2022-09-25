@@ -20,6 +20,7 @@ const UnityVector3VariableRef_1 = require("./src/Engine/CoreUnity/VariableRefere
 const Vector3VariableRef_1 = require("./src/Engine/Core/VariableReferences/Vector3VariableRef");
 const MoveBehaviour_1 = require("./src/Engine/Core/Behaviors/MoveBehaviour");
 const CommonBehavior_1 = require("./src/Engine/Core/Behaviors/CommonBehavior");
+const CommonBehavior_copy_1 = require("./src/Engine/Core/Components/CommonBehavior copy");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -63,10 +64,10 @@ DIC_1.DIC.RegisterSingleton(RotationBehavior_1.RotationBehaviorBuilder, function
     return new RotationBehavior_1.RotationBehaviorBuilder(DIC_1.DIC.GetResolver(RotationBehavior_1.RotationBehaviorData), DIC_1.DIC.GetResolver(RotationBehavior_1.RotationBehavior), DIC_1.DIC.Make(BehaviorManager_1.BehaviorManager));
 });
 DIC_1.DIC.RegisterSingleton(ComponentManager_1.ComponentManager, function () { return new ComponentManager_1.ComponentManager(); });
-DIC_1.DIC.RegisterTransient(UnityObjectComponent_1.UnityObjectComponentData, function () { return new UnityObjectComponent_1.UnityObjectComponentData(); });
+DIC_1.DIC.RegisterTransient(CommonBehavior_copy_1.CommonComponentData, function () { return new CommonBehavior_copy_1.CommonComponentData(); });
 DIC_1.DIC.RegisterTransient(UnityObjectComponent_1.UnityObjectComponent, function () { return new UnityObjectComponent_1.UnityObjectComponent(); });
 DIC_1.DIC.RegisterSingleton(UnityObjectComponent_1.UnityObjectComponentBuilder, function () {
-    return new UnityObjectComponent_1.UnityObjectComponentBuilder(DIC_1.DIC.GetResolver(UnityObjectComponent_1.UnityObjectComponentData), DIC_1.DIC.GetResolver(UnityObjectComponent_1.UnityObjectComponent), DIC_1.DIC.Make(ComponentManager_1.ComponentManager));
+    return new UnityObjectComponent_1.UnityObjectComponentBuilder(DIC_1.DIC.GetResolver(CommonBehavior_copy_1.CommonComponentData), DIC_1.DIC.GetResolver(UnityObjectComponent_1.UnityObjectComponent), DIC_1.DIC.Make(ComponentManager_1.ComponentManager));
 });
 // premake required services in dic
 DIC_1.DIC.Make(UnityJsonAssetLoader_1.UnityJsonAssetLoader);
