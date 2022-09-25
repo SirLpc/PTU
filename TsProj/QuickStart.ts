@@ -36,6 +36,8 @@ import { Vector3VariableReference as UnityVector3VariableRef } from './src/Engin
 import { Vector3VariableRef } from './src/Engine/Core/VariableReferences/Vector3VariableRef'
 import { Vector3 } from './src/Engine/Core/Math/Vector3'
 import { IVariableRef } from './src/Engine/Core/VariableReferences/IVariableRef'
+import { MoveBehaviorBuilder, MoveBehaviour } from './src/Engine/Core/Behaviors/MoveBehaviour'
+import { CommonBehaviorData } from './src/Engine/Core/Behaviors/CommonBehavior'
 
 
 // let ecs : ECS = new ECS();
@@ -79,6 +81,13 @@ DIC.RegisterTransient(Vector3VariableRef, function():IVariableRef<Vector3>{retur
 
 DIC.RegisterSingleton(BehaviorManager, function():BehaviorManager {return new BehaviorManager()});
 
+DIC.RegisterTransient(CommonBehaviorData, function (): CommonBehaviorData{return new CommonBehaviorData()});
+
+DIC.RegisterTransient(MoveBehaviour, function():MoveBehaviour{return new MoveBehaviour(DIC.Make(Vector3VariableRef))});
+DIC.RegisterSingleton(MoveBehaviorBuilder, function():MoveBehaviorBuilder{return new MoveBehaviorBuilder(
+    DIC.GetResolver(CommonBehaviorData), DIC.GetResolver(MoveBehaviour), DIC.Make(BehaviorManager))
+});
+
 DIC.RegisterTransient(RotationBehaviorData, function():RotationBehaviorData{return new RotationBehaviorData(DIC.Make(Vector3VariableRef))});
 DIC.RegisterTransient(RotationBehavior, function():RotationBehavior{return new RotationBehavior()});
 DIC.RegisterSingleton(RotationBehaviorBuilder, function():RotationBehaviorBuilder{
@@ -106,6 +115,7 @@ DIC.Make(UnityLevelToJsonAssetLoader);
 
 DIC.Make(UnityObjectComponentBuilder);
 DIC.Make(RotationBehaviorBuilder);
+DIC.Make(MoveBehaviorBuilder);
 
 
 let engine = DIC.Make<Engine>(Engine);

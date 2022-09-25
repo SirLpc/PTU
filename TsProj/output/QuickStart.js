@@ -18,6 +18,8 @@ const BehaviorManager_1 = require("./src/Engine/Core/Behaviors/BehaviorManager")
 const RotationBehavior_1 = require("./src/Engine/Core/Behaviors/RotationBehavior");
 const UnityVector3VariableRef_1 = require("./src/Engine/CoreUnity/VariableReferences/UnityVector3VariableRef");
 const Vector3VariableRef_1 = require("./src/Engine/Core/VariableReferences/Vector3VariableRef");
+const MoveBehaviour_1 = require("./src/Engine/Core/Behaviors/MoveBehaviour");
+const CommonBehavior_1 = require("./src/Engine/Core/Behaviors/CommonBehavior");
 // let ecs : ECS = new ECS();
 // ecs.addSystem(new UISystem())
 //
@@ -50,6 +52,11 @@ DIC_1.DIC.RegisterSingleton(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetL
 DIC_1.DIC.RegisterSingleton(AssetManager_1.AssetManager, function () { return new AssetManager_1.AssetManager(); });
 DIC_1.DIC.RegisterTransient(Vector3VariableRef_1.Vector3VariableRef, function () { return new UnityVector3VariableRef_1.Vector3VariableReference(); });
 DIC_1.DIC.RegisterSingleton(BehaviorManager_1.BehaviorManager, function () { return new BehaviorManager_1.BehaviorManager(); });
+DIC_1.DIC.RegisterTransient(CommonBehavior_1.CommonBehaviorData, function () { return new CommonBehavior_1.CommonBehaviorData(); });
+DIC_1.DIC.RegisterTransient(MoveBehaviour_1.MoveBehaviour, function () { return new MoveBehaviour_1.MoveBehaviour(DIC_1.DIC.Make(Vector3VariableRef_1.Vector3VariableRef)); });
+DIC_1.DIC.RegisterSingleton(MoveBehaviour_1.MoveBehaviorBuilder, function () {
+    return new MoveBehaviour_1.MoveBehaviorBuilder(DIC_1.DIC.GetResolver(CommonBehavior_1.CommonBehaviorData), DIC_1.DIC.GetResolver(MoveBehaviour_1.MoveBehaviour), DIC_1.DIC.Make(BehaviorManager_1.BehaviorManager));
+});
 DIC_1.DIC.RegisterTransient(RotationBehavior_1.RotationBehaviorData, function () { return new RotationBehavior_1.RotationBehaviorData(DIC_1.DIC.Make(Vector3VariableRef_1.Vector3VariableRef)); });
 DIC_1.DIC.RegisterTransient(RotationBehavior_1.RotationBehavior, function () { return new RotationBehavior_1.RotationBehavior(); });
 DIC_1.DIC.RegisterSingleton(RotationBehavior_1.RotationBehaviorBuilder, function () {
@@ -66,6 +73,7 @@ DIC_1.DIC.Make(UnityJsonAssetLoader_1.UnityJsonAssetLoader);
 DIC_1.DIC.Make(UnityLevelToJsonAssetLoader_1.UnityLevelToJsonAssetLoader);
 DIC_1.DIC.Make(UnityObjectComponent_1.UnityObjectComponentBuilder);
 DIC_1.DIC.Make(RotationBehavior_1.RotationBehaviorBuilder);
+DIC_1.DIC.Make(MoveBehaviour_1.MoveBehaviorBuilder);
 let engine = DIC_1.DIC.Make(Engine_1.Engine);
 engine.start();
 // let iv : Puergp.Variables.IntVariable = UnityEngine.Resources.Load("IntVariable") as  Puergp.Variables.IntVariable;
