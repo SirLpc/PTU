@@ -2,7 +2,7 @@ import { Puergp, ScriptableObjectArchitecture, TSEngine, UnityEngine } from "csh
 import { Vector3 } from "../../Core/Math/Vector3";
 import { Vector3VariableRef } from "../../Core/VariableReferences/Vector3VariableRef";
 
-export class Vector3VariableReference extends Vector3VariableRef<ScriptableObjectArchitecture.Vector3Reference> {
+export class UnityVector3VariableRef extends Vector3VariableRef<ScriptableObjectArchitecture.Vector3Reference> {
 
     private _value : Vector3 = new Vector3();
     private _v3Variable: ScriptableObjectArchitecture.Vector3Reference;

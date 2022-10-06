@@ -25092,17 +25092,17 @@ declare module 'csharp' {
         {
             action () : void
         }
-        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Flyable, PuertsDeclareTest.Zombies.Walkable
+        class BalloonZombie extends System.Object implements PuertsDeclareTest.Zombies.Walkable, PuertsDeclareTest.Zombies.Flyable
         {
             public constructor ()
             public action () : void
         }
     }
     namespace ScriptableObjectArchitecture {
-        class IntVariable extends ScriptableObjectArchitecture.BaseVariable$2<number, ScriptableObjectArchitecture.IntEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        class BoolVariable extends ScriptableObjectArchitecture.BaseVariable$2<boolean, ScriptableObjectArchitecture.BoolEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
         {
         }
-        class IntEvent extends UnityEngine.Events.UnityEvent$1<number> implements UnityEngine.ISerializationCallbackReceiver
+        class BoolEvent extends UnityEngine.Events.UnityEvent$1<boolean> implements UnityEngine.ISerializationCallbackReceiver
         {
             public OnBeforeSerialize () : void
             public OnAfterDeserialize () : void
@@ -25148,6 +25148,19 @@ declare module 'csharp' {
         }
         interface IGameEventListener
         {
+        }
+        class BoolReference extends ScriptableObjectArchitecture.BaseReference$2<boolean, ScriptableObjectArchitecture.BoolVariable>
+        {
+            public constructor ()
+            public constructor ($value: boolean)
+        }
+        class IntVariable extends ScriptableObjectArchitecture.BaseVariable$2<number, ScriptableObjectArchitecture.IntEvent> implements ScriptableObjectArchitecture.IGameEvent, ScriptableObjectArchitecture.IStackTraceObject
+        {
+        }
+        class IntEvent extends UnityEngine.Events.UnityEvent$1<number> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
         }
         class IntReference extends ScriptableObjectArchitecture.BaseReference$2<number, ScriptableObjectArchitecture.IntVariable>
         {
@@ -26085,6 +26098,11 @@ declare module 'csharp' {
         {
             public constructor ()
         }
+        class EntityInjector extends UnityEngine.MonoBehaviour
+        {
+            public ToJsonDescription () : string
+            public constructor ()
+        }
         class NavigationPanelEntry extends System.Object
         {
             public get Sprite(): UnityEngine.Sprite;
@@ -26149,18 +26167,18 @@ declare module 'csharp' {
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class PanelProperties extends System.Object implements deVoid.UIFramework.IPanelProperties, deVoid.UIFramework.IScreenProperties
+        class PanelProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IPanelProperties
         {
             public get Priority(): deVoid.UIFramework.PanelPriority;
             public set Priority(value: deVoid.UIFramework.PanelPriority);
             public constructor ()
         }
+        interface IScreenProperties
+        {
+        }
         interface IPanelProperties extends deVoid.UIFramework.IScreenProperties
         {
             Priority : deVoid.UIFramework.PanelPriority
-        }
-        interface IScreenProperties
-        {
         }
         class APanelController$1<T> extends deVoid.UIFramework.AUIScreenController$1<T> implements deVoid.UIFramework.IUIScreenController, deVoid.UIFramework.IPanelController
         {
@@ -26318,7 +26336,7 @@ declare module 'csharp' {
             public Show ($props?: deVoid.UIFramework.IScreenProperties) : void
             public Hide ($animate?: boolean) : void
         }
-        class WindowProperties extends System.Object implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
+        class WindowProperties extends System.Object implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
         {
             public get WindowQueuePriority(): deVoid.UIFramework.WindowPriority;
             public set WindowQueuePriority(value: deVoid.UIFramework.WindowPriority);
@@ -26487,7 +26505,7 @@ declare module 'csharp' {
             public get LevelProgress(): System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>;
             public constructor ()
         }
-        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
+        class CameraProjectionWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
         {
             public WorldCamera : UnityEngine.Camera
             public TransformToFollow : UnityEngine.Transform
@@ -26521,7 +26539,7 @@ declare module 'csharp' {
             public get Hash(): string;
             public constructor ()
         }
-        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
+        class ConfirmationPopupProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
         {
             public Title : string
             public Message : string
@@ -26565,7 +26583,7 @@ declare module 'csharp' {
         {
             public constructor ()
         }
-        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IWindowProperties, deVoid.UIFramework.IScreenProperties
+        class PlayerWindowProperties extends deVoid.UIFramework.WindowProperties implements deVoid.UIFramework.IScreenProperties, deVoid.UIFramework.IWindowProperties
         {
             public PlayerData : System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>
             public constructor ($data: System.Collections.Generic.List$1<deVoid.UIFramework.Examples.PlayerDataEntry>)

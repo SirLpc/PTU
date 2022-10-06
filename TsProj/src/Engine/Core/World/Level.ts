@@ -208,7 +208,7 @@ import { TEntity } from "./TEntity";
          * @param dataSection The data section to load from.
          * @param parent The parent object to attach to.
          */
-        private loadEntity( dataSection: any, parent: TEntity ): void {
+        public loadEntity( dataSection: any, parent: TEntity ): void {
 
             let name: string;
             if ( dataSection.name !== undefined ) {

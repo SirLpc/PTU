@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Vector3VariableRef = void 0;
-class Vector3VariableRef {
+exports.BaseVariableRef = void 0;
+class BaseVariableRef {
 }
-exports.Vector3VariableRef = Vector3VariableRef;
+exports.BaseVariableRef = BaseVariableRef;
 //# sourceMappingURL=BaseVariableRef.js.map

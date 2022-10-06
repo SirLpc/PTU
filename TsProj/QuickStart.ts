@@ -32,13 +32,16 @@ import { Level } from './src/Engine/Core/World/Level'
 import { SceneGraph } from './src/Engine/Core/World/SceneGraph'
 import { BehaviorManager } from './src/Engine/Core/Behaviors/BehaviorManager'
 import { RotationBehavior, RotationBehaviorBuilder, RotationBehaviorData } from './src/Engine/Core/Behaviors/RotationBehavior'
-import { Vector3VariableReference as UnityVector3VariableRef } from './src/Engine/CoreUnity/VariableReferences/UnityVector3VariableRef'
+import { UnityVector3VariableRef as UnityVector3VariableRef } from './src/Engine/CoreUnity/VariableReferences/UnityVector3VariableRef'
 import { Vector3VariableRef } from './src/Engine/Core/VariableReferences/Vector3VariableRef'
 import { Vector3 } from './src/Engine/Core/Math/Vector3'
 import { IVariableRef } from './src/Engine/Core/VariableReferences/IVariableRef'
 import { MoveBehaviorBuilder, MoveBehaviour } from './src/Engine/Core/Behaviors/MoveBehaviour'
 import { CommonBehaviorData } from './src/Engine/Core/Behaviors/CommonBehavior'
 import { CommonComponentBuilder, CommonComponentData } from './src/Engine/Core/Components/CommonComponent'
+import { EUIFrame, EUIFrameBuilder } from './src/UIFramework/UIFrames/EUIFrame'
+import { BoolVariableRef } from './src/Engine/Core/VariableReferences/BoolVariableRef'
+import { UnityBoolVariableRef } from './src/Engine/CoreUnity/VariableReferences/UnityBoolVariableRef'
 
 
 // let ecs : ECS = new ECS();
@@ -77,6 +80,7 @@ DIC.RegisterSingleton<UnityLevelToJsonAssetLoader>(UnityLevelToJsonAssetLoader, 
 DIC.RegisterSingleton(AssetManager, function():AssetManager{return new AssetManager()});
 
 DIC.RegisterTransient(Vector3VariableRef, function():IVariableRef<Vector3>{return new UnityVector3VariableRef()});
+DIC.RegisterTransient(BoolVariableRef, function():IVariableRef<boolean>{return new UnityBoolVariableRef()});
 
 
 
@@ -84,10 +88,19 @@ DIC.RegisterSingleton(BehaviorManager, function():BehaviorManager {return new Be
 
 DIC.RegisterTransient(CommonBehaviorData, function (): CommonBehaviorData{return new CommonBehaviorData()});
 
+
 DIC.RegisterTransient(MoveBehaviour, function():MoveBehaviour{return new MoveBehaviour(DIC.Make(Vector3VariableRef))});
 DIC.RegisterSingleton(MoveBehaviorBuilder, function():MoveBehaviorBuilder{return new MoveBehaviorBuilder(
     DIC.GetResolver(CommonComponentData), DIC.GetResolver(MoveBehaviour), DIC.Make(ComponentManager))
 });
+
+
+DIC.RegisterTransient(EUIFrame, function():EUIFrame{return new EUIFrame(DIC.Make(BoolVariableRef))});
+DIC.RegisterSingleton(EUIFrameBuilder, function():EUIFrameBuilder{return new EUIFrameBuilder(
+    DIC.GetResolver(CommonComponentData), DIC.GetResolver(EUIFrame), DIC.Make(ComponentManager))
+});
+
+
 
 DIC.RegisterTransient(RotationBehaviorData, function():RotationBehaviorData{return new RotationBehaviorData(DIC.Make(Vector3VariableRef))});
 DIC.RegisterTransient(RotationBehavior, function():RotationBehavior{return new RotationBehavior()});
@@ -117,7 +130,9 @@ DIC.Make(UnityLevelToJsonAssetLoader);
 
 DIC.Make(UnityObjectComponentBuilder);
 DIC.Make(RotationBehaviorBuilder);
+
 DIC.Make(MoveBehaviorBuilder);
+DIC.Make(EUIFrameBuilder);
 
 
 let engine = DIC.Make<Engine>(Engine);

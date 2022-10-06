@@ -22,6 +22,7 @@ class MoveBehaviour extends BaseBehaviorComponent_1.BaseBehaviorComponent {
     }
     load() {
         this.commonData.injectField(this._position, "position");
+        super.load();
     }
     /**
      * Performs update procedures on this behavior.

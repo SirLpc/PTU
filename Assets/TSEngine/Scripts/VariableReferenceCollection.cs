@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using ScriptableObjectArchitecture;
 using UnityEditor;
 using UnityEngine;
@@ -34,7 +34,8 @@ namespace TSEngine
 
     public class FloatVariableReference : BaseVariableReference<float, FloatVariable> {}
     public class Vector3VariableReference : BaseVariableReference<Vector3, Vector3Variable> {}
-    public class GameObjectVariableReference : BaseVariableReference<GameObject, GameObjectVariable> {}
+	public class GameObjectVariableReference : BaseVariableReference<GameObject, GameObjectVariable> {}
+	public class BoolVariableReference : BaseVariableReference<bool, BoolVariable> {}
 
     public class FloatVariableCollection : BaseVariableCollection<float> {}
     

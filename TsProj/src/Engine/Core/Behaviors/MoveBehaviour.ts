@@ -1,5 +1,5 @@
 ﻿
-import { Vector3VariableReference } from "../../CoreUnity/VariableReferences/UnityVector3VariableRef";
+import { UnityVector3VariableRef } from "../../CoreUnity/VariableReferences/UnityVector3VariableRef";
 import { Vector3 } from "../Math/Vector3";
 import { Vector3VariableRef } from "../VariableReferences/Vector3VariableRef";
 import { IVariableRef } from "../VariableReferences/IVariableRef";
@@ -33,6 +33,7 @@ import { BaseBehaviorComponent } from "./BaseBehaviorComponent";
 
         public override load(): void {
             this.commonData.injectField(this._position, "position");
+            super.load();
         }
 
 

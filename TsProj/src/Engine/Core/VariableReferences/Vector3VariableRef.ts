@@ -1,8 +1,6 @@
 import { Vector3 } from "../Math/Vector3";
+import { BaseVariableRef } from "./BaseVariableRef";
 import { IVariableRef } from "./IVariableRef";
 
-export abstract class Vector3VariableRef<IJT> implements IVariableRef<Vector3> {
-    abstract inject(data: any): void;
-    abstract get value() : Vector3;
-    abstract get ijValue() : IJT;
+export abstract class Vector3VariableRef<IJT> extends BaseVariableRef<IJT, Vector3> {
 }
