@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,6 +45,7 @@ namespace TSEngine
             behaviors = new BehaviourDescription[behaviourIjs.Length];
             for (int i = 0; i < behaviourIjs.Length; i++)
             {
+            	behaviourIjs[i].RegisterVariables();
                 behaviors[i] = new BehaviourDescription(behaviourIjs[i]);
             }
             
@@ -52,6 +53,7 @@ namespace TSEngine
             components = new ComponentDescription[componentIjs.Length];
             for (int i = 0; i < components.Length; i++)
             {
+            	componentIjs[i].RegisterVariables();
                 components[i] = new ComponentDescription(componentIjs[i]);
             }
         }

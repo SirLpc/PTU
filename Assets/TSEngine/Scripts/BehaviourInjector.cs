@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -31,7 +31,7 @@ namespace TSEngine
 
         public VariableReferenceCollection data;
 
-        private void Awake()
+	    public void RegisterVariables()
         {
             foreach (var variableReference in data.variables)
             {
