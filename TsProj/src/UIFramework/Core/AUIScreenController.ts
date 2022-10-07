@@ -1,10 +1,11 @@
 import { Puergp, UnityEngine } from "csharp";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
+import { BaseBehaviorComponent } from "../../Engine/Core/Behaviors/BaseBehaviorComponent";
 import { ATransitionComponent } from "../ScreenTransitions/ATransitionComponent";
 import { IScreenProperties } from "./IScreenProperties";
 import { IUIScreenController } from "./IUIScreenController";
 
-export abstract class AUIScreenController<TProps extends IScreenProperties> extends ATSComponent implements IUIScreenController {
+export abstract class AUIScreenController<TProps extends IScreenProperties> extends BaseBehaviorComponent implements IUIScreenController {
     screenId: string;
     isVisible: boolean;
 

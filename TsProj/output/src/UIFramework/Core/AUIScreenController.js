@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AUIScreenController = void 0;
-const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
-class AUIScreenController extends TSComponentHub_1.ATSComponent {
+const BaseBehaviorComponent_1 = require("../../Engine/Core/Behaviors/BaseBehaviorComponent");
+class AUIScreenController extends BaseBehaviorComponent_1.BaseBehaviorComponent {
     screenId;
     isVisible;
     inTransitionFinished;

@@ -2,14 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AUILayer = void 0;
 const App_1 = require("../../CoreFramework/App");
-const TSComponentHub_1 = require("../../CoreFramework/TSComponentHub");
-class AUILayer extends TSComponentHub_1.ATSComponent {
+const BaseBehaviorComponent_1 = require("../../Engine/Core/Behaviors/BaseBehaviorComponent");
+class AUILayer extends BaseBehaviorComponent_1.BaseBehaviorComponent {
     registeredScreens;
     Initialize() {
         this.registeredScreens = new Map();
     }
     ReparentScreen(controller, screenTransform) {
-        screenTransform.SetParent(this.gameObject.transform, false);
+        // screenTransform.SetParent(this.gameObject.transform, false);
+        this.owner.addChild(screenTransform);
     }
     RegisterScreen(screenId, controller) {
         if (this.registeredScreens.has(screenId) == false) {

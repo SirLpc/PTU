@@ -5,8 +5,10 @@ import { ServiceLocator } from "../../CoreFramework/ServiceLocator";
 import { ATSComponent } from "../../CoreFramework/TSComponentHub";
 import { IScreenProperties } from "./IScreenProperties";
 import { IUIScreenController } from "./IUIScreenController";
+import { BaseBehaviorComponent } from "../../Engine/Core/Behaviors/BaseBehaviorComponent";
+import { TEntity } from "../../Engine/Core/World/TEntity";
 
-export abstract class AUILayer<TScreen extends IUIScreenController> extends ATSComponent {
+export abstract class AUILayer<TScreen extends IUIScreenController> extends BaseBehaviorComponent {
     protected registeredScreens: Map<string, TScreen>;
 
     public abstract ShowScreen(screen: TScreen): void;
@@ -19,8 +21,9 @@ export abstract class AUILayer<TScreen extends IUIScreenController> extends ATSC
         this.registeredScreens = new Map<string, TScreen>();
     }
 
-    public ReparentScreen(controller: IUIScreenController, screenTransform: UnityEngine.Transform) {
-        screenTransform.SetParent(this.gameObject.transform, false);
+    public ReparentScreen(controller: IUIScreenController, screenTransform: TEntity) {
+        // screenTransform.SetParent(this.gameObject.transform, false);
+        this.owner.addChild(screenTransform);
     }
 
     public RegisterScreen(screenId: string, controller: TScreen) {
