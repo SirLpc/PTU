@@ -572,6 +572,6 @@ MonoBehaviour:
         name: deactivateScreenGOs
         refID: 0
         _variable:
-          _useConstant: 0
+          _useConstant: 1
           _constantValue: 0
           _variable: {fileID: 11400000, guid: e1b76510f89174c4eb4150a73ff0c1ef, type: 2}
