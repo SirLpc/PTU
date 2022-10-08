@@ -12,19 +12,19 @@ class AUIScreenController extends BaseBehaviorComponent_1.BaseBehaviorComponent 
     animIn;
     animOut;
     properties;
-    constructor(unityGo) {
-        super(unityGo);
-        this.inTransitionFinished = this.binder.Get("inTransitionFinished");
-        this.outTransitionFinished = this.binder.Get("outTransitionFinished");
-        this.closeRequest = this.binder.Get("closeRequest");
-        this.screenDestroyed = this.binder.Get("screenDestroyed");
-    }
-    Awake() {
+    // constructor(unityGo : UnityEngine.GameObject){
+    //     super(unityGo);
+    //     this.inTransitionFinished = this.binder.Get("inTransitionFinished") as Puergp.Events.GameObjectEvent;
+    //     this.outTransitionFinished = this.binder.Get("outTransitionFinished") as Puergp.Events.GameObjectEvent;
+    //     this.closeRequest = this.binder.Get("closeRequest") as Puergp.Events.GameObjectEvent;
+    //     this.screenDestroyed = this.binder.Get("screenDestroyed") as Puergp.Events.GameObjectEvent;
+    // }
+    load() {
         this.AddListeners();
     }
-    OnDestroy() {
+    unload() {
         if (this.screenDestroyed.IsNull() == false) {
-            this.screenDestroyed.Dispatch(this.gameObject);
+            // this.screenDestroyed.Dispatch(this.gameObject);
         }
         this.inTransitionFinished = null;
         this.outTransitionFinished = null;
@@ -49,40 +49,40 @@ class AUIScreenController extends BaseBehaviorComponent_1.BaseBehaviorComponent 
         }
         this.HierarchyFixOnShow();
         this.OnPropertiesSet();
-        if (this.gameObject.activeSelf == false) {
+        if (this.owner.isActive == false) {
             this.DoAnimation(this.animIn, this.OnTransitionInFinished.bind(this), true);
         }
         else {
             if (this.inTransitionFinished.IsNull() == false) {
-                this.inTransitionFinished.Dispatch(this.gameObject);
+                // this.inTransitionFinished.Dispatch(this.gameObject);
             }
         }
     }
     DoAnimation(caller, callWhenFinished, isVisible) {
         if (caller == null) {
-            this.gameObject.SetActive(isVisible);
+            this.owner.isActive = isVisible;
             if (callWhenFinished != null) {
                 callWhenFinished();
             }
             else {
-                if (isVisible && this.gameObject.activeSelf == false) {
-                    this.gameObject.SetActive(true);
+                if (isVisible && this.owner.isActive == false) {
+                    this.owner.isActive = true;
                 }
-                caller.Animate(this.gameObject.transform, callWhenFinished);
+                // caller.Animate(this.gameObject.transform, callWhenFinished);
             }
         }
     }
     OnTransitionInFinished() {
         this.isVisible = true;
         if (this.inTransitionFinished.IsNull() == false) {
-            this.inTransitionFinished.Dispatch(this.gameObject);
+            // this.inTransitionFinished.Dispatch(this.gameObject);
         }
     }
     OnTransitionOutFinished() {
         this.isVisible = false;
-        this.gameObject.SetActive(false);
+        this.owner.isActive = false;
         if (this.outTransitionFinished.IsNull() == false) {
-            this.outTransitionFinished.Dispatch(this.gameObject);
+            // this.outTransitionFinished.Dispatch(this.gameObject);
         }
     }
 }

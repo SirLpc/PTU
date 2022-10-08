@@ -18,24 +18,24 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
     public animOut: ATransitionComponent;
     public properties: TProps;
 
-    constructor(unityGo : UnityEngine.GameObject){
-        super(unityGo);
+    // constructor(unityGo : UnityEngine.GameObject){
+    //     super(unityGo);
 
-        this.inTransitionFinished = this.binder.Get("inTransitionFinished") as Puergp.Events.GameObjectEvent;
-        this.outTransitionFinished = this.binder.Get("outTransitionFinished") as Puergp.Events.GameObjectEvent;
-        this.closeRequest = this.binder.Get("closeRequest") as Puergp.Events.GameObjectEvent;
-        this.screenDestroyed = this.binder.Get("screenDestroyed") as Puergp.Events.GameObjectEvent;
-    }
+    //     this.inTransitionFinished = this.binder.Get("inTransitionFinished") as Puergp.Events.GameObjectEvent;
+    //     this.outTransitionFinished = this.binder.Get("outTransitionFinished") as Puergp.Events.GameObjectEvent;
+    //     this.closeRequest = this.binder.Get("closeRequest") as Puergp.Events.GameObjectEvent;
+    //     this.screenDestroyed = this.binder.Get("screenDestroyed") as Puergp.Events.GameObjectEvent;
+    // }
 
-    public override Awake(): void {
+    public override load(): void {
 
 
         this.AddListeners();
     }
 
-    public override OnDestroy(): void {
+    public override unload(): void {
         if (this.screenDestroyed.IsNull() == false) {
-            this.screenDestroyed.Dispatch(this.gameObject);
+            // this.screenDestroyed.Dispatch(this.gameObject);
         }
 
         this.inTransitionFinished = null;
@@ -71,28 +71,28 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
         this.HierarchyFixOnShow();
         this.OnPropertiesSet();
 
-        if (this.gameObject.activeSelf == false) {
+        if (this.owner.isActive == false) {
             this.DoAnimation(this.animIn, this.OnTransitionInFinished.bind(this), true);
         }
         else {
             if (this.inTransitionFinished.IsNull() == false) {
-                this.inTransitionFinished.Dispatch(this.gameObject);
+                // this.inTransitionFinished.Dispatch(this.gameObject);
             }
         }
     }
 
     private DoAnimation(caller: ATransitionComponent, callWhenFinished: ()=>void, isVisible:boolean) {
         if (caller == null) {
-            this.gameObject.SetActive(isVisible);
+            this.owner.isActive = isVisible;
             if (callWhenFinished != null) {
                 callWhenFinished();
             }
             else {
-                if (isVisible && this.gameObject.activeSelf == false) {
-                    this.gameObject.SetActive(true);
+                if (isVisible && this.owner.isActive == false) {
+                    this.owner.isActive = true;
                 }
 
-                caller.Animate(this.gameObject.transform, callWhenFinished);
+                // caller.Animate(this.gameObject.transform, callWhenFinished);
             }
         }
     }
@@ -101,16 +101,16 @@ export abstract class AUIScreenController<TProps extends IScreenProperties> exte
         this.isVisible = true;
 
         if (this.inTransitionFinished.IsNull() == false) {
-            this.inTransitionFinished.Dispatch(this.gameObject);
+            // this.inTransitionFinished.Dispatch(this.gameObject);
         }
     }
 
     private OnTransitionOutFinished(): void {
         this.isVisible = false;
-        this.gameObject.SetActive(false);
+        this.owner.isActive = false;
 
         if (this.outTransitionFinished.IsNull() == false) {
-            this.outTransitionFinished.Dispatch(this.gameObject);
+            // this.outTransitionFinished.Dispatch(this.gameObject);
         }
     }
 
