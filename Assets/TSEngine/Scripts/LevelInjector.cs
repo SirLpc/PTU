@@ -25,7 +25,8 @@ namespace TSEngine
     [Serializable]
     public class EntityDescription
     {
-        public string name;
+	    public string name;
+	    public bool isActive;
         public TransformDescription transform;
         public EntityDescription[] children;
         public BehaviourDescription[] behaviors;
@@ -33,7 +34,8 @@ namespace TSEngine
 
         public EntityDescription(Transform tr)
         {
-            name = tr.name;
+	        name = tr.name;
+	        isActive = tr.gameObject.activeSelf;
             transform = new TransformDescription(tr);
             children = new EntityDescription[tr.childCount];
             for (int i = 0; i < tr.childCount; i++)
@@ -41,7 +43,7 @@ namespace TSEngine
                 children[i] = new EntityDescription(tr.GetChild(i));
             }
 
-            var behaviourIjs = tr.GetComponents<BehaviourInjector>();
+	        var behaviourIjs = tr.GetComponents<BehaviourInjector>();
             behaviors = new BehaviourDescription[behaviourIjs.Length];
             for (int i = 0; i < behaviourIjs.Length; i++)
             {

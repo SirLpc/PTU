@@ -154,6 +154,7 @@ import { LevelManager } from "./World/LevelManager";
             this._game.UpdateReady();
 
             // Kick off the render loop.
+            this._previousTime = Date.now();
             this.loop();
 
                 

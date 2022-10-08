@@ -11,26 +11,26 @@ class BaseBehaviorComponent extends CommonComponent_1.CommonComponent {
         if (this._enabled != val) {
             this._enabled = val;
             if (this._enabled) {
-                this.onEnabled();
+                this.onEnable();
             }
             else {
-                this.onDisabled();
+                this.onDisable();
             }
         }
     }
     load() {
         super.load();
         this._enabled = true;
-        this.onEnabled();
+        this.onEnable();
     }
     unload() {
         this._enabled = false;
-        this.onDisabled();
+        this.onDisable();
         super.unload();
     }
-    onEnabled() {
+    onEnable() {
     }
-    onDisabled() {
+    onDisable() {
     }
 }
 exports.BaseBehaviorComponent = BaseBehaviorComponent;

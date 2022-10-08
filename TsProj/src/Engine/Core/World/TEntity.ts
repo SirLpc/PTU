@@ -24,6 +24,7 @@ import { SceneGraph } from "./SceneGraph";
         private _sceneGraph: SceneGraph;
         private _components: IComponent[] = [];
         private _behaviors: BaseBehaviorComponent[] = [];
+        private _isActive: boolean = true;
         private _isVisible: boolean = true;
 
         private _localMatrix: Matrix4x4 = Matrix4x4.identity();
@@ -59,6 +60,24 @@ import { SceneGraph } from "./SceneGraph";
         /** Indicates if this entity has been loaded. */
         public get isLoaded(): boolean {
             return this._isLoaded;
+        }
+
+        /** Indicates if this entity is currently active. */
+        public get isActive(): boolean {
+            return this._isActive;
+        }
+
+        /** Sets active of this entity. */
+        public set isActive( value: boolean ) {
+            this._isActive = value;
+
+            for ( let c of this._behaviors ) {
+                c.enabled = this._isActive;
+            }
+
+            for ( let c of this._children ) {
+                c.isActive = this._isActive;
+            }
         }
 
         /** Indicates if this entity is currently visible. */
@@ -192,6 +211,10 @@ import { SceneGraph } from "./SceneGraph";
 
         /** Performs pre-update procedures on this entity. */
         public updateReady(): void {
+            if ( !this._isActive ) {
+                return;
+            }
+
             for ( let c of this._components ) {
                 c.updateReady();
             }
@@ -211,6 +234,9 @@ import { SceneGraph } from "./SceneGraph";
          * @param time The delta time in milliseconds since the last update call.
          */
         public update( time: number ): void {
+            if ( !this._isActive ) {
+                return;
+            }
 
             this._localMatrix = this.transform.getTransformationMatrix();
             this.updateWorldMatrix( ( this._parent !== undefined ) ? this._parent.worldMatrix : undefined );
@@ -233,7 +259,7 @@ import { SceneGraph } from "./SceneGraph";
          */
         //public render( renderView: RenderView ): void {
         public render(  ): void {
-            if ( !this._isVisible ) {
+            if ( !this._isActive  || !this._isVisible ) {
                 return;
             }
 

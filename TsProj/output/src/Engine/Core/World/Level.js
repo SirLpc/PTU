@@ -194,6 +194,9 @@ class Level {
         else {
             entity = new TEntity_1.TEntity(name, this._sceneGraph);
         }
+        if (dataSection.isActive !== undefined) {
+            entity.isActive = Boolean(dataSection.isActive);
+        }
         if (dataSection.transform !== undefined) {
             entity.transform.setFromJson(dataSection.transform);
         }

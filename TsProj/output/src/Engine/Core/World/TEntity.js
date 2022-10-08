@@ -18,6 +18,7 @@ class TEntity extends TObject_1.TObject {
     _sceneGraph;
     _components = [];
     _behaviors = [];
+    _isActive = true;
     _isVisible = true;
     _localMatrix = Matrix4x4_1.Matrix4x4.identity();
     _worldMatrix = Matrix4x4_1.Matrix4x4.identity();
@@ -46,6 +47,20 @@ class TEntity extends TObject_1.TObject {
     /** Indicates if this entity has been loaded. */
     get isLoaded() {
         return this._isLoaded;
+    }
+    /** Indicates if this entity is currently active. */
+    get isActive() {
+        return this._isActive;
+    }
+    /** Sets active of this entity. */
+    set isActive(value) {
+        this._isActive = value;
+        for (let c of this._behaviors) {
+            c.enabled = this._isActive;
+        }
+        for (let c of this._children) {
+            c.isActive = this._isActive;
+        }
     }
     /** Indicates if this entity is currently visible. */
     get isVisible() {
@@ -159,6 +174,9 @@ class TEntity extends TObject_1.TObject {
     }
     /** Performs pre-update procedures on this entity. */
     updateReady() {
+        if (!this._isActive) {
+            return;
+        }
         for (let c of this._components) {
             c.updateReady();
         }
@@ -175,6 +193,9 @@ class TEntity extends TObject_1.TObject {
      * @param time The delta time in milliseconds since the last update call.
      */
     update(time) {
+        if (!this._isActive) {
+            return;
+        }
         this._localMatrix = this.transform.getTransformationMatrix();
         this.updateWorldMatrix((this._parent !== undefined) ? this._parent.worldMatrix : undefined);
         for (let c of this._components) {
@@ -192,7 +213,7 @@ class TEntity extends TObject_1.TObject {
      */
     //public render( renderView: RenderView ): void {
     render() {
-        if (!this._isVisible) {
+        if (!this._isActive || !this._isVisible) {
             return;
         }
         for (let c of this._components) {
