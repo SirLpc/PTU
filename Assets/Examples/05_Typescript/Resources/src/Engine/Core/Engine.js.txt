@@ -111,6 +111,7 @@ class Engine {
         // Perform items such as loading the first/initial level, etc.
         this._game.UpdateReady();
         // Kick off the render loop.
+        this._previousTime = Date.now();
         this.loop();
         //TODO 从unity中call
         setInterval(() => {
