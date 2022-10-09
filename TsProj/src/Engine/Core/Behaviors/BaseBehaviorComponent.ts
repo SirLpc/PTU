@@ -13,10 +13,10 @@ export abstract class BaseBehaviorComponent extends CommonComponent {
         if (this._enabled != val) {
             this._enabled = val;
             if (this._enabled) {
-                this.onEnabled();
+                this.onEnable();
             }
             else {
-                this.onDisabled();
+                this.onDisable();
             }
         }
     }
@@ -25,19 +25,19 @@ export abstract class BaseBehaviorComponent extends CommonComponent {
         super.load();
 
         this._enabled = true;
-        this.onEnabled();
+        this.onEnable();
     }
 
     public override unload(): void {
         this._enabled = false;
-        this.onDisabled();
+        this.onDisable();
 
         super.unload();
     }
 
-    public onEnabled(): void {
+    public onEnable(): void {
     }
 
-    public onDisabled(): void {
+    public onDisable(): void {
     }
 }

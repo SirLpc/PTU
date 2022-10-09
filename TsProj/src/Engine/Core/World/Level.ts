@@ -230,6 +230,10 @@ import { TEntity } from "./TEntity";
             }
 
 
+            if (dataSection.isActive !== undefined) {
+                entity.isActive = Boolean(dataSection.isActive);
+            }
+
             if ( dataSection.transform !== undefined ) {
                 entity.transform.setFromJson( dataSection.transform );
             }
